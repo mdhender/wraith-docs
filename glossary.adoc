@@ -117,13 +117,22 @@ Define this, please.
 light structural unit::
 Define this, please.
 
+metal unit::
+A _metal_ unit is a refined metallic ore.
+This includes common metals like iron and steel (but never *gold*) and exotic metals like unobtanium and lutyisthebestium.
+Metal units can be stored and transported.
+Metal units must be mined and refined by *mining* units.
+
 military robot unit::
 Define this, please.
 
 military supply unit::
 Define this, please.
 
-mine unit::
+mine::
+_Mine_ is an alias for *mining* unit.
+
+mining unit::
 Define this, please.
 
 mining group::
@@ -137,6 +146,13 @@ Define this, please.
 
 nation::
 A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
+
+non-metal unit::
+A _non-metal_ unit is a refined non-metallic ore.
+This includes things like crystals, gases (but never *fuel* units), and organic materials like silk (but never *food* units).
+Non-metal units can be stored and transported.
+Non-metal units must be mined and refined by *mining* units.
+Note that metal units never include *gold*.
 
 orbit::
 An _orbit_ represents something.
