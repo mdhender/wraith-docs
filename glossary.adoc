@@ -20,9 +20,21 @@ Please see the LICENSE file for copying details.
 == Glossary
 Common terms for Wraith.
 
+anti-missle unit::
+Define this, please.
+
+assault craft unit::
+Define this, please.
+
+assault weapon unit::
+Define this, please.
+
 asteroid belt::
 An _asteroid belt_ is a type of *planet* that is composed of many small, irregular "rocks."
 The belt occupies an entire orbit.
+
+automation unit::
+Define this, please.
 
 cluster::
 The _cluster_ is the *game* area.
@@ -32,17 +44,58 @@ Each star contains 11 *orbits*.
 Each orbit may be empty, contain a *planet* or *asteroid belt*, or be a nexus to another star in the same system.
 Planets and asteroid belts contain *resources* that may be exploited.
 
+construction worker unit::
+Define this, please.
+
+consumer goods unit::
+Define this, please.
+
 coordinate::
 A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
 Coordinates are relative to the "center" of the cluster.
 The X axis points to the motion of the cluster in the galaxy.
 The Z axis points to the center of the galaxy.
 
+deposit::
+Define this, please.
+
 drone::
 Define this, please.
 
+energy weapon unit::
+Define this, please.
+
+energy shield unit::
+Define this, please.
+
+factory unit::
+Define this, please.
+
+factory group::
+Define this, please.
+
+farm unit::
+Define this, please.
+
+finished product::
+Define this, please.
+
+food unit::
+A _food_ unit represents a consumable source of energy for *population* units that can be stored and transported.
+Food units must be created by *farm* units.
+
+fuel unit::
+A _fuel_ unit represents storable, transportable power.
+It can be oil, uranium, crystals, etc.
+Fuel units must be mined and refined by *mining* units.
+
 game::
 Define this, please.
+
+gold unit::
+A _gold_ unit represents wealth.
+It can be physical assets like precious metals ("gold pressed latinum bars"), crystals (diamonds), as well as intangibles like "credits."
+Gold units must be mined and refined by *mining* units.
 
 government::
 The _government_ (or the bureaucracy) is the organization which makes and enforces laws for a *nation*.
@@ -52,7 +105,34 @@ although these may be mixed at the whim of the state.
 habitability number::
 Define this, please.
 
-missile::
+hyper-drive::
+Define this, please.
+
+labor::
+Define this, please.
+
+life support::
+Define this, please.
+
+light structural unit::
+Define this, please.
+
+military robot unit::
+Define this, please.
+
+military supply unit::
+Define this, please.
+
+mine unit::
+Define this, please.
+
+mining group::
+Define this, please.
+
+missile unit::
+Define this, please.
+
+missle launcher unit::
 Define this, please.
 
 nation::
@@ -69,24 +149,71 @@ A _planet_ is a member of a *system* and is identified by the system's *coordina
 player::
 The _player_ controls a single *nation* in a *game*.
 
+population unit::
+Define this, please.
+
 probe::
+Define this, please.
+
+professional unit::
+Define this, please.
+
+raw material::
+Define this, please.
+
+rebel unit::
+Define this, please.
+
+sensor::
 Define this, please.
 
 ship::
 Define this, please.
 
+shuttle::
+_Shuttle_ is an alternative name for a *transport*.
+
 society::
 A _society_ in the *game* is a group that shares common language, culture, geography, or religion.
 Societies, in their desire for unity and self-determination, come together to create a *nation*.
 
+solar power::
+Define this, please.
+
+soldier unit::
+Define this, please.
+
+space-drive::
+Define this, please.
+
 species::
 A _species_ in the *game* is a group that shares a common genetic history.
+
+spy unit::
+Define this, please.
+
+starvation::
+Define this, please.
 
 state::
 A _state_ is a political entity, created by a *nation*,
 which is the political organization that holds power in the *government*.
 A nation may be ruled by many states in its history.
 
+structural unit::
+Define this, please.
+
 system::
 A _system_ is a star system that has *orbits*.
 All systems are identified by their *coordinates* in the *cluster*.
+
+transport::
+Define this, please.
+
+unemployable unit::
+An _unemployable_ unit is a type of *population* unit.
+It includes those that are not eligble to be members of any other population unit.
+
+unskilled worker unit::
+Define this, please.
+
