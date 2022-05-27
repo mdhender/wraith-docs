@@ -15,6 +15,7 @@ That makes it a terrible source for learning the game.
 The User's Guide is the recommended source for getting started.
 
 WARNING: This reference manual is the source of truth for the rules.
+If the user guide does not match, the user guide is wrong.
 If the game engine implements it differently, the engine is wrong.
 
 The Wraith Reference Manual is copyright &copy; 2022 by Michael D Henderson.
@@ -131,7 +132,7 @@ FUEL allocations are prioritized:
 . FACT units
 
 Remaining FUEL is immediately moved to STORAGE.
-If there is not enough STORAGE available on the colony or ship,
+If there are not enough STORAGE available on the colony or ship,
 excess FUEL is lost.
 
 FUEL units in STORAGE are available for use in the remaining phases.
