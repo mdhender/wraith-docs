@@ -213,6 +213,11 @@ A _species_ in the *game* is a group that shares a common genetic history.
 spy unit::
 Define this, please.
 
+star::
+A _star_ in the game contains 11 *orbits* where at least one orbit has a *planet*.
+If the star is in a *system* with multiple stars, the 11th orbit is a link between the stars in the system.
+Otherwise the 11th orbit is empty.
+
 starvation::
 Define this, please.
 
@@ -225,7 +230,7 @@ structural unit::
 Define this, please.
 
 system::
-A _system_ is a star system that has *orbits*.
+A _system_ contains one or more *stars*.
 All systems are identified by their *coordinates* in the *cluster*.
 
 transport::
