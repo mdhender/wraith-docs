@@ -1,0 +1,194 @@
+= Wraith User Guide
+Michael D Henderson <mdhender@example.com>
+v0.0.0, 2022-05-25
+:doctype: book
+:sectnums:
+:sectnumlevels: 5
+:partnums:
+:toc: right
+:toclevels: 3
+:icons: font
+:url-quickref: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
+
+WARNING: The Reference Manual is the source of truth for the rules.
+If this document does not match, this document is wrong.
+
+The Wraith User Guide is copyright &copy; 2022 by Michael D Henderson.
+Please see the LICENSE file for copying details.
+
+:sectnums:
+== Foreword
+Wraith is inspired by the play by mail and strategy games that preceded it,
+most notably https://en.wikipedia.org/wiki/Empyrean_Challenge[Empyrean Challenge],
+https://farhorizons.dev[Far Horizons],
+and https://en.wikipedia.org/wiki/The_Campaign_for_North_Africa[The Campaign for North Africa].
+
+== Introduction
+
+=== History
+The Ryxen League was created to facilitate trade and settle disagreements between member nations.
+The League worked well for many generations but eventually became corrupt and installed a dictator.
+
+Rebellions started.
+The corrupt government was outnumbered, so it created an AI system, WRAITH, to wage war against the member nations.
+
+WRAITH was effective and brutal and soon started destroying entire worlds.
+
+With the future looking bleak, the nations built a fleet of world ships to move their people to safety.
+They built the ships with as little technology as possible to avoid detection, essentially bio-domes bolted to massive hyper-drives.
+
+The fleet kept jumping until they had almost depleted their fuel reserves.
+The ships split up, each nation looking to establish itself in the cluster.
+
+The game takes place about thirty generations (12,000 "standard years") after the nations establish new homeworlds in the cluster.
+
+The nations have thrived in isolation.
+They've rebuilt their industry, rediscovered many technologies, and started exploring their system.
+
+The history of their flight and migration has mostly been forgotten or transformed into legends.
+
+That changed when they detected a signal originating beyond the furthest planet in their system.
+
+== Turn
+Players complete a turn in the game by submitting a set of orders.
+After processing the orders, the game-master sends each player a report with the results of their orders.
+
+== Orders
+The heart of the game is order processing.
+Orders change the state of the game;
+they start an assembly line to create items,
+transfer cargo between systems,
+engage in diplomacy and spying,
+or attack other nations.
+
+Orders are processed in phases.
+
+.Phase Chart
+|===
+|Phase|Description
+
+|Fuel Allocation|todo...
+|Farming Production|todo...
+|Mining Production|todo...
+|Manufacturing Production|todo...
+|Combat takes place.|todo...
+|Set up orders are processed.|todo...
+|Dis-assembly orders are processed.|todo...
+|Build change orders are entered.|todo...
+|Mining change orders are entered.|todo...
+|Transfers are processed.|todo...
+|Assembly orders are processed.|todo...
+|All market and trade station activity takes place.|todo...
+|Surveys are carried out.|todo...
+|Probe and sensor reports are compiled.|todo...
+|Espionage activity takes place.|todo...
+|Ship movement occurs.|todo...
+|Draft orders are processed.|todo...
+|Pay and ration orders are entered.|todo...
+|Rebellion occurs.|todo...
+|Rebel increases take place.|todo...
+|Naming and control orders are processed.|todo...
+|Population increases are calculated.|todo...
+|News service reports are compiled.|todo...
+|===
+
+All _orders_ for a given _phase_ are executed before the next _phase_ begins.
+Within a phase, _orders_ are executed in the order they were issued.
+
+.Processing order
+====
+We'll use the following to show processing order:
+```
+1: S23 survey     ; order Ship 23 to survey the system it is currently in
+2: S24 move 9-9-9 ; order Ship 24 to move to system 9-9-9
+3: S24 survey     ; order Ship 24 to survey the system it is currently in
+```
+
+Please note that the line numbers are not part of the order.
+The semicolon treats the remainder of the line as a comment.
+
+Lines `1` and `3` would process in Phase 9 (Surveys).
+Line `1` would process before Line `3` because it occurs earlier in the file.
+
+Line `2` would process in Phase 11 (Ship Movement).
+Because Ship Movement happens after Survey, `Ship 24` would not perform the survey in system `9-9-9`.
+====
+
+[appendix]
+== Glossary
+
+[glossary]
+asteroid belt::
+An _asteroid belt_ is a type of *planet* that is composed of many small, irregular "rocks."
+The belt occupies an entire orbit.
+
+cluster::
+The _cluster_ is the *game* area.
+It contains many *systems*.
+Each system contains one or more *stars*.
+Each star contains 11 *orbits*.
+Each orbit may be empty, contain a *planet* or *asteroid belt*, or be a nexus to another star in the same system.
+Planets and asteroid belts contain *resources* that may be exploited.
+
+coordinate::
+A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
+Coordinates are relative to the "center" of the cluster.
+The X axis points to the motion of the cluster in the galaxy.
+The Z axis points to the center of the galaxy.
+
+drone::
+Define this, please.
+
+game::
+Define this, please.
+
+government::
+The _government_ (or the bureaucracy) is the organization which makes and enforces laws for a *nation*.
+The government is composed of groups which wield the executive, legislative, and judicial powers for the *state*,
+although these may be mixed at the whim of the state.
+
+habitability number::
+Define this, please.
+
+missile::
+Define this, please.
+
+nation::
+A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
+
+orbit::
+An _orbit_ represents something.
+Orbits start at 1.
+An orbit usually contains a *planet* or *asteroid belt*.
+
+planet::
+A _planet_ is a member of a *system* and is identified by the system's *coordinates* and the planet's *orbit*.
+
+player::
+The _player_ controls a single *nation* in a *game*.
+
+probe::
+Define this, please.
+
+ship::
+Define this, please.
+
+society::
+A _society_ in the *game* is a group that shares common language, culture, geography, or religion.
+Societies, in their desire for unity and self-determination, come together to create a *nation*.
+
+species::
+A _species_ in the *game* is a group that shares a common genetic history.
+
+state::
+A _state_ is a political entity, created by a *nation*,
+which is the political organization that holds power in the *government*.
+A nation may be ruled by many states in its history.
+
+system::
+A _system_ is a star system that has *orbits*.
+All systems are identified by their *coordinates* in the *cluster*.
+
+[index]
+== Index
+
