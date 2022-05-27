@@ -15,11 +15,9 @@ That makes it a terrible source for learning the game.
 The User's Guide is the recommended source for getting started.
 
 WARNING: This reference manual is the source of truth for the rules.
-If the user guide does not match, the user guide is wrong.
-If the game engine implements it differently, the engine is wrong.
 
 The Wraith Reference Manual is copyright &copy; 2022 by Michael D Henderson.
-All rights reserved.
+Please see the LICENSE file for copying details.
 
 :sectnums:
 == Foreword
@@ -32,30 +30,6 @@ TIP: Marc Hochler is working on a real-time, web-based version of Empyrean Chall
 You can find more information on his https://empyreanchallenge.herokuapp.com/[website].
 
 == Introduction
-
-=== History
-The Ryxen League was created to facilitate trade and settle disagreements between member nations.
-The League worked well for many generations but eventually became corrupt and installed a dictator.
-
-Rebellions started.
-The corrupt government was outnumbered, so it created an AI system, WRAITH, to wage war against the member nations.
-
-WRAITH was effective and brutal and soon started destroying entire worlds.
-
-With the future looking bleak, the nations built a fleet of world ships to move their people to safety.
-They built the ships with as little technology as possible to avoid detection, essentially bio-domes bolted to massive hyper-drives.
-
-The fleet kept jumping until they had almost depleted their fuel reserves.
-The ships split up, each nation looking to establish itself in the cluster.
-
-The game takes place about thirty generations (12,000 "standard years") after the nations establish new homeworlds in the cluster.
-
-The nations have thrived in isolation.
-They've rebuilt their industry, rediscovered many technologies, and started exploring their system.
-
-The history of their flight and migration has mostly been forgotten or transformed into legends.
-
-That changed when they detected a signal originating beyond the furthest planet in their system.
 
 == Turn
 Players complete a turn in the game by submitting a set of orders.
@@ -75,28 +49,29 @@ Orders are processed in phases.
 |===
 |Phase|Description
 
-|1|Farming Production
-|2|Mining Production
-|3|Manufacturing Production
-||Combat takes place.
-||Set up orders are processed.
-||Dis-assembly orders are processed.
-||Build change orders are entered.
-||Mining change orders are entered.
-||Transfers are processed.
-||Assembly orders are processed.
-||All market and trade station activity takes place.
-||Surveys are carried out.
-||Probe and sensor reports are compiled.
-||Espionage activity takes place.
-||Ship movement occurs.
-||Draft orders are processed.
-||Pay and ration orders are entered.
-||Rebellion occurs.
-||Rebel increases take place.
-||Naming and control orders are processed.
-||Population increases are calculated.
-||News service reports are compiled.
+|Fuel Allocation|todo...
+|Farming Production|todo...
+|Mining Production|todo...
+|Manufacturing Production|todo...
+|Combat takes place.|todo...
+|Set up orders are processed.|todo...
+|Dis-assembly orders are processed.|todo...
+|Build change orders are entered.|todo...
+|Mining change orders are entered.|todo...
+|Transfers are processed.|todo...
+|Assembly orders are processed.|todo...
+|All market and trade station activity takes place.|todo...
+|Surveys are carried out.|todo...
+|Probe and sensor reports are compiled.|todo...
+|Espionage activity takes place.|todo...
+|Ship movement occurs.|todo...
+|Draft orders are processed.|todo...
+|Pay and ration orders are entered.|todo...
+|Rebellion occurs.|todo...
+|Rebel increases take place.|todo...
+|Naming and control orders are processed.|todo...
+|Population increases are calculated.|todo...
+|News service reports are compiled.|todo...
 |===
 
 All _orders_ for a given _phase_ are executed before the next _phase_ begins.
