@@ -69,7 +69,7 @@ drone::
 Define this, please.
 
 enclosed colony::
-An _enclosed colony_ is built on the surface of an uninhabitable *terrestial planet* or on an asteroid in an *asteroid belt*.
+An _enclosed colony_ is built on the surface of an uninhabitable *terrestial planet*, a moon of a *gas giant* or on an asteroid in an *asteroid belt*.
 Enclosed colonies require *life support* units to sustain *population* units.
 
 energy weapon unit::
@@ -202,7 +202,7 @@ A _planet_ orbits a *star* in a *system* and is identified by the *coordinates* 
 Planets may be *terrestrial*, *gas giants*, or an *asteroid belt*.
 
 player::
-The _player_ controls a single *nation* in a *game*.
+A _player_ controls a single *nation* in a *game*.
 
 population unit::
 Define this, please.
@@ -224,7 +224,7 @@ regent::
 A _regent_ is a *player* appointed by another player to off-load responsibility for submitting orders for portions of a *nation*.
 The player delegates responsibility for one or more *colonies* and/or *ships* to the regent.
 If the player controlling the regent drops, the regency dissolves and all units are returned to the original player.
-*Planets* controlled by regents count for victory conditions if the regent hasn't rebelled.
+*Planets* controlled by regents count for *victory conditions* if the regent hasn't rebelled.
 
 sensor::
 Define this, please.
@@ -261,7 +261,8 @@ If the star is in a *system* with multiple stars, the 11th orbit is a link betwe
 Otherwise the 11th orbit is empty.
 
 starvation::
-Define this, please.
+_Starvation_ occurs when *population* units do not have enough *food* units in a turn.
+Maintenance level is 0.25 units and the minimum needed to prevent starvation is 25% of that (0.0625 units).
 
 state::
 A _state_ is a political entity, created by a *nation*,
