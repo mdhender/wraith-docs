@@ -44,8 +44,9 @@ Each star contains 11 *orbits*.
 Each orbit may be empty, contain a *planet* or *asteroid belt*, or be a nexus to another star in the same system.
 Planets and asteroid belts contain *resources* that may be exploited.
 
-construction worker unit::
-Define this, please.
+construction worker::
+_Construction worker_ is not a *population* unit;
+it is a group of *professional* and *unskilled worker* units that are trained to build things.
 
 consumer goods unit::
 Define this, please.
@@ -102,10 +103,13 @@ The _government_ (or the bureaucracy) is the organization which makes and enforc
 The government is composed of groups which wield the executive, legislative, and judicial powers for the *state*,
 although these may be mixed at the whim of the state.
 
+governor::
+_Governor_ is an alias for *regent*.
+
 habitability number::
 Define this, please.
 
-hyper-drive::
+hyper-drive unit::
 Define this, please.
 
 labor::
@@ -177,13 +181,20 @@ probe::
 Define this, please.
 
 professional unit::
-Define this, please.
+A _professional_ unit is a type of *population* unit.
 
 raw material::
 Define this, please.
 
-rebel unit::
-Define this, please.
+rebel::
+_Rebel_ is not a *population* unit;
+it is the count of the number of people that are include to rebel against the current *government*.
+
+regent::
+A _regent_ is a *player* appointed by another player to off-load responsibility for submitting orders for portions of a *nation*.
+The player delegates responsibility for one or more *colonies* and/or *ships* to the regent.
+If the player controlling the regent drops, the regency dissolves and all units are returned to the original player.
+*Planets* controlled by regents count for victory conditions if the regent hasn't rebelled.
 
 sensor::
 Define this, please.
@@ -202,16 +213,17 @@ solar power::
 Define this, please.
 
 soldier unit::
-Define this, please.
+A _soldier_ unit is a type of *population* unit.
 
-space-drive::
+space-drive unit::
 Define this, please.
 
 species::
 A _species_ in the *game* is a group that shares a common genetic history.
 
-spy unit::
-Define this, please.
+spy::
+_Spy_ is not a *population* unit;
+it is a group of *professional* and *soldier* units that are trained to conduct espionage.
 
 star::
 A _star_ in the game contains 11 *orbits* where at least one orbit has a *planet*.
@@ -241,5 +253,10 @@ An _unemployable_ unit is a type of *population* unit.
 It includes those that are not eligble to be members of any other population unit.
 
 unskilled worker unit::
-Define this, please.
+An _unskilled worker_ unit is a type of *population* unit.
 
+viceroy::
+_Viceroy_ is an alias for *regent*.
+
+victory conditions::
+Define this, please.
