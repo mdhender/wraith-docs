@@ -123,6 +123,9 @@ This includes common metals like iron and steel (but never *gold*) and exotic me
 Metal units can be stored and transported.
 Metal units must be mined and refined by *mining* units.
 
+metallic::
+_Metallic_ is an alias for *metal* unit.
+
 military robot unit::
 Define this, please.
 
@@ -149,10 +152,12 @@ A _nation_ is created by people from many *societies* that share a common *homew
 
 non-metal unit::
 A _non-metal_ unit is a refined non-metallic ore.
-This includes things like crystals, gases (but never *fuel* units), and organic materials like silk (but never *food* units).
+This includes common things like crystals, gases (but never *fuel* units), organic materials like silk (but never *food* units), and exotic materials like trilithium crystals.
 Non-metal units can be stored and transported.
 Non-metal units must be mined and refined by *mining* units.
-Note that metal units never include *gold*.
+
+non-metallic::
+_Non-metallic_ is an alias for *non-metal* unit.
 
 orbit::
 An _orbit_ represents something.
