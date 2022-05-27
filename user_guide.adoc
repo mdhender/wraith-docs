@@ -49,6 +49,23 @@ The history of their flight and migration has mostly been forgotten or transform
 
 That changed when they detected a signal originating beyond the furthest planet in their system.
 
+== Setup
+Wraith can be played as an individual competition or with players cooperating.
+
+=== Individual Competition
+In individual competition, each player manages unique species, running his/her own nation.
+
+==== Victory Conditions
+The "winner" is the first player to control 100 planets for 4 consecutive turns WITH no other player controlling more than 50 planets in any of those turns.
+
+=== Shared Species
+When sharing species, each player runs his/her own nation, but teams of players share a common species and a common homeworld.
+
+The players that share a homeworld must cooperate to build ships and start exploring the system, or they can battle each other.
+
+==== Victory Conditions
+The "winner" is the first species to control 200 planets for 4 consecutive turns WITH no other species controlling more than 100 planets in any of those turns. Within each species, the player with the strongest economy is the "winner."
+
 == Turn
 Players complete a turn in the game by submitting a set of orders.
 After processing the orders, the game-master sends each player a report with the results of their orders.

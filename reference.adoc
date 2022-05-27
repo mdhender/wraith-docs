@@ -543,12 +543,6 @@ that's why the death rate is higher for those groups.
 
 == News Service Reports
 
-== Victory Conditions
-A player wins the game when the following conditions are true for 4 consecutive turns.
-
-1. The player controls 100 or more planets.
-2. No other player controls 50 or more planets.
-
 == Players
 
 === Nations
