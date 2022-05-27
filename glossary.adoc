@@ -44,6 +44,10 @@ Each star contains 11 *orbits*.
 Each orbit may be empty, contain a *planet* or *asteroid belt*, or be a nexus to another star in the same system.
 Planets and asteroid belts contain *resources* that may be exploited.
 
+colony::
+A _colony_ is required to establish *control* of a *planet*.
+There are three types of _colonies_: *open colonies*, *enclosed colonies*, and *orbiting colonies*.
+
 construction worker::
 _Construction worker_ is not a *population* unit;
 it is a group of *professional* and *unskilled worker* units that are trained to build things.
@@ -62,6 +66,10 @@ Define this, please.
 
 drone::
 Define this, please.
+
+enclosed colony::
+An _enclosed colony_ is built on the surface of an uninhabitable *terrestial planet* or on an asteroid in an *asteroid belt*.
+Enclosed colonies require *life support* units to sustain *population* units.
 
 energy weapon unit::
 Define this, please.
@@ -105,6 +113,9 @@ although these may be mixed at the whim of the state.
 
 governor::
 _Governor_ is an alias for *regent*.
+
+habitable planet::
+A _habitable planet_ is a *terrestial planet* with a *habitability number* greater than zero.
 
 habitability number::
 Define this, please.
@@ -168,8 +179,18 @@ An _orbit_ represents something.
 Orbits start at 1.
 An orbit usually contains a *planet* or *asteroid belt*.
 
+orbiting colony::
+An _orbiting colony_ is built in orbit around a planet.
+Orbiting colonies may not be built in empty orbits.
+Orbiting colonies require *life support* units to sustain *population* units.
+
+open colony::
+An _open colony_ is built on the surface of a *habitable planet*.
+Open colonies do not require *life support* units to sustain *population* units.
+
 planet::
-A _planet_ is a member of a *system* and is identified by the system's *coordinates* and the planet's *orbit*.
+A _planet_ orbits a *star* in a *system* and is identified by the *coordinates* of the system and the *orbit* of the star.
+Planets may be *terrestrial* or an *asteroid belt*.
 
 player::
 The _player_ controls a single *nation* in a *game*.
@@ -244,6 +265,9 @@ Define this, please.
 system::
 A _system_ contains one or more *stars*.
 All systems are identified by their *coordinates* in the *cluster*.
+
+terrestial planet::
+Define this, please.
 
 transport::
 Define this, please.
