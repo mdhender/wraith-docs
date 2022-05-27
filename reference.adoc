@@ -1,0 +1,944 @@
+= Wraith Reference Manual
+Michael D Henderson <mdhender@example.com>
+v0.0.0, 2022-04-25
+:doctype: book
+:sectnums:
+:sectnumlevels: 5
+:partnums:
+:toc: right
+:toclevels: 3
+:icons: font
+:url-quickref: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
+
+TIP: This reference manual is meant to be concise and definitive.
+That makes it a terrible source for learning the game.
+The User's Guide is the recommended source for getting started.
+
+WARNING: This reference manual is the source of truth for the rules.
+If the game engine implements it differently, the engine is wrong.
+
+The Wraith Reference Manual is copyright &copy; 2022 by Michael D Henderson.
+All rights reserved.
+
+:sectnums:
+== Foreword
+Wraith is inspired by the play by mail and strategy games that preceded it,
+most notably https://en.wikipedia.org/wiki/Empyrean_Challenge[Empyrean Challenge],
+https://farhorizons.dev[Far Horizons],
+and https://en.wikipedia.org/wiki/The_Campaign_for_North_Africa[The Campaign for North Africa].
+
+TIP: Marc Hochler is working on a real-time, web-based version of Empyrean Challenge.
+You can find more information on his https://empyreanchallenge.herokuapp.com/[website].
+
+== Introduction
+
+=== History
+The Ryxen League was created to facilitate trade and settle disagreements between member nations.
+The League worked well for many generations but eventually became corrupt and installed a dictator.
+
+Rebellions started.
+The corrupt government was outnumbered, so it created an AI system, WRAITH, to wage war against the member nations.
+
+WRAITH was effective and brutal and soon started destroying entire worlds.
+
+With the future looking bleak, the nations built a fleet of world ships to move their people to safety.
+They built the ships with as little technology as possible to avoid detection, essentially bio-domes bolted to massive hyper-drives.
+
+The fleet kept jumping until they had almost depleted their fuel reserves.
+The ships split up, each nation looking to establish itself in the cluster.
+
+The game takes place about thirty generations (12,000 "standard years") after the nations establish new homeworlds in the cluster.
+
+The nations have thrived in isolation.
+They've rebuilt their industry, rediscovered many technologies, and started exploring their system.
+
+The history of their flight and migration has mostly been forgotten or transformed into legends.
+
+That changed when they detected a signal originating beyond the furthest planet in their system.
+
+== Turn
+Players complete a turn in the game by submitting a set of orders.
+After processing the orders, the game-master sends each player a report with the results of their orders.
+
+== Orders
+The heart of the game is order processing.
+Orders change the state of the game;
+they start an assembly line to create items,
+transfer cargo between systems,
+engage in diplomacy and spying,
+or attack other nations.
+
+Orders are processed in phases.
+
+.Phase Chart
+|===
+|Phase|Description
+
+|1|Farming Production
+|2|Mining Production
+|3|Manufacturing Production
+||Combat takes place.
+||Set up orders are processed.
+||Dis-assembly orders are processed.
+||Build change orders are entered.
+||Mining change orders are entered.
+||Transfers are processed.
+||Assembly orders are processed.
+||All market and trade station activity takes place.
+||Surveys are carried out.
+||Probe and sensor reports are compiled.
+||Espionage activity takes place.
+||Ship movement occurs.
+||Draft orders are processed.
+||Pay and ration orders are entered.
+||Rebellion occurs.
+||Rebel increases take place.
+||Naming and control orders are processed.
+||Population increases are calculated.
+||News service reports are compiled.
+|===
+
+All _orders_ for a given _phase_ are executed before the next _phase_ begins.
+Within a phase, _orders_ are executed in the order they were issued.
+
+.Processing order
+====
+We'll use the following to show processing order:
+```
+1: S23 survey     ; order Ship 23 to survey the system it is currently in
+2: S24 move 9-9-9 ; order Ship 24 to move to system 9-9-9
+3: S24 survey     ; order Ship 24 to survey the system it is currently in
+```
+
+Please note that the line numbers are not part of the order.
+The semicolon treats the remainder of the line as a comment.
+
+Lines `1` and `3` would process in Phase 9 (Surveys).
+Line `1` would process before Line `3` because it occurs earlier in the file.
+
+Line `2` would process in Phase 11 (Ship Movement).
+Because Ship Movement happens after Survey, `Ship 24` would not perform the survey in system `9-9-9`.
+====
+
+== Fuel Allocation Phase
+The number of FUEL units available to every colony and ship is calculated.
+
+FUEL allocations are prioritized:
+
+. LIFE SUPPORT units
+. FARM units
+. MINE units
+. FACT units
+
+Remaining FUEL is immediately moved to STORAGE.
+If there is not enough STORAGE available on the colony or ship,
+excess FUEL is lost.
+
+FUEL units in STORAGE are available for use in the remaining phases.
+
+TIP: FUEL units are only produced via mining. They are not available for use until the TURN after they've been mined.
+There are some rather complicated exceptions to this rule.
+
+== Farming Phase
+
+A FARM unit produces no FOOD units if it is INACTIVE.
+
+A FARM unit produces no FOOD units the first TURN that it is ACTIVE.
+
+=== Fuel
+FARM units require FUEL to be ACTIVE.
+If a FARM unit does not have a full allocation of FUEL,
+it is INACTIVE for the current TURN.
+
+.Farming Fuel Chart
+|===
+|CODE|Fuel per UNIT per TURN|Can use Solar Power?
+
+|FARM-1|0.5 FUEL|No
+|FARM-2|1.0 FUEL|Yes, if on Orbital Station in orbits 1..5
+|FARM-3|1.5 FUEL|Yes, if on Orbital Station in orbits 1..5
+|FARM-4|2.0 FUEL|Yes, if on Orbital Station in orbits 1..5
+|FARM-5|2.5 FUEL|Yes, if on Orbital Station in orbits 1..5
+|FARM-6|6.0 FUEL|No
+|FARM-7|7.0 FUEL|No
+|FARM-8|8.0 FUEL|No
+|FARM-9|9.0 FUEL|No
+|FARM-10|10.0 FUEL|No
+|===
+
+If the FARM unit can use Solar Power,
+its FUEL cost drops to 0 FUEL units per TURN.
+
+=== Labor
+FARM units require labor to be ACTIVE.
+If a FARM unit does not have a full allocation of labor,
+it is INACTIVE for the current TURN.
+
+.Farming Labor Chart
+|===
+|CODE|PROFESSIONAL Units|UNSKILLED WORKER Units
+
+|FARM|1 per FARM unit|3 per FARM unit
+|===
+
+Note that farming automation units may replace UNSKILLED WORKER units at a TODO rate.
+
+=== Production
+If the FARM unit is ACTIVE this TURN and was active the prior TURN,
+it will produce FOOD per the following chart.
+
+.Farming Production Chart
+|===
+|CODE|Production per UNIT per YEAR
+
+|FARM-1|100 FOOD
+|FARM-2|40 FOOD
+|FARM-3|60 FOOD
+|FARM-4|80 FOOD
+|FARM-5|100 FOOD
+|FARM-6|120 FOOD
+|FARM-7|140 FOOD
+|FARM-8|160 FOOD
+|FARM-9|180 FOOD
+|FARM-10|200 FOOD
+|===
+
+
+1 FOOD unit will feed 4 population units and has a mass of 6 MASS units (MUs).
+TODO: this is the wrong place for this information.
+
+== Mining Phase
+
+A MINE unit produces no raw material units if it is INACTIVE.
+
+A MINE unit produces no raw material units the first TURN that it is ACTIVE.
+
+=== Fuel
+MINE units require FUEL to be ACTIVE.
+If a MINE unit does not have a full allocation of FUEL,
+it is INACTIVE for the current TURN.
+
+.Mining Fuel Chart
+|===
+|CODE|Fuel per UNIT per TURN|Can use Solar Power?
+
+|MINE|0.5 * TL FUEL|No
+|===
+
+If the MINE unit can use Solar Power,
+its FUEL cost drops to 0 FUEL units per TURN.
+
+=== Labor
+MINE units require labor to be ACTIVE.
+If a MINE unit does not have a full allocation of labor,
+it is INACTIVE for the current TURN.
+
+.Mining Labor Chart
+|===
+|CODE|PROFESSIONAL Units|UNSKILLED WORKER Units
+
+|MINE|1 per MINE unit|3 per MINE unit
+|===
+
+Note that mining automation units may replace UNSKILLED WORKER units at a TODO rate.
+
+=== Production
+If the MINE unit is ACTIVE this TURN and was active the prior TURN,
+it will produce raw materials per the following chart.
+
+.Mining Production Chart
+|===
+|CODE|Production per UNIT per YEAR
+
+|MINE|100 * TL MASS UNITS (MU) of raw materials
+|===
+
+== Manufacturing Phase
+FACT units are the only units that can convert fuel and raw materials into finished goods.
+
+A FACT unit produces no finished units if it is INACTIVE.
+
+A FACT unit produces finished units the first TURN that it is ACTIVE.
+
+A FACT unit produces finished units the last TURN that it is ACTIVE. 
+
+FACTORY units manufacture (produce) all goods execpt
+
+. Raw Materials -- GOLD, FUEL, METAL, and NON-METALLIC units
+. FOOD units
+. POPULATION units
+
+FACTORY units that are not assigned to a FACTORY GROUP are INACTIVE (idle) - they will not manufacture any unit.
+
+If the FACT unit is ACTIVE this TURN and was active the prior TURN, it will produce finished goods per the production chart.
+Otherwise, it will produce nothing.
+
+=== Location
+FACT units may be assembled only on COLONY units.
+FACT units may not be assembled on SHIP units.
+Players may not assemble FACT units anywhere other than a COLONY.
+
+=== Groups
+FACT units must be assigned to a FACTORY GROUP before they can be activated.
+A FACT unit is INACTIVE if is it not assigned to a FACTORY GROUP.
+
+=== Fuel
+FACT units require fuel to be active.
+The fuel source may be solar power or FUEL units.
+
+FACT units that are on orbiting colonies in orbits 1 through 5 use solar fuel.
+These units require no other fuel source to operate at full capacity.
+
+All other FACT units must use FUEL units per the following chart.
+
+.Factory Fuel Chart
+|===
+|CODE|FUEL units used per TURN
+
+|FACT|TL / 2
+|===
+
+Note: always round the result up.
+
+Note: INACTIVE FAT units never consume FUEL units.
+
+=== Labor
+FACT units require labor to be ACTIVE.
+The amount of labor is determined by the total number of units in the FACTORY GROUP.
+
+If a FACTORY GROUP does not have a full allocation of labor, it is INACTIVE for the current TURN.
+
+The efficiency of a FACTORY GROUP improves as more FACT units are added.
+The following chart shows the number of labor units needed based on the total number of FACT units in the GROUP.
+
+.Factory Group Labor Chart
+|===
+|CODE|Size|PROFESSIONAL units|UNSKILLED WORKER units
+
+|FACTORY GROUP|1 - 4 FACT units|6 per FACT unit|18 per FACT unit
+|FACTORY GROUP|5 - 49 FACT units|5 per FACT unit|15 per FACT unit
+|FACTORY GROUP|50 - 499 FACT units|4 per FACT unit|12 per FACT unit
+|FACTORY GROUP|500 - 4,999 FACT units|3 per FACT unit|9 per FACT unit
+|FACTORY GROUP|5,000 - 49,999 FACT units|2 per FACT unit|6 per FACT unit
+|FACTORY GROUP|50,000 - up FACT units|1 per FACT unit|3 per FACT unit
+|===
+
+Note: factory automation units may replace UNSKILLED WORKER units at a TODO rate.
+
+Note: the ratio of UNSKILLED WORKER to PROFESSIONAL units is 3 to 1.
+
+Players may rely on the inverse of this chart.
+For example,
+if the player allocates 3 PROFESSIONAL units and 9 UNSKILLED WORKER units to a FACTORY GROUP,
+up to 4,999 FACT units may be activated in the group.
+All excess FACT units in the group are INACTIVE that TURN.
+
+=== Production
+COLONY units are the ony UNIT that may install FACTORY units and manufacture (produce) finished goods.
+Players may not activate FACTORY units anywhere other than a COLONY.
+
+Unless otherwise stated, it takes 4 TURNS (one YEAR) to manufacture a UNIT.
+Adding more FACTORY units to the FACTORY GROUP will produce more units;
+it will not reduce the amount of time needed to manufacture any unit.
+
+To allow factories to produce different goods, the production pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
+
+The MASS units of the finished goods are determined by the following chart:
+
+.Factory Production Chart
+|===
+|CODE|Production per UNIT per YEAR
+
+|FACT|20 * TL MASS UNITS (MU) of finished goods
+|===
+
+== Combat
+=== Combat Phase
+The combat phase
+
+==== Bombard
+The `bombard` order
+
+```
+ColonyOrShipID bombard ColonyID PercentCommitted
+```
+
+==== Invade
+The `invade` order
+
+```
+ShipID invade ColonyID PercentCommitted
+```
+
+==== Raid
+The `raid` order
+
+```
+ColonyOrShipID raid ColonyOrShipID PercentCommitted LootID
+```
+
+==== Support
+The `support` order
+
+```
+ColonyOrShipID support ColonyOrShipID TargetID PercentCommitted
+```
+
+== Set up orders
+Set up orders are used to assemble a new COLONY or SHIP.
+
+The order includes the list of material units for the assembly.
+(This list is also known as the "bill of materials", or BOM.)
+All materials must be present at the site prior to starting.
+
+This order will span multiple lines since it specifies the list of materials.
+The player must use the `end` keyword to terminate the order.
+
+The BOM must include CONSTRUCTION WORKER units.
+These units will assemble the colony or ship and will be returned once the assembly is complete.
+While working, these units will draw FOOD from the site
+(meaning the ship or colony they were transferred from).
+
+The BOM must include STRUCTURAL (or LIGHT STRUCTURAL) units.
+The CONSTRUCTION WORKER units will use the structural units to enclose the largest space possible.
+Once the structure is complete, they will transfer the remainder of the BOM.
+Unless the orders transfer them to the new colony or ship, they will return to their original host.
+
+The BOM should include POPULATION units.
+These units will establish control of the colony or ship once complete.
+(An unpopulated colony or ship can be claimed by any player.)
+
+The BOM should include enough FOOD units to feed the included POPULATION units.
+Unlike the CONSTRUCTION WORKER units, the POPULATION units will not draw FOOD from the site.
+
+.Set Up Chart
+|===
+||Open Colonies|Enclosed Colonies|Orbiting Colonies|Ships
+
+|Allowed per player per planet|1|1|1|any number
+|Located on planet surface|Habitable terrestrial|Uninhabitable terrestrial|none|none
+|Located on asteroid|none|yes|none|none
+|Located in orbit|none|none|any planet|any planet
+|Life support unit required|no|yes|yes|yes
+|Stuctural units necessary per unit of mass|1|5|10|10
+|Size limitation|none|none|none|none
+|===
+
+=== Establish New Colony
+TIP: Use `assemble-colony` to build a new colony.
+
+```
+assemble-colony
+  ; bill of materials used to assemble the colony
+end
+```
+
+=== Build New Ship
+TIP: Use `assemble-ship` to build a new ship.
+
+```
+assemble-ship
+  ; bill of materials used to assemble the ship
+end
+```
+
+
+== Disassembly orders
+== Change Orders
+=== Build change orders
+=== Mining change orders
+== Transfers
+== Assembly orders
+
+The total number of CONSTRUCTION WORKER units activated must not exceed the number of available PROFESSIONAL and UNSKILLED WORKER units available.
+
+The total number of SPY units activated must not exceed the number of available PROFESSIONAL and SOLDIER units available.
+
+== Market and Trade Station Activity
+== Surveys
+=== Probe and Sensor Reports
+== Espionage
+== Ship Movement
+== Draft orders
+1 PROFESSIONAL unit is required to train up to 100 trainee units.
+5% of trainees graduate to ??? each TURN.
+TODO: This is not the right phase.
+
+The total number of UNSKILLED WORKER units drafted must not exceed the number of available SOLDIER units.
+
+There is no limit on the number of SOLDIER units that may be disbanded per TURN.
+
+== Pay and Ration orders
+Pay rates depend on location.
+Population units on ships are paid at different rates than units on colonies.
+
+=== Ship Population
+The crew of a ship consists of PROFESSIONAL and SOLDIER units.
+Non-crew are PASSENGERS (or, potentially, cargo if in cryo.)
+
+.Ship Crew Pay
+|===
+|CODE|Pay per UNIT per TURN|FOOD per UNIT per TURN
+
+|PROFESSIONAL|0.01 GOLD|Per rationing orders
+|SOLDIER|0.005 GOLD|Per rationing orders
+|PASSENGER|N/A/|Per rationing orders
+|===
+
+When the ship docks at its home planet or any trade station,
+the crew will exchange their accumulated GOLD for CONSUMER GOODS.
+
+Passengers are never paid while being transported,
+but they do receive a ration of FOOD every TURN per the ship's orders.
+
+=== General Population
+.General Population Pay
+|===
+|CODE|People in UNIT|Pay per UNIT per TURN|FOOD per UNIT per TURN
+
+|UNEMPLOYABLE|100|0.000 CONSUMER GOODS|Per rationing orders
+|UNSKILLED WORKER|100|0.125 CONSUMER GOODS|Per rationing orders
+|PROFESSIONAL|100|0.375 CONSUMER GOODS|Per rationing orders
+|SOLDIER|100|0.250 CONSUMER GOODS|Per rationing orders
+|SPY|200|0.625 CONSUMER GOODS|Per rationing orders
+|CONSTRUCTION WORKER|200|0.500 CONSUMER GOODS|Per rationing orders
+|===
+
+WARNING: This chart lies about spies and construction workers.
+They are aggregates - their numbers are the sum of their components.
+
+== Rebellion
+== Rebel increases
+REBEL units represent the number of rebels.
+They are not treated as a separate group.
+
+People become rebels when under-paid and/or starving.
+Once a rebel, almost always a rebel.
+
+== Naming and Control orders
+== Population Changes
+=== Training
+On any TURN where the percentage of UNEMPLOYABLE units is more than 30% of the total population,
+2% of the total number of UNEMPLOYABLE units will become be moved to UNSKILLED WORKER units.
+
+=== Retirement
+5% of SOLDIER units retire each YEAR.
+TODO: convert this to per TURN.
+Upon retirement, SOLDIER units become PROFESSIONAL units.
+
+=== Births
+Births are computed each TURN.
+The birth rate ranges from 0.25% to 2.5% of the population.
+(The number depends on factors such as open, unused habitable land and standard of living.)
+
+All birth increases accumulate to the UNEMPLOYABLES population.
+
+Population never increases on a ship.
+
+=== Deaths
+==== Starvation
+Deaths from starvation are computed each TURN.
+
+Starvation takes place when the rationed FOOD amount is less than 1/16 of a FOOD unit per POPULATION unit.
+When that happens, the following formula determines how many POPULATION units starve.
+
+    S = (M - R) / M
+
+Where S is the fraction of the population that starves; M is the minimum ration (1/16) and R is the actual ration.
+
+==== Natural Causes
+Deaths from natural causes are computed each TURN.
+They are computed after deaths from starvation.
+
+.Death Rate Chart
+|===
+|CODE|Deaths from Natural Causes per TURN
+
+|UNEMPLOYABLE|0.0625%
+|UNSKILLED WORKER|0.0625%
+|PROFESSIONAL|0.0625%
+|SOLDIER|0.0750%
+|SPY|+0.0250%
+|CONSTRUCTION WORKER|+0.0125%
+|===
+
+TIP: Soldiering, spying, and construction are dangerous activities;
+that's why the death rate is higher for those groups.
+
+== News Service Reports
+
+== Victory Conditions
+A player wins the game when the following conditions are true for 4 consecutive turns.
+
+1. The player controls 100 or more planets.
+2. No other player controls 50 or more planets.
+
+== Players
+
+=== Nations
+
+=== States
+
+=== Governments
+
+== Cluster
+
+=== Systems
+
+=== Planets
+
+=== Colonies
+
+[appendix]
+== Units
+=== Anti-Missile
+=== Assault Craft
+=== Assault Weapon
+=== Automation
+AUTO units may replace UNSKILLED WORKER units.
+Each AUTO unit may replace up to its TECH LEVEL in UNSKILLED WORKER units.
+An AUTO unit may not be split between groups.
+
+.Automation Summary
+|===
+|CODE|Replacements per UNIT|Mass per UNIT|Fuel per UNIT per TURN
+
+|AUTO|Up to TL UNSKILLED WORKER units|4 * TL MU|0 FUEL units
+|===
+
+=== Colony
+=== Construction Worker
+=== Consumer Goods
+.Consumer Goods Summary
+|===
+|CODE|Mass per UNIT|Fuel per UNIT per TURN
+
+|CONSUMER GOODS|0.6 MU|0 FUEL units
+|===
+
+=== Energy Shield
+=== Energy Weapon
+=== Factory
+=== Farm
+=== Food
+.Food Summary
+|===
+|CODE|Feeds per UNIT|Mass per UNIT|Fuel per UNIT per TURN
+
+|FOOD|4 POPULATION units (400 people)|6 MU|0 FUEL units
+|===
+
+=== Hyper-Drive
+.Hyper-Drive Summary
+|===
+|CODE|Range per UNIT|Capacity per UNIT|Mass per UNIT|Fuel per UNIT per JUMP
+
+|HYPERDRIVE|TL light years|1,000 * TL MU|45 * TL MU|40 FUEL units per LY travelled
+|===
+
+Jumps between orbits ("interplanetary travel") are treated as 0.1 light years for FUEL.
+(In other words, each HYPERDRIVE unit consumes 4 FUEL units jumping in system.)
+
+=== Life Support
+LIFE SUPPORT units use FUEL to replenish air and water in ships and colonies.
+
+.Life Support Summary
+|===
+|CODE|Sustains per UNIT|Mass per UNIT|Fuel per UNIT per TURN
+
+|LIFE SUPPORT|TL^2^ POPULATION units|8 * TL MU|TL FUEL units
+|===
+
+=== Light Structural
+.Light Structural Summary
+|===
+|CODE|Mass per UNIT|Capacity
+
+|LIGHT STRUCTURAL|0.05 MU|todo
+|===
+
+=== Military Robots
+=== Military Supplies
+=== Mine
+=== Missile
+=== Population
+=== Probe
+See SENSOR.
+
+=== Professional
+=== Rebel
+=== Sensor
+.Sensor Summary
+|===
+|CODE|Mass per UNIT|Fuel per UNIT per TURN
+
+|SENSOR|40 * TL MU|TL / 20 FUEL units
+|===
+
+=== Ship
+=== Soldier
+=== Space-Drive
+.Space-Drive Summary
+|===
+|CODE|THRUST FACTOR per UNIT|Mass per UNIT|Fuel per UNIT per COMBAT ROUND
+
+|SPACEDRIVE|1,000 * TL^2^|25 * TL MU|TL^2^ FUEL units
+|===
+
+In combat, the SHIP may move a DISTANCE up to its MASS divided by the total THRUST FACTOR of its SPACEDRIVE units each COMBAT ROUND.
+
+=== Spy
+=== Structural
+.Structural Summary
+|===
+|CODE|Mass per UNIT|Capacity
+
+|STRUCTURAL|0.5 MU|todo
+|===
+
+=== Transport
+.Transport Summary
+|===
+|CODE|Mass per UNIT|Fuel per UNIT per TURN|Capacity
+
+|TRANSPORT|4 * TL MU|TL^2^ / 10 FUEL units|200 * TL^2^ MU
+|===
+
+Note: FUEL usage is prorated.
+The actual amount used is the percentage derived from cargo mass divided by capacity.
+
+=== Unemployable
+=== Unskilled Worker
+
+[appendix]
+== Notes
+=== Farming Notes
+There are three types of farms in the game.
+
+1. Organic Farm units (OFARM) are open air farms and ranches.
+These can be built only on habitable planets in orbits 1 through 5.
+The maximum number of units is the _habitability number_ (HN) times 100,000.
+2. Hydroponic Farm units (HFARM) use natural sunlight to grow grains and proteins in controlled, enclosed areas.
+These can be built only on planets or orbital colonies in orbits 1 through 5.
+3. Vat Farm units (VFARM) use artificial sunlight to grow grains and proteins in controlled, enclosed areas.
+
+Each farming unit requires 3 Unskilled Worker units (UNW) and 1 Professional Worker unit (PWU) to be productive.
+
+Unskilled Worker units may be replaced by Farming Automation units (AUFARM).
+
+.Farming Production
+|===
+|Farm Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
+
+|Organic Farm|OFARM|TL2|100.0 * TL FOOD units|6.0 + TL MU|0.5 * TL FUEL units
+|Hydroponic Farm|HFARM|TL5|IF(TL<2,0,20*TL) FOOD units|6.0 + TL MU|0.5 * TL FUEL units
+|Vat Farm|VFARM|TL10|IF(TL<6,0,20*TL) FOOD units|6.0 + TL MU|1.0 * TL FUEL units
+|===
+
+Exception: HFARM units in orbiting colonies use solar power, so their Fuel Use Per TURN is 0.0.
+
+.FARM Chart
+|===
+|CODE|Production per UNIT per YEAR|Mass per UNIT|Fuel per UNIT per TURN|Location|Orbits|Solar Power
+
+|FARM-1|100 FOOD|7 MU|0.5 FUEL|Planets with HN > 0|1..5|No
+|FARM-2|40 FOOD|8 MU|1.0 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
+|FARM-3|60 FOOD|9 MU|1.5 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
+|FARM-4|80 FOOD|10 MU|2.0 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
+|FARM-5|100 FOOD|11 MU|2.5 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
+|FARM-6|120 FOOD|12 MU|6.0 FUEL|Any, including Ships|Any|No
+|FARM-7|140 FOOD|13 MU|7.0 FUEL|Any, including Ships|Any|No
+|FARM-8|160 FOOD|14 MU|8.0 FUEL|Any, including Ships|Any|No
+|FARM-9|180 FOOD|15 MU|9.0 FUEL|Any, including Ships|Any|No
+|FARM-10|200 FOOD|16 MU|10.0 FUEL|Any, including Ships|Any||No
+|===
+
+=== Manufacturing Notes
+Factory (FACT) units process the raw materials created by Mining (MINE) units and turn them into finished goods such as star drives, robots, weapons, and consumer goods.
+Essentially, FACT units produce everything except population, fuel, gold, and food.
+
+To allow factories to produce different goods, the production pipeline is abstracted into Mass Units (MUs) of raw materials input and finished goods output.
+
+.Factory Production
+|===
+|Factory Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
+
+|Factory|FACT|TL10|20.0 * TL MASS Units|12.0 + (2.0 * TL) MU|0.5 * TL FUEL units
+|===
+
+Exception: FACT units in orbiting colonies in orbits 1 through 5 use solar power, so their Fuel Use Per TURN is 0.0.
+
+The amount of raw materials that can be processed by a factory unit in
+
+The MUs produced are divided by the MUs of the good is the number of units of the good produced (all results are rounded down).
+
+Examples needed here.
+
+=== Mining Notes
+Assigning MINE units to a DEPOSIT establishes CONTROL of that DEPOSIT.
+
+Raw resources are found on planets, moons, and asteroid belts.
+Resources are extracted from deposits by Mining (MINE) units.
+MINE units are capable of mining, drilling, quarrying, and refining the raw resources.
+For game purposes, we'll call all of those "mining."
+The mined resources are also known as "raw materials."
+
+There are two types of resources that may be mined in the game - ores and fuels.
+Ores can contain precious metals and crystals (GOLD), non-precious metals (METL) or non-precious minerals (MNRL).
+
+MINE units are not allowed to be installed on orbiting colonies;
+they must be installed only on surface colonies.
+
+.Mining Production
+|===
+|Mining Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
+
+|Mining Unit|MINE|TL10|100.0 * TL MU|10.0 + (2.0 * TL) MU|0.5 * TL FUEL units
+|===
+
+.Mining Production Chart
+|===
+|CODE|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
+
+|MINE|100.0 * TL MU|10.0 + (2.0 * TL) MU|0.5 * TL FUEL units
+|===
+
+=== Population Notes
+. Ration orders: Limit food consumption of a ship/colony.
+. Pay orders: Set pay rates, which remain constant until changed, for a ship/colony.
+. Draft orders: Recruit soldiers or trainees.
+. Assembly orders: Form construction or spy units. (Assembly orders have other functions as well.)
+
+=== Weapon Notes
+.Weapons Chart
+|===
+|UNIT|CODE|DESCRIPTION|FUEL USE PER UNIT|MASS UNITS PER UNIT
+
+|ASSAULT WEAPONS||Assault weapons are used by soldiers on the surface of a planet.|0|2
+|ASSAULT CRAFT||Assault craft are land/space vehicles used to invade colonies of ships.|.1 fuel unit per turn|5 * TL
+|MILITARY ROBOTS||Military robots can be used to replace soldier units.
+The number of soldier units that can be replaced is equal to the military robot unit's TL x 2.|0|(2 x TL) + 20
+|MISSILES||Missile can be used in any kind of combat; they are not as accurate as energy weapons.|0|4 x TL
+|MISSILE LAUNCHERS||Missile launchers launch the missiles; the accuracy of a missile depends on the T.L. of the missile launcher.|0|25 x TL
+|ANTI-MISSILES||Anti-missiles are launched by missile launchers also and destroy attacking missiles.
+The % of missiles destroyed depends on the TL of the anti-missile.|0|4 x TL
+|ENERGY WEAPONS||Energy weapons can be used in all combat situations except that of a surface colony to destroy a surface colony.
+An energy weapon projects a powerful beam of concentrated energy.|4 x TL per COMBAT ROUND (CR)|10 x TL
+|ENERGY SHIELDS||Energy shields deflect energy beams.
+The amount of energy deflected depends on the TL of the shields.|10 x TL per CR|50 x TL
+|MILITARY SUPPLIES||Military supplies consist of ammunition, medicines, etc., used up during combat.|0|.04 per unit
+|===
+
+[appendix]
+== Orders
+
+This section details the *orders* that *players* may issue.
+
+[glossary]
+ColonyID:: _ColonyID_ is a unique identifier for a colony.
+It must start with the letter "C" followed by an _integer_.
+Examples are C1, C50, C100.
+
+ColonyOrShipID:: _ColonyOrShipID_ is either a _ColonyID_ or _ShipID_.
+This is only used when the _order_ accepts either a colony or ship.
+For example, a player may order S27 to raid S35 or C22.
+
+Integer:: _Integer_ is a whole number.
+Examples are 0, 50, 100.
+
+LootID:: _LootID_ is the name of a resource to target during a raid.
+Examples are gold, fuel.
+
+Number:: _Number_ is a real number or a whole number.
+Examples are 0, 0.0, 50.2, 100.
+
+Percentage:: _Percentage_ is an _integer_ between 0 and 100 followed by a percent sign.
+Examples are 0%, 50%, 100%.
+
+PercentCommitted:: _PercentCommitted_ is a _percentage_.
+It is TODO...
+
+ShipID:: _ShipID_ is a unique identifier for a ship.
+It must start with the letter "S" followed by an _integer_.
+Examples are S1, S50, S100.
+
+TargetID:: _TargetID_ is either a _ColonyID_ or _ShipID_.
+For example, a player may order S50 to support S27 in its attack against C22.
+
+[appendix]
+== Glossary
+
+[glossary]
+asteroid belt::
+Define this, please.
+
+cluster::
+The _cluster_ is the *game* area.
+It contains many *systems*.
+Each system contains one or more *stars*.
+Each star contains 11 *orbits*.
+Each orbit may be empty, contain a *planet* or *asteroid belt*, or be a nexus to another star in the same system.
+Planets and asteroid belts contain *resources* that may be exploited.
+
+coordinate::
+A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
+Coordinates are relative to the "center" of the cluster.
+The X axis points to the motion of the cluster in the galaxy.
+The Y axis points to the center of the galaxy.
+
+drone::
+Define this, please.
+
+game::
+Define this, please.
+
+government::
+The _government_ (or the bureaucracy) is the organization which makes and enforces laws for a *nation*.
+The government is composed of groups which wield the executive, legislative, and judicial powers for the *state*,
+although these may be mixed at the whim of the state.
+
+habitability number::
+Define this, please.
+
+missile::
+Define this, please.
+
+nation::
+A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
+
+orbit::
+An _orbit_ represents something.
+Orbits start at 1.
+An orbit usually contains a *planet* or *asteroid belt*.
+
+planet::
+A _planet_ is a member of a *system* and is identified by the system's *coordinates* and the planet's *orbit*.
+
+player::
+The _player_ controls a single *nation* in a *game*.
+
+probe::
+Define this, please.
+
+ship::
+Define this, please.
+
+society::
+A _society_ in the *game* is a group that shares common language, culture, geography, or religion.
+Societies, in their desire for unity and self-determination, come together to create a *nation*.
+
+species::
+A _species_ in the *game* is a group that shares a common genetic history.
+
+state::
+A _state_ is a political entity, created by a *nation*,
+which is the political organization that holds power in the *government*.
+A nation may be ruled by many states in its history.
+
+system::
+A _system_ is a star system that has *orbits*.
+All systems are identified by their *coordinates* in the *cluster*.
+
+[index]
+== Index
+
