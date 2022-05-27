@@ -871,7 +871,8 @@ For example, a player may order S50 to support S27 in its attack against C22.
 
 [glossary]
 asteroid belt::
-Define this, please.
+An _asteroid belt_ is a type of *planet* that is composed of many small, irregular "rocks."
+The belt occupies an entire orbit.
 
 cluster::
 The _cluster_ is the *game* area.
@@ -885,7 +886,7 @@ coordinate::
 A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
 Coordinates are relative to the "center" of the cluster.
 The X axis points to the motion of the cluster in the galaxy.
-The Y axis points to the center of the galaxy.
+The Z axis points to the center of the galaxy.
 
 drone::
 Define this, please.
