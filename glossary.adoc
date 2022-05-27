@@ -31,7 +31,8 @@ Define this, please.
 
 asteroid belt::
 An _asteroid belt_ is a type of *planet* that is composed of many small, irregular "rocks."
-The belt occupies an entire orbit.
+Asteroids are composed of carbon, silicate, metals, non-metals, and ice.
+The asteroid belt occupies an entire orbit.
 
 automation unit::
 Define this, please.
@@ -101,6 +102,11 @@ Fuel units must be mined and refined by *mining* units.
 game::
 Define this, please.
 
+gas giant planet::
+A _gas giant_ is a giant *planet* with an atmosphere of mostly helium and hydrogen.
+The surface of the planet can't be reached because of the high mass and temperatures.
+*Colonies* may be built on the surface of moons orbiting a gas giant.
+
 gold unit::
 A _gold_ unit represents wealth.
 It can be physical assets like precious metals ("gold pressed latinum bars"), crystals (diamonds), as well as intangibles like "credits."
@@ -122,6 +128,9 @@ Define this, please.
 
 hyper-drive unit::
 Define this, please.
+
+ice giant::
+An _ice giant_ is a type of *gas giant* that is composed of liquids or gases other than helium and hydrogen.
 
 labor::
 Define this, please.
@@ -190,7 +199,7 @@ Open colonies do not require *life support* units to sustain *population* units.
 
 planet::
 A _planet_ orbits a *star* in a *system* and is identified by the *coordinates* of the system and the *orbit* of the star.
-Planets may be *terrestrial* or an *asteroid belt*.
+Planets may be *terrestrial*, *gas giants*, or an *asteroid belt*.
 
 player::
 The _player_ controls a single *nation* in a *game*.
@@ -267,7 +276,9 @@ A _system_ contains one or more *stars*.
 All systems are identified by their *coordinates* in the *cluster*.
 
 terrestial planet::
-Define this, please.
+A _terrestial_ *planet* is round and large enough to sweep its orbit clear, but is smaller than a gas giant.
+It may have an atmosphere and a metal core, or it could be a frozen iceball with no atmosphere.
+*Colonies* may be built on the surface of terrestial planets.
 
 transport::
 Define this, please.
