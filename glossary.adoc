@@ -270,7 +270,11 @@ which is the political organization that holds power in the *government*.
 A nation may be ruled by many states in its history.
 
 structural unit::
-Define this, please.
+A _structural unit_ is used to enclose mass units (MUs).
+An *open colony* requires 1 SUF to enclose 1 MU.
+An *enclosed colony* requires 5 SUF to enclose 1 MU.
+An *orbiting colony* requires 10 SU to enclose 1 MU.
+A *ship* also requires 10 SU to enclose 1 MU.
 
 system::
 A _system_ contains one or more *stars*.
