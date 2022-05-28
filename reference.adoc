@@ -49,11 +49,15 @@ Orders are processed in phases.
 |===
 |Phase|Description
 
-|Fuel Allocation|todo...
+|Fuel Allocation|In this phase, fuel is allocated to units.
+Fuel allocations are prioritized: life support is first, followed by farms, mines, then factories.
+The allocation algorithm is naive and simple.
+It attempts to allocate 100% of a unit's needs before moving to the next unit.
+It never allocates proportionately.
 |Farming Production|todo...
 |Mining Production|The mining phase is used to extract resources from deposits and refine them into materials that can be used in the manufacturing phase.
 |Manufacturing Production|todo...
-|Combat takes place.|todo...
+|Combat|The combat phase is used to project force against other player's assets.
 |Set up|The set up phase is used to assemble new colonies and ships.
 |Dis-assembly orders are processed.|todo...
 |Build change orders are entered.|todo...
@@ -327,39 +331,44 @@ The MASS units of the finished goods are determined by the following chart:
 |FACT|20 * TL MASS UNITS (MU) of finished goods
 |===
 
-== Combat
+== Combat Phase
 All orders in the Combat phase are executed in the order that they're entered in the orders file.
 
-=== Combat Phase
-The combat phase
-
-==== Bombard
+=== Bombard
 The `bombard` order
 
 ```
 ColonyOrShipID bombard ColonyID PercentCommitted
 ```
 
-==== Invade
+Examples:
+
+=== Invade
 The `invade` order
 
 ```
 ShipID invade ColonyID PercentCommitted
 ```
 
-==== Raid
+Examples:
+
+=== Raid
 The `raid` order
 
 ```
 ColonyOrShipID raid ColonyOrShipID PercentCommitted LootID
 ```
 
-==== Support
+Examples:
+
+=== Support
 The `support` order
 
 ```
 ColonyOrShipID support ColonyOrShipID TargetID PercentCommitted
 ```
+
+Examples:
 
 == Set up Phase
 Set up orders are used to assemble a new COLONY or SHIP.
