@@ -439,6 +439,23 @@ end
 
 
 == Disassembly orders
+A `disassemble` order instructs CONSTRUCTION WORKER units to take a unit apart and prepare it for storage.
+This reduces the space required to store and transport the unit.
+
+All orders in the Disassembly phase are executed in the order that they're entered in the orders file.
+
+A CONSTRUCTION WORK unit can disassemble TODO...
+
+```
+disassemble ColonyOrShipID Quantity UnitCodeTL
+```
+
+Examples:
+```
+disassemble C27 9,750 MISSLELAUNCHER-2
+disassemble S52   200 MISSLE-3
+```
+
 == Change Orders
 === Build change orders
 === Mining change orders
@@ -452,6 +469,8 @@ All orders in the Assembly phase are executed in the order that they're entered 
 
 === Assemble Items
 An `assemble` order instructs CONSTRUCTION WORKER units to take a stored (disassembled) unit and make it operational (put it together).
+
+A CONSTRUCTION WORK unit can assemble TODO...
 
 ```
 assemble ColonyOrShipID Quantity UnitCodeTL
