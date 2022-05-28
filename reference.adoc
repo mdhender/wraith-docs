@@ -61,7 +61,7 @@ It never allocates proportionately.
 |Set up|The set up phase is used to assemble new colonies and ships.
 |Disassembly|This phase is used to disassembly operational units and make them ready to put into storage.
 |Build Change|The build change orders phase is used to todo...
-|Minch Change|The mining change orders phase is used to todo...
+|Mining Change|The mining change orders phase is used to todo...
 |Transfer|The transfer phase is used to todo...
 |Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
 |Market|The market and trade station phase is used to todo...
@@ -489,7 +489,10 @@ Examples:
 mine 25,000 MG2708 DP1019
 ```
 
-== Market and Trade Station Activity
+== Market and Trade Station Activity Phase
+WARNING: The market phase was removed because player's abused it.
+Is there a way to monitor/prevent that?
+
 == Surveys
 === Probe and Sensor Reports
 == Espionage
