@@ -171,6 +171,9 @@ it is INACTIVE for the current TURN.
 
 Note that farming automation units may replace UNSKILLED WORKER units at a TODO rate.
 
+=== Shortages
+Todo...
+
 === Production
 If the FARM unit is ACTIVE this TURN and was active the prior TURN,
 it will produce FOOD per the following chart.
@@ -228,6 +231,9 @@ it is INACTIVE for the current TURN.
 |===
 
 Note that mining automation units may replace UNSKILLED WORKER units at a TODO rate.
+
+=== Shortages
+Todo...
 
 === Production
 If the MINE unit is ACTIVE this TURN and was active the prior TURN,
@@ -287,13 +293,13 @@ All other FACTORY units must use FUEL units per the following chart.
 
 Note: INACTIVE FACTORY units never consume FUEL units.
 
-If a FACTORY GROUP does not have a full allocation of fuel, a portion will be INACTIVE for the current TURN.
+If a FACTORY GROUP does not have a full allocation of fuel, it will use the SHORTAGE rules for the current TURN.
 
 === Labor
 FACTORY units require labor to be ACTIVE.
 The amount of labor is determined by the total number of units in the FACTORY GROUP.
 
-If a FACTORY GROUP does not have a full allocation of labor, a portion will be INACTIVE for the current TURN.
+If a FACTORY GROUP does not have a full allocation of labor, it will use the SHORTAGE rules for the current TURN.
 
 The efficiency of a FACTORY GROUP improves as more FACTORY units are added.
 The following chart shows the number of labor units needed based on the total number of FACTORY units in the GROUP.
@@ -320,26 +326,10 @@ if the player allocates 3 PROFESSIONAL units and 9 UNSKILLED WORKER units to a F
 up to 4,999 FACTORY units may be activated in the group.
 All excess FACTORY units in the group are INACTIVE that TURN.
 
-=== Production
-COLONY units are the ony UNIT that may install FACTORY units and manufacture (produce) finished goods.
-Players may not activate FACTORY units anywhere other than a COLONY.
+=== Raw Materials
+A FACTORY GROUP requires raw materials to produce finished goods per the following chart:
 
-Unless otherwise stated, it takes 4 TURNS (one YEAR) to manufacture a UNIT.
-Adding more FACTORY units to the FACTORY GROUP will produce more units;
-it will not reduce the amount of time needed to manufacture any unit.
-
-To allow factories to produce different goods, the production pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
-
-The MASS units of the finished goods are determined by the following chart:
-
-.Factory Production Chart
-|===
-|CODE|Input per UNIT per TURN|Output per UNIT per YEAR
-
-|FACTORY|5 * TL MASS UNITS (MU) of RAW MATERIAL|Per the Production Cost Chart
-|===
-
-.Production Cost Chart
+.Production Raw Materials Chart
 |===
 |CODE|METALLIC Units|NON-METALLIC Units|GOLD Units|FUEL Units
 
@@ -352,7 +342,7 @@ The MASS units of the finished goods are determined by the following chart:
 |ENERGY WEAPON|5 * TL|5 * TL|0|0
 |FACTORY|8 + TL|4 + TL|0|0
 |FARM|4 + TL|2 + TL|0|0
-|HYPERDRIVE|25 * TL|20 * TL|0|0
+|HYPER-DRIVE|25 * TL|20 * TL|0|0
 |LIFE SUPPORT|3 * TL|5 * TL|0|0
 |LIGHT STRUCTURAL|.01|.04|0|0
 |MILITARY ROBOT|10 + TL|10 + TL|0|0
@@ -361,9 +351,36 @@ The MASS units of the finished goods are determined by the following chart:
 |MISSLE|2 * TL|2 * TL|0|0
 |MISSILE LAUNCHER|15 * TL|10 * TL|0|0
 |SENSOR|10 * TL|20 * TL|0|0
-|SPACE DRIVE|15 * TL|10 * TL|0|0
+|SPACE-DRIVE|15 * TL|10 * TL|0|0
 |STRUCTURAL|.1|.4|0|0
 |TRANSPORT|3 * TL|1 * TL|0|0
+|===
+
+If a FACTORY GROUP does not have a full allocation of raw materials, it will use the SHORTAGE rules for the current TURN.
+
+=== Shortages
+A FACTORY GROUP will be unable to produce its full output when there is a shortage of fuel, labor, or raw materials.
+
+The FACTORY GROUP will use as much of its input fuel, labor, or raw materials as it can;
+the excess units will be returned to the "central depot" for allocation in future turns.
+
+=== Production
+COLONY units are the only UNIT that may install FACTORY units and manufacture (produce) finished goods.
+Players may not activate FACTORY units anywhere other than a COLONY.
+
+Unless otherwise stated, it takes 4 TURNS (one YEAR) to manufacture a UNIT.
+Adding more FACTORY units to the FACTORY GROUP will produce more units;
+it will not reduce the amount of time needed to manufacture any unit.
+
+To allow factory groups to produce different goods, the production pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
+
+The MASS units of the finished goods are determined by the following chart:
+
+.Factory Production Chart
+|===
+|CODE|Input per UNIT per TURN|Output per UNIT per YEAR
+
+|FACTORY|5 * TL MASS UNITS (MU) of RAW MATERIAL|Per the Production Cost Chart
 |===
 
 == Combat Phase
