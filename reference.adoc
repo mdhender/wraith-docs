@@ -438,7 +438,8 @@ assemble ColonyOrShipID Quantity UnitCodeTL
 
 Examples:
 ```
-assemble S52 200 MISSLE-3
+assemble C27 9,750 MISSLELAUNCHER-2
+assemble S52   200 MISSLE-3
 ```
 
 === Manufacture Items
