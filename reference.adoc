@@ -51,15 +51,15 @@ Orders are processed in phases.
 
 |Fuel Allocation|todo...
 |Farming Production|todo...
-|Mining Production|todo...
+|Mining Production|The mining phase is used to extract resources from deposits and refine them into materials that can be used in the manufacturing phase.
 |Manufacturing Production|todo...
 |Combat takes place.|todo...
-|Set up orders are processed.|todo...
+|Set up|The set up phase is used to assemble new colonies and ships.
 |Dis-assembly orders are processed.|todo...
 |Build change orders are entered.|todo...
 |Mining change orders are entered.|todo...
 |Transfers are processed.|todo...
-|Assembly orders are processed.|todo...
+|Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
 |All market and trade station activity takes place.|todo...
 |Surveys are carried out.|todo...
 |Probe and sensor reports are compiled.|todo...
@@ -184,7 +184,6 @@ it will produce FOOD per the following chart.
 TODO: this is the wrong place for this information.
 
 == Mining Phase
-
 A MINE unit produces no raw material units if it is INACTIVE.
 
 A MINE unit produces no raw material units the first TURN that it is ACTIVE.
@@ -329,6 +328,8 @@ The MASS units of the finished goods are determined by the following chart:
 |===
 
 == Combat
+All orders in the Combat phase are executed in the order that they're entered in the orders file.
+
 === Combat Phase
 The combat phase
 
@@ -360,7 +361,7 @@ The `support` order
 ColonyOrShipID support ColonyOrShipID TargetID PercentCommitted
 ```
 
-== Set up orders
+== Set up Phase
 Set up orders are used to assemble a new COLONY or SHIP.
 
 The order includes the list of material units for the assembly.
@@ -400,6 +401,9 @@ Unlike the CONSTRUCTION WORKER units, the POPULATION units will not draw FOOD fr
 |Size limitation|none|none|none|none
 |===
 
+All orders in the Set up phase are executed in the order that they're entered in the orders file.
+
+
 === Establish New Colony
 TIP: Use `assemble-colony` to build a new colony.
 
@@ -424,10 +428,12 @@ end
 === Build change orders
 === Mining change orders
 == Transfers
-== Assembly orders
+== Assembly Phase
 The total number of CONSTRUCTION WORKER units activated must not exceed the number of available PROFESSIONAL and UNSKILLED WORKER units available.
 
 The total number of SPY units activated must not exceed the number of available PROFESSIONAL and SOLDIER units available.
+
+All orders in the Assembly phase are executed in the order that they're entered in the orders file.
 
 === Assemble Items
 An `assemble` order instructs CONSTRUCTION WORKER units to take a stored (disassembled) unit and make it operational (put it together).
