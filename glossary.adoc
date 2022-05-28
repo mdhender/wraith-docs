@@ -256,6 +256,9 @@ Define this, please.
 shuttle::
 _Shuttle_ is an alternative name for a *transport*.
 
+shortage::
+A _shortage_ happens when production units (farms, factories, and mines) don't have all the fuel, labor, or raw materials they need to run at full capacity.
+
 society::
 A _society_ in the *game* is a group that shares common language, culture, geography, or religion.
 Societies, in their desire for unity and self-determination, come together to create a *nation*.
