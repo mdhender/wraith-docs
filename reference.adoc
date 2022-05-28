@@ -112,7 +112,7 @@ FUEL allocations are prioritized:
 . LIFE SUPPORT units
 . FARM units
 . MINE units
-. FACT units
+. FACTORY units
 
 Remaining FUEL is immediately moved to STORAGE.
 If there are not enough STORAGE available on the colony or ship,
@@ -237,13 +237,13 @@ it will produce raw materials per the following chart.
 |===
 
 == Manufacturing Phase
-FACT units are the only units that can convert fuel and raw materials into finished goods.
+FACTORY units are the only units that can convert fuel and raw materials into finished goods.
 
-A FACT unit produces no finished units if it is INACTIVE.
+A FACTORY unit produces no finished units if it is INACTIVE.
 
-A FACT unit produces finished units the first TURN that it is ACTIVE.
+A FACTORY unit produces finished units the first TURN that it is ACTIVE.
 
-A FACT unit produces finished units the last TURN that it is ACTIVE. 
+A FACTORY unit produces finished units the last TURN that it is ACTIVE. 
 
 FACTORY units manufacture (produce) all goods execpt
 
@@ -253,32 +253,32 @@ FACTORY units manufacture (produce) all goods execpt
 
 FACTORY units that are not assigned to a FACTORY GROUP are INACTIVE (idle) - they will not manufacture any unit.
 
-If the FACT unit is ACTIVE this TURN and was active the prior TURN, it will produce finished goods per the production chart.
+If the FACTORY unit is ACTIVE this TURN and was active the prior TURN, it will produce finished goods per the production chart.
 Otherwise, it will produce nothing.
 
 === Location
-FACT units may be assembled only on COLONY units.
-FACT units may not be assembled on SHIP units.
-Players may not assemble FACT units anywhere other than a COLONY.
+FACTORY units may be assembled only on COLONY units.
+FACTORY units may not be assembled on SHIP units.
+Players may not assemble FACTORY units anywhere other than a COLONY.
 
 === Groups
-FACT units must be assigned to a FACTORY GROUP before they can be activated.
-A FACT unit is INACTIVE if is it not assigned to a FACTORY GROUP.
+FACTORY units must be assigned to a FACTORY GROUP before they can be activated.
+A FACTORY unit is INACTIVE if is it not assigned to a FACTORY GROUP.
 
 === Fuel
-FACT units require fuel to be active.
+FACTORY units require fuel to be active.
 The fuel source may be solar power or FUEL units.
 
-FACT units that are on orbiting colonies in orbits 1 through 5 use solar fuel.
+FACTORY units that are on orbiting colonies in orbits 1 through 5 use solar fuel.
 These units require no other fuel source to operate at full capacity.
 
-All other FACT units must use FUEL units per the following chart.
+All other FACTORY units must use FUEL units per the following chart.
 
 .Factory Fuel Chart
 |===
 |CODE|FUEL units used per TURN
 
-|FACT|TL / 2
+|FACTORY|TL / 2
 |===
 
 Note: always round the result up.
@@ -286,24 +286,24 @@ Note: always round the result up.
 Note: INACTIVE FAT units never consume FUEL units.
 
 === Labor
-FACT units require labor to be ACTIVE.
+FACTORY units require labor to be ACTIVE.
 The amount of labor is determined by the total number of units in the FACTORY GROUP.
 
 If a FACTORY GROUP does not have a full allocation of labor, it is INACTIVE for the current TURN.
 
-The efficiency of a FACTORY GROUP improves as more FACT units are added.
-The following chart shows the number of labor units needed based on the total number of FACT units in the GROUP.
+The efficiency of a FACTORY GROUP improves as more FACTORY units are added.
+The following chart shows the number of labor units needed based on the total number of FACTORY units in the GROUP.
 
 .Factory Group Labor Chart
 |===
 |CODE|Size|PROFESSIONAL units|UNSKILLED WORKER units
 
-|FACTORY GROUP|1 - 4 FACT units|6 per FACT unit|18 per FACT unit
-|FACTORY GROUP|5 - 49 FACT units|5 per FACT unit|15 per FACT unit
-|FACTORY GROUP|50 - 499 FACT units|4 per FACT unit|12 per FACT unit
-|FACTORY GROUP|500 - 4,999 FACT units|3 per FACT unit|9 per FACT unit
-|FACTORY GROUP|5,000 - 49,999 FACT units|2 per FACT unit|6 per FACT unit
-|FACTORY GROUP|50,000 - up FACT units|1 per FACT unit|3 per FACT unit
+|FACTORY GROUP|1 - 4 FACTORY units|6 per FACTORY unit|18 per FACTORY unit
+|FACTORY GROUP|5 - 49 FACTORY units|5 per FACTORY unit|15 per FACTORY unit
+|FACTORY GROUP|50 - 499 FACTORY units|4 per FACTORY unit|12 per FACTORY unit
+|FACTORY GROUP|500 - 4,999 FACTORY units|3 per FACTORY unit|9 per FACTORY unit
+|FACTORY GROUP|5,000 - 49,999 FACTORY units|2 per FACTORY unit|6 per FACTORY unit
+|FACTORY GROUP|50,000 - up FACTORY units|1 per FACTORY unit|3 per FACTORY unit
 |===
 
 Note: factory automation units may replace UNSKILLED WORKER units at a TODO rate.
@@ -313,8 +313,8 @@ Note: the ratio of UNSKILLED WORKER to PROFESSIONAL units is 3 to 1.
 Players may rely on the inverse of this chart.
 For example,
 if the player allocates 3 PROFESSIONAL units and 9 UNSKILLED WORKER units to a FACTORY GROUP,
-up to 4,999 FACT units may be activated in the group.
-All excess FACT units in the group are INACTIVE that TURN.
+up to 4,999 FACTORY units may be activated in the group.
+All excess FACTORY units in the group are INACTIVE that TURN.
 
 === Production
 COLONY units are the ony UNIT that may install FACTORY units and manufacture (produce) finished goods.
@@ -332,7 +332,7 @@ The MASS units of the finished goods are determined by the following chart:
 |===
 |CODE|Production per UNIT per YEAR
 
-|FACT|20 * TL MASS UNITS (MU) of finished goods
+|FACTORY|20 * TL MASS UNITS (MU) of finished goods
 |===
 
 == Combat Phase
@@ -781,8 +781,8 @@ Exception: HFARM units in orbiting colonies use solar power, so their Fuel Use P
 |===
 
 === Manufacturing Notes
-Factory (FACT) units process the raw materials created by Mining (MINE) units and turn them into finished goods such as star drives, robots, weapons, and consumer goods.
-Essentially, FACT units produce everything except population, fuel, gold, and food.
+Factory (FACTORY) units process the raw materials created by Mining (MINE) units and turn them into finished goods such as star drives, robots, weapons, and consumer goods.
+Essentially, FACTORY units produce everything except population, fuel, gold, and food.
 
 To allow factories to produce different goods, the production pipeline is abstracted into Mass Units (MUs) of raw materials input and finished goods output.
 
@@ -790,10 +790,10 @@ To allow factories to produce different goods, the production pipeline is abstra
 |===
 |Factory Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
 
-|Factory|FACT|TL10|20.0 * TL MASS Units|12.0 + (2.0 * TL) MU|0.5 * TL FUEL units
+|Factory|FACTORY|TL10|20.0 * TL MASS Units|12.0 + (2.0 * TL) MU|0.5 * TL FUEL units
 |===
 
-Exception: FACT units in orbiting colonies in orbits 1 through 5 use solar power, so their Fuel Use Per TURN is 0.0.
+Exception: FACTORY units in orbiting colonies in orbits 1 through 5 use solar power, so their Fuel Use Per TURN is 0.0.
 
 The amount of raw materials that can be processed by a factory unit in
 
