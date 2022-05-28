@@ -10,11 +10,15 @@ v0.0.0, 2022-05-25
 :icons: font
 :url-quickref: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
 
+Wraith Glossary (c) 2022 by Michael D Henderson
+
+Wraith Glossary is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+
+You should have received a copy of the license along with this work.
+If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
+
 WARNING: The reference manual is the source of truth for the rules.
 If this document differs, it is wrong.
-
-The Wraith Glossary is copyright &copy; 2022 by Michael D Henderson.
-Please see the LICENSE file for copying details.
 
 :sectnums:
 == Glossary
