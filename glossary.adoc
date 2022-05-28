@@ -37,6 +37,15 @@ The asteroid belt occupies an entire orbit.
 automation unit::
 Define this, please.
 
+bill of materials::
+A *bill of materials* (BOM) is a list of material units to be used for building a colony or ship.
+
+BOM::
+See *bill of materials*.
+
+C::
+_C_ is the prefix for a colony identifier.
+
 cluster::
 The _cluster_ is the *game* area.
 It contains many *systems*.
@@ -65,6 +74,9 @@ The Z axis points to the center of the galaxy.
 deposit::
 Define this, please.
 
+DP::
+_DP_ is the prefix for a deposit identifier.
+
 drone::
 Define this, please.
 
@@ -86,6 +98,9 @@ Define this, please.
 
 farm unit::
 Define this, please.
+
+FG::
+_FG_ is the prefix for a *factory group* identifier.
 
 finished product::
 Define this, please.
@@ -149,6 +164,9 @@ Metal units must be mined and refined by *mining* units.
 
 metallic::
 _Metallic_ is an alias for *metal* unit.
+
+MG::
+_MG_ is the prefix for a *mining group* identifier.
 
 military robot unit::
 Define this, please.
@@ -225,6 +243,9 @@ A _regent_ is a *player* appointed by another player to off-load responsibility 
 The player delegates responsibility for one or more *colonies* and/or *ships* to the regent.
 If the player controlling the regent drops, the regency dissolves and all units are returned to the original player.
 *Planets* controlled by regents count for *victory conditions* if the regent hasn't rebelled.
+
+S::
+_S_ is the prefix for a ship identifier.
 
 sensor::
 Define this, please.
