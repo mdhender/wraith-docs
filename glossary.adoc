@@ -157,8 +157,9 @@ Define this, please.
 life support::
 Define this, please.
 
-light structural unit::
-Define this, please.
+light structure unit::
+A _light structure unit_ is used to build colonies, ships, and storage.
+These units have less mass than the *standard structure unit* but can replace them on a one-for-one basis.
 
 metal unit::
 A _metal_ unit is a refined metallic ore.
@@ -298,11 +299,19 @@ which is the political organization that holds power in the *government*.
 A nation may be ruled by many states in its history.
 
 structural unit::
-A _structural unit_ is used to enclose mass units (MUs).
-An *open colony* requires 1 SUF to enclose 1 MU.
-An *enclosed colony* requires 5 SUF to enclose 1 MU.
-An *orbiting colony* requires 10 SU to enclose 1 MU.
-A *ship* also requires 10 SU to enclose 1 MU.
+A _structural unit_ is a measure of how much infrastructure is needed to build a colony, ship, or storage.
+Each structural unit encloses a variable number of mass units (MUs), depending on how and where it is used.
+An *open colony* requires 1 standard structural unit to enclose 1 MU.
+An *enclosed colony* requires 5 standard structural units to enclose 1 MU.
+An *orbiting colony* requires 10 standard structural units to enclose 1 MU.
+A *ship* requires 10 standard structural units to enclose 1 MU.
+
+standard structure unit::
+A _standard structure unit_ is used to build colonies, ships, and storage.
+
+super light structure unit::
+A _super light structure unit_ is used to build colonies, ships, and storage.
+These units have less mass than the *standard structure unit* but can replace them on a one-for-one basis.
 
 system::
 A _system_ contains one or more *stars*.

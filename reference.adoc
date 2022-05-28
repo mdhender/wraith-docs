@@ -58,7 +58,8 @@ This represents all precious metals and crystals, not just gold.
 It might morph into "credits" in the future.
 |HDRV|Hyper Drive|
 |LFSP|Life Support|
-|LSU|Light Structural|A type of structural unit built only in orbiting colonies.
+|LSU|Light Structure|A type of structural unit built only in orbiting colonies.
+The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and storage.
 |MILR|Military Robot|
 |MILS|Military Supplies|
 |MINE|Mine|
@@ -70,12 +71,15 @@ Each tube can launch both missiles and anti-missiles.
 |PROF|Professional Worker|A group of 100 people trained to manage people and projects.
 |RBEL|Rebel|A notational unit used to track the number of potential rebels in the population.
 |SLDR|Soldier|A group of 100 people trained for military operations.
+|SLSU|Super Light Structure|A type of structural unit built only in high-tech factories on orbiting colonies.
+The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and storage.
 |SPY|Spy|A notational unit used to track the number of Professional Workers and Soldiers trained in espionage and counter-espionage.
 |SNSR|Sensor|
 |SDRV|Space Drive|
-|SSU|Structural|
+|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and storage for other units.
 |TRNS|Transport|
-|UOTH|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
+|UEMP|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
+"Uenemployable" means that members of this group can not be drafted.
 |USKW|Unskilled Worker|A group of 100 people trained as general labor.
 |===
 
