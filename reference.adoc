@@ -59,7 +59,7 @@ It might morph into "credits" in the future.
 |HDRV|Hyper Drive|
 |LFSP|Life Support|
 |LSU|Light Structure|A type of structural unit built only in orbiting colonies.
-The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and storage.
+The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and enclosed storage.
 |MILR|Military Robot|
 |MILS|Military Supplies|
 |MINE|Mine|
@@ -72,11 +72,11 @@ Each tube can launch both missiles and anti-missiles.
 |RBEL|Rebel|A notational unit used to track the number of potential rebels in the population.
 |SLDR|Soldier|A group of 100 people trained for military operations.
 |SLSU|Super Light Structure|A type of structural unit built only in high-tech factories on orbiting colonies.
-The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and storage.
+The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and enclosed storage.
 |SPY|Spy|A notational unit used to track the number of Professional Workers and Soldiers trained in espionage and counter-espionage.
 |SNSR|Sensor|
 |SDRV|Space Drive|
-|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and storage for other units.
+|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and enclosed storage.
 |TRNS|Transport|
 |UEMP|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
 "Uenemployable" means that members of this group can not be drafted.
@@ -375,7 +375,11 @@ up to 4,999 FACTORY units may be activated in the group.
 All excess FACTORY units in the group are INACTIVE that TURN.
 
 === Raw Materials
-A FACTORY GROUP requires raw materials to produce finished goods per the following chart:
+The manufacturing pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
+This allows factory groups to produce different goods.
+
+Each FACT in a FACTORY GROUP requires raw materials to produce finished goods.
+Every type of finished good requires a set of raw materials per the following chart:
 
 .Production Raw Materials Chart
 |===
@@ -404,6 +408,24 @@ A FACTORY GROUP requires raw materials to produce finished goods per the followi
 |TRNS|0|0|3 * TL|1 * TL
 |===
 
+Each FACT in a FACTORY group can consume up to 5 MASS units (MUs) per TL per TURN in raw materials.
+
+Example:
+```
+FACT-1 -> 1 TL * 5 MU/TL/turn ->  5 MU/turn
+FACT-3 -> 3 TL * 5 MU/TL/turn -> 15 MU/turn
+```
+
+The FACTORY GROUP can consume the total of all FACT units in the group.
+
+Example:
+```
+FG1098 has 123 FACT-1 and 318 FACT-3 units
+  FACT-1 -> 123 units *  5 MU/turn/unit ->   615 MU/turn
+  FACT-3 -> 318 units * 15 MU/turn/unit -> 4,770 MU/turn
+FG1098 can consume a total of              5,385 MU/turn
+```
+
 If a FACTORY GROUP does not have a full allocation of raw materials, it will use the SHORTAGE rules for the current TURN.
 
 === Shortages
@@ -413,23 +435,12 @@ The FACTORY GROUP will use as much of its input fuel, labor, or raw materials as
 the excess units will be returned to the "central depot" for allocation in future turns.
 
 === Production
-COLONY units are the only UNIT that may install FACTORY units and manufacture (produce) finished goods.
-Players may not activate FACTORY units anywhere other than a COLONY.
+COLONY units are the only UNIT that may install FACT units and manufacture (produce) finished goods.
+Players may not activate FACT units anywhere other than a COLONY.
 
-Unless otherwise stated, it takes 4 TURNS (one YEAR) to manufacture a UNIT.
-Adding more FACTORY units to the FACTORY GROUP will produce more units;
-it will not reduce the amount of time needed to manufacture any unit.
-
-To allow factory groups to produce different goods, the production pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
-
-The MASS units of the finished goods are determined by the following chart:
-
-.Factory Production Chart
-|===
-|CODE|Input per UNIT per TURN|Output per UNIT per YEAR
-
-|FACTORY|5 * TL MASS UNITS (MU) of RAW MATERIAL|Per the Production Cost Chart
-|===
+Unless otherwise stated, it takes 4 TURNS (one YEAR) to manufacture a finished good.
+Adding more FACT units to a FACTORY GROUP will consume more raw materials, which increases the amount of finished goods;
+it will not reduce the amount of time needed to manufacture the finished goods.
 
 == Combat Phase
 All orders in the Combat phase are executed in the order that they're entered in the orders file.
