@@ -425,10 +425,47 @@ end
 === Mining change orders
 == Transfers
 == Assembly orders
-
 The total number of CONSTRUCTION WORKER units activated must not exceed the number of available PROFESSIONAL and UNSKILLED WORKER units available.
 
 The total number of SPY units activated must not exceed the number of available PROFESSIONAL and SOLDIER units available.
+
+=== Assemble Items
+An `assemble` order instructs CONSTRUCTION WORKER units to take a stored (disassembled) unit and make it operational (put it together).
+
+```
+assemble ColonyOrShipID Quantity UnitCodeTL
+```
+
+Examples:
+```
+assemble S52 200 MISSLE-3
+```
+
+=== Manufacture Items
+A `manufacture` order instructs a FACTORY GROUP to start producing units.
+The type of unit and the tech level of the unit are specified in the command.
+The number of units is not.
+
+```
+manufacture ColonyID Quantity FactoryGroupID UnitCodeTL
+```
+
+Examples:
+```
+manufacture C91 50,000 FG1009 MISSLE-8
+```
+
+=== Mine Resources
+A `mine` order instructs a MINING GROUP to start mining and refining resources from a deposit.
+
+```
+mine Quantity MineCodeTL DepositID
+```
+
+Examples:
+```
+mine 25,000 MG2708 DP1019
+```
 
 == Market and Trade Station Activity
 == Surveys
@@ -507,20 +544,20 @@ Births are computed each TURN.
 The birth rate ranges from 0.25% to 2.5% of the population.
 (The number depends on factors such as open, unused habitable land and standard of living.)
 
-All birth increases accumulate to the UNEMPLOYABLES population.
+The crew and passengers on a ship are ignored when calculating the population increase.
 
-Population never increases on a ship.
+All birth increases accumulate to the UNEMPLOYABLE population.
 
 === Deaths
 ==== Starvation
 Deaths from starvation are computed each TURN.
 
-Starvation takes place when the rationed FOOD amount is less than 1/16 of a FOOD unit per POPULATION unit.
+Starvation takes place when the rationed FOOD amount is less than 0.0625 of a FOOD unit per POPULATION unit.
 When that happens, the following formula determines how many POPULATION units starve.
 
-    S = (M - R) / M
+    S = (0.0625 - R) / 0.0625
 
-Where S is the fraction of the population that starves; M is the minimum ration (1/16) and R is the actual ration.
+Where S is the fraction of the population that starves and R is the actual ration.
 
 ==== Natural Causes
 Deaths from natural causes are computed each TURN.
@@ -813,6 +850,19 @@ ColonyOrShipID:: _ColonyOrShipID_ is either a _ColonyID_ or _ShipID_.
 This is only used when the _order_ accepts either a colony or ship.
 For example, a player may order S27 to raid S35 or C22.
 
+DepositID:: _DepositID_ is a unique identifier for a resource deposit.
+It must start with the letters "DP" followed by an _integer_.
+Examples are DP1, DP100, DP10001.
+
+FactoryCodeTL:: _FactoryCodeTL_ is composed of two parts separated by a dash.
+The first part is the code for factory units.
+The second part is the *TechLevel* of the factory unit.
+Examples are FACTORY-1, FACTORY-3, FACTORY-9.
+
+FactoryGroupID:: _FactoryGroupID_ is a unique identifier for a factory group.
+It must start with the letters "FG" followed by an _integer_.
+Examples are FG1, FG100, FG10001.
+
 Integer:: _Integer_ is a whole number.
 Examples are 0, 50, 100.
 
@@ -822,11 +872,24 @@ Examples are gold, fuel.
 Number:: _Number_ is a real number or a whole number.
 Examples are 0, 0.0, 50.2, 100.
 
+MineCodeTL:: _MineCodeTL_ is composed of two parts separated by a dash.
+The first part is the code for mining units.
+The second part is the *TechLevel* of the mining unit.
+Examples are MINE-1, MINE-3, MINE-9.
+
+MiningGroupID:: _MiningGroupID_ is a unique identifier for a mining group.
+It must start with the letters "MG" followed by an _integer_.
+Examples are MG1, MG100, MG10001.
+
 Percentage:: _Percentage_ is an _integer_ between 0 and 100 followed by a percent sign.
 Examples are 0%, 50%, 100%.
 
 PercentCommitted:: _PercentCommitted_ is a _percentage_.
 It is TODO...
+
+Quantity:: _Quantity_ is a whole number.
+It must be greater than zero.
+Examples are 1, 5,000, and 3,000,142.
 
 ShipID:: _ShipID_ is a unique identifier for a ship.
 It must start with the letter "S" followed by an _integer_.
@@ -834,6 +897,13 @@ Examples are S1, S50, S100.
 
 TargetID:: _TargetID_ is either a _ColonyID_ or _ShipID_.
 For example, a player may order S50 to support S27 in its attack against C22.
+
+TechLevel:: _TechLevel_ is an integer in the range of 1..10.
+
+UnitCodeTL:: _UnitCodeTL_ is composed of two parts separated by a dash.
+The first part is the code for the unit.
+The second part is the *TechLevel* of the unit.
+Examples are MISSILE-2, HYPERDRIVE-3, and ENERGYSHIELDS-9.
 
 [index]
 == Index
