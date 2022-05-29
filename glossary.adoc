@@ -24,6 +24,9 @@ If this document differs, it is wrong.
 == Glossary
 Common terms for Wraith.
 
+AF::
+attack factor
+
 anti-missle unit::
 Define this, please.
 
@@ -49,6 +52,9 @@ See *bill of materials*.
 
 C::
 _C_ is the prefix for a colony identifier.
+
+CF::
+combat factor
 
 cluster::
 The _cluster_ is the *game* area.
@@ -77,6 +83,9 @@ The Z axis points to the center of the galaxy.
 
 deposit::
 Define this, please.
+
+DF::
+distance factor, defense factor
 
 DP::
 _DP_ is the prefix for a deposit identifier.
@@ -151,6 +160,9 @@ Define this, please.
 ice giant::
 An _ice giant_ is a type of *gas giant* that is composed of liquids or gases other than helium and hydrogen.
 
+ID::
+numerical identifer for colony, ship, group, etc.
+
 labor::
 Define this, please.
 
@@ -193,6 +205,9 @@ Define this, please.
 
 missle launcher unit::
 Define this, please.
+
+MU::
+mass unit
 
 nation::
 A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
@@ -337,3 +352,16 @@ _Viceroy_ is an alias for *regent*.
 
 victory conditions::
 Define this, please.
+
+WIP::
+See *work in progress*.
+
+work in progress::
+The _work in progress_ is the work that has started in a manufacturing pipeline and has not yet been completed.
+Most finished goods take a full year to complete.
+For game purposes, the items move through 4 stages in the pipeline.
+Stage 1 contains the items that have just started being built.
+Stage 2 contains the items that have been in the pipeline for a full turn.
+Stage 3 contains the items that have been in the pipeline for two full turns.
+Stage 4 contains the items that have been in the pipeline for three full turns.
+
