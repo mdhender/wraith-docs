@@ -115,22 +115,21 @@ it is INACTIVE for the current TURN.
 
 .Farming Fuel Chart
 |===
-|CODE|Fuel per UNIT per TURN|Can use Solar Power?
+|CODE|FUEL per UNIT per TURN|Sunlight|Can use Solar Power?
 
-|FARM-1|0.5 FUEL|No
-|FARM-2|1.0 FUEL|Yes, if on Orbital Station in orbits 1..5
-|FARM-3|1.5 FUEL|Yes, if on Orbital Station in orbits 1..5
-|FARM-4|2.0 FUEL|Yes, if on Orbital Station in orbits 1..5
-|FARM-5|2.5 FUEL|Yes, if on Orbital Station in orbits 1..5
-|FARM-6|6.0 FUEL|No
-|FARM-7|7.0 FUEL|No
-|FARM-8|8.0 FUEL|No
-|FARM-9|9.0 FUEL|No
-|FARM-10|10.0 FUEL|No
+|FARM-1|0.5|Natural|No
+|FARM-2|1.0|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-3|1.5|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-4|2.0|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-5|2.5|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-6|6.0|Artificial|No
+|FARM-7|7.0|Artificial|No
+|FARM-8|8.0|Artificial|No
+|FARM-9|9.0|Artificial|No
+|FARM-10|10.0|Artificial|No
 |===
 
-If the FARM unit can use Solar Power,
-its FUEL cost drops to 0 FUEL units per TURN.
+If the FARM unit can use Solar Power, its FUEL cost drops to 0 FUEL units per TURN.
 
 === Labor
 FARM units require labor to be ACTIVE.
@@ -144,7 +143,8 @@ it is INACTIVE for the current TURN.
 |FARM|1 per FARM unit|3 per FARM unit
 |===
 
-Note that farming automation units may replace UNSKILLED WORKER units at a TODO rate.
+Farming automation units may replace a number of UNSKILLED WORKER units equal to their Tech Level.
+For example, an AUTO-3 may replace 3 UNSKILLED WORKER units.
 
 === Shortages
 Todo...
@@ -169,7 +169,6 @@ it will produce FOOD per the following chart.
 |FARM-10|200 FOOD
 |===
 
-
 1 FOOD unit will feed 4 population units and has a mass of 6 MASS units (MUs).
 TODO: this is the wrong place for this information.
 
@@ -187,11 +186,10 @@ it is INACTIVE for the current TURN.
 |===
 |CODE|Fuel per UNIT per TURN|Can use Solar Power?
 
-|MINE|0.5 * TL FUEL|No
+|MINE|TL * 0.5|No
 |===
 
-If the MINE unit can use Solar Power,
-its FUEL cost drops to 0 FUEL units per TURN.
+If the MINE unit can use Solar Power, its FUEL cost drops to 0 FUEL units per TURN.
 
 === Labor
 MINE units require labor to be ACTIVE.
@@ -206,6 +204,9 @@ it is INACTIVE for the current TURN.
 |===
 
 Note that mining automation units may replace UNSKILLED WORKER units at a TODO rate.
+
+Mining automation units may replace a number of UNSKILLED WORKER units equal to their Tech Level.
+For example, an AUTO-3 may replace 3 UNSKILLED WORKER units.
 
 === Shortages
 Todo...
