@@ -372,6 +372,17 @@ it will not reduce the amount of time needed to manufacture the finished goods.
 == Combat Phase
 All orders in the Combat phase are executed in the order that they're entered in the orders file.
 
+Some units require FUEL to be used in combat.
+
+.Combat Fuel Chart
+|===
+|CODE|FUEL use per TURN|FUEL use per COMBAT ROUND
+
+|Assault Craft|0.1|N/A
+|Energy Shield|N/A|4 * TL
+|Energy Weapon|N/A|10 * TL
+|===
+
 === Bombard
 The `bombard` order
 
@@ -865,52 +876,6 @@ that's why the death rate is higher for those groups.
 
 [appendix]
 == Units
-
-.Unit Chart
-|===
-|CODE|Name|Description
-
-|AMSL|Anti-Missile|
-|ATKC|Assault Craft|
-|ATKW|Assault Weapon|
-|AUTO|Automation|
-|CONW|Construction Worker|A notational unit used to track the number of Professional and Unskilled Workers trained to build, assemble, and disassemble other units.
-|CGDS|Consumer Goods|
-|ENSH|Energy Shield|
-|ENWP|Energy Weapon|
-|FACT|Factory|
-|FARM|Farm|
-|FOOD|Food|A farmed resource used to feed people in the game.
-|FUEL|Fuel|A mined resource used to power other units in the game.
-|GOLD|Gold|A mined resource used as currency and also in manufacturing.
-This represents all precious metals and crystals, not just gold.
-It might morph into "credits" in the future.
-|HDRV|Hyper Drive|
-|LFSP|Life Support|
-|LSU|Light Structure|A type of structural unit built only in orbiting colonies.
-The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and enclosed storage.
-|MILR|Military Robot|
-|MILS|Military Supplies|
-|MINE|Mine|
-|MSL|Missile|
-|MSLT|Missile Launcher|A launch tube.
-Each tube can launch both missiles and anti-missiles.
-|MTL|Metallic Resource|A mined resource used by factories to manufacture finished goods.
-|NMTL|Non-Metallic Resource|A mined resource used by factories to manufacture finished goods.
-|PROF|Professional Worker|A group of 100 people trained to manage people and projects.
-|RBEL|Rebel|A notational unit used to track the number of potential rebels in the population.
-|SLDR|Soldier|A group of 100 people trained for military operations.
-|SLSU|Super Light Structure|A type of structural unit built only in high-tech factories on orbiting colonies.
-The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and enclosed storage.
-|SPY|Spy|A notational unit used to track the number of Professional Workers and Soldiers trained in espionage and counter-espionage.
-|SNSR|Sensor|
-|SDRV|Space Drive|
-|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and enclosed storage.
-|TRNS|Transport|
-|UEMP|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
-"Uenemployable" means that members of this group can not be drafted.
-|USKW|Unskilled Worker|A group of 100 people trained as general labor.
-|===
 
 === Anti-Missile
 === Assault Craft

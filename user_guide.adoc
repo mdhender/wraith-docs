@@ -254,17 +254,87 @@ The "winner" is the first species to control 200 planets for 4 consecutive turns
 
 .Unit Descriptions
 |===
-|UNIT|CODE|DESCRIPTION
+|CODE|Name|DESCRIPTION
 
-|Anti-Missile||Anti-missile units are used in combat to destroy incoming missiles.
-|Assault Craft||Assault craft units are small, highly manuverable ships used in combat for attacks and raids.
-|Assault Weapons||Assault weapons are used by soldiers in combat situations.
-|Military Robot||Military robot units replace soldiers on combat missions.
-|Military Supplies||Military supplies are the items used by soldiers in combat.
-|Missile||Missile units are used in combat to attack enemy targets.
-|Missile Launcher||Missile tubes are used in combat to fire anti-missile and regular missiles.
-|Energy Shield||Energy shields absorb and disipate the damage from energy weapons.
-|Energy Weapon||Energy weapon units are line-of-sight beams of wanton destruction used to attack enemy colonies and ships in combat.
+|AMSL|Anti-Missile|Anti-missile units are used in combat to destroy incoming missiles.
+|ATKC|Assault Craft|Assault craft units are small, highly manuverable ships used in combat for attacks and raids.
+|ATKW|Assault Weapons|Assault weapons are used by soldiers in combat situations.
+|AUTO|Automation|
+|CONW|Construction Worker|A notational unit used to track the number of Professional and Unskilled Workers trained to build, assemble, and disassemble other units.
+|CGDS|Consumer Goods|
+|ENSH|Energy Shield|Energy shields absorb and disipate the damage from energy weapons.
+|ENWP|Energy Weapon|Energy weapon units are line-of-sight beams of wanton destruction used to attack enemy colonies and ships in combat.
+|FACT|Factory|
+|FARM|Farm|
+|FOOD|Food|A farmed resource used to feed people in the game.
+|FUEL|Fuel|A mined resource used to power other units in the game.
+|GOLD|Gold|A mined resource used as currency and also in manufacturing.
+This represents all precious metals and crystals, not just gold.
+It might morph into "credits" in the future.
+|HDRV|Hyper Drive|
+|LFSP|Life Support|
+|LSU|Light Structure|A type of structural unit built only in orbiting colonies.
+The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and enclosed storage.
+|MILR|Military Robot|Military robot units replace soldiers on combat missions.
+|MILS|Military Supplies|Military supplies are the items used by soldiers in combat.
+|MINE|Mine|
+|MSL|Missile|Missile units are used in combat to attack enemy targets.
+|MSLT|Missile Launcher|Missile tubes are used in combat to fire anti-missile and regular missiles.
+|MTL|Metallic Resource|A mined resource used by factories to manufacture finished goods.
+|NMTL|Non-Metallic Resource|A mined resource used by factories to manufacture finished goods.
+|PROF|Professional Worker|A group of 100 people trained to manage people and projects.
+|RBEL|Rebel|A notational unit used to track the number of potential rebels in the population.
+|SLDR|Soldier|A group of 100 people trained for military operations.
+|SLSU|Super Light Structure|A type of structural unit built only in high-tech factories on orbiting colonies.
+The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and enclosed storage.
+|SPY|Spy|A notational unit used to track the number of Professional Workers and Soldiers trained in espionage and counter-espionage.
+|SNSR|Sensor|
+|SDRV|Space Drive|
+|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and enclosed storage.
+|TRNS|Transport|
+|UEMP|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
+"Uenemployable" means that members of this group can not be drafted.
+|USKW|Unskilled Worker|A group of 100 people trained as general labor.
+|===
+
+.Unit Mass Units
+|===
+|CODE|MASS Units (MUs) per UNIT
+
+|AMSL|TL * 4
+|ATKC|TL * 5
+|ATKW|2
+|AUTO|
+|CONW|
+|CGDS|
+|ENSH|TL * 50
+|ENWP|TL * 10
+|FACT|TL * 2 + 12
+|FARM|TL + 6
+|FOOD|
+|FUEL|
+|GOLD|
+|HDRV|
+|LFSP|
+|LSU|
+|MILR|TL * 2 + 20
+|MILS|0.04
+|MINE|TL * 2 + 10
+|MSL|TL * 4
+|MSLT|TL * 25
+|MTL|
+|NMTL|
+|PROF|
+|RBEL|
+|SLDR|
+|SLSU|
+|SPY|
+|SNSR|
+|SDRV|
+|SSU|
+|TRNS|
+|UEMP|
+|USKW|
 |===
 
 [index]
