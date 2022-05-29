@@ -30,6 +30,11 @@ most notably https://en.wikipedia.org/wiki/Empyrean_Challenge[Empyrean Challenge
 https://farhorizons.dev[Far Horizons],
 and https://en.wikipedia.org/wiki/The_Campaign_for_North_Africa[The Campaign for North Africa].
 
+== Organization
+The reference manual presents rules in the sequence they would be processed during a game turn.
+
+The chapter headings are the phases from the following chart:
+
 .Phase Chart
 |===
 |Phase|Description
@@ -86,10 +91,13 @@ excess FUEL is lost.
 
 FUEL units in STORAGE are available for use in the remaining phases.
 
-TIP: FUEL units are only produced via mining. They are not available for use until the TURN after they've been mined.
+TIP: FUEL units are only produced via mining.
+They are not available for use until the TURN after they've been mined.
 There are some rather complicated exceptions to this rule.
 
-== Farming Phase
+== Farming Production Phase
+The number of FOOD units produced by active FARM units is calculated.
+The food units are moved to local depots for temporary storage.
 
 A FARM unit produces no FOOD units if it is INACTIVE.
 
