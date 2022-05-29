@@ -25,7 +25,7 @@ If this document differs, it is wrong.
 Common terms for Wraith.
 
 AF::
-attack factor
+_AF_ is the attack factor used in combat.
 
 anti-missle unit::
 Define this, please.
@@ -54,7 +54,7 @@ C::
 _C_ is the prefix for a colony identifier.
 
 CF::
-combat factor
+_CF_ is the combat factor used in combat.
 
 cluster::
 The _cluster_ is the *game* area.
@@ -80,12 +80,14 @@ A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
 Coordinates are relative to the "center" of the cluster.
 The X axis points to the motion of the cluster in the galaxy.
 The Z axis points to the center of the galaxy.
+They are written as `X-Y-Z`.
+For planets, the orbit is appended: `X-Y-Z-Orbit`.
 
 deposit::
 Define this, please.
 
 DF::
-distance factor, defense factor
+_DF_ is either the distance factor or defense factor.
 
 DP::
 _DP_ is the prefix for a deposit identifier.
@@ -207,7 +209,10 @@ missle launcher unit::
 Define this, please.
 
 MU::
-mass unit
+_MU_ is a mass unit.
+In the game, it measures both mass and volume of a unit.
+The MU determines the number of drives needed to move units.
+It also factors into the number of *structural units* needed to store units.
 
 nation::
 A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
@@ -261,7 +266,8 @@ it is the count of the number of people that are include to rebel against the cu
 regent::
 A _regent_ is a *player* appointed by another player to off-load responsibility for submitting orders for portions of a *nation*.
 The player delegates responsibility for one or more *colonies* and/or *ships* to the regent.
-If the player controlling the regent drops, the regency dissolves and all units are returned to the original player.
+If the player controlling the regent quits the game,
+the regency is automatically dissolved and all units are returned to the original player.
 *Planets* controlled by regents count for *victory conditions* if the regent hasn't rebelled.
 
 S::
@@ -273,18 +279,19 @@ Define this, please.
 ship::
 Define this, please.
 
-shuttle::
-_Shuttle_ is an alternative name for a *transport*.
-
 shortage::
 A _shortage_ happens when production units (farms, factories, and mines) don't have all the fuel, labor, or raw materials they need to run at full capacity.
+
+shuttle::
+_Shuttle_ is an alternative name for a *transport*.
 
 society::
 A _society_ in the *game* is a group that shares common language, culture, geography, or religion.
 Societies, in their desire for unity and self-determination, come together to create a *nation*.
 
 solar power::
-Define this, please.
+_Solar power_ is available to *orbiting colonies* in *orbits* 1 through 5.
+These colonies may use solar power instead of *fuel* to power certain *farm* and *factory* units.
 
 soldier unit::
 A _soldier_ unit is a type of *population* unit.
@@ -313,6 +320,9 @@ A _state_ is a political entity, created by a *nation*,
 which is the political organization that holds power in the *government*.
 A nation may be ruled by many states in its history.
 
+standard structure unit::
+A _standard structure unit_ is used to build colonies, ships, and enclosed storage.
+
 structural unit::
 A _structural unit_ is a measure of how much infrastructure is needed to build a colony, ship, or enclosed storage.
 Each structural unit encloses a variable number of mass units (MUs), depending on how and where it is used.
@@ -320,9 +330,6 @@ An *open colony* requires 1 standard structural unit to enclose 1 MU.
 An *enclosed colony* requires 5 standard structural units to enclose 1 MU.
 An *orbiting colony* requires 10 standard structural units to enclose 1 MU.
 A *ship* requires 10 standard structural units to enclose 1 MU.
-
-standard structure unit::
-A _standard structure unit_ is used to build colonies, ships, and enclosed storage.
 
 super light structure unit::
 A _super light structure unit_ is used to build colonies, ships, and enclosed storage.
