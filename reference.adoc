@@ -91,7 +91,8 @@ Within a phase, _orders_ are executed in the order they were issued.
 
 .Processing order
 ====
-To illustrate, let's assume that S23 and S24 are both in 8-8.8
+To illustrate,
+let's assume that S23 and S24 are both in system `8-8-8`
 and that we have the following orders in our file:
 ```
 1: S23 survey     ; order Ship 23 to survey the system it is currently in
@@ -104,7 +105,7 @@ The semicolon treats the remainder of the line as a comment.
 
 Lines `1` and `3` would process in Phase 9 (Surveys).
 Line `1` would process before Line `3` because it occurs earlier in the file.
-S23 would survey its current location, system `8-8-8``.
+S23 would survey its current location, system `8-8-8`.
 S24 would survey the same location because it has not moved yet.
 
 Line `2` would process in Phase 11 (Ship Movement).
