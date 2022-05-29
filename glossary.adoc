@@ -80,8 +80,8 @@ A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
 Coordinates are relative to the "center" of the cluster.
 The X axis points to the motion of the cluster in the galaxy.
 The Z axis points to the center of the galaxy.
-They are written as `X-Y-Z`.
-For planets, the orbit is appended: `X-Y-Z-Orbit`.
+They are written as `X/Y/Z`.
+For planets, an octothorpe and the orbit number are appended: `X/Y/Z#ORBIT`.
 
 deposit::
 Define this, please.
