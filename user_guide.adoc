@@ -53,28 +53,110 @@ The history of their flight and migration has mostly been forgotten or transform
 
 That changed when they detected a signal originating beyond the furthest planet in their system.
 
-== Setup
-Wraith can be played as an individual competition or with players cooperating.
+== Important Terms
+=== Cluster
+The cluster is the area in the galaxy that the game takes place in.
+It contains systems and planets.
 
-=== Individual Competition
-In individual competition, each player manages unique species, running his/her own nation.
+=== System
+A system in the game contains one or more stars.
 
-==== Victory Conditions
-The "winner" is the first player to control 100 planets for 4 consecutive turns WITH no other player controlling more than 50 planets in any of those turns.
+The system is identified by its coordinates in the format "X/Y/Z".
 
-=== Shared Species
-When sharing species, each player runs his/her own nation, but teams of players share a common species and a common homeworld.
+=== Star
+A star in the game has exactly 11 orbits, numbered 1 through 11.
 
-The players that share a homeworld must cooperate to build ships and start exploring the system, or they can battle each other.
+The identifier (ID) for a star depends on the number of stars in the system.
+If there is just one star, the star's ID is the same as the system's ID.
+If there are multiple stars, the star's ID is the system's ID followed by a sequence letter.
+The sequence letter will be "A" for the first star in the system, "B" for the second star, etc.
+If system `1/2/3` had just one star, that star's ID would be `1/2/3`.
+If there were four stars in that system, they would be identified as `1/2/3A`, `1/2/3B`, `1/2/3C`, and `1/2/3D`.
 
-==== Victory Conditions
-The "winner" is the first species to control 200 planets for 4 consecutive turns WITH no other species controlling more than 100 planets in any of those turns. Within each species, the player with the strongest economy is the "winner."
+=== Orbit
+An orbit in the game can be empty, contain a planet, or be the connection between two stars in the system.
 
-== Turn
+The orbit is identified by its star's ID followed by an octothorpe ("#") and the orbit number.
+
+The 11th orbit for a star serves two purposes.
+It is the default entry point for hyper-drive jumps.
+It is also the connection point between stars in systems with multiple stars.
+
+=== Planet
+In the game, "planet" is the generic term for the occupant of an orbit that is not empty.
+The occupant can be an asteroid belt, a gas giant, or a terrestrial.
+
+NOTE: "Terrestrial" does not imply
+https://en.wikipedia.org/wiki/Class_M_planet[Class M].
+Mercury is a terrestial.
+
+The planet is identified by its orbit.
+
+==== Habitability Number
+The habitability number in the game is a measure of the maximum population that a planet can sustain in an open colony.
+
+The value ranges from 0 to 25.
+A value of 0 means that the population must live in an enclosed colony with life support.
+Any other value means that the population can live in an open colony on the surface without life support.
+
+==== Natural Resource
+Every planet contains up to 35 deposits of natural resources.
+Resources include gold (an abstraction of precious metals and crystals),
+fuel (an abstraction of organic and inorganic power sources),
+metals (all metallic ores except gold),
+non-metal (everything else).
+Natural resources must be mined and refined, turning them into raw materials, before they can be used.
+
+==== Asteroid Belt
+An asteroid belt (or just "asteroid") in the game is a type of planet that is dispersed through the entire orbit.
+It is composed of many small, irregular bodies ranging in size from 100's of kilometers to particles of dust.
+These bodies (or "rocks") are composed of carbon, silicate, metals, non-metals, and ice.
+
+Enclosed colonies may be built in an asteroid belt.
+
+==== Gas Giant
+A gas giant in the game is a type of planet with an atmosphere of mostly helium and hydrogen.
+The surface of the planet can't be reached because of the high mass and temperatures.
+
+Enclosed colonies may be built on the surface of moons orbiting a gas giant.
+
+==== Terrestrial
+A terrestrial in the game is a type of planet that is smaller than a gas giant.
+It is round and large enough to sweep its orbit clear.
+It may have an atmosphere and a metal core, or it could be a frozen iceball with no atmosphere.
+
+Colonies may be built on the surface of terrestrials.
+
+A terrestrial with a habitability number of zero is called an unihabitable terrestrial.
+With a value greater than zero, it it called a habitable terrestrial.
+
+=== Colony
+There are three types of colonies in the game: open, enclosed, and orbital.
+
+Open colonies may be built on the surface of habitable terrestrials
+(those with a habitability number greater than zero).
+They don't require life support to sustain the population.
+
+Enclosed colonies may be built on the surface of unihabitable terrestrials
+(those with a habitability number of zero),
+and in an asteroid belt.
+They require life support to sustain the population.
+
+Oribital colonies may be built in orbit around any planet.
+They may not be built in an empty orbit.
+They require life support to sustain the population.
+
+=== Ship
+A ship in the game is built with a hull, engines, cargo holds, and weapons.
+
+Ships require space-drives to move in a planet's orbit.
+They require hyper-drives to move between systems.
+
+=== Turn
 Players complete a turn in the game by submitting a set of orders.
 After processing the orders, the game-master sends each player a report with the results of their orders.
 
-== Orders
+=== Order
 The heart of the game is order processing.
 Orders change the state of the game;
 they start an assembly line to create items,
@@ -83,6 +165,7 @@ engage in diplomacy and spying,
 or attack other nations.
 
 Orders are processed in phases.
+This helps players know when an order will be implemented.
 
 .Phase Chart
 |===
@@ -148,6 +231,26 @@ S24 would move to system `9/9/9`.
 Because Ship Movement happens after Survey,
 the ship would not perform the survey in system `9/9/9`.
 ====
+
+== Setup
+Wraith can be played as an individual competition or with players cooperating.
+
+=== Individual Competition
+In individual competition, each player manages unique species, running his/her own nation.
+
+==== Victory Conditions
+The "winner" is the first player to control 100 planets for 4 consecutive turns WITH no other player controlling more than 50 planets in any of those turns.
+
+=== Shared Species
+When sharing species, each player runs his/her own nation, but teams of players share a common species and a common homeworld.
+
+The players that share a homeworld must cooperate to build ships and start exploring the system, or they can battle each other.
+
+==== Victory Conditions
+The "winner" is the first species to control 200 planets for 4 consecutive turns WITH no other species controlling more than 100 planets in any of those turns. Within each species, the player with the strongest economy is the "winner."
+
+[appendix]
+== Charts
 
 [index]
 == Index
