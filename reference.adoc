@@ -70,7 +70,10 @@ The player may change the default pay and ration rates.
 |Rebel Changes|In this phase, the rebel population changes are applied.
 Todo...
 |Control|In this phase, naming and control orders are todo...
-|Birth|In this phase, population increases due to births are calculated.
+|Birth|Population changes due to births are calculated.
+|Training|Population changes due to training and apprenticeships are calculated.
+|Retirement|Population changes due to retirement are calculated.
+|Death|Population changes due to starvation and natural deaths are calculated.
 |News|In this phase, reports for the "news services" are created todo...
 |===
 
@@ -756,27 +759,64 @@ People become rebels when under-paid and/or starving.
 Once a rebel, almost always a rebel.
 
 == Naming and Control orders
-== Population Changes
-=== Training
-On any TURN where the percentage of UNEMPLOYABLE units is more than 30% of the total population,
-2% of the total number of UNEMPLOYABLE units will become be moved to UNSKILLED WORKER units.
 
-=== Retirement
-5% of SOLDIER units retire each YEAR.
-TODO: convert this to per TURN.
-Upon retirement, SOLDIER units become PROFESSIONAL units.
+== Birth Phase
+The changes to population due to births are calculated in this phase.
 
-=== Births
-Births are computed each TURN.
 The birth rate ranges from 0.25% to 2.5% of the population.
-(The number depends on factors such as open, unused habitable land and standard of living.)
+The exact number is determined by quality of life.
+Pay rates, food rations, open spaces, and civil strife are all factored in.
 
+Births are computed each TURN.
 The crew and passengers on a ship are ignored when calculating the population increase.
-
 All birth increases accumulate to the UNEMPLOYABLE population.
 
-=== Deaths
-==== Starvation
+NOTE: Future rules will consider cloning.
+It is not currently an option.
+
+== Training Phase
+The changes to population due to training are calculated in this phase.
+
+There are two types of training: training (apprenticeship) and Job Corps.
+
+Attrition happens automatically; the player must issue orders to train workers.
+
+=== Job Corps
+The Job Corps trains UNEMPLOYABLE units to become UNSKILLED WORKER units.
+The Corps is activated automatically when the percentage of UNEMPLOYABLE units is reaches 30% of the total population.
+At the end of each turn that it is active, the Corps will move 2% of the UNEMPLOYABLE units to UNSKILLED WORKER units.
+
+=== Train Order
+A `train` order instructs PROFESSIONAL units to begin training UNSKILLED WORKER units.
+
+A PROFESSIONAL unit may train up to 100 UNSKILLED WORKER units per TURN.
+
+The trainees are unavailable for use until they have graduated from training.
+They graduate at a rate of 5% per TURN.
+After graduation, they are moved to the PROFESSIONAL population.
+
+Format:
+```
+train ColonyOrShipID Quantity professional
+```
+
+Examples:
+```
+train S13 15,400 professional  ; assign 16 PROF units to train 154 UNSK units
+```
+
+== Retirement Phase
+The changes to population due to retirement are calculated in this phase.
+
+5% of SOLDIER units retire each YEAR.
+(TODO: convert this to per TURN.)
+Upon retirement, SOLDIER units become PROFESSIONAL units.
+This happens automatically; the player can not control the number of retirees.
+
+== Death Phase
+The changes to population due to deaths from starvation and natural causes are calculated in this phase.
+
+=== Starvation
 Deaths from starvation are computed each TURN.
 
 Starvation takes place when the rationed FOOD amount is less than 0.0625 of a FOOD unit per POPULATION unit.
@@ -786,7 +826,7 @@ When that happens, the following formula determines how many POPULATION units st
 
 Where S is the fraction of the population that starves and R is the actual ration.
 
-==== Natural Causes
+=== Natural Causes
 Deaths from natural causes are computed each TURN.
 They are computed after deaths from starvation.
 
@@ -794,12 +834,12 @@ They are computed after deaths from starvation.
 |===
 |CODE|Deaths from Natural Causes per TURN
 
-|UNEMPLOYABLE|0.0625%
-|UNSKILLED WORKER|0.0625%
+|CONSTRUCTION WORKER|0.0700%
 |PROFESSIONAL|0.0625%
 |SOLDIER|0.0750%
-|SPY|+0.0250%
-|CONSTRUCTION WORKER|+0.0125%
+|SPY|0.0775%
+|UNEMPLOYABLE|0.0625%
+|UNSKILLED WORKER|0.0625%
 |===
 
 TIP: Soldiering, spying, and construction are dangerous activities;
