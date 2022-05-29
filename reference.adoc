@@ -63,7 +63,9 @@ Todo...
 |Movement|The movement phase is the only phase in which ships move.
 Todo...
 |Draft|This phase applies draft orders to move workers between population unit types todo...
-|Pay and Ration|This phase todo...
+|Pay and Ration|This phase is used to pay the population and distribute food.
+Pay is either gold (in the form of credits) or consumer goods.
+The player may change the default pay and ration rates.
 |Rebellion|This phase todo...
 |Rebel Changes|In this phase, the rebel population changes are applied.
 Todo...
@@ -664,11 +666,50 @@ The total number of UNSKILLED WORKER units drafted must not exceed the number of
 
 There is no limit on the number of SOLDIER units that may be disbanded per TURN.
 
-== Pay and Ration orders
-Pay rates depend on location.
-Population units on ships are paid at different rates than units on colonies.
+== Pay and Ration Phase
 
-=== Ship Population
+=== Pay Order
+A `pay` order changes the amount of pay (in consumer goods) each population unit receives per turn.
+
+The base pay for populations units is per the following chart:
+
+.Base Pay Chart
+|===
+|CODE|Pay per UNIT per TURN|Pay when SHIP CREW
+
+|CONSTRUCTION WORKER|0.500 CONSUMER GOODS|N/A
+|PROFESSIONAL|0.375 CONSUMER GOODS|0.01 GOLD
+|SOLDIER|0.250 CONSUMER GOODS|0.005 GOLD
+|SPY|0.625 CONSUMER GOODS|N/A
+|UNEMPLOYABLE|0.000 CONSUMER GOODS|N/A
+|UNSKILLED WORKER|0.125 CONSUMER GOODS|N/A
+|===
+
+Only crew members receive pay when on a ship.
+The crew will be paid in gold credits instead of goods.
+They will exchange the credits for goods when in a friendly port.
+
+Passengers (or cargo if in cryo-sleep) are not paid - they receive food but forfeit their normal pay of consumer goods.
+
+Format:
+```
+pay ColonyOrShipID PopulationUnitID Percentage
+```
+
+To change the rate for all units, regardless of location, issue the order with "*" as the ColonyOrShipID.
+
+Examples:
+```
+pay S38 professional 100%  ; reset  pay to base rate
+pay  *  soldier       50%  ; change pay for all soldiers
+pay S38 unskilled     90%  ; change pay to  90% of base rate
+pay C27 unskilled    110%  ; change pay to 110% of base rate
+pay S38 spy          115%  ; change pay to 115% of base rate
+```
+
+In the example, the player is paying UNSKILLED WORKER units more on colony C27 than she is on ship S38.
+
+==== Ship Population
 The crew of a ship consists of PROFESSIONAL and SOLDIER units.
 Non-crew are PASSENGERS (or, potentially, cargo if in cryo.)
 
@@ -687,7 +728,7 @@ the crew will exchange their accumulated GOLD for CONSUMER GOODS.
 Passengers are never paid while being transported,
 but they do receive a ration of FOOD every TURN per the ship's orders.
 
-=== General Population
+==== General Population
 .General Population Pay
 |===
 |CODE|People in UNIT|Pay per UNIT per TURN|FOOD per UNIT per TURN
@@ -702,6 +743,9 @@ but they do receive a ration of FOOD every TURN per the ship's orders.
 
 WARNING: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
+
+=== Ration Order
+
 
 == Rebellion
 == Rebel increases
