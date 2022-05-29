@@ -252,6 +252,21 @@ The "winner" is the first species to control 200 planets for 4 consecutive turns
 [appendix]
 == Charts
 
+.Unit Descriptions
+|===
+|UNIT|CODE|DESCRIPTION
+
+|Anti-Missile||Anti-missile units are used in combat to destroy incoming missiles.
+|Assault Craft||Assault craft units are small, highly manuverable ships used in combat for attacks and raids.
+|Assault Weapons||Assault weapons are used by soldiers in combat situations.
+|Military Robot||Military robot units replace soldiers on combat missions.
+|Military Supplies||Military supplies are the items used by soldiers in combat.
+|Missile||Missile units are used in combat to attack enemy targets.
+|Missile Launcher||Missile tubes are used in combat to fire anti-missile and regular missiles.
+|Energy Shield||Energy shields absorb and disipate the damage from energy weapons.
+|Energy Weapon||Energy weapon units are line-of-sight beams of wanton destruction used to attack enemy colonies and ships in combat.
+|===
+
 [index]
 == Index
 
