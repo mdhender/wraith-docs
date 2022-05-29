@@ -112,7 +112,7 @@ It never allocates proportionately.
 |Combat|The combat phase is used to project force against other player's assets.
 |Set up|The set up phase is used to assemble new colonies and ships.
 |Disassembly|This phase is used to disassembly operational units and make them ready to put into storage.
-|Build Change|The build change orders phase is used to todo...
+|Retool|The retool orders phase is used to todo...
 |Mining Change|The mining change orders phase is used to todo...
 |Transfer|The transfer phase is used to todo...
 |Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
@@ -562,7 +562,20 @@ disassemble S52   200 MSL-3
 ```
 
 == Change Orders
-=== Build change orders
+
+== Retool Phase
+=== Retool orders
+A `retool` order instructs CONSTRUCTION WORKER units to wait for the *WIP* to complete.
+Once the production line is empty, the CONSTRUCTION WORKER units shut down all the factory units in the group.
+Then they update the production line to build a new finished good and restart the FACTORY GROUP.
+It takes one TURN to update and restart.
+
+Examples:
+```
+    C6  retool FG19 research
+    C27 retool FG8  ENWP-4
+```
+
 === Mining change orders
 == Transfers
 == Assembly Phase
