@@ -35,54 +35,6 @@ You can find more information on his https://empyreanchallenge.herokuapp.com/[we
 
 == Introduction
 
-== Units
-
-.Unit Chart
-|===
-|CODE|Name|Description
-
-|AMSL|Anti-Missile|
-|ATKC|Assault Craft|
-|ATKW|Assault Weapon|
-|AUTO|Automation|
-|CONW|Construction Worker|A notational unit used to track the number of Professional and Unskilled Workers trained to build, assemble, and disassemble other units.
-|CGDS|Consumer Goods|
-|ENSH|Energy Shield|
-|ENWP|Energy Weapon|
-|FACT|Factory|
-|FARM|Farm|
-|FOOD|Food|A farmed resource used to feed people in the game.
-|FUEL|Fuel|A mined resource used to power other units in the game.
-|GOLD|Gold|A mined resource used as currency and also in manufacturing.
-This represents all precious metals and crystals, not just gold.
-It might morph into "credits" in the future.
-|HDRV|Hyper Drive|
-|LFSP|Life Support|
-|LSU|Light Structure|A type of structural unit built only in orbiting colonies.
-The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and enclosed storage.
-|MILR|Military Robot|
-|MILS|Military Supplies|
-|MINE|Mine|
-|MSL|Missile|
-|MSLT|Missile Launcher|A launch tube.
-Each tube can launch both missiles and anti-missiles.
-|MTL|Metallic Resource|A mined resource used by factories to manufacture finished goods.
-|NMTL|Non-Metallic Resource|A mined resource used by factories to manufacture finished goods.
-|PROF|Professional Worker|A group of 100 people trained to manage people and projects.
-|RBEL|Rebel|A notational unit used to track the number of potential rebels in the population.
-|SLDR|Soldier|A group of 100 people trained for military operations.
-|SLSU|Super Light Structure|A type of structural unit built only in high-tech factories on orbiting colonies.
-The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and enclosed storage.
-|SPY|Spy|A notational unit used to track the number of Professional Workers and Soldiers trained in espionage and counter-espionage.
-|SNSR|Sensor|
-|SDRV|Space Drive|
-|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and enclosed storage.
-|TRNS|Transport|
-|UEMP|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
-"Uenemployable" means that members of this group can not be drafted.
-|USKW|Unskilled Worker|A group of 100 people trained as general labor.
-|===
-
 == Turn
 Players complete a turn in the game by submitting a set of orders.
 After processing the orders, the game-master sends each player a report with the results of their orders.
@@ -139,7 +91,8 @@ Within a phase, _orders_ are executed in the order they were issued.
 
 .Processing order
 ====
-We'll use the following to show processing order:
+To illustrate, let's assume that S23 and S24 are both in 8-8.8
+and that we have the following orders in our file:
 ```
 1: S23 survey     ; order Ship 23 to survey the system it is currently in
 2: S24 move 9-9-9 ; order Ship 24 to move to system 9-9-9
@@ -151,9 +104,13 @@ The semicolon treats the remainder of the line as a comment.
 
 Lines `1` and `3` would process in Phase 9 (Surveys).
 Line `1` would process before Line `3` because it occurs earlier in the file.
+S23 would survey its current location, system `8-8-8``.
+S24 would survey the same location because it has not moved yet.
 
 Line `2` would process in Phase 11 (Ship Movement).
-Because Ship Movement happens after Survey, `Ship 24` would not perform the survey in system `9-9-9`.
+S24 would move to system `9-9-9`.
+Because Ship Movement happens after Survey,
+the ship would not perform the survey in system `9-9-9`.
 ====
 
 == Fuel Allocation Phase
@@ -1095,6 +1052,72 @@ An energy weapon projects a powerful beam of concentrated energy.|4 * TL per COM
 |ENERGY SHIELDS||Energy shields deflect energy beams.
 The amount of energy deflected depends on the TL of the shields.|10 * TL per CR|50 * TL
 |MILITARY SUPPLIES||Military supplies consist of ammunition, medicines, etc., used up during combat.|0|.04 per unit
+|===
+
+[appendix]
+== Tech Levels
+
+|===
+|Technological Level|Research Points Required|Total Research Points Required
+|1|N/A|N/A
+|2|100,000|100,000
+|3|200,000|300,000
+|4|400,000|700,000
+|5|800,000|1,500,000
+|6|1,600,000|3,100,000
+|7|3,200,000|6,300,000
+|8|6,400,000|12,700,000
+|9|12,800,000|25,500,000
+|10|25,600,000|51,100,000
+|===
+
+[appendix]
+== Units
+
+.Unit Chart
+|===
+|CODE|Name|Description
+
+|AMSL|Anti-Missile|
+|ATKC|Assault Craft|
+|ATKW|Assault Weapon|
+|AUTO|Automation|
+|CONW|Construction Worker|A notational unit used to track the number of Professional and Unskilled Workers trained to build, assemble, and disassemble other units.
+|CGDS|Consumer Goods|
+|ENSH|Energy Shield|
+|ENWP|Energy Weapon|
+|FACT|Factory|
+|FARM|Farm|
+|FOOD|Food|A farmed resource used to feed people in the game.
+|FUEL|Fuel|A mined resource used to power other units in the game.
+|GOLD|Gold|A mined resource used as currency and also in manufacturing.
+This represents all precious metals and crystals, not just gold.
+It might morph into "credits" in the future.
+|HDRV|Hyper Drive|
+|LFSP|Life Support|
+|LSU|Light Structure|A type of structural unit built only in orbiting colonies.
+The mass of LSU units is 10% of SSU units, but each LSU can replace one SSU when building colonies, ships, and enclosed storage.
+|MILR|Military Robot|
+|MILS|Military Supplies|
+|MINE|Mine|
+|MSL|Missile|
+|MSLT|Missile Launcher|A launch tube.
+Each tube can launch both missiles and anti-missiles.
+|MTL|Metallic Resource|A mined resource used by factories to manufacture finished goods.
+|NMTL|Non-Metallic Resource|A mined resource used by factories to manufacture finished goods.
+|PROF|Professional Worker|A group of 100 people trained to manage people and projects.
+|RBEL|Rebel|A notational unit used to track the number of potential rebels in the population.
+|SLDR|Soldier|A group of 100 people trained for military operations.
+|SLSU|Super Light Structure|A type of structural unit built only in high-tech factories on orbiting colonies.
+The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU when building colonies, ships, and enclosed storage.
+|SPY|Spy|A notational unit used to track the number of Professional Workers and Soldiers trained in espionage and counter-espionage.
+|SNSR|Sensor|
+|SDRV|Space Drive|
+|SSU|Standard Structure|The standard type of structural unit used for building colonies, ships, and enclosed storage.
+|TRNS|Transport|
+|UEMP|Unemployable|A group of 100 people that are not Unskilled Workers, Professional Workers, or Soldiers.
+"Uenemployable" means that members of this group can not be drafted.
+|USKW|Unskilled Worker|A group of 100 people trained as general labor.
 |===
 
 [appendix]
