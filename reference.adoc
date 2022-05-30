@@ -677,7 +677,7 @@ All orders in the Assembly phase are executed in the order that they're entered 
 === Add additional Factory units to an existing Factory Group
 === Add additional Mine units to an existing Mining Group
 === Assemble Construction Worker Units
-A `assemble` order gathers PROFESSIONAL and UNSKILLED WORKER units and assembles them as CONSTRUCTION WORKER units.
+An `assemble` order gathers PROFESSIONAL and UNSKILLED WORKER units and assembles them as CONSTRUCTION WORKER units.
 
 Each CONW unit requires 1 PROFESSIONAL unit and 1 UNSKILLED WORKER unit.
 You may not create CONW units if the required number of PROFESSIONAL and UNSKILLED WORKER units are not available.
@@ -691,6 +691,55 @@ Examples:
 ```
 assemble C13 3 construction-worker ; create 3 CONW by assembling 3 PRO and 3 UKSW
 ```
+
+=== Assemble Factory Group Order
+An `assemble` order creates a new FACTORY GROUP and assigns them a finished good to manufacture.
+The factory group number will be displayed on the player's report at the end of the turn.
+
+There are restrictions on where items can be built, per the following chart:
+
+.Production Location Chart
+|===
+|CODE|Open Colony|Enclosed Colony|Orbital Colony|Ship
+
+|AMSL ^|YES ^|YES ^|YES ^|NO
+|ATKC ^|YES ^|YES ^|YES ^|NO
+|ATKW ^|YES ^|YES ^|YES ^|NO
+|AUTO ^|YES ^|YES ^|YES ^|NO
+|CGDS ^|YES ^|YES ^|YES ^|NO
+|ENSH ^|YES ^|YES ^|YES ^|NO
+|ENWP ^|YES ^|YES ^|YES ^|NO
+|FACT ^|YES ^|YES ^|YES ^|NO
+|FARM ^|YES ^|YES ^|YES ^|NO
+|HDRV ^|YES ^|YES ^|YES ^|NO
+|LFSP ^|YES ^|YES ^|YES ^|NO
+|LSU ^|NO ^|NO ^|YES ^|NO
+|MILR ^|YES ^|YES ^|YES ^|NO
+|MILS ^|YES ^|YES ^|YES ^|NO
+|MINE ^|YES ^|YES ^|YES ^|NO
+|MSL ^|YES ^|YES ^|YES ^|NO
+|MSLT ^|YES ^|YES ^|YES ^|NO
+|SNSR ^|YES ^|YES ^|YES ^|NO
+|SDRV ^|YES ^|YES ^|YES ^|NO
+|SSU ^|YES ^|YES ^|NO ^|NO
+|TRNS ^|YES ^|YES ^|YES ^|NO
+|===
+
+Any order that violates a location restriction will be ignored.
+
+Format:
+```
+assemble ColonyID Quantity FactoryTL UnitID
+```
+
+Examples:
+```
+assemble C91 50,000 factory-6 consumer-goods
+```
+
+WARNING: This order creates a new factory group using a single tech level of factory.
+Orders in later turns can add different tech levels to the group.
+Future versions of this order should allow the player to mix the tech levels on creation.
 
 === Assemble Operational Items
 TODO: Operational is a hard to understand phrase.
