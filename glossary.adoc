@@ -159,6 +159,10 @@ A _habitable planet_ is a *terrestial planet* with a *habitability number* great
 habitability number::
 Define this, please.
 
+home planet market::
+A _home planet market_ is an open air *market* found only on homeworlds.
+The market collects commissions directly, they are not paid to the controlling player.
+
 hyper-drive unit::
 Define this, please.
 
@@ -177,6 +181,10 @@ Define this, please.
 light structure unit::
 A _light structure unit_ is used to build colonies, ships, and storage.
 These units have less mass than the *standard structure unit* but can replace them on a one-for-one basis.
+
+market::
+A _market_ enables trade between players.
+The market accepts sell orders, matches them with buy orders, and collects a commision on each exchange.
 
 metal unit::
 A _metal_ unit is a refined metallic ore.
@@ -356,6 +364,10 @@ _TF_ is the thrust factor produced by all of the *space drive* units on a ship.
 The ship's total mass divided by its TF is the maximum distance
 (in space combat rings)
 that the ship may move in a combat round.
+
+trade station::
+A _trade station_ is an *orbital station* built by a player for the express purpose of running a market.
+The station may have farms but never factories or mines.
 
 transport::
 A _transport_ (or shuttle) is a specialized ship used to ferry people and cargo.

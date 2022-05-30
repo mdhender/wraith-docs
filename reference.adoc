@@ -55,7 +55,7 @@ It never allocates proportionately.
 |Mining Change|The mining change orders phase is used to todo...
 |Transfer|Population and cargo are moved between ships and colonies in the same orbit using available transports.
 |Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
-|Market|The market and trade station phase is used to process trade and barter orders.
+|Trade|The market and trade station phase is used to process trade and barter orders at markets and trade stations.
 |Survey|This phase surveys systems, planets, colonies, and ships.
 Reports are todo...
 |Survey Reports|This phase produces the probe and sensor reports.
@@ -893,11 +893,87 @@ Examples:
 mine 25,000 MG2708 DP1019
 ```
 
-== Market and Trade Station Activity Phase
+== Trade Activity Phase
 WARNING: The market phase was removed because player's abused it.
 Is there a way to monitor/prevent that?
 
+All orders in the Trade Activity phase are executed in the order that they're entered in the orders file.
+
+All transactions in a market or trade station require the buyer to pay a 1% commission.
+The commission is paid to the controlling player of the trade station or kept by the market for its own use.
+
+WARNING: All players must pay the same commission at markets and trade stations.
+There should be a way to charge different commissions in different locations and for different players.
+
+=== Establish Trade Station Order
+An `establish` order changes the function of an existing Orbital Colony to Trade Station.
+This order is valid only if the colony is an Orbital Colony,
+no smaller than 3,000 EMUs,
+and has no factories or mines installed.
+
+When a new trade station is established,
+all ships from the controlling player's race are granted trade rights.
+
+Format:
+```
+establish trade-station ColonyID Percentage?
+```
+
+The Percentage in the order establishes the base commission rate.
+It is optional and defaults to 1% (the standard commission rate).
+If include, it must be 1% or the order will be rejected.
+
+Examples:
+```
+establish trade-station S200     ; change S200 to a trade station charging the standard commission
+establish trade-station S200 1%  ; change S200 to a trade station charging 1% commission
+```
+
+=== Grant Trade Rights Order
+A `grant` order allows any ship belonging to a race to engage in trade at a market or trade station.
+The permission remains in place until explicitly revoked.
+
+Format:
+```
+grant trade-rights SpeciesID ColonyID
+```
+
+To grant trade rights to all players, issue the order with "*" as the species identifier.
+
+To grant trade rights to all markets and trade stations, issue the order with "*" as the colony identifier.
+
+Examples:
+```
+grant trade-rights SP138 S200  ; allow player SP138 to trade at station S200
+grant trade-rights SP2   *     ; open up all markets to SP2
+grant trade-rights *     S201  ; open up S201 to all players
+grant trade-rights *     *     ; open up all markets to all players
+```
+
+=== Revoke Trade Rights Order
+A `revoke` order prohibits any ship belonging to a race to engage in trade at a market or trade station.
+The prohibition remains in place until the controlling player grants trade rights again.
+
+Format:
+```
+revoke trade-rights SpeciesID ColonyID
+```
+
+To revoke trade rights from all players, issue the order with "*" as the species identifier.
+
+To revoke trade rights from all markets and trade stations, issue the order with "*" as the colony identifier.
+
+Examples:
+```
+revoke trade-rights SP138 S200  ; prohibit player SP138 from trading at station S200
+revoke trade-rights SP2   *     ; close all markets to SP2
+revoke trade-rights *     S201  ; close S201 to all players
+revoke trade-rights *     *     ; close all markets to all players
+```
+
 == Surveys
+All orders in the Survey phase are executed in the order that they're entered in the orders file.
+
 === Probe Order
 A `probe` order instructs a ship to conduct a detailed survey of a planet.
 
@@ -1039,7 +1115,10 @@ The base pay for populations units is per the following chart:
 
 Only crew members receive pay when on a ship.
 The crew will be paid in gold credits instead of goods.
-They will exchange the credits for goods when in a friendly port.
+They will exchange the credits for goods when at a colony controlled by their place or a market where they have trade rights.
+
+WARNING: This can cause gold to transfer to another player unexpectedly.
+Unscrupulous merchants will keep over-priced consumer goods on hand to exchange for gold.
 
 Passengers (or cargo if in cryo-sleep) are not paid - they receive food but forfeit their normal pay of consumer goods.
 
