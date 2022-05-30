@@ -351,7 +351,11 @@ The ship's total mass divided by its TF is the maximum distance
 that the ship may move in a combat round.
 
 transport::
-Define this, please.
+A _transport_ (or shuttle) is a specialized ship used to ferry people and cargo.
+The transport is limited to locations on the planet surface or orbit.
+It is not capable of travel between planets or systems.
+Transports may be used to quickly move soldiers in combat.
+Transports have built in life support units that can support as many people as it it rated to cary.
 
 unemployable unit::
 An _unemployable_ unit is a type of *population* unit.
