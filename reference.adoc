@@ -559,7 +559,7 @@ end
 == Disassembly orders
 All orders in the Disassembly phase are executed in the order that they're entered in the orders file.
 
-=== Unassemble Construction Worker Units
+=== Unassemble Construction Worker Order
 An `unassemble` order disbands CONSTRUCTION WORKER units and returns their PROFESSIONAL and UNSKILLED WORKER units to the population.
 
 Each unassembled CONW unit will return 1 PROFESSIONAL unit and 1 UNSKILLED WORKER unit to the idler's pool.
@@ -574,13 +574,12 @@ Examples:
 unassemble C13 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 UKSW
 ```
 
-=== Unassemble Operational Units
+=== Unassemble Operational Unit Order
 An `unassemble` order instructs CONSTRUCTION WORKER units to take a unit apart and prepare it for storage.
 This reduces the space required to store and transport the unit.
 
-Only the items in the Operational Units chart can be unassembled.
-
-You can't unassemble something that was never assembled.
+Only the unit in the <<Operational Units>> chart can be unassembled.
+(You can't unassemble something that was never assembled!)
 
 A CONSTRUCTION WORKER unit can unassemble up to 500 MASS units (MUs) per TURN.
 10% of the units taken apart will be scrapped and lost as a result.
@@ -592,8 +591,8 @@ unassemble ColonyOrShipID Quantity UnitCodeTL
 
 Examples:
 ```
-unassemble C27 9,750 MSLT-2  ; take apart 9,750 units - 975 will be scrapped
-unassemble S52   200 MSL-3   ; take apart   200 units -  20 will be scrapped
+unassemble S52 200 missle-3            ; take apart 200 units - 20 will be scrapped
+unassemble C27  71 missile-launcher-2  ; take apart  71 units -  8 will be scrapped
 ```
 
 === Unassemble Spy Order
@@ -696,9 +695,7 @@ transfer S22 10 spy            C29  ; move 10 spy           units from S22 to C2
 == Assembly Phase
 All orders in the Assembly phase are executed in the order that they're entered in the orders file.
 
-=== Add additional Factory units to an existing Factory Group
-=== Add additional Mine units to an existing Mining Group
-=== Assemble Construction Worker Units
+=== Assemble Construction Worker Order
 An `assemble` order gathers PROFESSIONAL and UNSKILLED WORKER units and assembles them as CONSTRUCTION WORKER units.
 
 Each CONW unit requires 1 PROFESSIONAL unit and 1 UNSKILLED WORKER unit.
@@ -763,10 +760,13 @@ WARNING: This order creates a new factory group using a single tech level of fac
 Orders in later turns can add different tech levels to the group.
 Future versions of this order should allow the player to mix the tech levels on creation.
 
-=== Assemble Operational Items
+=== Assemble Operational Unit Order
 TODO: Operational is a hard to understand phrase.
 
 An `assemble` order instructs CONSTRUCTION WORKER units to take a stored (disassembled) unit and make it operational (put it together).
+
+An "operational item" is a unit that must be assembled to be useable.
+Operational items can also be disassembled to save space when transporting them.
 
 A CONSTRUCTION WORKER unit can assemble up to 500 MASS units (MUs) per TURN.
 
@@ -817,6 +817,34 @@ assemble ColonyOrShipID Quantity spy
 Examples:
 ```
 assemble C78 16 spy  ; create 16 SPY by assembling 16 PRO and 16 SLDR
+```
+
+=== Expand Factory Group Order
+An `assemble` order adds additional FACTORY units to an existing FACTORY GROUP.
+
+Format:
+```
+assemble ColonyID FactoryGroupID Quantity FactoryTL
+```
+
+Examples:
+```
+assemble C91 FG2 2,500 factory-2  ; add 2,500 FACT-2 units to the group
+assemble C91 FG2 1,800 factory-6  ; add 1,800 FACT-6 units to the group
+```
+
+=== Expand Mining Group Order
+An `assemble` order adds additional MINE units to an existing MINING GROUP.
+
+Format:
+```
+assemble ColonyID MiningGroupID Quantity MineTL
+```
+
+Examples:
+```
+assemble C91 MG2 2,500 mine-2  ; add 2,500 MINE-2 units to the group
+assemble C91 MG2 1,800 mine-6  ; add 1,800 MINE-6 units to the group
 ```
 
 === Manufacture Items
