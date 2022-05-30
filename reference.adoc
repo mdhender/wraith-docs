@@ -1001,14 +1001,12 @@ It is not currently an option.
 == Training Phase
 The changes to population due to training are calculated in this phase.
 
+All orders in the Training phase are executed in the order that they're entered in the orders file.
+After all orders have been executed, the Job Corp step is executed.
+
 There are two types of training: training (apprenticeship) and Job Corps.
 
 Attrition happens automatically; the player must issue orders to train workers.
-
-=== Job Corps
-The Job Corps trains UNEMPLOYABLE units to become UNSKILLED WORKER units.
-The Corps is activated automatically when the percentage of UNEMPLOYABLE units is reaches 30% of the total population.
-At the end of each turn that it is active, the Corps will move 2% of the UNEMPLOYABLE units to UNSKILLED WORKER units.
 
 === Train Order
 A `train` order instructs PROFESSIONAL units to begin training UNSKILLED WORKER units.
@@ -1028,6 +1026,11 @@ Examples:
 ```
 train S13 15,400 professional  ; assign 16 PROF units to train 154 UNSK units
 ```
+
+=== Job Corps Step
+The Job Corps trains UNEMPLOYABLE units to become UNSKILLED WORKER units.
+The Corps is activated automatically when the percentage of UNEMPLOYABLE units is reaches 30% of the total population.
+At the end of each turn that it is active, the Corps will move 2% of the UNEMPLOYABLE units to UNSKILLED WORKER units.
 
 == Retirement Phase
 The changes to population due to retirement are calculated in this phase.
