@@ -44,6 +44,7 @@ Fuel allocations are prioritized: life support is first, followed by farms, mine
 The allocation algorithm is naive and simple.
 It attempts to allocate 100% of a unit's needs before moving to the next unit.
 It never allocates proportionately.
+|Life Support|Population changes due to life supoort are calculated.
 |Farming Production|The farming production phase todo...
 |Mining Production|The mining phase is used to extract resources from deposits and refine them into materials that can be used in the manufacturing phase.
 |Manufacturing Production|The manufacturing production phase todo...
@@ -99,6 +100,34 @@ FUEL units in STORAGE are available for use in the remaining phases.
 TIP: FUEL units are only produced via mining.
 They are not available for use until the TURN after they've been mined.
 There are some rather complicated exceptions to this rule.
+
+== Life Support Phase
+The number of LIFE SUPPORT units that are ACTIVE are counted.
+
+.Life Support Chart
+|===
+|CODE|FUEL per UNIT per TURN|Population units supported per UNIT per TURN
+
+|LSU-1|1|1
+|LSU-2|2|4
+|LSU-3|3|9
+|LSU-4|4|16
+|LSU-5|5|25
+|LSU-6|6|36
+|LSU-7|7|49
+|LSU-8|8|64
+|LSU-9|9|81
+|LSU-10|10|100
+|===
+
+Population that isn't supported is killed off in this phase.
+The only exception are units that have been placed into cryo-sleep.
+
+Casualties are distributed uniformly across all population groups.
+
+LSU units must be ACTIVE for the entire turn to support population units.
+If the units are shut down for any reason, the capacity will be recalculated and excess population killed off.
+This includes sabotage, damage in combat, or a ship taking on too many passengers.
 
 == Farming Production Phase
 The number of FOOD units produced by active FARM units is calculated.
