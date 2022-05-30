@@ -107,16 +107,16 @@ The number of LIFE SUPPORT units that are ACTIVE are counted.
 |===
 |CODE|FUEL per UNIT per TURN|Population units supported per UNIT per TURN
 
-|LSU-1|1|1
-|LSU-2|2|4
-|LSU-3|3|9
-|LSU-4|4|16
-|LSU-5|5|25
-|LSU-6|6|36
-|LSU-7|7|49
-|LSU-8|8|64
-|LSU-9|9|81
-|LSU-10|10|100
+|LFSP-1|1|1
+|LFSP-2|2|4
+|LFSP-3|3|9
+|LFSP-4|4|16
+|LFSP-5|5|25
+|LFSP-6|6|36
+|LFSP-7|7|49
+|LFSP-8|8|64
+|LFSP-9|9|81
+|LFSP-10|10|100
 |===
 
 Population that isn't supported is killed off in this phase.
@@ -124,7 +124,7 @@ The only exception are units that have been placed into cryo-sleep.
 
 Casualties are distributed uniformly across all population groups.
 
-LSU units must be ACTIVE for the entire turn to support population units.
+LFSP units must be ACTIVE for the entire turn to support population units.
 If the units are shut down for any reason, the capacity will be recalculated and excess population killed off.
 This includes sabotage, damage in combat, or a ship taking on too many passengers.
 
@@ -699,7 +699,6 @@ Only the items in the Operational Units chart can be assembled.
 |SNSR
 |SDRV
 |SSU
-|SLSU
 |===
 
 Format:
