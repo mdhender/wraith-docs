@@ -145,16 +145,16 @@ it is INACTIVE for the current TURN.
 |===
 |CODE|FUEL per UNIT per TURN|Sunlight|Can use Solar Power?
 
-|FARM-1|0.5|Natural|No
-|FARM-2|1.0|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-3|1.5|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-4|2.0|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-5|2.5|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-6|6.0|Artificial|No
-|FARM-7|7.0|Artificial|No
-|FARM-8|8.0|Artificial|No
-|FARM-9|9.0|Artificial|No
-|FARM-10|10.0|Artificial|No
+|FARM-1 >|0.5|Natural|No
+|FARM-2 >|1.0|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-3 >|1.5|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-4 >|2.0|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-5 >|2.5|Natural|Yes, if on Orbital Station in orbits 1..5
+|FARM-6 >|6.0|Artificial|No
+|FARM-7 >|7.0|Artificial|No
+|FARM-8 >|8.0|Artificial|No
+|FARM-9 >|9.0|Artificial|No
+|FARM-10 >|10.0|Artificial|No
 |===
 
 If the FARM unit can use Solar Power, its FUEL cost drops to 0 FUEL units per TURN.
@@ -324,7 +324,7 @@ The following chart shows the number of labor units needed based on the total nu
 |FACTORY GROUP|50,000 - up FACTORY units|1 per FACTORY unit|3 per FACTORY unit
 |===
 
-Note: factory automation units may replace UNSKILLED WORKER units at a TODO rate.
+TIP: factory automation units may replace UNSKILLED WORKER units at a TODO rate.
 
 Note: the ratio of UNSKILLED WORKER to PROFESSIONAL units is 3 to 1.
 
@@ -343,29 +343,29 @@ Every type of finished good requires a set of raw materials per the following ch
 
 .Production Raw Materials Chart
 |===
-|CODE|GOLD Units|FUEL Units|METALLIC Units|NON-METALLIC Units|Open Colony|Enclosed Colony|Orbital Colony
+|CODE|METALLIC Units|NON-METALLIC Units|GOLD Units|FUEL Units
 
-|AMSL|0|0|2 * TL|2 * TL ^|YES ^|YES ^|YES
-|ATKC|0|0|3 * TL|2 * TL ^|YES ^|YES ^|YES
-|ATKW|0|0|1 * TL|1 * TL ^|YES ^|YES ^|YES
-|AUTO|0|0|2 * TL|2 * TL ^|YES ^|YES ^|YES
-|CGDS|0|0|.2|.4 ^|YES ^|YES ^|YES
-|ENSH|0|0|25 * TL|25 * TL ^|YES ^|YES ^|YES
-|ENWP|0|0|5 * TL|5 * TL ^|YES ^|YES ^|YES
-|FACT|0|0|8 + TL|4 + TL ^|YES ^|YES ^|YES
-|FARM|0|0|4 + TL|2 + TL ^|YES ^|YES ^|YES
-|HDRV|0|0|25 * TL|20 * TL ^|YES ^|YES ^|YES
-|LFSP|0|0|3 * TL|5 * TL ^|YES ^|YES ^|YES
-|LSU|0|0|.01|.04 ^|NO ^|NO ^|YES
-|MILR|0|0|10 + TL|10 + TL ^|YES ^|YES ^|YES
-|MILS|0|0|.02|.02 ^|YES ^|YES ^|YES
-|MINE|0|0|5 + TL|5 + TL ^|YES ^|YES ^|YES
-|MSL|0|0|2 * TL|2 * TL ^|YES ^|YES ^|YES
-|MSLT|0|0|15 * TL|10 * TL ^|YES ^|YES ^|YES
-|SNSR|0|0|10 * TL|20 * TL ^|YES ^|YES ^|YES
-|SDRV|0|0|15 * TL|10 * TL ^|YES ^|YES ^|YES
-|SSU|0|0|.1|.4 ^|YES ^|YES ^|NO
-|TRNS|0|0|3 * TL|1 * TL ^|YES ^|YES ^|YES
+|AMSL|2 * TL|2 * TL >|0 >|0
+|ATKC|3 * TL|2 * TL >|0 >|0
+|ATKW|1 * TL|1 * TL >|0 >|0
+|AUTO|2 * TL|2 * TL >|0 >|0
+|CGDS >|0.20 >|0.40 >|0 >|0
+|ENSH|25 * TL|25 * TL >|0 >|0
+|ENWP|5 * TL|5 * TL >|0 >|0
+|FACT|8 + TL|4 + TL >|0 >|0
+|FARM|4 + TL|2 + TL >|0 >|0
+|HDRV|25 * TL|20 * TL >|0 >|0
+|LFSP|3 * TL|5 * TL >|0 >|0
+|LSU >|0.01 >|0.04 >|0 >|0
+|MILR|10 + TL|10 + TL >|0 >|0
+|MILS >|0.02 >|0.02 >|0 >|0
+|MINE|5 + TL|5 + TL >|0 >|0
+|MSL|2 * TL|2 * TL >|0 >|0
+|MSLT|15 * TL|10 * TL >|0 >|0
+|SNSR|10 * TL|20 * TL >|0 >|0
+|SDRV|15 * TL|10 * TL >|0 >|0
+|SSU >|0.10 >|0.40 >|0 >|0
+|TRNS|3 * TL|1 * TL >|0 >|0
 |===
 
 Each FACT in a FACTORY group can consume up to 5 MASS units (MUs) per TL per TURN in raw materials.
@@ -393,6 +393,16 @@ A FACTORY GROUP will be unable to produce its full output when there is a shorta
 
 The FACTORY GROUP will use as much of its input fuel, labor, or raw materials as it can;
 the excess units will be returned to the "central depot" for allocation in future turns.
+
+Shortages always impact the first stage of the manufacturing pipeline.
+The shortage will then flow into the following stages.
+
+The shortage will be spread across all factory groups in the colony.
+It will be assessed proportionatly.
+
+WARNING: Players should be able to prioritize the resources per factory group
+(or maybe by finished good).
+"If there's a shortage of steel, make tanks before spoons."
 
 === Production
 COLONY units are the only UNIT that may install FACT units and manufacture (produce) finished goods.
