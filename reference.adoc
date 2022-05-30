@@ -1004,14 +1004,21 @@ probe S42 *         ; probe all the planets orbiting the current star
 All orders in the Ship Movement phase are executed in the order that they're entered in the orders file.
 After all orders have been executed, Sensor reports are generated.
 
+There are three types of jumps.
+Interplanetary jumps move the ship between orbits around the current star.
+Intersystem jumps move the ship between orbits of the stars in the current system.
+Interstellar jumps move the ship between systems.
+In an interstellar jump, the ship will always arrive in the 11th orbit.
+When jumping to a system that has multiple stars, the target coordinates must include the star.
+
 === Jump Order
 A `jump` order instructs a ship to engage its hyper-drive engines and move to a new system or a new orbit around the current star.
 
-The destination must be a system or an orbit around the current star.
+The destination must be a system, an orbit around the current star, or an orbit in the current system.
 
-To jump between stars in a single system, the ship must first jump to the 11th orbit.
-Which is just wrong.
-TODO: fix this.
+The destination coordinates are specified as #Orbit for an interplanetary jump.
+They're specified as StarID#Orbit for an intersystem jump.
+And as the SystemID for an interstellar jump.
 
 .Hyperdrive Range Chart
 |===
@@ -1033,8 +1040,10 @@ When calculating capacity for ships with multiple engines,
 use the lowest Tech Level of all engines,
 then multiply by the total number of engines.
 
-If the mass of the ship exceeds the capacity of the engines,
+WARNING: If the total MUs of the ship (including hull and engines!)
+exceeds the capacity of the engines,
 it will consume the fuel but not move from its current location.
+This is borked.
 
 WARNING: The system does not idle engines that are not needed to make a jump.
 It should.
@@ -1043,20 +1052,32 @@ It should.
 |===
 |Kind|FUEL units per UNIT per JUMP
 
-|Interplanetary (between orbits)|4
-|Interstellar (between systems)|40 * distance (in light years) jumped
+|Interplanetary|4
+|Intersystem|8
+|Interstellar|40 * distance (in light years) jumped
 |===
+
+Intersystem jumps require twice the fuel of interplanetary jumps because the ship must first jump to the 11th orbit before jumping to the final destination.
+
+If the ship is already in the 11th orbit of a system with multiple stars (it just jumped in, for example),
+the jump order must be in the intersystem format,
+but the fuel will be used at the interplanetary rate.
+
+WARNING: That's not implemented yet.
 
 Format:
 ```
 jump ShipID Coordinates
 jump ShipID #Orbit
+jump ShipID StarID#Orbit
 ```
 
 Examples:
 ```
-jump S77 4/6/10    ; move S77 to system 4/6/10, orbit 11
-jump S79 #6        ; jump S79 to orbit 6 in its current system
+jump S79 #6        ; (interplanetary) move S79 to orbit 6 of the current star
+jump S81 B#2       ; (intersystem)    move S80 to orbit 2 of star B in the current system
+jump S77 4/6/10    ; (interstellar)   move S77 to system 4/6/10, orbit 11
+jump S78 8/3/9B    ; (interstellar)   move S78 to system 8/3/9 , orbit 11 of star B
 ```
 
 === Sensor Report Step
