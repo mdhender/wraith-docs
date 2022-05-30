@@ -223,9 +223,15 @@ it will produce raw materials per the following chart.
 |===
 
 == Manufacturing Phase
+The amount of finished goods produced by factory groups is calculated in this phase.
+
+A FACTORY GROUP is a set of of FACTORY units assigned to work together to build a common finished good.
+
 FACTORY units are the only units that can convert fuel and raw materials into finished goods.
 
 A FACTORY unit produces no finished units if it is IDLE or INACTIVE.
+
+FACTORY units that are not assigned to a FACTORY GROUP are INACTIVE (idle) - they will not manufacture any unit.
 
 A FACTORY unit produces finished units the first TURN that it is ACTIVE.
 
@@ -236,8 +242,6 @@ FACTORY units manufacture (produce) all goods except
 . Raw Materials -- GOLD, FUEL, METAL, and NON-METALLIC units
 . FOOD units
 . POPULATION units
-
-FACTORY units that are not assigned to a FACTORY GROUP are INACTIVE (idle) - they will not manufacture any unit.
 
 If the FACTORY unit is ACTIVE this TURN and was active the prior TURN, it will produce finished goods per the production chart.
 Otherwise, it will produce nothing.
@@ -262,9 +266,9 @@ All other FACTORY units must use FUEL units per the following chart.
 
 .Factory Fuel Chart
 |===
-|CODE|FUEL units used per TURN
+|CODE|Fuel per UNIT per TURN|Can use Solar Power?
 
-|FACTORY|TL / 2
+|FACT|TL * 0.5|Yes, if on Orbital Station in orbits 1..5
 |===
 
 Note: INACTIVE FACTORY units never consume FUEL units.
@@ -746,14 +750,14 @@ but they do receive a ration of FOOD every TURN per the ship's orders.
 ==== General Population
 .General Population Pay
 |===
-|CODE|People in UNIT|Pay per UNIT per TURN|FOOD per UNIT per TURN
+|CODE|People in UNIT|Pay per UNIT per TURN
 
-|UNEMPLOYABLE|100|0.000 CONSUMER GOODS|Per rationing orders
-|UNSKILLED WORKER|100|0.125 CONSUMER GOODS|Per rationing orders
-|PROFESSIONAL|100|0.375 CONSUMER GOODS|Per rationing orders
-|SOLDIER|100|0.250 CONSUMER GOODS|Per rationing orders
-|SPY|200|0.625 CONSUMER GOODS|Per rationing orders
-|CONSTRUCTION WORKER|200|0.500 CONSUMER GOODS|Per rationing orders
+|CONSTRUCTION WORKER|200|0.500 CONSUMER GOODS
+|PROFESSIONAL|100|0.375 CONSUMER GOODS
+|SOLDIER|100|0.250 CONSUMER GOODS
+|SPY|200|0.625 CONSUMER GOODS
+|UNEMPLOYABLE|100|0.000 CONSUMER GOODS
+|UNSKILLED WORKER|100|0.125 CONSUMER GOODS
 |===
 
 WARNING: This chart lies about spies and construction workers.
@@ -761,6 +765,20 @@ They are aggregates - their numbers are the sum of their components.
 
 === Ration Order
 
+.Food Ration
+|===
+|CODE|People in UNIT|Base FOOD per UNIT per TURN|Minimum FOOD per UNIT per TURN
+
+|CONSTRUCTION WORKER|200|0.5 FOOD units|0.125 FOOD units
+|PROFESSIONAL|100|0.25 FOOD units|0.0625 FOOD units
+|SOLDIER|100|0.25 FOOD units|0.0625 FOOD units
+|SPY|200|0.5 FOOD units|0.125 FOOD units
+|UNEMPLOYABLE|100|0.25 FOOD units|0.0625 FOOD units
+|UNSKILLED WORKER|100|0.25 FOOD units|0.0625 FOOD units
+|===
+
+WARNING: This chart lies about spies and construction workers.
+They are aggregates - their numbers are the sum of their components.
 
 == Rebellion
 == Rebel increases
@@ -834,9 +852,13 @@ Deaths from starvation are computed each TURN.
 Starvation takes place when the rationed FOOD amount is less than 0.0625 of a FOOD unit per POPULATION unit.
 When that happens, the following formula determines how many POPULATION units starve.
 
-    S = (0.0625 - R) / 0.0625
+    S = (M - R) / M
 
-Where S is the fraction of the population that starves and R is the actual ration.
+Where M is the minimum ration from the Food Ration Chart,
+R is the actual ration,
+and S is the fraction of the population that starves.
+
+TODO: Convert this to use percentages instead of fractions of FOOD units.
 
 === Natural Causes
 Deaths from natural causes are computed each TURN.
