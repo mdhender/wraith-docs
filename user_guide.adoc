@@ -329,8 +329,8 @@ The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU whe
 |SLDR|
 |SLSU|
 |SPY|
-|SNSR|
-|SDRV|
+|SNSR|TL * 40
+|SDRV|TL * 25
 |SSU|
 |TRNS|
 |UEMP|

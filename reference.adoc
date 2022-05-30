@@ -409,12 +409,24 @@ Some units require FUEL to be used in combat.
 
 .Combat Fuel Chart
 |===
-|CODE|FUEL use per TURN|FUEL use per COMBAT ROUND
+|CODE|FUEL use per UNIT per TURN|FUEL use per UNIT per COMBAT ROUND
 
 |Assault Craft|0.1|N/A
-|Energy Shield|N/A|4 * TL
-|Energy Weapon|N/A|10 * TL
+|Energy Shield|N/A|TL * 4
+|Energy Weapon|N/A|TL * 10
+|Space Drive|N/A|TL^2^
 |===
+
+.Combat Thrust Factor (TF) Chart
+|===
+|CODE|Thrust Factor per UNIT per COMBAT ROUND
+
+|Space Drive|TL^2^ * 1000
+|===
+
+The total thrust factors (TF) divided by the ship's total mass is the maximum number of space combat rings a ship may move in a single combat round.
+
+The player has no control over any ship's movement in combat.
 
 === Bombard
 The `bombard` order

@@ -344,6 +344,12 @@ A _terrestial_ *planet* is round and large enough to sweep its orbit clear, but 
 It may have an atmosphere and a metal core, or it could be a frozen iceball with no atmosphere.
 *Colonies* may be built on the surface of terrestial planets.
 
+TF::
+_TF_ is the thrust factor produced by all of the *space drive* units on a ship.
+The ship's total mass divided by its TF is the maximum distance
+(in space combat rings)
+that the ship may move in a combat round.
+
 transport::
 Define this, please.
 
