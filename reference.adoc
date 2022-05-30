@@ -61,8 +61,7 @@ Reports are todo...
 |Survey Reports|This phase produces the probe and sensor reports.
 Todo...
 |Espionage|The espionage phase todo...
-|Movement|The movement phase is the only phase in which ships move.
-Todo...
+|Ship Movement|This is the only phase in which ships move.
 |Draft|This phase applies draft orders to move workers between population unit types todo...
 |Pay and Ration|This phase is used to pay the population and distribute food.
 Pay is either gold (in the form of credits) or consumer goods.
@@ -704,7 +703,63 @@ Is there a way to monitor/prevent that?
 == Surveys
 === Probe and Sensor Reports
 == Espionage
-== Ship Movement
+
+== Ship Movement Phase
+=== Jump Order
+A `jump` order instructs a ship to engage its hyper-drive engines and move to a new system or a new orbit around the current star.
+
+The destination must be a system or an orbit around the current star.
+
+To jump between stars in a single system, the ship must first jump to the 11th orbit.
+Which is just wrong.
+TODO: fix this.
+
+.Hyperdrive Range Chart
+|===
+|CODE|Maximum distance per JUMP|Maximum Capacity per UNIT per JUMP
+
+|HDRV-1|1 light year|1,000 MUs
+|HDRV-2|2 light years|2,000 MUs
+|HDRV-3|3 light years|3,000 MUs
+|HDRV-4|4 light years|4,000 MUs
+|HDRV-5|5 light years|5,000 MUs
+|HDRV-6|6 light years|6,000 MUs
+|HDRV-7|7 light years|7,000 MUs
+|HDRV-8|8 light years|8,000 MUs
+|HDRV-9|9 light years|9,000 MUs
+|HDRV-10|10 light years|10,000 MUs
+|===
+
+When calculating capacity for ships with multiple engines,
+use the lowest Tech Level of all engines,
+then multiply by the total number of engines.
+
+If the mass of the ship exceeds the capacity of the engines,
+it will consume the fuel but not move from its current location.
+
+WARNING: The system does not idle engines that are not needed to make a jump.
+It should.
+
+.Jump Fuel Chart
+|===
+|Kind|FUEL units per UNIT per JUMP
+
+|Interplanetary (between orbits)|4
+|Interstellar (between systems)|40 * distance (in light years) jumped
+|===
+
+Format:
+```
+jump ShipID Coordinates
+jump ShipID #Orbit
+```
+
+Examples:
+```
+jump S77 4/6/10    ; move S77 to system 4/6/10, orbit 11
+jump S79 #6        ; jump S79 to orbit 6 in its current system
+```
+
 == Draft orders
 1 PROFESSIONAL unit is required to train up to 100 trainee units.
 5% of trainees graduate to ??? each TURN.
