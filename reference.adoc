@@ -65,9 +65,8 @@ Todo...
 |Pay and Ration|This phase is used to pay the population and distribute food.
 Pay is either gold (in the form of credits) or consumer goods.
 The player may change the default pay and ration rates.
-|Rebellion|This phase todo...
-|Rebel Changes|In this phase, the rebel population changes are applied.
-Todo...
+|Rebellion|Chances for rebel militias to engage in open rebellion are calculated and results checked.
+Active militias will engage in combat starting the next turn.
 |Control|In this phase, naming and control orders are todo...
 |Birth|Population changes due to births are calculated.
 |Training|Population changes due to training and apprenticeships are calculated.
@@ -1298,12 +1297,58 @@ WARNING: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
 
 == Rebellion
-== Rebel increases
 REBEL units represent the number of rebels.
 They are not treated as a separate group.
 
+The rebel militia consists of 10% of the rebel population.
+These are the members that are ready and willing to engage in open rebellion.
+
+== Rebel Increase Step
 People become rebels when under-paid and/or starving.
+
+.Quality of Life Factors
+|===
+|Factor|Increase
+
+|Starvation >|30%
+|Under Fed >|15%
+|Under Paid >|15%
+|Foreign Influence|See the spy tables
+|===
+
+=== Rebel Decrease Step
 Once a rebel, almost always a rebel.
+
+TODO: Add chart showing how to pay off rebels to return to loyal members of the state.
+
+=== Open Rebellion Step
+Open rebellion must be checked for every turn using the following chart:
+
+.Rebellion Chance
+|===
+|Ratio of Soldiers to Militia|Chance of open rebellion|Committment of rebellion
+
+|6:1 >|0% >|0%
+|5:1 >|5% >|5%
+|4:1 >|10% >|10%
+|3:1 >|25% >|30%
+|2:1 >|50% >|75%
+|1:1 >|100% >|90%
+|===
+
+A rebellion will end when the ratio of soldier to rebel militia units is greater than 6 to 1 (or vice versa).
+(NB - based on the surrender logic in combat.)
+
+WARNING: It is possible for both sides to surrender at the same time?
+
+=== Independence Check Step
+If the soldiers surrender, the colony or ship will declare its indepence.
+
+The independent colony, if it has factories or mines, will seek out trade stations to sell their goods and purchase needed raw materials.
+
+The idenpendent ship will support itself via raids or hiring out as mercenaries.
+
+TODO: Details on what becomes of the winners and losers.
 
 == Naming and Control orders
 

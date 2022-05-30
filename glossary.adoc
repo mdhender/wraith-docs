@@ -172,6 +172,12 @@ An _ice giant_ is a type of *gas giant* that is composed of liquids or gases oth
 ID::
 numerical identifer for colony, ship, group, etc.
 
+independent colony::
+An _independent colony_ is not controlled by any player in the game.
+
+independent ship::
+An _independent ship_ is not controlled by any player in the game.
+
 labor::
 Define this, please.
 
