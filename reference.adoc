@@ -1046,6 +1046,8 @@ Examples:
 survey S23 transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
 ```
 
+WARNING: This should probably just automatically use the smallest transport available.
+
 === Report Step
 A probe will report the following information for each planet:
 
