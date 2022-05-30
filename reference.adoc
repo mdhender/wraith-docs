@@ -596,7 +596,7 @@ unassemble C27 9,750 MSLT-2  ; take apart 9,750 units - 975 will be scrapped
 unassemble S52   200 MSL-3   ; take apart   200 units -  20 will be scrapped
 ```
 
-=== Assemble Spy Units
+=== Unassemble Spy Order
 An `unassemble` order disbands SPY units and returns their PROFESSIONAL and SOLDIER units to the population.
 
 Each unassembled SPY unit will return 1 PROFESSIONAL unit and 1 SOLDIER unit to the idler's pool.
@@ -803,7 +803,7 @@ assemble C27 9,750 MSLT-2
 assemble S52   200 LFSP-3
 ```
 
-=== Assemble Spy Units
+=== Assemble Spy Order
 An `assemble` order gathers PROFESSIONAL and SOLDIER units and assembles them as SPY units.
 
 Each SPY unit requires 1 PROFESSIONAL unit and 1 SOLDIER unit.
