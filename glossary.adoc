@@ -89,6 +89,9 @@ Define this, please.
 DF::
 _DF_ is either the distance factor or defense factor.
 
+DIY Kit::
+_DIY Kit_ is an alias for *operational unit*.
+
 DP::
 _DP_ is the prefix for a deposit identifier.
 
@@ -225,6 +228,10 @@ Non-metal units must be mined and refined by *mining* units.
 
 non-metallic::
 _Non-metallic_ is an alias for *non-metal* unit.
+
+operational unit::
+An _operational unit_ (also known as a DIY Kit) is a unit that must be assembled to be useable.
+Operational units can also be disassembled to save space when transporting them.
 
 orbit::
 An _orbit_ represents something.
