@@ -760,6 +760,24 @@ WARNING: This order creates a new factory group using a single tech level of fac
 Orders in later turns can add different tech levels to the group.
 Future versions of this order should allow the player to mix the tech levels on creation.
 
+=== Assemble Mining Group Order
+An `assemble` order creates a new MINING GROUP and assigns them to work a deposit.
+The mining group number will be displayed on the player's report at the end of the turn.
+
+Format:
+```
+assemble ColonyID Quantity MineTL DepositID
+```
+
+Examples:
+```
+assemble C91 50,000 mine-3 DP3
+```
+
+WARNING: This order creates a new mining group using a single tech level of mine.
+Orders in later turns can add different tech levels to the group.
+Future versions of this order should allow the player to mix the tech levels on creation.
+
 === Assemble Operational Unit Order
 TODO: Operational is a hard to understand phrase.
 
