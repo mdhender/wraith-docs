@@ -57,7 +57,6 @@ It never allocates proportionately.
 |Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
 |Trade|The market and trade station phase is used to process trade and barter orders at markets and trade stations.
 |Survey|This phase surveys systems, planets, colonies, and ships.
-Reports are todo...
 |Survey Reports|This phase produces the probe and sensor reports.
 Todo...
 |Espionage|The espionage phase todo...
@@ -971,16 +970,29 @@ revoke trade-rights *     S201  ; close S201 to all players
 revoke trade-rights *     *     ; close all markets to all players
 ```
 
-== Surveys
+== Survey Phase
 All orders in the Survey phase are executed in the order that they're entered in the orders file.
 
 === Probe Order
 A `probe` order instructs a ship to conduct a detailed survey of a planet.
 
-|===
-|CODE|Probes per SENSOR unit per TURN
+Probes are not actual units;
+they use the ship's sensors to actively scan and analyze orbits, planets, colonies, and ships.
 
-|Sensor|TL
+.Probe Chart
+|===
+|CODE|Probes per SENSOR unit per TURN|FUEL units used per PROBE per TURN
+
+|SNSR-1 >|1 >|0
+|SNSR-2 >|2 >|0
+|SNSR-3 >|3 >|0
+|SNSR-4 >|4 >|0
+|SNSR-5 >|5 >|0
+|SNSR-6 >|6 >|0
+|SNSR-7 >|7 >|0
+|SNSR-8 >|8 >|0
+|SNSR-9 >|9 >|0
+|SNSR-10 >|10 >|0
 |===
 
 Format:
@@ -988,7 +1000,12 @@ Format:
 probe ShipID #Orbit #Orbit...
 ```
 
-To probe all planets, issue the order with "*" as the orbit number.
+WARNING: This doesn't allow for systems with multiple stars.
+Consider accepting Star#Orbit in those systems.
+
+To probe all planets orbiting the current star
+issue the order with "*" as the orbit number.
+(This is not the same as "probe all orbits"!)
 
 Examples:
 ```
@@ -997,7 +1014,72 @@ probe S31 #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
 probe S42 *         ; probe all the planets orbiting the current star
 ```
 
-=== Probe and Sensor Reports
+=== Survey Order
+A `survey` order instructs 1 PROFESSIONAL unit to pilot 1 TRANSPORT to undertake a detailed survey of a planet.
+The survey takes one turn to complete.
+
+Because the survey requires a transport, it will use fuel.
+
+.Survey Fuel Chart
+|===
+|CODE|FUEL units used per SURVEY per TURN
+
+|TRNS-1 >|0.1
+|TRNS-2 >|0.4
+|TRNS-3 >|0.9
+|TRNS-4 >|1.6
+|TRNS-5 >|2.5
+|TRNS-6 >|3.6
+|TRNS-7 >|4.9
+|TRNS-8 >|6.4
+|TRNS-9 >|8.1
+|TRNS-10 >|10
+|===
+
+Format:
+```
+survey ShipID TransportTL #Orbit
+```
+
+Examples:
+```
+survey S23 transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
+```
+
+=== Report Step
+A probe will report the following information for each planet:
+
+. Habitability Number
+. Natural Resource Deposits
+.. DepositID
+.. Resource Type
+.. Approximate quantity
+. Open Colonies
+.. ColonyID
+.. EMU
+.. Presence of Market
+. Enclosed Colonies
+.. ColonyID
+.. EMU
+. Orbital Colonies
+.. ColonyID
+.. EMU
+.. Presence of Trade Station
+. Ships
+.. ShipID
+.. EMU
+
+The "approximate" mass or quantity is the log~10~ (rounded down) of the true amount.
+
+Each survey will report the following information:
+
+. Natural Resource Deposits
+.. DepositID
+.. Resource Type
+.. Quantity
+.. Location
+.. Mining Difficulty
+
 == Espionage
 
 == Ship Movement Phase
