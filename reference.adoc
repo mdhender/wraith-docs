@@ -51,7 +51,7 @@ It never allocates proportionately.
 |Combat|The combat phase is used to project force against other player's assets.
 |Set up|The set up phase is used to assemble new colonies and ships.
 |Disassembly|This phase is used to disassembly operational units and make them ready to put into storage.
-|Retool|The retool orders phase is used to todo...
+|Retool|Change the manufacturing pipeline for existing factory groups.
 |Mining Change|The mining change orders phase is used to todo...
 |Transfer|Population and cargo are moved between ships and colonies in the same orbit using available transports.
 |Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
@@ -614,11 +614,20 @@ unassemble C78 16 spy  ; disband 16 SPY by returning 16 PRO and 16 SLDR
 == Change Orders
 
 == Retool Phase
-=== Retool orders
+Use construction worker units to change the manufacturing lines in existing factory groups.
+The order may take up to four turns to complete since the crews must wait for all existing WIP to complete.
+
+All orders in the Retool phase are executed in the order that they're entered in the orders file.
+
+=== Retool Order
 A `retool` order instructs CONSTRUCTION WORKER units to wait for the *WIP* to complete.
 Once the production line is empty, the CONSTRUCTION WORKER units shut down all the factory units in the group.
 Then they update the production line to build a new finished good and restart the FACTORY GROUP.
 It takes one TURN to update and restart.
+
+WARNING: If there are not enough construction worker units available to complete the update in a single turn,
+they will continue the update in future turns until it is completed.
+The entire group will be idle until the update has completed.
 
 Format:
 ```
@@ -627,9 +636,12 @@ retool ColonyID FactoryGroupID UnitID
 
 Examples:
 ```
-  retool C6  FG19 research
-  retool C27 FG8  ENWP-4
+  retool C6  FG19 research         ; begin research when WIP is complete
+  retool C27 FG8  energy-weapon-4  ; build energy weapons when WIP is complete
 ```
+
+Build locations restrictions apply for retool orders.
+See <<Assemble Factory Group Order>> for those restrictions.
 
 === Mining change orders
 
