@@ -311,7 +311,7 @@ The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU whe
 |ENWP|TL * 10
 |FACT|TL * 2 + 12
 |FARM|TL + 6
-|FOOD|
+|FOOD|6
 |FUEL|
 |GOLD|
 |HDRV|
