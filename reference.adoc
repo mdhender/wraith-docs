@@ -74,6 +74,7 @@ Todo...
 |Training|Population changes due to training and apprenticeships are calculated.
 |Retirement|Population changes due to retirement are calculated.
 |Death|Population changes due to starvation and natural deaths are calculated.
+|Research|Changes to the tech level for a colony or ship tech level are determined in this phase.
 |News|In this phase, reports for the "news services" are created todo...
 |===
 
@@ -738,6 +739,7 @@ There are restrictions on where items can be built, per the following chart:
 |MINE ^|YES ^|YES ^|YES ^|NO
 |MSL ^|YES ^|YES ^|YES ^|NO
 |MSLT ^|YES ^|YES ^|YES ^|NO
+|Research ^|YES ^|YES ^|YES ^|NO
 |SNSR ^|YES ^|YES ^|YES ^|NO
 |SDRV ^|YES ^|YES ^|YES ^|NO
 |SSU ^|YES ^|YES ^|NO ^|NO
@@ -1213,6 +1215,47 @@ They are computed after deaths from starvation.
 TIP: Soldiering, spying, and construction are dangerous activities;
 that's why the death rate is higher for those groups.
 
+== Research Phase
+Changes to the tech level for a colony or ship are determined in this phase.
+
+=== Applied Research Step
+.Research Chart
+|===
+|Technological Level|Research Points Required|Total Research Points Required
+|1|N/A|N/A
+|2|100,000|100,000
+|3|200,000|300,000
+|4|400,000|700,000
+|5|800,000|1,500,000
+|6|1,600,000|3,100,000
+|7|3,200,000|6,300,000
+|8|6,400,000|12,700,000
+|9|12,800,000|25,500,000
+|10|25,600,000|51,100,000
+|===
+
+WARNING: Applied Research happens before Transferred Research.
+
+=== Transfered Research Step
+In this step, changes to the tech level from research bought or shipped to the colony are applied.
+
+Note that a ship can't transfer research from a higher tech level.
+(This is weird.)
+A SHIP-4 could transfer TECH-1, TECH-2, TECH-3, or TECH-4.
+It could not transfer TECH-5 or higher.
+
+A ship may never gain more than a single tech level in a turn.
+It is not allowed to skip tech levels.
+
+A colony may gain multiple tech levels in a single turn,
+but it may never skip a level.
+For example, a colony with TECH-2 is visited by a ship carrying TECH-4.
+The colony will not be able to apply the TECH-4 nor can it store the TECH-4 for future use.
+
+If the same colony were visited by a ship carrying TECH-3 and TECH-4,
+it would be able to use the TECH-3 to raise its level,
+then use the TECH-4.
+
 == News Service Reports
 
 == Players
@@ -1470,23 +1513,6 @@ An energy weapon projects a powerful beam of concentrated energy.|4 * TL per COM
 |ENERGY SHIELDS||Energy shields deflect energy beams.
 The amount of energy deflected depends on the TL of the shields.|10 * TL per CR|50 * TL
 |MILITARY SUPPLIES||Military supplies consist of ammunition, medicines, etc., used up during combat.|0|.04 per unit
-|===
-
-[appendix]
-== Tech Levels
-
-|===
-|Technological Level|Research Points Required|Total Research Points Required
-|1|N/A|N/A
-|2|100,000|100,000
-|3|200,000|300,000
-|4|400,000|700,000
-|5|800,000|1,500,000
-|6|1,600,000|3,100,000
-|7|3,200,000|6,300,000
-|8|6,400,000|12,700,000
-|9|12,800,000|25,500,000
-|10|25,600,000|51,100,000
 |===
 
 [appendix]
