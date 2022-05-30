@@ -713,6 +713,29 @@ WARNING: The market phase was removed because player's abused it.
 Is there a way to monitor/prevent that?
 
 == Surveys
+=== Probe Order
+A `probe` order instructs a ship to conduct a detailed survey of a planet.
+
+|===
+|CODE|Probes per SENSOR unit per TURN
+
+|Sensor|TL
+|===
+
+Format:
+```
+probe ShipID #Orbit #Orbit...
+```
+
+To probe all planets, issue the order with "*" as the orbit number.
+
+Examples:
+```
+probe S28 #6        ; probe the planet in the 6th orbit
+probe S31 #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
+probe S42 *         ; probe all the planets orbiting the current star
+```
+
 === Probe and Sensor Reports
 == Espionage
 
@@ -771,6 +794,32 @@ Examples:
 jump S77 4/6/10    ; move S77 to system 4/6/10, orbit 11
 jump S79 #6        ; jump S79 to orbit 6 in its current system
 ```
+
+=== Sensor Report
+Active sensors on a ship automatically report some basic information each turn.
+The report is generated in this step, which always happens last in the Ship Movement Phase.
+
+Active sensors consume fuel during this step each turn.
+
+.Sensor Fuel Chart
+|===
+|CODE|FUEL units per UNIT per TURN
+
+|Survey|TL / 20
+|===
+
+NOTE: There is no way to turn off sensors to save on fuel.
+
+Ship sensors automatically report the following information:
+
+. Orbit and Kind of Planets
+. Number of ships in each orbit
+.. Approximate mass of each ship
+. Number of orbital colonies in each orbit
+.. Approximate mass of each orbital colony
+.. Approximate production (tonnage) of each orbital colony
+
+The "approximate mass" is the log~10~ (rounded down) of the true quantity.
 
 == Draft orders
 1 PROFESSIONAL unit is required to train up to 100 trainee units.
