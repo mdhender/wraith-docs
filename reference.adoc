@@ -53,7 +53,7 @@ It never allocates proportionately.
 |Disassembly|This phase is used to disassembly operational units and make them ready to put into storage.
 |Retool|The retool orders phase is used to todo...
 |Mining Change|The mining change orders phase is used to todo...
-|Transfer|The transfer phase is used to todo...
+|Transfer|Population and cargo are moved between ships and colonies in the same orbit using available transports.
 |Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
 |Market|The market and trade station phase is used to process trade and barter orders.
 |Survey|This phase surveys systems, planets, colonies, and ships.
@@ -603,7 +603,54 @@ Examples:
 
 === Mining change orders
 
-== Transfers
+== Transfer Phase
+All orders in the Transfer phase are executed in the order that they're entered in the orders file.
+
+=== Transfer Order
+A `transfer` order instructs the crew of a transport to load cargo (people or units) onto a transport,
+fly the transport to the destination (which must be in the same orbit),
+offload the cargo,
+and then return back to the origin.
+
+Transports require FUEL and labor to operate.
+1 PROFESSIONAL unit may operate up to 10 TRANSPORTS per TURN.
+The amount of fuel used per turn depends on the total mass units of cargo.
+It is equal to the total mass units times the Fuel Factor.
+
+Format:
+```
+transfer ColonyOrShipID Quantity UnitID ColonyOrShipID
+```
+
+Examples:
+```
+transfer S22 50 consumer-goods C29  ; move 50 consumer good units from S22 to C29
+transfer S22 10 spy            C29  ; move 10 spy           units from S22 to C29
+```
+
+.Transport Crew Chart
+|===
+|CODE|Crew
+
+|TRNS|1 PROFESSIONAL per 10 TRANSPORTS
+|===
+
+.Transport Operations Chart
+|===
+|CODE|MUs transferred per TURN|Fuel Factor
+
+|TRNS-1 >|200 >|0.0005
+|TRNS-2 >|800 >|0.0005
+|TRNS-3 >|1800 >|0.0005
+|TRNS-4 >|3200 >|0.0005
+|TRNS-5 >|5000 >|0.0005
+|TRNS-6 >|7200 >|0.0005
+|TRNS-7 >|9800 >|0.0005
+|TRNS-8 >|12800 >|0.0005
+|TRNS-9 >|16200 >|0.0005
+|TRNS-10 >|20000 >|0.0005
+|===
+
 == Assembly Phase
 All orders in the Assembly phase are executed in the order that they're entered in the orders file.
 
@@ -740,6 +787,9 @@ probe S42 *         ; probe all the planets orbiting the current star
 == Espionage
 
 == Ship Movement Phase
+All orders in the Ship Movement phase are executed in the order that they're entered in the orders file.
+After all orders have been executed, Sensor reports are generated.
+
 === Jump Order
 A `jump` order instructs a ship to engage its hyper-drive engines and move to a new system or a new orbit around the current star.
 
@@ -795,7 +845,7 @@ jump S77 4/6/10    ; move S77 to system 4/6/10, orbit 11
 jump S79 #6        ; jump S79 to orbit 6 in its current system
 ```
 
-=== Sensor Report
+=== Sensor Report Step
 Active sensors on a ship automatically report some basic information each turn.
 The report is generated in this step, which always happens last in the Ship Movement Phase.
 
