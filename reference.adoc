@@ -735,7 +735,7 @@ C13 unassemble 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 U
 An `unassemble` order instructs CONSTRUCTION WORKER units to take a unit apart and prepare it for storage.
 This reduces the space required to store and transport the unit.
 
-Only the unit in the <<Operational Units>> chart can be unassembled.
+Only the unit in the <<a-operational-units, Operational Units>> chart can be unassembled.
 (You can't unassemble something that was never assembled!)
 
 A CONSTRUCTION WORKER unit can unassemble up to 500 MASS units (MUs) per TURN.
@@ -949,6 +949,7 @@ A CONSTRUCTION WORKER unit can assemble up to 500 MASS units (MUs) per TURN.
 
 Only the items in the Operational Units chart can be assembled.
 
+[[a-operational-units]]
 .Operational Units
 |===
 |CODE
