@@ -1131,6 +1131,46 @@ revoke trade-rights *     S201  ; close S201 to all players
 revoke trade-rights *     *     ; close all markets to all players
 ```
 
+=== Advertise Order
+Format:
+```
+SystemID #Orbit QuotedText QuotedText?
+```
+
+Examples:
+```
+8/4/3  #6 advertise "Stay away from my moons" "Jinsei"
+3/7/9A #6 advertise "Fresh moon rocks for sell next turn"
+```
+
+=== Sell Order
+Format:
+```
+SystemID #Orbit sell Quantity UnitTL Number
+```
+
+The amount is always in GOLD units.
+
+Examples:
+```
+8/4/3  #6 sell 4 space drive-3       0.2
+3/7/9A #6 sell 1 tech-4        800,000
+```
+
+=== Buy Order
+Format:
+```
+SystemID #Orbit buy Quantity UnitTL Number
+```
+
+The amount is always in GOLD units.
+
+Examples:
+```
+8/4/3  #6 buy 25,000 structural         0.01
+3/7/9A #6 buy      1 tech-6     1,000,000
+```
+
 == Survey Phase
 All orders in the Survey phase are executed in the order that they're entered in the orders file.
 
@@ -1158,7 +1198,7 @@ they use the ship's sensors to actively scan and analyze orbits, planets, coloni
 
 Format:
 ```
-probe ShipID #Orbit #Orbit...
+ShipID probe #Orbit #Orbit...
 ```
 
 NOTE: This doesn't allow for systems with multiple stars.
@@ -1170,9 +1210,9 @@ issue the order with "*" as the orbit number.
 
 Examples:
 ```
-probe S28 #6        ; probe the planet in the 6th orbit
-probe S31 #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
-probe S42 *         ; probe all the planets orbiting the current star
+S28 probe #6        ; probe the planet in the 6th orbit
+S31 probe #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
+S42 probe *         ; probe all the planets orbiting the current star
 ```
 
 === Survey Order
@@ -1199,12 +1239,12 @@ Because the survey requires a transport, it will use fuel.
 
 Format:
 ```
-survey ShipID TransportTL #Orbit
+ShipID survey TransportTL #Orbit
 ```
 
 Examples:
 ```
-survey S23 transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
+S23 survey transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
 ```
 
 NOTE: This should probably just automatically use the smallest transport available.
@@ -1418,7 +1458,7 @@ Ship sensors automatically report the following information:
 
 The "approximate mass" is the log~10~ (rounded down) of the true quantity.
 
-== Draft orders
+== Draft Phase
 1 PROFESSIONAL unit is required to train up to 100 trainee units.
 5% of trainees graduate to ??? each TURN.
 TODO: This is not the right phase.
@@ -1426,6 +1466,33 @@ TODO: This is not the right phase.
 The total number of UNSKILLED WORKER units drafted must not exceed the number of available SOLDIER units.
 
 There is no limit on the number of SOLDIER units that may be disbanded per TURN.
+
+=== Draft Order
+Format:
+```
+ColonyOrShipID draft Quantity professional
+ColonyOrShipID draft Quantity soldier
+```
+
+Examples:
+```
+S1 draft  3,000 professional
+C8 draft 16,000 soldier
+S9 disband, 5,000
+```
+
+=== Disband Order
+Format:
+```
+ColonyOrShipID disband Quantity professional
+ColonyOrShipID disband Quantity soldier
+```
+
+Examples:
+```
+S1 disband     * professional
+C8 disband 6,000 soldier
+```
 
 == Pay and Ration Phase
 All orders in the Ship Pay and Ration phase are executed in the order that they're entered in the orders file.
@@ -1510,6 +1577,10 @@ NOTE: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
 
 === Ration Order
+Format:
+```
+ColonyOrShipID ration Percentage
+```
 
 .Food Ration
 |===
@@ -1525,6 +1596,11 @@ They are aggregates - their numbers are the sum of their components.
 
 NOTE: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
+
+Examples:
+```
+S6 ration 50%
+```
 
 == Rebellion
 REBEL units represent the number of rebels.
@@ -1619,6 +1695,44 @@ SpeciesID uncontrol SystemID #Orbit
 Examples:
 ```
 SP2 uncontrol 2/4/6 #9
+```
+
+=== Grant Colonization Rights Order
+A `grant` order allows any ship belonging to a race to set up a colony on the planet.
+The permission remains in place until explicitly revoked.
+The revocation must happen before the player has started building.
+
+Format:
+```
+grant colonization-rights SpeciesID SystemID #Orbit
+```
+
+To grant colonization rights to all players, issue the order with "*" as the species identifier.
+
+Examples:
+```
+grant colonization-rights SP138 12/9/8   #1
+grant colonization-rights SP2   6/9/8B   #4
+grant colonization-rights *     29/19/28 #3
+```
+
+=== Revoke Colonization Rights Order
+A `revoke` order prohibits any ship belonging to a race from setting up a colony on the planet.
+The prohibition remains in place until the controlling play grants colonization rights again.
+The revocation must happen before the player has started building.
+
+Format:
+```
+revoke colonization-rights SpeciesID SystemID #Orbit
+```
+
+To revoke colonization rights from all players, issue the order with "*" as the species identifier.
+
+Examples:
+```
+revoke colonization-rights SP138 12/9/8   #1
+revoke colonization-rights SP2   6/9/8B   #4
+revoke colonization-rights *     29/19/28 #3
 ```
 
 == Birth Phase
@@ -1754,7 +1868,16 @@ If the same colony were visited by a ship carrying TECH-3 and TECH-4,
 it would be able to use the TECH-3 to raise its level,
 then use the TECH-4.
 
-== News Service Reports
+== News Service Phase
+Each news service is updated with the turn's
+* Arrivals
+* Departures
+* Combat
+* Transactions
+* Advertisements
+
+The New Service is always available to the controlling player.
+Ships that have trading rights with the market may use it only while in the same system.
 
 == Players
 
