@@ -44,12 +44,12 @@ Fuel allocations are prioritized: life support is first, followed by farms, mine
 The allocation algorithm is naive and simple.
 It attempts to allocate 100% of a unit's needs before moving to the next unit.
 It never allocates proportionately.
-|Life Support|Population changes due to life supoort are calculated.
+|Life Support|Population changes due to life support are calculated.
 |Farming Production|The farming production phase todo...
 |Mining Production|The mining phase is used to extract resources from deposits and refine them into materials that can be used in the manufacturing phase.
 |Manufacturing Production|The manufacturing production phase todo...
 |Combat|The combat phase is used to project force against other player's assets.
-|Set up|The set up phase is used to assemble new colonies and ships.
+|Set-Up|The Set-Up phase is used to assemble new colonies and ships.
 |Disassembly|This phase is used to disassembly operational units and make them ready to put into storage.
 |Retool|Change the manufacturing pipeline for existing factory groups.
 |Mining Change|The mining change orders phase is used to todo...
@@ -252,7 +252,7 @@ it will produce raw materials per the following chart.
 == Manufacturing Phase
 The amount of finished goods produced by factory groups is calculated in this phase.
 
-A FACTORY GROUP is a set of of FACTORY units assigned to work together to build a common finished good.
+A FACTORY GROUP is a set of FACTORY units assigned to work together to build a common finished good.
 
 FACTORY units are the only units that can convert fuel and raw materials into finished goods.
 
@@ -369,21 +369,21 @@ Every type of finished good requires a set of raw materials per the following ch
 
 Each FACT in a FACTORY group can consume up to 5 MASS units (MUs) per TL per TURN in raw materials.
 
-Example:
-```
+.Factory Input Example
+----
 FACT-1 -> 1 TL * 5 MU/TL/turn ->  5 MU/turn
 FACT-3 -> 3 TL * 5 MU/TL/turn -> 15 MU/turn
-```
+----
 
 The FACTORY GROUP can consume the total of all FACT units in the group.
 
-Example:
-```
+.Factory Group Input Example
+----
 FG1098 has 123 FACT-1 and 318 FACT-3 units
   FACT-1 -> 123 units *  5 MU/turn/unit ->   615 MU/turn
   FACT-3 -> 318 units * 15 MU/turn/unit -> 4,770 MU/turn
 FG1098 can consume a total of              5,385 MU/turn
-```
+----
 
 If a FACTORY GROUP does not have a full allocation of raw materials, it will use the SHORTAGE rules for the current TURN.
 
@@ -397,7 +397,7 @@ Shortages always impact the first stage of the manufacturing pipeline.
 The shortage will then flow into the following stages.
 
 The shortage will be spread across all factory groups in the colony.
-It will be assessed proportionatly.
+It will be assessed proportionally.
 
 NOTE: Players should be able to prioritize the resources per factory group
 (or maybe by finished good).
@@ -449,7 +449,7 @@ If it can't, it will surrender.
 
 MILITARY ROBOT units consume MILITARY SUPPLY units at a rate of one MILITARY SUPPLY unit per MILITARY ROBOT unit per COMBAT ROUND.
 If a MILITARY ROBOT unit runs out of MILITARY SUPPLY units, it will disengage and return to its origin.
-If it can't, it will self destruct to avoid capture.
+If it can't, it will self-destruct to avoid capture.
 
 Percentage of Commitment is an alias for percentage of units the player will commit to combat with that order.
 
@@ -460,15 +460,17 @@ The Battle Group (BAG) is the list of all colonies and ships involved in a comba
 The `bombard` order commits FUEL, ENERGY WEAPONS, MISSILE, and MISSILE LAUNCHER units to an attack against a colony or ship.
 The objective is to destroy the target.
 
-Format:
-```
+.Combat Bombard Order
+[source]
+----
 ColonyOrShipID bombard SpeciesID ColonyOrShipID Percentage
-```
+----
 
-Examples:
-```
+.Combat Bombard Order Examples
+[source]
+----
 S27 bombard SP18 C13 50%
-```
+----
 
 .Colony Distance Factor
 |===
@@ -497,19 +499,21 @@ The objective is to destroy the target.
 |SLDR|1
 |===
 
-Format:
-```
+.Combat Invade Order
+[source]
+----
 ColonyOrShipID invade SpeciesID ColonyOrShipID Percentage
-```
+----
 
-Examples:
-```
+.Combat Invade Order Examples
+[source]
+----
 S27 invade SP18 C13 50%
-```
+----
 
 === Raid Order
 The `raid` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
-The objective is to sieze and retrieve an enemy asset.
+The objective is to seize and retrieve an enemy asset.
 
 .Combat Factor Chart
 |===
@@ -521,15 +525,17 @@ The objective is to sieze and retrieve an enemy asset.
 |SLDR|1
 |===
 
-Format:
-```
+.Combat Raid Order
+[source]
+----
 ColonyOrShipID raid SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
-```
+----
 
-Examples:
-```
+.Combat Raid Order Examples
+[source]
+----
 S27 raid SP18 C13 assault-weapon-5 10%
-```
+----
 
 NOTE: This is a peculiar order because it assumes that there are enough soldiers to carry the asset to the transport and that the transport is large enough to hold the asset.
 It also requires you to specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
@@ -540,7 +546,7 @@ Military Robots can replace soldiers.
 
 . Commit troops (soldiers and robots).
 . Load troops onto assault craft (each assault craft requires 1 soldier unit to operate).
-. Arm excess troops with assualt weapons (each assault weapon requires 1 soldier unit to operate).
+. Arm excess troops with assault weapons (each assault weapon requires 1 soldier unit to operate).
 . Return excess troops to idler's pool.
 . Load armed troops onto transports (remember to use combined mass of assault weapons and troops).
 . If not enough transports, disarm and return excess troops to idler's pool.
@@ -559,15 +565,17 @@ It uses fuel at a rate of TL^2^ * 0.01 per round trip.
 The `sabotage` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
 The objective is to destroy an enemy asset.
 
-Format:
-```
+.Combat Sabotage Order
+[source]
+----
 ColonyOrShipID sabotage SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
-```
+----
 
-Examples:
-```
+.Combat Sabotage Order Examples
+[source]
+----
 S27 sabotage SP18 C13 hyper-drive-5 10%
-```
+----
 
 NOTE: This is a peculiar order because you specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
 It should probably be just `S27 sabotage SP18 C13 hyper-drive 10%`.
@@ -577,25 +585,28 @@ The `support` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units t
 The objective is to work with another player to achieve an objective.
 It can also be used for defending.
 
-Format:
-```
+.Combat Support Order
+[source]
+----
 ColonyOrShipID support SpeciesID ColonyOrShipID against SpeciesID Percent
 ColonyOrShipID support SpeciesID ColonyOrShipID bombard SpeciesID ColonyOrShipID Percent
 ColonyOrShipID support SpeciesID ColonyOrShipID invade  SpeciesID ColonyOrShipID Percent
-```
+----
 
 NOTE: Using the `against` version of the order commits your units to defending your partner's colony or ship.
 
-Examples:
-```
+.Combat Support Order Examples
+[source]
+----
 S14 support SP12 S83 against SP18     100%
 S14 support SP12 S83 bombard SP18 C13 100%
 S14 support SP12 S83 invade  SP18 C13 100%
-```
+----
 
 === Logic
 
-```go
+[source,c]
+----
 if combat == INVASION || combat == RAID || combat == SABOTAGE {
   acf := 0 // attacker combat factor
   for unit := range attacker.assaultCraft {
@@ -632,12 +643,12 @@ if combat == INVASION || combat == RAID || combat == SABOTAGE {
     dcl = dcl * 0.01 // raids are less deadly
   }
 }
-```
+----
 
-== Set Up Phase
-The Set Up phase is used to build new colonies and ships.
+== Set-Up Phase
+The Set-Up phase is used to build new colonies and ships.
 
-All orders in the Set Up phase are executed in the order that they're entered in the orders file.
+All orders in the Set-Up phase are executed in the order that they're entered in the orders file.
 
 There are limitations on where colonies and ships may be built.
 There are also limits on the number of colonies each player may build in a single orbit.
@@ -667,13 +678,13 @@ While working, these units will draw FOOD from the site
 (meaning the ship or colony they were transferred from).
 
 The CONSTRUCTION WORKER units will use STRUCTURAL units to build the "hull" of the colony or ship
-(actually, it's the exostructure, but hull is easier to type).
+(actually, it's the exo-structure, but hull is easier to type).
 
 The BOM must include the STRUCTURAL (or LIGHT STRUCTURAL) units for building the hull.
 The CONSTRUCTION WORKER units will use the available units to enclose the largest space possible.
 The amount should be enough to enclose the total number of Enclosed MASS units (EMUs) planned for the colony or ship.
 EMUs don't include the mass of the SUs used to build the colony or ship
-(in other words, the hull doesn't count towards enclosed mass but it does count for engines).
+(in other words, the hull doesn't count towards enclosed mass, but it does count for engines).
 Items in storage are counted as 1/2 their mass for purposes of the EMU.
 
 .Structural Unit Summary
@@ -700,20 +711,24 @@ Unlike the CONSTRUCTION WORKER units, the POPULATION units will not draw FOOD fr
 === Build Colony Order
 TIP: Use `build colony` to build a new colony.
 
-```
+.Build Colony Order
+[source]
+----
 build colony
   ; bill of materials used to assemble the colony
 end
-```
+----
 
 === Build Ship Order
 TIP: Use `build ship` to build a new ship.
 
-```
+.Build Ship Order
+[source]
+----
 build ship
   ; bill of materials used to assemble the ship
 end
-```
+----
 
 
 == Disassembly orders
@@ -724,15 +739,17 @@ An `unassemble` order disbands CONSTRUCTION WORKER units and returns their PROFE
 
 Each unassembled CONW unit will return 1 PROFESSIONAL unit and 1 UNSKILLED WORKER unit to the idler's pool.
 
-Format:
-```
+.Unassemble Order
+[source]
+----
 ColonyOrShipID unassemble Quantity construction-worker
-```
+----
 
-Examples:
-```
+.Unassemble Order Examples
+[source]
+----
 C13 unassemble 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 UKSW
-```
+----
 
 === Unassemble Operational Unit Order
 An `unassemble` order instructs CONSTRUCTION WORKER units to take a unit apart and prepare it for storage.
@@ -744,31 +761,35 @@ Only the unit in the <<a-operational-units, Operational Units>> chart can be una
 A CONSTRUCTION WORKER unit can unassemble up to 500 MASS units (MUs) per TURN.
 10% of the units taken apart will be scrapped and lost as a result.
 
-Format:
-```
+.Unassemble Order
+[source]
+----
 ColonyOrShipID unassemble Quantity UnitCodeTL
-```
+----
 
-Examples:
-```
+.Unassemble Order Examples
+[source]
+----
 S52 unassemble 200 life-support-3      ; take apart 200 units - 20 will be scrapped
 C27 unassemble  71 missile-launcher-2  ; take apart  71 units -  8 will be scrapped
-```
+----
 
 === Unassemble Spy Order
 An `unassemble` order disbands SPY units and returns their PROFESSIONAL and SOLDIER units to the population.
 
 Each unassembled SPY unit will return 1 PROFESSIONAL unit and 1 SOLDIER unit to the idler's pool.
 
-Format:
-```
+.Unassemble Order
+[source]
+----
 ColonyOrShipID unassemble Quantity spy
-```
+----
 
-Examples:
-```
+.Unassemble Order Examples
+[source]
+----
 S11 unassemble 16 spy  ; disband 16 SPY by returning 16 PRO and 16 SLDR
-```
+----
 
 == Change Orders
 
@@ -788,16 +809,18 @@ WARNING: If there are not enough construction worker units available to complete
 they will continue the update in future turns until it is completed.
 The entire group will be idle until the update has completed.
 
-Format:
-```
+.Retool Order
+[source]
+----
 ColonyID FactoryGroupID retool UnitID
-```
+----
 
-Examples:
-```
+.Retool Order Examples:
+[source]
+----
 C6  FG19 retool research         ; begin research when WIP is complete
 C27 FG8  retool energy-weapon-4  ; build energy weapons when WIP is complete
-```
+----
 
 Build locations restrictions apply for retool orders.
 See <<Assemble Factory Group Order>> for those restrictions.
@@ -811,23 +834,25 @@ All orders in the Transfer phase are executed in the order that they're entered 
 A `transfer` order instructs the crew of a transport to load cargo (people or units) onto a transport,
 fly the transport to the destination (which must be in the same orbit),
 offload the cargo,
-and then return back to the origin.
+and then return to the origin.
 
 Transports require FUEL and labor to operate.
 1 PROFESSIONAL unit may operate up to 10 TRANSPORTS per TURN.
 The amount of fuel used per turn depends on the total mass units of cargo.
 It is equal to the total mass units times the Fuel Factor.
 
-Format:
-```
+.Transfer Order
+[source]
+----
 ColonyOrShipID transfer Quantity UnitID ColonyOrShipID
-```
+----
 
-Examples:
-```
+.Transfer Order Examples
+[source]
+----
 S22 transfer 50 consumer-goods C29  ; move 50 consumer good units from S22 to C29
 S22 transfer 10 spy            C29  ; move 10 spy           units from S22 to C29
-```
+----
 
 .Transport Crew Chart
 |===
@@ -861,15 +886,17 @@ An `assemble` order gathers PROFESSIONAL and UNSKILLED WORKER units and assemble
 Each CONW unit requires 1 PROFESSIONAL unit and 1 UNSKILLED WORKER unit.
 You may not create CONW units if the required number of PROFESSIONAL and UNSKILLED WORKER units are not available.
 
-Format:
-```
+.Assemble Order
+[source]
+----
 ColonyOrShipID assemble Quantity construction-worker
-```
+----
 
-Examples:
-```
+.Assemble Order Examples
+[source]
+----
 C13 assemble 3 construction-worker ; create 3 CONW by assembling 3 PRO and 3 UKSW
-```
+----
 
 === Assemble Factory Group Order
 An `assemble` order creates a new FACTORY GROUP and assigns them a finished good to manufacture.
@@ -907,16 +934,18 @@ There are restrictions on where items can be built, per the following chart:
 
 Any order that violates a location restriction will be ignored.
 
-Format:
-```
+.Assemble Order
+[source]
+----
 ColonyID assemble Quantity FactoryTL UnitID
-```
+----
 
-Examples:
-```
+.Assemble Order Examples
+[source]
+----
 C8  assemble  5,000 factory-2 assault-craft-6
 C91 assemble 50,000 factory-6 consumer-goods
-```
+----
 
 NOTE: This order creates a new factory group using a single tech level of factory.
 Orders in later turns can add different tech levels to the group.
@@ -926,26 +955,28 @@ Future versions of this order should allow the player to mix the tech levels on 
 An `assemble` order creates a new MINING GROUP and assigns them to work a deposit.
 The mining group number will be displayed on the player's report at the end of the turn.
 
-Format:
-```
+.Assemble Order
+[source]
+----
 ColonyID assemble Quantity MineTL DepositID
-```
+----
 
-Examples:
-```
+.Assemble Order Examples
+[source]
+----
 C91 assemble 50,000 mine-3 DP3
-```
+----
 
 NOTE: This order creates a new mining group using a single tech level of mine.
 Orders in later turns can add different tech levels to the group.
 Future versions of this order should allow the player to mix the tech levels on creation.
 
 === Assemble Operational Unit Order
-TODO: Operational is a hard to understand phrase.
+TODO: Operational is a hard-to-understand phrase.
 
 An `assemble` order instructs CONSTRUCTION WORKER units to take a stored (disassembled) unit and make it operational (put it together).
 
-An "operational item" is a unit that must be assembled to be useable.
+An "operational item" is a unit that must be assembled to be usable.
 Operational items can also be disassembled to save space when transporting them.
 
 A CONSTRUCTION WORKER unit can assemble up to 500 MASS units (MUs) per TURN.
@@ -973,16 +1004,18 @@ Only the items in the Operational Units chart can be assembled.
 |SSU
 |===
 
-Format:
-```
+.Assemble Order
+[source]
+----
 ColonyOrShipID assemble Quantity UnitCodeTL
-```
+----
 
-Examples:
-```
+.Assemble Order Examples
+[source]
+----
 C27 assemble 9,750 missile-launcher-2
 S52 assemble   200 life-support-3
-```
+----
 
 === Assemble Spy Order
 An `assemble` order gathers PROFESSIONAL and SOLDIER units and assembles them as SPY units.
@@ -990,75 +1023,87 @@ An `assemble` order gathers PROFESSIONAL and SOLDIER units and assembles them as
 Each SPY unit requires 1 PROFESSIONAL unit and 1 SOLDIER unit.
 You may not create SPY units if the required number of PROFESSIONAL and SOLDIER units are not available.
 
-Format:
-```
+.Assemble Order
+[source]
+----
 ColonyOrShipID assemble Quantity spy
-```
+----
 
-Examples:
-```
+.Assemble Order Examples
+[source]
+----
 C78 assemble 16 spy  ; create 16 SPY by assembling 16 PRO and 16 SLDR
-```
+----
 
 === Expand Factory Group Order
 An `expand` order adds additional FACTORY units to an existing FACTORY GROUP.
 
-Format:
-```
+.Expand Order
+[source]
+----
 ColonyID FactoryGroupID expand Quantity FactoryTL
-```
+----
 
-Examples:
-```
+.Expand Order Examples
+[source]
+----
 C91 FG2 expand 2,500 factory-2  ; add 2,500 FACT-2 units to the group
 C91 FG2 expand 1,800 factory-6  ; add 1,800 FACT-6 units to the group
-```
+----
 
 === Expand Mining Group Order
 An `expand` order adds additional MINE units to an existing MINING GROUP.
 
-Format:
-```
+.Expand Order
+[source]
+----
 ColonyID MiningGroupID expand Quantity MineTL
-```
+----
 
-Examples:
-```
+.Expand Order Examples
+[source]
+----
 C91 MG2 expand 2,500 mine-2  ; add 2,500 MINE-2 units to the group
 C91 MG2 expand 1,800 mine-6  ; add 1,800 MINE-6 units to the group
-```
+----
 
 === Manufacture Items
 A `manufacture` order instructs a FACTORY GROUP to start producing units.
 The type of unit and the tech level of the unit are specified in the command.
 The number of units is not.
 
-```
+.Manufacture Order
+[source]
+----
 ColonyID FactoryGroupID manufacture Quantity UnitCodeTL
-```
+----
 
-Examples:
-```
+.Manufacture Order Examples
+[source]
+----
 C91 FG9 manufacture 50,000 missile-8
-```
+----
 
 === Mine Resources
 A `mine` order instructs a MINING GROUP to start mining and refining resources from a deposit.
 
-```
+.Mine Order
+[source]
+----
 ColonyID MiningGroupID mine Quantity DepositID
-```
+----
 
-Examples:
-```
+.Mine Order Examples
+[source]
+----
 C16 MG27 mine 25,000 DP19
-```
+----
 
 NOTE: This feels wrong.
 Why include quantity here?
 
 == Trade Activity Phase
-NOTE: The market phase was removed because player's abused it.
+NOTE: The market phase was removed because players abused it.
 Is there a way to monitor/prevent that?
 
 All orders in the Trade Activity phase are executed in the order that they're entered in the orders file.
@@ -1078,102 +1123,114 @@ and has no factories or mines installed.
 When a new trade station is established,
 all ships from the controlling player's race are granted trade rights.
 
-Format:
-```
+.Establish Trade Station Order
+[source]
+----
 establish trade-station ColonyID Percentage?
-```
+----
 
 The Percentage in the order establishes the base commission rate.
 It is optional and defaults to 1% (the standard commission rate).
-If include, it must be 1% or the order will be rejected.
+If included, it must be 1% or the order will be rejected.
 
-Examples:
-```
+.Establish Trade Station Order Examples
+[source]
+----
 establish trade-station S200     ; change S200 to a trade station charging the standard commission
 establish trade-station S200 1%  ; change S200 to a trade station charging 1% commission
-```
+----
 
 === Grant Trade Rights Order
 A `grant` order allows any ship belonging to a race to engage in trade at a market or trade station.
 The permission remains in place until explicitly revoked.
 
-Format:
-```
+.Grant Trade Rights Order
+[source]
+----
 grant trade-rights SpeciesID ColonyID
-```
+----
 
 To grant trade rights to all players, issue the order with "*" as the species identifier.
 
 To grant trade rights to all markets and trade stations, issue the order with "*" as the colony identifier.
 
-Examples:
-```
+.Grant Trade Rights Order Examples
+[source]
+----
 grant trade-rights SP138 S200  ; allow player SP138 to trade at station S200
 grant trade-rights SP2   *     ; open up all markets to SP2
 grant trade-rights *     S201  ; open up S201 to all players
 grant trade-rights *     *     ; open up all markets to all players
-```
+----
 
 === Revoke Trade Rights Order
 A `revoke` order prohibits any ship belonging to a race to engage in trade at a market or trade station.
 The prohibition remains in place until the controlling player grants trade rights again.
 
-Format:
-```
+.Revoke Trade Rights Order
+[source]
+----
 revoke trade-rights SpeciesID ColonyID
-```
+----
 
 To revoke trade rights from all players, issue the order with "*" as the species identifier.
 
 To revoke trade rights from all markets and trade stations, issue the order with "*" as the colony identifier.
 
-Examples:
-```
+.Revoke Trade Rights Order Examples
+[source]
+----
 revoke trade-rights SP138 S200  ; prohibit player SP138 from trading at station S200
 revoke trade-rights SP2   *     ; close all markets to SP2
 revoke trade-rights *     S201  ; close S201 to all players
 revoke trade-rights *     *     ; close all markets to all players
-```
+----
 
 === Advertise Order
-Format:
-```
-SystemID #Orbit QuotedText QuotedText?
-```
+.Advertise Order
+[source]
+----
+SystemID #Orbit advertise QuotedText QuotedText?
+----
 
-Examples:
-```
+.Advertise Order Examples
+[source]
+----
 8/4/3  #6 advertise "Stay away from my moons" "Jinsei"
 3/7/9A #6 advertise "Fresh moon rocks for sell next turn"
-```
+----
 
 === Sell Order
-Format:
-```
+.Sell Order
+[source]
+----
 SystemID #Orbit sell Quantity UnitTL Number
-```
+----
 
 The amount is always in GOLD units.
 
-Examples:
-```
+.Sell Order Examples
+[source]
+----
 8/4/3  #6 sell 4 space drive-3       0.2
 3/7/9A #6 sell 1 tech-4        800,000
-```
+----
 
 === Buy Order
-Format:
-```
+.Buy Order
+[source]
+----
 SystemID #Orbit buy Quantity UnitTL Number
-```
+----
 
 The amount is always in GOLD units.
 
-Examples:
-```
+.Buy Order Examples
+[source]
+----
 8/4/3  #6 buy 25,000 structural         0.01
 3/7/9A #6 buy      1 tech-6     1,000,000
-```
+----
 
 == Survey Phase
 All orders in the Survey phase are executed in the order that they're entered in the orders file.
@@ -1200,10 +1257,11 @@ they use the ship's sensors to actively scan and analyze orbits, planets, coloni
 |SNSR-10 >|10 >|0
 |===
 
-Format:
-```
+.Probe Order
+[source]
+----
 ShipID probe #Orbit #Orbit...
-```
+----
 
 NOTE: This doesn't allow for systems with multiple stars.
 Consider accepting Star#Orbit in those systems.
@@ -1212,12 +1270,13 @@ To probe all planets orbiting the current star
 issue the order with "*" as the orbit number.
 (This is not the same as "probe all orbits"!)
 
-Examples:
-```
+.Probe Order Examples
+[source]
+----
 S28 probe #6        ; probe the planet in the 6th orbit
 S31 probe #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
 S42 probe *         ; probe all the planets orbiting the current star
-```
+----
 
 === Survey Order
 A `survey` order instructs 1 PROFESSIONAL unit to pilot 1 TRANSPORT to undertake a detailed survey of a planet.
@@ -1241,15 +1300,17 @@ Because the survey requires a transport, it will use fuel.
 |TRNS-10 >|10
 |===
 
-Format:
-```
+.Survey Order
+[source]
+----
 ShipID survey TransportTL #Orbit
-```
+----
 
-Examples:
-```
+.Survey Order Examples
+[source]
+----
 S23 survey transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
-```
+----
 
 NOTE: This should probably just automatically use the smallest transport available.
 
@@ -1291,70 +1352,82 @@ Each survey will report the following information:
 All orders in the Espionage phase are executed in the order that they're entered in the orders file.
 
 === Convert Rebels Order
-Format:
-```
+.Convert Rebels Order
+[source]
+----
 ColonyOrShipID Quantity convert
-```
+----
 
-Examples:
-```
+.Convert Rebels Order Examples
+[source]
+----
 C38 110 convert
-```
+----
 
 === Counter Espionage Order
-Format:
-```
+.Counter Espionage Order
+[source]
+----
 ColonyOrShipID counter
-```
+----
 
-Examples:
-```
+.Counter Espionage Order Examples
+[source]
+----
 C38 counter
-```
+----
 
 === Incite Rebellion Order
-Format:
-```
+.Incite Rebellion Order
+[source]
+----
 SpeciesID ColonyOrShipID Quantity incite
-```
+----
 
-Examples:
-```
+.Incite Rebellion Order Examples
+[source]
+----
 S2 C54 100 incite
-```
+----
 
 === Information Order
-Format:
-```
+.Information Order
+[source]
+----
 SpeciesID ColonyOrShipID Quantity information
-```
+----
 
-Examples:
-```
+.Information Order Examples
+[source]
+----
 S2 C54 900 information
-```
+----
 
-=== Supress Foreign Spies Order
-Format:
-```
-ColonyOrShipID Quantity supress
-```
+=== Suppress Foreign Spies Order
+.Suppress Foreign Spies Order
+[source]
+----
+ColonyOrShipID Quantity suppress
+----
 
-Examples:
-```
+.Suppress Foreign Spies Order Examples
+[source]
+----
 C38 85 suppress
-```
+----
 
 === Surveil Rebels Order
-Format:
-```
+.Surveil Rebels Order
+[source]
+----
 ColonyOrShipID surveil
-```
+----
 
-Examples:
-```
+.Surveil Rebels Order Examples
+[source]
+----
 C38 surveil
-```
+----
 
 == Ship Movement Phase
 All orders in the Ship Movement phase are executed in the order that they're entered in the orders file.
@@ -1376,7 +1449,7 @@ The destination coordinates are specified as #Orbit for an interplanetary jump.
 They're specified as StarID#Orbit for an intersystem jump.
 And as the SystemID for an interstellar jump.
 
-.Hyperdrive Range Chart
+.Hyper-drive Range Chart
 |===
 |CODE|Maximum distance per JUMP|Maximum Capacity per UNIT per JUMP
 
@@ -1421,20 +1494,22 @@ but the fuel will be used at the interplanetary rate.
 
 NOTE: That's not implemented yet.
 
-Format:
-```
+.Jump Order
+[source]
+----
 jump ShipID Coordinates
 jump ShipID #Orbit
 jump ShipID StarID#Orbit
-```
+----
 
-Examples:
-```
+.Jump Order Examples
+[source]
+----
 jump S79 #6        ; (interplanetary) move S79 to orbit 6 of the current star
 jump S81 B#2       ; (intersystem)    move S80 to orbit 2 of star B in the current system
 jump S77 4/6/10    ; (interstellar)   move S77 to system 4/6/10, orbit 11
 jump S78 8/3/9B    ; (interstellar)   move S78 to system 8/3/9 , orbit 11 of star B
-```
+----
 
 === Sensor Report Step
 Active sensors on a ship automatically report some basic information each turn.
@@ -1472,31 +1547,56 @@ The total number of UNSKILLED WORKER units drafted must not exceed the number of
 There is no limit on the number of SOLDIER units that may be disbanded per TURN.
 
 === Draft Order
-Format:
-```
+.Draft Professionals Order
+[source]
+----
 ColonyOrShipID draft Quantity professional
-ColonyOrShipID draft Quantity soldier
-```
+----
 
-Examples:
-```
-S1 draft  3,000 professional
+.Draft Professionals Order Examples
+[source]
+----
+S1 draft   3,000 professional
+----
+
+.Draft Soldiers Order
+[source]
+----
+ColonyOrShipID draft Quantity soldier
+----
+
+.Draft Soldiers Order Examples
+[source]
+----
 C8 draft 16,000 soldier
-S9 disband, 5,000
-```
+----
 
 === Disband Order
-Format:
-```
+.Disband Professionals Order
+[source]
+----
 ColonyOrShipID disband Quantity professional
-ColonyOrShipID disband Quantity soldier
-```
+----
 
-Examples:
-```
+.Disband Professionals Order Examples
+[source]
+----
+C8 disband 6,000 professional
 S1 disband     * professional
+----
+
+.Disband Soldiers Order
+[source]
+----
+ColonyOrShipID disband Quantity soldier
+----
+
+.Disband Soldiers Order Examples
+[source]
+----
 C8 disband 6,000 soldier
-```
+S1 disband     * soldier
+----
 
 == Pay and Ration Phase
 All orders in the Ship Pay and Ration phase are executed in the order that they're entered in the orders file.
@@ -1527,21 +1627,23 @@ Unscrupulous merchants will keep over-priced consumer goods on hand to exchange 
 
 Passengers (or cargo if in cryo-sleep) are not paid - they receive food but forfeit their normal pay of consumer goods.
 
-Format:
-```
+.Pay Order
+[source]
+----
 pay ColonyOrShipID PopulationUnitID Percentage
-```
+----
 
 To change the rate for all units, regardless of location, issue the order with "*" as the ColonyOrShipID.
 
-Examples:
-```
+.Pay Order Examples
+[source]
+----
 pay S38 professional 100%  ; reset  pay to base rate
 pay  *  soldier       50%  ; change pay for all soldiers
 pay S38 unskilled     90%  ; change pay to  90% of base rate
 pay C27 unskilled    110%  ; change pay to 110% of base rate
 pay S38 spy          115%  ; change pay to 115% of base rate
-```
+----
 
 In the example, the player is paying UNSKILLED WORKER units more on colony C27 than she is on ship S38.
 
@@ -1581,10 +1683,11 @@ NOTE: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
 
 === Ration Order
-Format:
-```
+.Ration Order
+[source]
+----
 ColonyOrShipID ration Percentage
-```
+----
 
 .Food Ration
 |===
@@ -1601,10 +1704,11 @@ ColonyOrShipID ration Percentage
 NOTE: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
 
-Examples:
-```
+.Ration Order Examples
+[source]
+----
 S6 ration 50%
-```
+----
 
 == Rebellion
 REBEL units represent the number of rebels.
@@ -1664,80 +1768,89 @@ TODO: Details on what becomes of the winners and losers.
 All orders in the Naming and Control phase are executed in the order that they're entered in the orders file.
 
 === Control Order
-Format:
-```
-Player ID No., "control," System No., Orbit No.
+.Control Order
+[source]
+----
 SpeciesID control SystemID #Orbit
-```
+----
 
-Examples:
-```
+.Control Order Examples
+[source]
+----
 SP2 control 2/4/6 #9
-```
+----
 
 === Name Order
-Format:
-```
+.Name Order
+[source]
+----
 ColonyID  name                 QuotedString
 ShipID    name                 QuotedString
 SpeciesID name SystemID #Orbit QuotedString
-```
+----
 
-Examples:
-```
+.Name Order Examples
+[source]
+----
 C39 name            "Mudbomb"
 S52 name            "Mudflea"
 SP9 name 5/10/15 #2 "Mudball"
-```
+----
 
 === Un-Control Order
-Format:
-```
+.Uncontrol Order
+[source]
+----
 SpeciesID uncontrol SystemID #Orbit
-```
+----
 
-Examples:
-```
+.Uncontrol Order Examples
+[source]
+----
 SP2 uncontrol 2/4/6 #9
-```
+----
 
 === Grant Colonization Rights Order
 A `grant` order allows any ship belonging to a race to set up a colony on the planet.
 The permission remains in place until explicitly revoked.
 The revocation must happen before the player has started building.
 
-Format:
-```
+.Grant Colonization Rights Order
+[source]
+----
 grant colonization-rights SpeciesID SystemID #Orbit
-```
+----
 
 To grant colonization rights to all players, issue the order with "*" as the species identifier.
 
-Examples:
-```
+.Grant Colonization Rights Order Examples
+[source]
+----
 grant colonization-rights SP138 12/9/8   #1
 grant colonization-rights SP2   6/9/8B   #4
 grant colonization-rights *     29/19/28 #3
-```
+----
 
 === Revoke Colonization Rights Order
 A `revoke` order prohibits any ship belonging to a race from setting up a colony on the planet.
 The prohibition remains in place until the controlling play grants colonization rights again.
 The revocation must happen before the player has started building.
 
-Format:
-```
+.Revoke Colonization Rights Order
+[source]
+----
 revoke colonization-rights SpeciesID SystemID #Orbit
-```
+----
 
 To revoke colonization rights from all players, issue the order with "*" as the species identifier.
 
-Examples:
-```
+.Revoke Colonization Rights Order Examples
+[source]
+----
 revoke colonization-rights SP138 12/9/8   #1
 revoke colonization-rights SP2   6/9/8B   #4
 revoke colonization-rights *     29/19/28 #3
-```
+----
 
 == Birth Phase
 The changes to population due to births are calculated in this phase.
@@ -1772,15 +1885,17 @@ The trainees are unavailable for use until they have graduated from training.
 They graduate at a rate of 5% per TURN.
 After graduation, they are moved to the PROFESSIONAL population.
 
-Format:
-```
+.Train Professional Order
+[source]
+----
 train ColonyOrShipID Quantity professional
-```
+----
 
-Examples:
-```
+.Train Professional Order Examples
+[source]
+----
 train S13 15,400 professional  ; assign 16 PROF units to train 154 UNSK units
-```
+----
 
 === Job Corps Step
 The Job Corps trains UNEMPLOYABLE units to become UNSKILLED WORKER units.
@@ -1852,7 +1967,7 @@ Changes to the tech level for a colony or ship are determined in this phase.
 
 WARNING: Applied Research happens before Transferred Research.
 
-=== Transfered Research Step
+=== Transferred Research Step
 In this step, changes to the tech level from research bought or shipped to the colony are applied.
 
 Note that a ship can't transfer research from a higher tech level.
@@ -1944,11 +2059,11 @@ An AUTO unit may not be split between groups.
 |===
 |CODE|Range per UNIT|Capacity per UNIT|Mass per UNIT|Fuel per UNIT per JUMP
 
-|HYPERDRIVE|TL light years|1,000 * TL MU|45 * TL MU|40 FUEL units per LY travelled
+|HYPER-DRIVE|TL light years|1,000 * TL MU|45 * TL MU|40 FUEL units per LY travelled
 |===
 
 Jumps between orbits ("interplanetary travel") are treated as 0.1 light years for FUEL.
-(In other words, each HYPERDRIVE unit consumes 4 FUEL units jumping in system.)
+(In other words, each HYPER-DRIVE unit consumes 4 FUEL units jumping in system.)
 
 === Life Support
 LIFE SUPPORT units use FUEL to replenish air and water in ships and colonies.
@@ -2207,7 +2322,7 @@ TechLevel:: _TechLevel_ is an integer in the range of 1..10.
 UnitCodeTL:: _UnitCodeTL_ is composed of two parts separated by a dash.
 The first part is the code for the unit.
 The second part is the *TechLevel* of the unit.
-Examples are MISSILE-2, HYPERDRIVE-3, and ENERGYSHIELDS-9.
+Examples are MISSILE-2, HYPER-DRIVE-3, and ENERGY-SHIELDS-9.
 
 [appendix]
 == To Do
