@@ -1428,6 +1428,7 @@ The total number of UNSKILLED WORKER units drafted must not exceed the number of
 There is no limit on the number of SOLDIER units that may be disbanded per TURN.
 
 == Pay and Ration Phase
+All orders in the Ship Pay and Ration phase are executed in the order that they're entered in the orders file.
 
 === Pay Order
 A `pay` order changes the amount of pay (in consumer goods) each population unit receives per turn.
@@ -1579,7 +1580,46 @@ An idenpendent ship will support itself via raids or hiring out as mercenaries.
 
 TODO: Details on what becomes of the winners and losers.
 
-== Naming and Control orders
+== Naming and Control Phase
+All orders in the Naming and Control phase are executed in the order that they're entered in the orders file.
+
+=== Control Order
+Format:
+```
+Player ID No., "control," System No., Orbit No.
+SpeciesID control SystemID #Orbit
+```
+
+Examples:
+```
+SP2 control 2/4/6 #9
+```
+
+=== Name Order
+Format:
+```
+ColonyID  name                 QuotedString
+ShipID    name                 QuotedString
+SpeciesID name SystemID #Orbit QuotedString
+```
+
+Examples:
+```
+C39 name            "Mudbomb"
+S52 name            "Mudflea"
+SP9 name 5/10/15 #2 "Mudball"
+```
+
+=== Un-Control Order
+Format:
+```
+SpeciesID uncontrol SystemID #Orbit
+```
+
+Examples:
+```
+SP2 uncontrol 2/4/6 #9
+```
 
 == Birth Phase
 The changes to population due to births are calculated in this phase.
