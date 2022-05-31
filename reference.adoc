@@ -625,8 +625,8 @@ if combat == INVASION || combat == RAID || combat == SABOTAGE {
   acl := dcf * rnd(0.1, 0.5) // attacker combat losses
   dcl := acf * rnd(0.1, 0.5) // defender combat losses
   if combat == RAID || combat == SABOTAGE {
-    acl = acl * 0.01
-    dcl = dcl * 0.01
+    acl = acl * 0.01 // raids are less deadly
+    dcl = dcl * 0.01 // raids are less deadly
   }
 }
 ```
