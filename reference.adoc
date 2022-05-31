@@ -496,6 +496,17 @@ S27 raid SP18 C13 assault-weapon-5 10%
 NOTE: This is a peculiar order because it assumes that there are enough soldiers to carry the asset to the transport and that the transport is large enough to hold the asset.
 It also requires you to specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
 
+==== Actions
+. Commit troops (soldiers and robots).
+. Load troops onto assault craft (each assault craft requires 1 soldier unit to operate).
+. Arm excess troops with assualt weapons (each assault weapon requires 1 soldier unit to operate).
+. Return excess troops to idler's pool.
+. Load armed troops onto transports (remember to use combined mass of assault weapons and troops).
+. If not enough transports, disarm and return excess troops to idler's pool.
+
+NOTE: Each assault craft holds one soldier unit, which is 100 people.
+That's a really large assault craft.
+
 === Sabotage Order
 The `sabotage` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
 The objective is to destroy an enemy asset.
