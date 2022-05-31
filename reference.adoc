@@ -21,7 +21,7 @@ TIP: This document is meant to be concise and definitive.
 That makes it a terrible source for learning the game.
 The User's Guide is the recommended source for getting started.
 
-WARNING: This reference manual is the source of truth for the rules.
+NOTE: This reference manual is the source of truth for the rules.
 
 :sectnums:
 == Foreword
@@ -399,7 +399,7 @@ The shortage will then flow into the following stages.
 The shortage will be spread across all factory groups in the colony.
 It will be assessed proportionatly.
 
-WARNING: Players should be able to prioritize the resources per factory group
+NOTE: Players should be able to prioritize the resources per factory group
 (or maybe by finished good).
 "If there's a shortage of steel, make tanks before spoons."
 
@@ -756,7 +756,7 @@ Examples:
 assemble C91 50,000 factory-6 consumer-goods
 ```
 
-WARNING: This order creates a new factory group using a single tech level of factory.
+NOTE: This order creates a new factory group using a single tech level of factory.
 Orders in later turns can add different tech levels to the group.
 Future versions of this order should allow the player to mix the tech levels on creation.
 
@@ -774,7 +774,7 @@ Examples:
 assemble C91 50,000 mine-3 DP3
 ```
 
-WARNING: This order creates a new mining group using a single tech level of mine.
+NOTE: This order creates a new mining group using a single tech level of mine.
 Orders in later turns can add different tech levels to the group.
 Future versions of this order should allow the player to mix the tech levels on creation.
 
@@ -892,7 +892,7 @@ mine 25,000 MG2708 DP1019
 ```
 
 == Trade Activity Phase
-WARNING: The market phase was removed because player's abused it.
+NOTE: The market phase was removed because player's abused it.
 Is there a way to monitor/prevent that?
 
 All orders in the Trade Activity phase are executed in the order that they're entered in the orders file.
@@ -900,7 +900,7 @@ All orders in the Trade Activity phase are executed in the order that they're en
 All transactions in a market or trade station require the buyer to pay a 1% commission.
 The commission is paid to the controlling player of the trade station or kept by the market for its own use.
 
-WARNING: All players must pay the same commission at markets and trade stations.
+NOTE: All players must pay the same commission at markets and trade stations.
 There should be a way to charge different commissions in different locations and for different players.
 
 === Establish Trade Station Order
@@ -999,7 +999,7 @@ Format:
 probe ShipID #Orbit #Orbit...
 ```
 
-WARNING: This doesn't allow for systems with multiple stars.
+NOTE: This doesn't allow for systems with multiple stars.
 Consider accepting Star#Orbit in those systems.
 
 To probe all planets orbiting the current star
@@ -1045,7 +1045,7 @@ Examples:
 survey S23 transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
 ```
 
-WARNING: This should probably just automatically use the smallest transport available.
+NOTE: This should probably just automatically use the smallest transport available.
 
 === Report Step
 A probe will report the following information for each planet:
@@ -1123,12 +1123,12 @@ When calculating capacity for ships with multiple engines,
 use the lowest Tech Level of all engines,
 then multiply by the total number of engines.
 
-WARNING: If the total MUs of the ship (including hull and engines!)
+NOTE: If the total MUs of the ship (including hull and engines!)
 exceeds the capacity of the engines,
 it will consume the fuel but not move from its current location.
 This is borked.
 
-WARNING: The system does not idle engines that are not needed to make a jump.
+NOTE: The system does not idle engines that are not needed to make a jump.
 It should.
 
 .Jump Fuel Chart
@@ -1146,7 +1146,7 @@ If the ship is already in the 11th orbit of a system with multiple stars (it jus
 the jump order must be in the intersystem format,
 but the fuel will be used at the interplanetary rate.
 
-WARNING: That's not implemented yet.
+NOTE: That's not implemented yet.
 
 Format:
 ```
@@ -1276,7 +1276,7 @@ but they do receive a ration of FOOD every TURN per the ship's orders.
 |UNSKILLED WORKER|100|0.125 CONSUMER GOODS
 |===
 
-WARNING: This chart lies about spies and construction workers.
+NOTE: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
 
 === Ration Order
@@ -1293,7 +1293,7 @@ They are aggregates - their numbers are the sum of their components.
 |UNSKILLED WORKER|100|0.25 FOOD units|0.0625 FOOD units
 |===
 
-WARNING: This chart lies about spies and construction workers.
+NOTE: This chart lies about spies and construction workers.
 They are aggregates - their numbers are the sum of their components.
 
 == Rebellion
@@ -1339,14 +1339,14 @@ Open rebellion must be checked for every turn using the following chart:
 A rebellion will end when the ratio of soldier to rebel militia units is greater than 6 to 1 (or vice versa).
 (NB - based on the surrender logic in combat.)
 
-WARNING: It is possible for both sides to surrender at the same time?
+NOTE: It is possible for both sides to surrender at the same time?
 
 === Independence Check Step
-If the soldiers surrender, the colony or ship will declare its indepence.
+The colony or ship will declare its indepedence if the soldiers surrender.
 
-The independent colony, if it has factories or mines, will seek out trade stations to sell their goods and purchase needed raw materials.
+An independent colony, if it has factories or mines, will seek out trade stations to sell their goods and purchase needed raw materials.
 
-The idenpendent ship will support itself via raids or hiring out as mercenaries.
+An idenpendent ship will support itself via raids or hiring out as mercenaries.
 
 TODO: Details on what becomes of the winners and losers.
 
