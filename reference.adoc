@@ -1,6 +1,6 @@
 = Wraith Reference Manual
 Michael D Henderson <mdhender@example.com>
-v0.0.0, 2022-04-25
+v0.0.1, 2022-04-25
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -2133,7 +2133,7 @@ The % of missiles destroyed depends on the TL of the anti-missile.|0|4 * TL
 |ENERGY WEAPONS||Energy weapons can be used in all combat situations except that of a surface colony to destroy a surface colony.
 An energy weapon projects a powerful beam of concentrated energy.|4 * TL per COMBAT ROUND (CR)|10 * TL
 |ENERGY SHIELDS||Energy shields deflect energy beams.
-The amount of energy deflected depends on the TL of the shields.|10 * TL per CR|50 * TL
+The amount of energy deflected depends on the TL of the shields (10 * TL^2^ damage units per combat round).|10 * TL per CR|50 * TL
 |MILITARY SUPPLIES||Military supplies consist of ammunition, medicines, etc., used up during combat.|0|.04 per unit
 |===
 
