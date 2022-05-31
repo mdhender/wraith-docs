@@ -414,6 +414,12 @@ it will not reduce the amount of time needed to manufacture the finished goods.
 == Combat Phase
 All orders in the Combat phase are executed in the order that they're entered in the orders file.
 
+Each colony or ship may be given a single combat order per turn.
+
+NOTE: Future change to allow for attacks against multiple targets.
+
+NOTE: Future change to create "fleets" if needed to help with combat orders.
+
 Some units require FUEL to be used in combat.
 
 .Combat Fuel Chart
@@ -437,41 +443,94 @@ The total thrust factors (TF) divided by the ship's total mass is the maximum nu
 
 The player has no control over any ship's movement in combat.
 
-=== Bombard
-The `bombard` order
+Soldiers consume MILITARY SUPPLY units at a rate of one MILITARY SUPPLY unit per SOLDIER unit per COMBAT ROUND.
+If a SOLDIER unit runs out of MILITARY SUPPLY units, it will disengage and return to its origin.
+If it can't, it will surrender.
 
+MILITARY ROBOT units consume MILITARY SUPPLY units at a rate of one MILITARY SUPPLY unit per MILITARY ROBOT unit per COMBAT ROUND.
+If a MILITARY ROBOT unit runs out of MILITARY SUPPLY units, it will disengage and return to its origin.
+If it can't, it will self destruct to avoid capture.
+
+Percentage of Commitment is an alias for perecentage of units the player will commit to combat with that order.
+
+=== Bombard Order
+The `bombard` order commits FUEL, ENERGY WEAPONS, MISSILE, and MISSILE LAUNCHER units to an attack against a colony or ship.
+The objective is to destroy the target.
+
+Format:
 ```
-ColonyOrShipID bombard ColonyID PercentCommitted
-```
-
-Examples:
-
-=== Invade
-The `invade` order
-
-```
-ShipID invade ColonyID PercentCommitted
-```
-
-Examples:
-
-=== Raid
-The `raid` order
-
-```
-ColonyOrShipID raid ColonyOrShipID PercentCommitted LootID
+ColonyOrShipID bombard SpeciesID ColonyOrShipID Percentage
 ```
 
 Examples:
+```
+S27 bombard SP18 C13 50%
+```
 
-=== Support
-The `support` order
+=== Invade Order
+The `invade` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
+The objective is to destroy the target.
 
 ```
-ColonyOrShipID support ColonyOrShipID TargetID PercentCommitted
+ColonyOrShipID invade SpeciesID ColonyOrShipID Percentage
 ```
 
 Examples:
+```
+S27 invade SP18 C13 50%
+```
+
+=== Raid Order
+The `raid` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
+The objective is to sieze and retrieve an enemy asset.
+
+```
+ColonyOrShipID raid SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
+```
+
+Examples:
+```
+S27 raid SP18 C13 assault-weapon-5 10%
+```
+
+NOTE: This is a peculiar order because it assumes that there are enough soldiers to carry the asset to the transport and that the transport is large enough to hold the asset.
+It also requires you to specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
+
+=== Sabotage Order
+The `sabotage` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
+The objective is to destroy an enemy asset.
+
+```
+ColonyOrShipID sabotage SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
+```
+
+Examples:
+```
+S27 sabotage SP18 C13 hyper-drive-5 10%
+```
+
+NOTE: This is a peculiar order because you specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
+It should probably be just `S27 sabotage SP18 C13 hyper-drive 10%`.
+
+=== Support Order
+The `support` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to a coordinated attack against a colony or ship.
+The objective is to work with another player to achieve an objective.
+It can also be used for defending.
+
+```
+ColonyOrShipID support SpeciesID ColonyOrShipID against SpeciesID Percent
+ColonyOrShipID support SpeciesID ColonyOrShipID bombard SpeciesID ColonyOrShipID Percent
+ColonyOrShipID support SpeciesID ColonyOrShipID invade  SpeciesID ColonyOrShipID Percent
+```
+
+NOTE: Using the `against` version of the order commits your units to defending your partner's colony or ship.
+
+Examples:
+```
+S14 support SP12 S83 against SP18     100%
+S14 support SP12 S83 bombard SP18 C13 100%
+S14 support SP12 S83 invade  SP18 C13 100%
+```
 
 == Set Up Phase
 The Set Up phase is used to build new colonies and ships.
