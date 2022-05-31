@@ -53,50 +53,95 @@ The history of their flight and migration has mostly been forgotten or transform
 
 That changed when they detected a signal originating beyond the furthest planet in their system.
 
+=== What is Wraith?
+Wraith is a strategic turn based game where you explore a cluster of stars.
+Your ships will discover planets and technology that will help you grow your nation.
+As the ruler, you set policies and decide how best to allocate resources to meet your objectives.
+
+You will meet other species in the game.
+Most will be other players, but a few will be independent colonies or ships.
+They can be cooperative and engage in trade or belligerent and engage in war.
+
+=== How to Play
+When you join a game, you'll receive a report showing the location of your home planet,
+your population, the technologies you've mastered, the ships in your fleet,
+and the farms, mines, and factories that support your world.
+
+Each turn you will submit orders to the game master.
+Your orders determine what goods are produced, how trade is carried out, and can even start wars.
+Every player's orders are processed at the same time,
+which is usually just after the deadline for submitting them.
+
+After the results are calculated, you'll receive an updated report.
+It has the same format as the initial report.
+Because the report can contain a lot of information,
+you'll also get a summary of the changes from the prior turn.
+
 == Important Terms
+
 === Cluster
-The cluster is the area in the galaxy that the game takes place in.
-It contains systems and planets.
+The ((cluster)) is the area in the galaxy that the game takes place in.
+It contains all the systems and planets that you'll work with.
 
 === System
-A system in the game contains one or more stars.
+A ((system)) in the game contains one or more stars.
 
-The system is identified by its coordinates in the format "X/Y/Z".
+The identifier (SystemID) for a system is its coordinates in the format "X/Y/Z".
+
+TIP: ((SystemID)) is the system identifier.
+For example `5/2/9`.
 
 === Star
 A star in the game has exactly 11 orbits, numbered 1 through 11.
 
-The identifier (ID) for a star depends on the number of stars in the system.
-If there is just one star, the star's ID is the same as the system's ID.
+The identifier (StarID) for a star depends on the number of stars in the system.
+
+If there is only one star, the star's ID is the same as the system's ID.
+
 If there are multiple stars, the star's ID is the system's ID followed by a sequence letter.
 The sequence letter will be "A" for the first star in the system, "B" for the second star, etc.
 If system `1/2/3` had just one star, that star's ID would be `1/2/3`.
 If there were four stars in that system, they would be identified as `1/2/3A`, `1/2/3B`, `1/2/3C`, and `1/2/3D`.
 
-=== Orbit
-An orbit in the game can be empty, contain a planet, or be the connection between two stars in the system.
+TIP: ((StarID)) is the star identifier.
+For example `5/2/9` or `1/2/3D`.
 
-The orbit is identified by its star's ID followed by an octothorpe ("#") and the orbit number.
+=== Orbit
+An ((orbit)) in the game can be empty, contain a planet, or be the connection between the stars in the system with multiple stars.
+
+The identifier (OrbitID) for an orbit is an octothorpe ("#") followed by the orbit number.
 
 The 11th orbit for a star serves two purposes.
-It is the default entry point for hyper-drive jumps.
-It is also the connection point between stars in systems with multiple stars.
+. It is the entry point for hyper-drive jumps.
+. In systems containing multiple stars, it is the nexus between the stars.
+
+TIP: An OrbitID is `#6`.
 
 === Planet
-In the game, "planet" is the generic term for the occupant of an orbit that is not empty.
+"Planet(((planet)))" is a generic term for the occupant of an orbit that is not empty.
 The occupant can be an asteroid belt, a gas giant, or a terrestrial.
 
 NOTE: "Terrestrial" does not imply
 https://en.wikipedia.org/wiki/Class_M_planet[Class M].
-Mercury is a terrestial.
+Mercury is a terrestrial.
 
-The planet is identified by its orbit.
+The identifier (PlanetID) for a planet is its StarID with the OrbitID appended.
+
+NOTE: Planets orbit a star in a system.
+That is why the StarID is required to identify it.
+
+TIP: ((PlanetID)) is the planet identifier.
+For example `5/2/9#2` or 1/2/3D#6`.
 
 ==== Habitability Number
-The habitability number in the game is a measure of the maximum population that a planet can sustain in an open colony.
-
+((Habitability Number)) in the game is a measure of the maximum population that a planet can comfortably sustain in an open colony.
+The Habitability Number is usually abbreviated as "((HN))."
 The value ranges from 0 to 25.
-A value of 0 means that the population must live in an enclosed colony with life support.
+
+An ((uninhabitable planet)) has an HN of 0.
+That means that it can not support any population at all.
+You must build an enclosed colony with life support for people to survive on the surface of the planet.
+
 Any other value means that the population can live in an open colony on the surface without life support.
 
 ==== Natural Resource
@@ -142,15 +187,26 @@ Enclosed colonies may be built on the surface of unihabitable terrestrials
 and in an asteroid belt.
 They require life support to sustain the population.
 
-Oribital colonies may be built in orbit around any planet.
-They may not be built in an empty orbit.
+Orbital colonies may be built in orbit around any planet.
+They may not be built on the surface of a planet or in an empty orbit.
 They require life support to sustain the population.
+
+.Colony Location Chart
+|===
+||On Planet Surface|On Asteroid Belt|In Orbit|Life Support Required|Maximum Size
+
+|Open Colony ^|Habitable Terrestrial ^|NO ^|NO ^|NO ^|UNLIMITED
+|Enclosed Colony ^|Any Terrestrial ^|YES ^|NO ^|YES ^|UNLIMITED
+|Orbital Colony ^|NO ^|NO ^|Any Planet ^|YES ^|UNLIMITED
+|===
 
 === Ship
 A ship in the game is built with a hull, engines, cargo holds, and weapons.
 
 Ships require space-drives to move in a planet's orbit.
 They require hyper-drives to move between systems.
+
+NOTE: Ship building is discussed in detail in ((TODO)).
 
 === Turn
 Players complete a turn in the game by submitting a set of orders.
@@ -171,37 +227,7 @@ This helps players know when an order will be implemented.
 |===
 |Phase|Description
 
-|Fuel Allocation|In this phase, fuel is allocated to units.
-Fuel allocations are prioritized: life support is first, followed by farms, mines, then factories.
-The allocation algorithm is naive and simple.
-It attempts to allocate 100% of a unit's needs before moving to the next unit.
-It never allocates proportionately.
-|Farming Production|The farming production phase todo...
-|Mining Production|The mining phase is used to extract resources from deposits and refine them into materials that can be used in the manufacturing phase.
-|Manufacturing Production|The manufacturing production phase todo...
-|Combat|The combat phase is used to project force against other player's assets.
-|Set up|The set up phase is used to assemble new colonies and ships.
-|Disassembly|This phase is used to disassembly operational units and make them ready to put into storage.
-|Build Change|The build change orders phase is used to todo...
-|Minch Change|The mining change orders phase is used to todo...
-|Transfer|The transfer phase is used to todo...
-|Assembly|The assembly phase is used to manufacture items, mine resources, and assemble units from storage.
-|Market|The market and trade station phase is used to todo...
-|Survey|This phase surveys systems, planets, colonies, and ships.
-Reports are todo...
-|Survey Reports|This phase produces the probe and sensor reports.
-Todo...
-|Espionage|The espionage phase todo...
-|Movement|The movement phase is the only phase in which ships move.
-Todo...
-|Draft|This phase applies draft orders to move workers between population unit types todo...
-|Pay and Ration|This phase todo...
-|Rebellion|This phase todo...
-|Rebel Changes|In this phase, the rebel population changes are applied.
-Todo...
-|Control|In this phase, naming and control orders are todo...
-|Birth|In this phase, population increases due to births are calculated.
-|News|In this phase, reports for the "news services" are created todo...
+||((TODO)): sync this with the reference manual.
 |===
 
 All _orders_ for a given _phase_ are executed before the next _phase_ begins.
