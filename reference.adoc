@@ -1244,6 +1244,73 @@ Each survey will report the following information:
 .. Mining Difficulty
 
 == Espionage
+All orders in the Espionage phase are executed in the order that they're entered in the orders file.
+
+=== Convert Rebels Order
+Format:
+```
+ColonyOrShipID Quantity convert
+```
+
+Examples:
+```
+C38 110 convert
+```
+
+=== Counter Espionage Order
+Format:
+```
+ColonyOrShipID counter
+```
+
+Examples:
+```
+C38 counter
+```
+
+=== Incite Rebellion Order
+Format:
+```
+SpeciesID ColonyOrShipID Quantity incite
+```
+
+Examples:
+```
+S2 C54 100 incite
+```
+
+=== Information Order
+Format:
+```
+SpeciesID ColonyOrShipID Quantity information
+```
+
+Examples:
+```
+S2 C54 900 information
+```
+
+=== Supress Foreign Spies Order
+Format:
+```
+ColonyOrShipID Quantity supress
+```
+
+Examples:
+```
+C38 85 suppress
+```
+
+=== Surveil Rebels Order
+Format:
+```
+ColonyOrShipID surveil
+```
+
+Examples:
+```
+C38 surveil
+```
 
 == Ship Movement Phase
 All orders in the Ship Movement phase are executed in the order that they're entered in the orders file.
