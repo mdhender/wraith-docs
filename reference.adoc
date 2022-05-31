@@ -497,6 +497,9 @@ NOTE: This is a peculiar order because it assumes that there are enough soldiers
 It also requires you to specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
 
 ==== Actions
+Military Robots can replace soldiers.
+1 robot will replace up to TL * 2 soldier units.
+
 . Commit troops (soldiers and robots).
 . Load troops onto assault craft (each assault craft requires 1 soldier unit to operate).
 . Arm excess troops with assualt weapons (each assault weapon requires 1 soldier unit to operate).
@@ -506,6 +509,13 @@ It also requires you to specify a particular tech level when you have no way of 
 
 NOTE: Each assault craft holds one soldier unit, which is 100 people.
 That's a really large assault craft.
+
+During combat
+. Destroying the soldier unit operating an assault craft destroys the craft.
+. Destroying the soldier unit operating an assault weapon destroys the weapon.
+
+NOTE: During combat, a transport can carry a maximum of TL * 3 MU per combat round.
+It uses fuel at a rate of TL^2^ * 0.01 per round trip.
 
 === Sabotage Order
 The `sabotage` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
