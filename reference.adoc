@@ -451,7 +451,10 @@ MILITARY ROBOT units consume MILITARY SUPPLY units at a rate of one MILITARY SUP
 If a MILITARY ROBOT unit runs out of MILITARY SUPPLY units, it will disengage and return to its origin.
 If it can't, it will self destruct to avoid capture.
 
-Percentage of Commitment is an alias for perecentage of units the player will commit to combat with that order.
+Percentage of Commitment is an alias for percentage of units the player will commit to combat with that order.
+
+Colonies and ships will usually participate in only combat per turn.
+The Battle Group (BAG) is the list of all colonies and ships involved in a combat at a location.
 
 === Bombard Order
 The `bombard` order commits FUEL, ENERGY WEAPONS, MISSILE, and MISSILE LAUNCHER units to an attack against a colony or ship.
