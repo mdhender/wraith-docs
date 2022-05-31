@@ -484,6 +484,17 @@ NOTE: Maximum range for a missile or energy weapon fired from a ship is 10.
 The `invade` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
 The objective is to destroy the target.
 
+.Combat Factor Chart
+|===
+|CODE|Combat Factor
+
+|ATKC|TL * 10
+|ATKW|TL * 2
+|MILR|TL * 2
+|SLDR|1
+|===
+
+Format:
 ```
 ColonyOrShipID invade SpeciesID ColonyOrShipID Percentage
 ```
@@ -497,6 +508,17 @@ S27 invade SP18 C13 50%
 The `raid` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
 The objective is to sieze and retrieve an enemy asset.
 
+.Combat Factor Chart
+|===
+|CODE|Combat Factor
+
+|ATKC|TL * 10
+|ATKW|TL * 2
+|MILR|TL * 2
+|SLDR|1
+|===
+
+Format:
 ```
 ColonyOrShipID raid SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
 ```
@@ -534,6 +556,7 @@ It uses fuel at a rate of TL^2^ * 0.01 per round trip.
 The `sabotage` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
 The objective is to destroy an enemy asset.
 
+Format:
 ```
 ColonyOrShipID sabotage SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
 ```
@@ -551,6 +574,7 @@ The `support` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units t
 The objective is to work with another player to achieve an objective.
 It can also be used for defending.
 
+Format:
 ```
 ColonyOrShipID support SpeciesID ColonyOrShipID against SpeciesID Percent
 ColonyOrShipID support SpeciesID ColonyOrShipID bombard SpeciesID ColonyOrShipID Percent
@@ -564,6 +588,47 @@ Examples:
 S14 support SP12 S83 against SP18     100%
 S14 support SP12 S83 bombard SP18 C13 100%
 S14 support SP12 S83 invade  SP18 C13 100%
+```
+
+=== Logic
+
+```go
+if combat == INVASION || combat == RAID || combat == SABOTAGE {
+  acf := 0 // attacker combat factor
+  for unit := range attacker.assaultCraft {
+    acf += 10 * unit.TechLevel
+  }
+  for unit := range attacker.assaultWeapon {
+    acf += 2 * unit.TechLevel
+  }
+  for unit := range attacker.militaryRobot {
+    acf += 2 * unit.TechLevel
+  }
+  for unit := range attacker.soldier {
+    acf += 1
+  }
+
+  dcf := 0 // defender combat factor
+  for unit := range defender.assaultCraft {
+    dcf += 10 * unit.TechLevel
+  }
+  for unit := range defender.assaultWeapon {
+    dcf += 2 * unit.TechLevel
+  }
+  for unit := range defender.militaryRobot {
+    dcf += 2 * unit.TechLevel
+  }
+  for unit := range defender.soldier {
+    dcf += 1
+  }
+
+  acl := dcf * rnd(0.1, 0.5) // attacker combat losses
+  dcl := acf * rnd(0.1, 0.5) // defender combat losses
+  if combat == RAID || combat == SABOTAGE {
+    acl = acl * 0.01
+    dcl = dcl * 0.01
+  }
+}
 ```
 
 == Set Up Phase
