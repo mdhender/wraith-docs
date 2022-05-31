@@ -77,7 +77,11 @@ It has the same format as the initial report.
 Because the report can contain a lot of information,
 you'll also get a summary of the changes from the prior turn.
 
+[appendix]
 == Important Terms
+We created a separate glossary because of the amount of jargon and the number of abbreviations in this.
+
+((TODO)): should all this be moved to the glossary?
 
 === Cluster
 The ((cluster)) is the area in the galaxy that the game takes place in.
@@ -115,15 +119,16 @@ The 11th orbit for a star serves two purposes.
 . It is the entry point for hyper-drive jumps.
 . In systems containing multiple stars, it is the nexus between the stars.
 
-TIP: An OrbitID is `#6`.
+TIP: An OrbitID is `#4`.
 
 === Planet
 "Planet(((planet)))" is a generic term for the occupant of an orbit that is not empty.
 The occupant can be an asteroid belt, a gas giant, or a terrestrial.
 
-NOTE: "Terrestrial" does not imply
-https://en.wikipedia.org/wiki/Class_M_planet[Class M].
-Mercury is a terrestrial.
+NOTE: "Terrestrial" does not imply a habitable
+https://en.wikipedia.org/wiki/Class_M_planet[Class M]
+planet.
+Mercury, Venus, and Neptune are all terrestrial.
 
 The identifier (PlanetID) for a planet is its StarID with the OrbitID appended.
 
@@ -131,7 +136,7 @@ NOTE: Planets orbit a star in a system.
 That is why the StarID is required to identify it.
 
 TIP: ((PlanetID)) is the planet identifier.
-For example `5/2/9#2` or 1/2/3D#6`.
+For example `5/2/9#2` or `1/2/3D#4`.
 
 ==== Habitability Number
 ((Habitability Number)) in the game is a measure of the maximum population that a planet can comfortably sustain in an open colony.
@@ -142,38 +147,44 @@ An ((uninhabitable planet)) has an HN of 0.
 That means that it can not support any population at all.
 You must build an enclosed colony with life support for people to survive on the surface of the planet.
 
-Any other value means that the population can live in an open colony on the surface without life support.
+A ((habitable planet)) has an HN between 1 and 25.
+People may live on the surface without life support.
 
 ==== Natural Resource
 Every planet contains up to 35 deposits of natural resources.
 Resources include gold (an abstraction of precious metals and crystals),
 fuel (an abstraction of organic and inorganic power sources),
-metals (all metallic ores except gold),
-non-metal (everything else).
-Natural resources must be mined and refined, turning them into raw materials, before they can be used.
+metals (an abstraction of all metallic ores except gold),
+non-metal (an abstraction of almost everything else).
+Natural resources must be mined and refined,
+turning them into raw materials,
+before they can be used.
 
 ==== Asteroid Belt
 An asteroid belt (or just "asteroid") in the game is a type of planet that is dispersed through the entire orbit.
-It is composed of many small, irregular bodies ranging in size from 100's of kilometers to particles of dust.
+It is composed of many small, irregular bodies ranging in size from particles of dust to 100's of kilometers in diameter.
 These bodies (or "rocks") are composed of carbon, silicate, metals, non-metals, and ice.
 
-Enclosed colonies may be built in an asteroid belt.
+Enclosed colonies may be built on the surface of larger rocks in an asteroid belt.
 
 ==== Gas Giant
-A gas giant in the game is a type of planet with an atmosphere of mostly helium and hydrogen.
-The surface of the planet can't be reached because of the high mass and temperatures.
-
-Enclosed colonies may be built on the surface of moons orbiting a gas giant.
+A gas giant in the game is a type of planet with an atmosphere of mostly helium and hydrogen (like Jupiter).
+The surface of a gas giant is inaccessible because of the high mass and temperatures,
+so enclosed colonies may be built on the surface of moons orbiting the gas giant.
 
 ==== Terrestrial
-A terrestrial in the game is a type of planet that is smaller than a gas giant.
-It is round and large enough to sweep its orbit clear.
-It may have an atmosphere and a metal core, or it could be a frozen iceball with no atmosphere.
+A terrestrial in the game is a planet that isn't a gas giant or an asteroid belt.
+It is large enough to be round and sweep its orbit clear.
+It may have an atmosphere and a metal core like Mars,
+no atmosphere like Mercury,
+an ice giant like Neptune,
+or a frozen ball of methane.
 
-Colonies may be built on the surface of terrestrials.
+Colonies may be built on the surface of terrestrials
+(or, in the case of ice giants, the surface of the moons orbiting them).
 
-A terrestrial with a habitability number of zero is called an unihabitable terrestrial.
-With a value greater than zero, it it called a habitable terrestrial.
+A terrestrial with a habitability number of zero is called an uninhabitable terrestrial.
+With a value greater than zero, it is called a habitable terrestrial.
 
 === Colony
 There are three types of colonies in the game: open, enclosed, and orbital.
@@ -233,7 +244,7 @@ This helps players know when an order will be implemented.
 All _orders_ for a given _phase_ are executed before the next _phase_ begins.
 Within a phase, _orders_ are executed in the order they were issued.
 
-.Processing order
+.Processing Sequence
 ====
 To illustrate,
 let's assume that S23 and S24 are both in system `8/8/8`
@@ -258,8 +269,22 @@ Because Ship Movement happens after Survey,
 the ship would not perform the survey in system `9/9/9`.
 ====
 
-== Setup
+== Production
+=== Farming
+=== Mining
+=== Manufacturing
+== Diplomacy and Trade
+=== Markets
+== Combat
+== Rebellion
+
+== Winning
 Wraith can be played as an individual competition or with players cooperating.
+
+=== Open Ended
+In an open ended game, there are no victory conditions.
+
+((TODO)): support open ended games
 
 === Individual Competition
 In individual competition, each player manages unique species, running his/her own nation.
@@ -365,4 +390,3 @@ The mass of SLSU units is 1% of SSU units, but each SLSU can replace one SSU whe
 
 [index]
 == Index
-
