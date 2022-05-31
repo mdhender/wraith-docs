@@ -624,12 +624,12 @@ Each unassembled CONW unit will return 1 PROFESSIONAL unit and 1 UNSKILLED WORKE
 
 Format:
 ```
-unassemble ColonyOrShipID Quantity construction-worker
+ColonyOrShipID unassemble Quantity construction-worker
 ```
 
 Examples:
 ```
-unassemble C13 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 UKSW
+C13 unassemble 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 UKSW
 ```
 
 === Unassemble Operational Unit Order
@@ -644,13 +644,13 @@ A CONSTRUCTION WORKER unit can unassemble up to 500 MASS units (MUs) per TURN.
 
 Format:
 ```
-unassemble ColonyOrShipID Quantity UnitCodeTL
+ColonyOrShipID unassemble Quantity UnitCodeTL
 ```
 
 Examples:
 ```
-unassemble S52 200 missle-3            ; take apart 200 units - 20 will be scrapped
-unassemble C27  71 missile-launcher-2  ; take apart  71 units -  8 will be scrapped
+S52 unassemble 200 life-support-3      ; take apart 200 units - 20 will be scrapped
+C27 unassemble  71 missile-launcher-2  ; take apart  71 units -  8 will be scrapped
 ```
 
 === Unassemble Spy Order
@@ -660,12 +660,12 @@ Each unassembled SPY unit will return 1 PROFESSIONAL unit and 1 SOLDIER unit to 
 
 Format:
 ```
-unassemble ColonyOrShipID Quantity spy
+ColonyOrShipID unassemble Quantity spy
 ```
 
 Examples:
 ```
-unassemble C78 16 spy  ; disband 16 SPY by returning 16 PRO and 16 SLDR
+S11 unassemble 16 spy  ; disband 16 SPY by returning 16 PRO and 16 SLDR
 ```
 
 == Change Orders
@@ -688,13 +688,13 @@ The entire group will be idle until the update has completed.
 
 Format:
 ```
-retool ColonyID FactoryGroupID UnitID
+ColonyID FactoryGroupID retool UnitID
 ```
 
 Examples:
 ```
-  retool C6  FG19 research         ; begin research when WIP is complete
-  retool C27 FG8  energy-weapon-4  ; build energy weapons when WIP is complete
+C6  FG19 retool research         ; begin research when WIP is complete
+C27 FG8  retool energy-weapon-4  ; build energy weapons when WIP is complete
 ```
 
 Build locations restrictions apply for retool orders.
@@ -718,13 +718,13 @@ It is equal to the total mass units times the Fuel Factor.
 
 Format:
 ```
-transfer ColonyOrShipID Quantity UnitID ColonyOrShipID
+ColonyOrShipID transfer Quantity UnitID ColonyOrShipID
 ```
 
 Examples:
 ```
-transfer S22 50 consumer-goods C29  ; move 50 consumer good units from S22 to C29
-transfer S22 10 spy            C29  ; move 10 spy           units from S22 to C29
+S22 transfer 50 consumer-goods C29  ; move 50 consumer good units from S22 to C29
+S22 transfer 10 spy            C29  ; move 10 spy           units from S22 to C29
 ```
 
 .Transport Crew Chart
@@ -761,12 +761,12 @@ You may not create CONW units if the required number of PROFESSIONAL and UNSKILL
 
 Format:
 ```
-assemble ColonyOrShipID Quantity construction-worker
+ColonyOrShipID assemble Quantity construction-worker
 ```
 
 Examples:
 ```
-assemble C13 3 construction-worker ; create 3 CONW by assembling 3 PRO and 3 UKSW
+C13 assemble 3 construction-worker ; create 3 CONW by assembling 3 PRO and 3 UKSW
 ```
 
 === Assemble Factory Group Order
@@ -807,12 +807,13 @@ Any order that violates a location restriction will be ignored.
 
 Format:
 ```
-assemble ColonyID Quantity FactoryTL UnitID
+ColonyID assemble Quantity FactoryTL UnitID
 ```
 
 Examples:
 ```
-assemble C91 50,000 factory-6 consumer-goods
+C8  assemble  5,000 factory-2 assault-craft-6
+C91 assemble 50,000 factory-6 consumer-goods
 ```
 
 NOTE: This order creates a new factory group using a single tech level of factory.
@@ -825,12 +826,12 @@ The mining group number will be displayed on the player's report at the end of t
 
 Format:
 ```
-assemble ColonyID Quantity MineTL DepositID
+ColonyID assemble Quantity MineTL DepositID
 ```
 
 Examples:
 ```
-assemble C91 50,000 mine-3 DP3
+C91 assemble 50,000 mine-3 DP3
 ```
 
 NOTE: This order creates a new mining group using a single tech level of mine.
@@ -871,13 +872,13 @@ Only the items in the Operational Units chart can be assembled.
 
 Format:
 ```
-assemble ColonyOrShipID Quantity UnitCodeTL
+ColonyOrShipID assemble Quantity UnitCodeTL
 ```
 
 Examples:
 ```
-assemble C27 9,750 MSLT-2
-assemble S52   200 LFSP-3
+C27 assemble 9,750 missile-launcher-2
+S52 assemble   200 life-support-3
 ```
 
 === Assemble Spy Order
@@ -888,40 +889,40 @@ You may not create SPY units if the required number of PROFESSIONAL and SOLDIER 
 
 Format:
 ```
-assemble ColonyOrShipID Quantity spy
+ColonyOrShipID assemble Quantity spy
 ```
 
 Examples:
 ```
-assemble C78 16 spy  ; create 16 SPY by assembling 16 PRO and 16 SLDR
+C78 assemble 16 spy  ; create 16 SPY by assembling 16 PRO and 16 SLDR
 ```
 
 === Expand Factory Group Order
-An `assemble` order adds additional FACTORY units to an existing FACTORY GROUP.
+An `expand` order adds additional FACTORY units to an existing FACTORY GROUP.
 
 Format:
 ```
-assemble ColonyID FactoryGroupID Quantity FactoryTL
+ColonyID FactoryGroupID expand Quantity FactoryTL
 ```
 
 Examples:
 ```
-assemble C91 FG2 2,500 factory-2  ; add 2,500 FACT-2 units to the group
-assemble C91 FG2 1,800 factory-6  ; add 1,800 FACT-6 units to the group
+C91 FG2 expand 2,500 factory-2  ; add 2,500 FACT-2 units to the group
+C91 FG2 expand 1,800 factory-6  ; add 1,800 FACT-6 units to the group
 ```
 
 === Expand Mining Group Order
-An `assemble` order adds additional MINE units to an existing MINING GROUP.
+An `expand` order adds additional MINE units to an existing MINING GROUP.
 
 Format:
 ```
-assemble ColonyID MiningGroupID Quantity MineTL
+ColonyID MiningGroupID expand Quantity MineTL
 ```
 
 Examples:
 ```
-assemble C91 MG2 2,500 mine-2  ; add 2,500 MINE-2 units to the group
-assemble C91 MG2 1,800 mine-6  ; add 1,800 MINE-6 units to the group
+C91 MG2 expand 2,500 mine-2  ; add 2,500 MINE-2 units to the group
+C91 MG2 expand 1,800 mine-6  ; add 1,800 MINE-6 units to the group
 ```
 
 === Manufacture Items
@@ -930,25 +931,28 @@ The type of unit and the tech level of the unit are specified in the command.
 The number of units is not.
 
 ```
-manufacture ColonyID Quantity FactoryGroupID UnitCodeTL
+ColonyID FactoryGroupID manufacture Quantity UnitCodeTL
 ```
 
 Examples:
 ```
-manufacture C91 50,000 FG1009 MSL-8
+C91 FG9 manufacture 50,000 missile-8
 ```
 
 === Mine Resources
 A `mine` order instructs a MINING GROUP to start mining and refining resources from a deposit.
 
 ```
-mine Quantity MineCodeTL DepositID
+ColonyID MiningGroupID mine Quantity DepositID
 ```
 
 Examples:
 ```
-mine 25,000 MG2708 DP1019
+C16 MG27 mine 25,000 DP19
 ```
+
+NOTE: This feels wrong.
+Why include quantity here?
 
 == Trade Activity Phase
 NOTE: The market phase was removed because player's abused it.
