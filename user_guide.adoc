@@ -44,7 +44,7 @@ They built the ships with as little technology as possible to avoid detection, e
 The fleet kept jumping until they had almost depleted their fuel reserves.
 The ships split up, each nation looking to establish itself in the cluster.
 
-The game takes place about thirty generations (12,000 "standard years") after the nations establish new homeworlds in the cluster.
+The game takes place about thirty generations (12,000 "standard years") after the nations establish new home planets in the cluster.
 
 The nations have thrived in isolation.
 They've rebuilt their industry, rediscovered many technologies, and started exploring their system.
@@ -69,6 +69,27 @@ and the farms, mines, and factories that support your world.
 
 Each turn you will submit orders to the game master.
 Your orders determine what goods are produced, how trade is carried out, and can even start wars.
+
+A key to the game is keeping supplies flowing to the units that need them.
+Ships need trained crews as well as fuel and maintenance.
+Factories require labor, power, and raw materials to manufacture goods.
+
+[sidebar]
+****
+The supply line (to break a metaphor) is a circle that begins and ends with farms.
+
+Farms produce food to feed factory workers.
+Factory workers produce mining equipment.
+Mine workers use the equipment produce fuel and metal.
+The fuel and metal are transported to factories in ships crewed by people who consume food and air.
+Factories consume the fuel and metal to produce farming equipment.
+Ships transport the equipment to farm colonies, which use them to produce more food.
+****
+
+TIP: You must build ships to transport people, food, and materials to your colonies.
+If you don't, the mines and factories will shut down.
+Starving people will start a rebellion.
+
 Every player's orders are processed at the same time,
 which is usually just after the deadline for submitting them.
 
@@ -249,11 +270,13 @@ Within a phase, _orders_ are executed in the order they were issued.
 To illustrate,
 let's assume that S23 and S24 are both in system `8/8/8`
 and that we have the following orders in our file:
-```
+
+[source]
+----
 1: survey S23        ; order Ship 23 to survey the system it is currently in
 2: move   S24 9/9/9  ; order Ship 24 to move to system 9/9/9
 3: survey S24        ; order Ship 24 to survey the system it is currently in
-```
+----
 
 Please note that the line numbers are not part of the order.
 The semicolon treats the remainder of the line as a comment.
@@ -281,10 +304,10 @@ the ship would not perform the survey in system `9/9/9`.
 == Winning
 Wraith can be played as an individual competition or with players cooperating.
 
-=== Open Ended
-In an open ended game, there are no victory conditions.
+=== Open-Ended
+In an open-ended game, there are no victory conditions.
 
-((TODO)): support open ended games
+((TODO)): support open-ended games
 
 === Individual Competition
 In individual competition, each player manages unique species, running his/her own nation.
@@ -293,9 +316,9 @@ In individual competition, each player manages unique species, running his/her o
 The "winner" is the first player to control 100 planets for 4 consecutive turns WITH no other player controlling more than 50 planets in any of those turns.
 
 === Shared Species
-When sharing species, each player runs his/her own nation, but teams of players share a common species and a common homeworld.
+When sharing species, each player runs his/her own nation, but teams of players share a common species and a common home planet.
 
-The players that share a homeworld must cooperate to build ships and start exploring the system, or they can battle each other.
+The players that share a home planet must cooperate to build ships and start exploring the system, or they can battle each other.
 
 ==== Victory Conditions
 The "winner" is the first species to control 200 planets for 4 consecutive turns WITH no other species controlling more than 100 planets in any of those turns. Within each species, the player with the strongest economy is the "winner."
