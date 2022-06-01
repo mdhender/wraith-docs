@@ -76,7 +76,7 @@ Factories require labor, power, and raw materials to manufacture goods.
 
 [sidebar]
 ****
-The supply line (to break a metaphor) is a circle that begins and ends with farms.
+The supply line (to abuse a metaphor) is a circle that begins and ends with farms.
 
 Farms produce food to feed factory workers.
 Factory workers produce mining equipment.

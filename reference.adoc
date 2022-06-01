@@ -453,7 +453,47 @@ If it can't, it will self-destruct to avoid capture.
 
 Percentage of Commitment is an alias for percentage of units the player will commit to combat with that order.
 
-Colonies and ships will usually participate in only combat per turn.
+The first step in the combat phase is sorting out the combatants in each battle.
+
+[source,c]
+----
+type participant struct {
+    attacks        []colonyOrShip
+    defendsAgainst []colonyOrShip
+    supports       []colonyOrShip
+}
+
+// combatants is a hash table containing all participants
+combatants := make(map[id]participant)
+
+for order := range combat.orders {
+    if !atSameLocation(order.attacker, order.defender) {
+        continue // can't battle if not in same location
+    }
+    if combatants[order.attacker] == nil {
+        combatants[order.attacker] = participant{}
+    }
+    if combatants[order.defender] == nil {
+        combatants[order.defender] = participant{}
+    }
+
+    // add the attacker to the combatants and link to the defender.
+    // then link the attacker's supports in.
+    attacker := combatants[order.attacker]
+    attacker.attacks = append(attacker.attacks, order.defender]
+    for supporter := range attacker.supportedBy {
+        supporter.attacks = append(supporter.attacks, order.defender)
+    }
+
+    defender := combatants[order.defender]
+    defender.defendsAgainst = append(defender.defendsAgainst, order.attacker]
+    for supporter := range defender.supportedBy {
+        supporter.defendsAgainst = append(supporter.defendsAgainst, order.attacker)
+    }
+}
+----
+
+Colonies and ships will usually participate in only one combat per turn.
 The Battle Group (BAG) is the list of all colonies and ships involved in a combat at a location.
 
 === Bombard Order
