@@ -74,8 +74,50 @@ A key to the game is keeping supplies flowing to the units that need them.
 Ships need trained crews as well as fuel and maintenance.
 Factories require labor, power, and raw materials to manufacture goods.
 
-[sidebar]
-****
+Every player's orders are processed at the same time,
+which is usually just after the deadline for submitting them.
+
+After the results are calculated, you'll receive an updated report.
+It has the same format as the initial report.
+Because the report can contain a lot of information,
+you'll also get a summary of the changes from the prior turn.
+
+== Getting Started
+The game manager (GM) will grant you access to the game's website when you start a game.
+
+You will find a table with all the systems in your cluster.
+It lists the location (using X/Y/Z coordinates) for each system.
+
+The table shows plus the number and types of stars in the system.
+Additional information like  will be added when your ships visit the system
+
+Your home system (the system that your home planet is in) will show the planets and their orbits.
+You get a summary of the colonies, population, industry, and resources, too.
+
+As your ships explore the cluster,
+the table will be updated with similar summaries,
+along with the turn that they visited.
+If they've conducted surveys,
+there will be a link to the detailed survey report.
+
+TIP: The reports always use the most current information available to your nation.
+Updates are made automatically if you have a colony in the system;
+otherwise only when one of your ships visits.
+
+Plan ahead to manage your population and natural resources,
+and ensure the right quantity of materials are where they need to be,
+when they are needed.
+
+== The first turn
+All players start on their own home planet with the same population, infrastructure, and inventory.
+
+The cluster is generated randomly, so the amount of natural resources in the home system will vary.
+Some systems will be close to other systems, making exploration easy;
+some will be farther away, making exploration harder.
+
+[appendix]
+== Bad Writing
+=== The Circle of Supply Lines
 The supply line (to abuse a metaphor) is a circle that begins and ends with farms.
 
 Farms produce food to feed factory workers.
@@ -84,19 +126,10 @@ Mine workers use the equipment produce fuel and metal.
 The fuel and metal are transported to factories in ships crewed by people who consume food and air.
 Factories consume the fuel and metal to produce farming equipment.
 Ships transport the equipment to farm colonies, which use them to produce more food.
-****
 
 TIP: You must build ships to transport people, food, and materials to your colonies.
 If you don't, the mines and factories will shut down.
 Starving people will start a rebellion.
-
-Every player's orders are processed at the same time,
-which is usually just after the deadline for submitting them.
-
-After the results are calculated, you'll receive an updated report.
-It has the same format as the initial report.
-Because the report can contain a lot of information,
-you'll also get a summary of the changes from the prior turn.
 
 [appendix]
 == Important Terms
