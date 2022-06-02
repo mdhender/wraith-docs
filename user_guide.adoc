@@ -176,8 +176,42 @@ You start the game with pay and rations set to 100% of the base rate
 
 == Places
 
+The game takes place in a small cluster that is packed with many systems for you to explore.
+
+Every system contains a star; some systems will have more than one star.
+Each star has 10 orbits; the orbits can be empty or contain a "world."
+World is a kitchen-sink term for a gas giant (Jupiter, Saturn),
+a terrestrial planet (Mercury, Venus, Earth, Neptune),
+or an asteroid belt (our asteroid belt, not the kind in movies).
+Worlds are important because they are they only you can build colonies
+(either on the surface of the world or orbiting it).
+
+Each system has one hyper-nexus, no matter how many stars it has.
+The hyper-nexus is the arrival point for ships travelling from remote systems.
+On the turn following their arrival,
+ships can move to any star's orbit in the system.
+
+=== Identifying Places
+To keep things straight, all systems, stars, and worlds have unique identifiers.
+
+A SystemID uses the X, Y, Z coordinates for the system.
+`15/14/12` is the system at 15, 14, 12.
+
+A StarID is based on the system's SystemID and the number of stars in the system.
+If there is just one star, the StarID is the same as the SystemID.
+`15/14/12` would be the one (and only) star in system `15/14/12`.
+
+If there are many stars, we use the SystemID with a letter appended to it.
+The primary star uses "A," the secondary uses "B," the third "C," and so on.
+`9/18/6C` would be the third star in system `9/18/6`.
+
+WorldID uses the StarID followed by "#" and the orbit number.
+`15/14/12#5` is the world in the 5th orbit of star `15/14/12` and `9/18/6C#3` is in the 3rd orbit of `9/18/6C`.
+
+The identifiers can be hard to remember and type, so you have the option of naming stars and worlds.
 
 == Things
+Items that you can grow, mine, or build in the game are called "units."
 
 [appendix]
 == Bad Writing Ahead
