@@ -143,24 +143,19 @@ All you have to do is send out the orders that coordinate all the pieces.
 ((TODO)): suggestions for the first few turns...
 
 == People
-The people in your nation are split into groups and each group has a set of skills that only they can use.
+There are some things to know about people in the game.
+They're born, they die from natural causes or combat injuries, and they're the only thing in the game that you can give orders to.
 
-People in the *PROFESSIONAL* group are trained to manage farms, mines, and factories.
-They can also pilot space-going ships (not all at the same time, of course).
-
-There are also *SOLDIER* group.
-These are the people trained to wage war, pilot assault crafts, and secure the peace.
-(There is no separate group for police.)
-
-The people in the *WORKER* group engage in the trades.
-They wield hammers and wrenches, operate heavy machine,
-move the heavy things, drive the big rigs and tractors,
-and keep the assembly lines going.
+In game terms, the population is split into groups according to the skills that they have.
+*Professionals* are the managers, bureaucrats, and pilots.
+*Workers* are those that get things done.
+The do the heavy lifting on the docks, operate machinery in the mines and factories, and tend the farms.
+*Soldiers* secure the borders, fly assault craft, and wage wars.
 
 The remainder is the *UNEMPLOYED* group.
 This includes young people, old people, students, teachers, artists, and even convalescing soldiers.
 
-There are two categories for the general population: *CONSTRUCTION CREW* and *SPY TEAM*
+There are two categories for the general population: *CONSTRUCTION CREW* and *SPY TEAM*.
 A construction crew is composed of professionals and workers that are specially trained to build ships and colonies.
 A spy team is composed of professionals and soldiers that are trained to conduct espionage and counter-espionage.
 
@@ -179,6 +174,10 @@ The "ration" order determines how much food is distributed per turn.
 You start the game with pay and rations set to 100% of the base rate
 (see Chart ??? for details on the base rate).
 
+== Places
+
+
+== Things
 
 [appendix]
 == Bad Writing Ahead
