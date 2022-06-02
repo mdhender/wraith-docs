@@ -115,8 +115,73 @@ The cluster is generated randomly, so the amount of natural resources in the hom
 Some systems will be close to other systems, making exploration easy;
 some will be farther away, making exploration harder.
 
+It all starts with food.
+Farms, as long as they have sufficient labor and fuel, will produce food every turn.
+They need ships to move the harvest to markets and to deliver fuel.
+
+Labor comes in the form of managers (professionals) and workers (unskilled workers or robots).
+Fuel is extracted and refined by mining units.
+Like farms, if they have sufficient labor and fuel they'll produce raw materials like fuel, gold, and metal every turn.
+(Unlike farms, the deposits worked by mines will eventually run out, but you don't need to worry about that just yet.)
+
+Again, just like farms, the labor is managers (professionals) and workers (unskilled workers or robots).
+They need ships to move the raw materials to markets, ships to deliver food to the workers,
+and, if they're not making fuel themselves, ships to bring the fuel to power the heavy machinery.
+
+All those ships are built in factories.
+Factories that need managers (professionals) and workers (unskilled workers or robots) on the assembly lines.
+The assembly lines take fuel and metals from the mines to build ships.
+Not just ships, but everything
+(well, everything except for food and raw materials, which are produced only by farms and mines.)
+you'll use in the game.
+That includes the farming and mining equipment used on all of those farms and mines.
+
+Luckily, you'll start the game with farms, mines, and factories,
+plus some ships and transports to keep things moving.
+All you have to do is send out the orders that coordinate all the pieces.
+
+((TODO)): suggestions for the first few turns...
+
+== People
+The people in your nation are split into groups and each group has a set of skills that only they can use.
+
+People in the *PROFESSIONAL* group are trained to manage farms, mines, and factories.
+They can also pilot space-going ships (not all at the same time, of course).
+
+There are also *SOLDIER* group.
+These are the people trained to wage war, pilot assault crafts, and secure the peace.
+(There is no separate group for police.)
+
+The people in the *WORKER* group engage in the trades.
+They wield hammers and wrenches, operate heavy machine,
+move the heavy things, drive the big rigs and tractors,
+and keep the assembly lines going.
+
+The remainder is the *UNEMPLOYED* group.
+This includes young people, old people, students, teachers, artists, and even convalescing soldiers.
+
+There are two categories for the general population: *CONSTRUCTION CREW* and *SPY TEAM*
+A construction crew is composed of professionals and workers that are specially trained to build ships and colonies.
+A spy team is composed of professionals and soldiers that are trained to conduct espionage and counter-espionage.
+
+Finally, there is the *REBEL* contingent.
+These are the people that are discontent with your governing or local conditions.
+Rebels can come from any group (professional, soldier, worker, or unemployed).
+They can even be a member of a special category (construction crew or spy team), too.
+If they're really, really unhappy, they will try to overthrow your government.
+Rebel soldiers and spy teams can be very disruptive!
+
+Two of the basic orders for population are pay and rations.
+You pay people with consumer goods produced by your factories.
+You feed them with the food from your farms.
+The "pay" order declares how much each group is paid per turn.
+The "ration" order determines how much food is distributed per turn.
+You start the game with pay and rations set to 100% of the base rate
+(see Chart ??? for details on the base rate).
+
+
 [appendix]
-== Bad Writing
+== Bad Writing Ahead
 === The Circle of Supply Lines
 The supply line (to abuse a metaphor) is a circle that begins and ends with farms.
 
