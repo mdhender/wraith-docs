@@ -248,7 +248,7 @@ Ships using hyper-drives do not travel in normal space between systems.
 |mining equipment|Machinery and rigs used for mining, drilling, and refining.
 |missile|Guided rockets with explosive warheads used to attack ships and colonies in combat.
 |missile launch tube|Launch and guidance system for missiles and anti-missile missiles.
-|orbital-drive|Engines used to move ships around a world.
+|orbital-drive|Engines used to move ships around a world and also when in combat.
 |sensor|Active and passive scanning equipment.
 |structure|Basic unit for constructing ships and colonies.
 Combination Lego, Erector, and Ikea that can survive the stresses of space and hostile, radioactive worlds.
@@ -274,6 +274,32 @@ This is all non-precious non-metallic ores and organic compounds.
 |===
 
 Yes, we use mines to harvest timber and oil, too.
+
+== Colonies
+We have three types of colonies: open, enclosed, and orbital.
+
+Open colonies are built on the surface of habitable terrestrial planets.
+They don't require life support.
+They're the only colony that supports open air farming.
+
+Enclosed colonies are built on the surface of any terrestrial planet (habitable or not),
+the moons of a gas giant,
+and even on large rocks in an asteroid belt.
+They are enclosed, so they require life support.
+You can build hydroponic farms in them.
+
+Orbital colonies can be built in orbit around any world.
+They are in space, so they require life support.
+You can build hydroponic farms in them.
+If the colony is in the first 5 orbits of the star,
+the hydroponic farms can use solar power instead of regular fuel units.
+
+== Ships
+There are three types of ships in the game: space ships, transports, and assault craft.
+All three are space worthy.
+The main difference is that space ships are designed to move between systems,
+transports to move between ships and colonies,
+and assault craft for combat operations.
 
 [appendix]
 == Bad Writing Ahead
