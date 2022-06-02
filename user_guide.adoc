@@ -218,7 +218,62 @@ NOTE: `15/14/12#5` is the world in the 5th orbit of star `15/14/12`.
 The identifiers can be hard to remember and type, so you have the option of naming stars and worlds.
 
 == Things
-Items that you can grow, mine, or build in the game are called "units."
+Items that you can grow on a farm, extract from a mine, or build in a factory are called "units."
+
+.Units Produced by Farms
+|===
+|Name|Description
+
+|food|Farm fresh, dehydrated, grown in vats, anything that your people consume for caloric benefit.
+|===
+
+.Units Produced by Factories
+|===
+|Name|Description
+
+|anti-missile missile|Used to counter incoming missile barrages in combat.
+|assault craft|Used in ground assault during combat. Crewed by soldiers or milbots.
+|assault weapon|Used to augment soldiers during combat.
+|autobot|Automation unit replacing workers.
+|consumer goods|Used to pay your people and in trade.
+|energy shield|Absorbs and deflects damage from energy weapons in combat.
+|energy weapon|Point to point energy beams used to destroy ships and colonies in combat.
+|factory equipment|Machinery and tooling used by factories to build units.
+|farming equipment|Machinery, fertilizers, and pesticides used to support farming.
+|hyper-drive|Used to move ships between systems.
+Ships using hyper-drives do not travel in normal space between systems.
+|life support|Cleans, purifies, and recirculates air and water in enclosed systems like ships and some colonies.
+|milbots|Automation unit replacing soldiers.
+|military supplies|Consumable equipment used by soldiers and milbots during every round of combat.
+|mining equipment|Machinery and rigs used for mining, drilling, and refining.
+|missile|Guided rockets with explosive warheads used to attack ships and colonies in combat.
+|missile launch tube|Launch and guidance system for missiles and anti-missile missiles.
+|orbital-drive|Engines used to move ships around a world.
+|sensor|Active and passive scanning equipment.
+|structure|Basic unit for constructing ships and colonies.
+Combination Lego, Erector, and Ikea that can survive the stresses of space and hostile, radioactive worlds.
+|structure, light|A lighter structure unit.
+|structure, super-light|A much lighter structure unit.
+|transport|A shuttle used to move cargo between ships and colonies; also used in combat to transfer soldiers between ships and colonies.
+Cargo flights are piloted by professionals; combat missions by soldiers or milbots.
+|===
+
+.Units Produced by Mines
+|===
+|Name|Description
+
+|fuel|Fuel is used to power farms, factories, mines, and almost all other units.
+It includes oil, nuclear compounds, and sci-fi elements like trilithium.
+Anything and everything that powers industry or starships.
+|gold|This represents all precious metals and crystals, not just gold.
+It can be anything that is valued more for itself than its usefulness in manufacturing.
+This is the standard unit accepted for trade between nations.
+|metal|All non-precious metallic ores.
+|non-metal|Anything that isn't fuel, gold, or a metal.
+This is all non-precious non-metallic ores and organic compounds.
+|===
+
+Yes, we use mines to harvest timber and oil, too.
 
 [appendix]
 == Bad Writing Ahead
