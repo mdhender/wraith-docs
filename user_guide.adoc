@@ -1,6 +1,6 @@
 = Wraith User Guide
 Michael D Henderson <mdhender@example.com>
-v0.0.0, 2022-05-25
+v0.0.1, 2022-06-01
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -213,7 +213,7 @@ NOTE: `9/18/6C` is the third star in system `9/18/6`.
 WorldID uses the StarID followed by "#" and the orbit number.
 
 NOTE: `15/14/12#5` is the world in the 5th orbit of star `15/14/12`.
- `9/18/6C#3` is in the 3rd orbit of `9/18/6C`.
+`9/18/6C#3` is in the 3rd orbit of `9/18/6C`.
 
 The identifiers can be hard to remember and type, so you have the option of naming stars and worlds.
 
