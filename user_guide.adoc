@@ -344,6 +344,16 @@ Each FARM unit requires 1 professional unit and 3 worker units (or the equivalen
 |FARM-10 ^|any ^|yes ^|yes ^|yes ^|yes
 |===
 
+=== Production
+Farm production is based on one rule:
+if the FARM unit was active the prior three turns and it is active this turn,
+it will produce FOOD units.
+(Active just means that it had the required number of FUEL and labor units allocated to it.)
+
+WARNING: There's a bug in the current rules - farms only output food once a year.
+That should be changed to something more like "farms start producing food after a year."
+But that feels wrong, too.
+
 == Mines
 Mines use fuel and labor to extract and refine natural resources into materials for factories or trade.
 
@@ -366,6 +376,12 @@ Mines use fuel and labor to extract and refine natural resources into materials 
 NOTE: MINE units may be installed in open or enclosed colonies, never in an orbital colony or ship.
 
 Each MINE unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
+
+=== Production
+Mines are slightly more complicated than farms:
+if the MINE is in a mining group and the MINE unit was active the prior three turns and it is active this turn and the DEPOSIT is not empty,
+it will produce refined material units.
+(Active just means that it had the required number of FUEL and labor units allocated to it.)
 
 == Factories
 Factories use fuel, labor, and the refined metals and non-metals from mines to build the items listed in the
@@ -419,6 +435,9 @@ The worker units can be replaced with the equivalent in workbot units.
 NOTE: FACT units are solar-powered and require no FUEL when installed in an orbital colony in the first 5 orbits.
 
 NOTE: FACT units may be installed in any colony, but never in a ship.
+
+=== Production
+Factories are the most complicated unit to manage in the game.
 
 [appendix]
 == Bad Writing Ahead
