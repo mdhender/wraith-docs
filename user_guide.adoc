@@ -480,9 +480,20 @@ The engines that are in work continue through the process, so you end up the tur
     Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
     FG1    FACT-1     35,000  HYPERDRIVE-1       0  17,500  17,500    17,500
 
-On Turn 8, you still don't have NON-METAL resources and, even worse, you only have 6,000 FUEL units available.
+On Turn 8, you receive your NON-METAL resources, but another ship is delayed and you only have 8,750 FUEL units available.
+Fuel shortages are spread across the entire factory group,
+so all units in the group will operate at 50% capacity
+(8,750 / 17,500 = 50%).
+Your report will look something like:
+
+    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  HYPERDRIVE-1   8,750   8,750  17,500     8,750
+
+((TODO)): would this be clearer if we used an example that didn't track the fuel?
+maybe life support at 3 + 8?
 
 ((TODO)): this should be it's own wiki.
+
 
 
 [appendix]
