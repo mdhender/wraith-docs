@@ -227,6 +227,11 @@ Items that you can grow on a farm, extract from a mine, or build in a factory ar
 |food|Farm fresh, dehydrated, grown in vats, anything that your people consume for caloric benefit.
 |===
 
+NOTE: There are two types of farms: open air and enclosed hydroponic.
+Hydroponic farms can use natural sunlight (but only in the first five orbits)
+or artificial sunlight (in any orbit).
+
+[#unitsProducedByFactories]
 .Units Produced by Factories
 |===
 |Name|Description
@@ -234,7 +239,6 @@ Items that you can grow on a farm, extract from a mine, or build in a factory ar
 |anti-missile missile|Used to counter incoming missile barrages in combat.
 |assault craft|Used in ground assault during combat. Crewed by soldiers or milbots.
 |assault weapon|Used to augment soldiers during combat.
-|autobot|Automation unit replacing workers.
 |consumer goods|Used to pay your people and in trade.
 |energy shield|Absorbs and deflects damage from energy weapons in combat.
 |energy weapon|Point to point energy beams used to destroy ships and colonies in combat.
@@ -243,19 +247,21 @@ Items that you can grow on a farm, extract from a mine, or build in a factory ar
 |hyper-drive|Used to move ships between systems.
 Ships using hyper-drives do not travel in normal space between systems.
 |life support|Cleans, purifies, and recirculates air and water in enclosed systems like ships and some colonies.
-|milbots|Automation unit replacing soldiers.
+|milbot|Robotic automation unit replacing soldiers in ship crews and combat operations.
 |military supplies|Consumable equipment used by soldiers and milbots during every round of combat.
 |mining equipment|Machinery and rigs used for mining, drilling, and refining.
 |missile|Guided rockets with explosive warheads used to attack ships and colonies in combat.
 |missile launch tube|Launch and guidance system for missiles and anti-missile missiles.
-|orbital-drive|Engines used to move ships around a world and also when in combat.
+|orbital-drive|Engines used to move ships in orbit around a world.
+Does double duty as impulse drives during combat.
 |sensor|Active and passive scanning equipment.
 |structure|Basic unit for constructing ships and colonies.
-Combination Lego, Erector, and Ikea that can survive the stresses of space and hostile, radioactive worlds.
+Framing and building kit using components that can survive the stresses of space and hostile, radioactive worlds.
 |structure, light|A lighter structure unit.
-|structure, super-light|A much lighter structure unit.
+|structure, super-light|A much lighter (some would say "super light") structure unit.
 |transport|A shuttle used to move cargo between ships and colonies; also used in combat to transfer soldiers between ships and colonies.
 Cargo flights are piloted by professionals; combat missions by soldiers or milbots.
+|workbot|Robotic automation unit replacing workers on farms and in factories and mines.
 |===
 
 .Units Produced by Mines
@@ -273,18 +279,18 @@ This is the standard unit accepted for trade between nations.
 This is all non-precious non-metallic ores and organic compounds.
 |===
 
-Yes, we use mines to harvest timber and oil, too.
+NOTE: We use mines to harvest timber and oil, too.
 
 == Colonies
 We have three types of colonies: open, enclosed, and orbital.
 
 Open colonies are built on the surface of habitable terrestrial planets.
-They don't require life support.
+They never use life support.
 They're the only colony that supports open air farming.
 
 Enclosed colonies are built on the surface of any terrestrial planet (habitable or not),
 the moons of a gas giant,
-and even on large rocks in an asteroid belt.
+and on large rocks in an asteroid belt.
 They are enclosed, so they require life support.
 You can build hydroponic farms in them.
 
@@ -301,10 +307,93 @@ The main difference is that space ships are designed to move between systems,
 transports to move between ships and colonies,
 and assault craft for combat operations.
 
+== Farms
+Farms use fuel and labor to produce food.
+
+.Farms Chart
+|===
+|Unit|Fuel used per TURN|Food produced per YEAR
+
+|FARM-1 >|0.5 >|100
+|FARM-2 >|1.0 >|40
+|FARM-3 >|1.5 >|60
+|FARM-4 >|2.0 >|80
+|FARM-5 >|2.5 >|100
+|FARM-6 >|6.0 >|120
+|FARM-7 >|7.0 >|140
+|FARM-8 >|8.0 >|160
+|FARM-9 >|9.0 >|180
+|FARM-10 >|10.0 >|200
+|===
+
+NOTE: Some farms can be solar-powered.
+
+Each farm unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
+
+== Mines
+Mines use fuel and labor to extract and refine natural resources into materials for factories or trade.
+
+.Mines Chart
+|===
+|Unit|Fuel used per TURN|MASS Units produced per YEAR
+
+|MINE-1 >|0.5 >|100 MUs
+|MINE-2 >|1.0 >|200 MUs
+|MINE-3 >|1.5 >|300 MUs
+|MINE-4 >|2.0 >|400 MUs
+|MINE-5 >|2.5 >|500 MUs
+|MINE-6 >|3.0 >|600 MUs
+|MINE-7 >|3.5 >|700 MUs
+|MINE-8 >|4.0 >|800 MUs
+|MINE-9 >|4.5 >|900 MUs
+|MINE-10 >|5.0 >|1,000 MUs
+|===
+
+Each mine unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
+
+== Factories
+Factories use fuel, labor, and the refined metals and non-metals from mines to build the items listed in the
+<<unitsProducedByFactories,Units Produced by Factories>> chart.
+
+Factories benefit from the use of assembly lines and the economies of scale,
+so the amount of labor used by each factory unit depends on the size of the factory group that it is in.
+
+.Factory Group Labor Chart
+|===
+|Size (in factory units)|Professional units|Worker units
+
+|1 to 4 >|6 per Factory unit >|18 per Factory unit
+|5 to 49 >|5 per Factory unit >|15 per Factory unit
+|50 to 499 >|4 per Factory unit >|12 per Factory unit
+|500 to 4,999 >|3 per Factory unit >|9 per Factory unit
+|5,000 to 49,999 >|2 per Factory unit >|6 per Factory unit
+|50,000 or more >|1 per Factory unit >|3 per Factory unit
+|===
+
+The worker units can be replaced with the equivalent in workbot units.
+
+.Factories Chart
+|===
+|Unit|Fuel used per TURN|MASS Units produced per YEAR
+
+|FACT-1 >|0.5 >|20 MUs
+|FACT-2 >|1.0 >|40 MUs
+|FACT-3 >|1.5 >|60 MUs
+|FACT-4 >|2.0 >|80 MUs
+|FACT-5 >|2.5 >|100 MUs
+|FACT-6 >|3.0 >|120 MUs
+|FACT-7 >|3.5 >|140 MUs
+|FACT-8 >|4.0 >|160 MUs
+|FACT-9 >|4.5 >|180 MUs
+|FACT-10 >|5.0 >|200 MUs
+|===
+
+NOTE: Some factories can be solar-powered.
+
 [appendix]
 == Bad Writing Ahead
-=== The Circle of Supply Lines
-The supply line (to abuse a metaphor) is a circle that begins and ends with farms.
+=== The Circle of Supply Chains
+The supply chain (to abuse a metaphor) is a circle that begins and ends with farms.
 
 Farms produce food to feed factory workers.
 Factory workers produce mining equipment.
