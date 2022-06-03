@@ -312,23 +312,37 @@ Farms use fuel and labor to produce food.
 
 .Farms Chart
 |===
-|Unit|Fuel used per TURN|Food produced per YEAR
+|Unit|Fuel used per TURN|Food produced per YEAR|Type|Sunlight|Notes
 
-|FARM-1 >|0.5 >|100
-|FARM-2 >|1.0 >|40
-|FARM-3 >|1.5 >|60
-|FARM-4 >|2.0 >|80
-|FARM-5 >|2.5 >|100
-|FARM-6 >|6.0 >|120
-|FARM-7 >|7.0 >|140
-|FARM-8 >|8.0 >|160
-|FARM-9 >|9.0 >|180
-|FARM-10 >|10.0 >|200
+|FARM-1 >|0.5 >|100|Open air|Natural|The maximum number of FARM-1 units on a world is 100,000 times the habitability number.
+|FARM-2 >|1.0 >|40|Hydroponic|Natural|These units are solar-powered and require no FUEL when installed in an orbital colony.
+|FARM-3 >|1.5 >|60|Hydroponic|Natural|These units are solar-powered and require no FUEL when installed in an orbital colony.
+|FARM-4 >|2.0 >|80|Hydroponic|Natural|These units are solar-powered and require no FUEL when installed in an orbital colony.
+|FARM-5 >|2.5 >|100|Hydroponic|Natural|These units are solar-powered and require no FUEL when installed in an orbital colony.
+|FARM-6 >|6.0 >|120|Hydroponic/Vat|Artificial|
+|FARM-7 >|7.0 >|140|Hydroponic/Vat|Artificial|
+|FARM-8 >|8.0 >|160|Hydroponic/Vat|Artificial|
+|FARM-9 >|9.0 >|180|Hydroponic/Vat|Artificial|
+|FARM-10 >|10.0 >|200|Hydroponic/Vat|Artificial|
 |===
 
-NOTE: Some farms can be solar-powered.
+Each FARM unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
 
-Each farm unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
+.Farm Location Chart
+|===
+|Unit ^|Orbits ^|Open Colony ^|Enclosed Colony ^|Orbital Colony ^|Ship
+
+|FARM-1 ^|1..5 ^|yes ^|no ^|no ^|no
+|FARM-2 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|FARM-3 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|FARM-4 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|FARM-5 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|FARM-6 ^|any ^|yes ^|yes ^|yes ^|yes
+|FARM-7 ^|any ^|yes ^|yes ^|yes ^|yes
+|FARM-8 ^|any ^|yes ^|yes ^|yes ^|yes
+|FARM-9 ^|any ^|yes ^|yes ^|yes ^|yes
+|FARM-10 ^|any ^|yes ^|yes ^|yes ^|yes
+|===
 
 == Mines
 Mines use fuel and labor to extract and refine natural resources into materials for factories or trade.
@@ -349,7 +363,9 @@ Mines use fuel and labor to extract and refine natural resources into materials 
 |MINE-10 >|5.0 >|1,000 MUs
 |===
 
-Each mine unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
+NOTE: MINE units may be installed in open or enclosed colonies, never in an orbital colony or ship.
+
+Each MINE unit requires 1 professional unit and 3 worker units (or the equivalent in workbot units).
 
 == Factories
 Factories use fuel, labor, and the refined metals and non-metals from mines to build the items listed in the
@@ -370,6 +386,18 @@ so the amount of labor used by each factory unit depends on the size of the fact
 |50,000 or more >|1 per Factory unit >|3 per Factory unit
 |===
 
+.Factory Group Labor Chart
+|===
+|Size (in FACT units)|Professional units|Worker units
+
+>|50,000 or more >|1 times number of FACT units >|3 times number of FACT units
+>|5,000 or more >|2 times number of FACT units >|6 times number of FACT units
+>|500 or more >|3 times number of FACT units >|9 times number of FACT units
+>|50 or more >|4 times number of FACT units >|12 times number of FACT units
+>|5 or more >|5 times number of FACT units >|15 times number of FACT units
+>|4 or less >|6 times number of FACT units >|18 times number of FACT units
+|===
+
 The worker units can be replaced with the equivalent in workbot units.
 
 .Factories Chart
@@ -388,7 +416,9 @@ The worker units can be replaced with the equivalent in workbot units.
 |FACT-10 >|5.0 >|200 MUs
 |===
 
-NOTE: Some factories can be solar-powered.
+NOTE: FACT units are solar-powered and require no FUEL when installed in an orbital colony in the first 5 orbits.
+
+NOTE: FACT units may be installed in any colony, but never in a ship.
 
 [appendix]
 == Bad Writing Ahead
