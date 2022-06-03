@@ -492,7 +492,9 @@ Your report will look something like:
 ((TODO)): would this be clearer if we used an example that didn't track the fuel?
 maybe life support at 3 + 8?
 
-((TODO)): this should be it's own wiki.
+((TODO)): show storage?
+
+((TODO)): this should be its own wiki.
 
 
 
