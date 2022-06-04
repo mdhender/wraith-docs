@@ -498,26 +498,75 @@ maybe life support at 3 + 8?
 ((TODO)): this should be its own wiki.
 
 == Rebellion
-You want to avoid rebellion because the two outcomes are bad and worse.
-If your government wins, you have to deal with the aftermath.
-All the casualties were your people.
-Your infrastructure was destroyed by sabotage and combat.
-You need to move more soldiers or milbots into your colonies to "maintain the peace."
+There are three sides in a rebellion:
+your troops (the loyal soldiers and all milbots),
+the rebels,
+and the undecided civilian population.
 
-If the rebels win, they declare independence.
-You've lost your troops, your infrastructure,
-and now other nations have the opportunity to gain control of your colonies and ships.
+You want to avoid rebellion because the two outcomes are bad and worse.
+If your government wins, you have to deal with the aftermath:
+
+* all the casualties were your troops
+* your infrastructure was destroyed by sabotage and combat
+* you need to move more troops into your colonies to "maintain the peace"
+
+When the rebels win:
+
+* they declare independence
+* you lose control of your colony and all of its infrastructure
+* all troops and loyal civilians are captured
+* other nations have the opportunity to gain control of your colonies and ships
 
 During a rebellion, the game engine takes control of the rebel forces.
 For the most part, rebels are untrained and unarmed civilians.
-They know that your loyal soldier and milbots will win in open combat
-so they'll sabotage factories and mines and engage in hit-and-run raids.
-They like to eat, so farms are only a target if they're exporting food.
-They'll wait until they significantly outnumber your troops before engaging them directly.
+They know that your troops will win in open combat,
+so they'll engage in guerrilla warfare until they significantly outnumber your troops.
 
-During the "guerilla tactics" phase,
-you can use your spy units to convert, capture, or eliminate rebels.
-Once open combat begins, only soldiers and milbots can be used.
+=== Guerrilla Warfare
+During this phase of rebellion,
+rebel forces will engage in hit-and-run raids.
+They'll sabotage factories and mines and maybe assassinate soldiers and professionals.
+They avoid attacking farms because they want to keep the sympathy of the civilians
+(unless, maybe, they're exporting food).
+
+During this phase,
+you can use your spy teams to convert, capture, or eliminate rebels.
+
+Guerrilla warfare will continue until the number of rebels is reduced.
+If not, they will start an open rebellion when they feel like they have the numbers on their side.
+
+=== Open Rebellion
+Once the rebel forces significantly outnumber your troops,
+they will opt to engage in combat.
+Unless your spy teams are doing an excellent job,
+the first attacks will be a complete surprise.
+
+Once open combat begins, only troops (loyal soldiers and milbots) can be used.
+Spy teams are sidelined.
+
+Normal combat rules apply - if your troops have access to assault craft and weapons, they will use them.
+So will the rebels.
+
+As mentioned before, rebels are usually untrained and unarmed civilians.
+If the surprise attack doesn't destroy most of your troops,
+the rebels will typically be defeated.
+That is, unless the rebels are supported by spy teams from other nations.
+Then it could be a long and costly battle.
+
+If your troops win, there will be many rebel casualties and a few will be captured.
+The remainder will return to their normal lives and wait for the next opportunity.
+
+If your troops loose, the rebels will declare independence.
+
+=== Opportunity
+((TODO)): better heading?
+
+Other players ("foreign nations") can send spy teams to your colonies and ships for many purposes
+including inciting rebellion.
+Spy teams can convert loyal citizens to rebels,
+train them in guerrilla tactics,
+help sabotage infrastructure,
+and even equip your rebels with small arms and supplies to help them fight.
 
 [appendix]
 == Bad Writing Ahead
