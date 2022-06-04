@@ -1,6 +1,6 @@
 = Wraith User Guide
 Michael D Henderson <mdhender@example.com>
-v0.0.1, 2022-06-01
+v0.0.2, 2022-06-03
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -441,44 +441,45 @@ Factories are the most complicated unit to manage in the game.
 
 Turn 1, you order ??? construction crews to assemble 35,000 FACT-1 units.
 
-Turn 2, you assign those units to factory group 1 (FG1) and order them to build HYPERDRIVE-1 units.
+Turn 2, you assign those units to factory group 1 (FG1) and order them to build LIFESUPPORT-1 units.
 Each FACT-1 unit can ingest 20 MU of resources per YEAR, so FG1 can process up to 700,000 MU per year.
-Each HYPERDRIVE-1 unit will require 1 year (4 turns) and 25 MU of METAL and 20 MU of NON-METAL to build.
-With each hyper-drive using 45 MU total of resources, and the factory group processing up to 700,000 per year,
+Each LIFESUPPORT-1 unit will require 1 year (4 turns) and 25 MU of METAL and 20 MU of NON-METAL to build.
+With each life support unit using 45 MU total of resources,
+and the factory group processing up to 700,000 per year,
 the group will be able to build 17,500 engines per year.
 
-Turn 3, 70,000 professional and 210,000 worker units report to FG-1 to start producing HYPERDRIVE-1 units.
+Turn 3, 70,000 professional and 210,000 worker units report to FG-1 to start producing LIFESUPPORT-1 units.
 Ships deliver 435,700 MU of METAL, 350,000 MU of NON-METAL, and 17,500 FUEL units.
 At the end of the turn, 17,500 engines are in progress and your report will look something like:
 
-    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
-    FG1    FACT-1     35,000  HYPERDRIVE-1  17,500       0       0         0
+    Group  Unit___  Quantity  Build________     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  LIFESUPPORT-1  17,500       0       0         0
 
 On Turn 4, we have the same labor and materials delivered.
 At the end of the turn, your report will look something like:
 
-    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
-    FG1    FACT-1     35,000  HYPERDRIVE-1  17,500  17,500       0         0
+    Group  Unit___  Quantity  Build________     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  LIFESUPPORT-1  17,500  17,500       0         0
 
 On Turn 5, we have the same labor and materials delivered.
 At the end of the turn, your report will look something like:
 
-    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
-    FG1    FACT-1     35,000  HYPERDRIVE-1  17,500  17,500  17,500         0
+    Group  Unit___  Quantity  Build________     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  LIFESUPPORT-1  17,500  17,500  17,500         0
 
 On Turn 6, we have the same labor and materials delivered.
 At the end of the turn, you'll have 17,500 engines complete and ready to load out.
 Your factories are operating at maximum capacity, so your report will look something like:
 
-    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
-    FG1    FACT-1     35,000  HYPERDRIVE-1  17,500  17,500  17,500    17,500
+    Group  Unit___  Quantity  Build________     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  LIFESUPPORT-1  17,500  17,500  17,500    17,500
 
 On Turn 7, something terrible happens and the ship delivering the NON-METAL resources doesn't arrive.
 You're missing a required input, so the factories can't start any new engines this turn.
 The engines that are in work continue through the process, so you end up the turn with another 17,500 engines complete.
 
-    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
-    FG1    FACT-1     35,000  HYPERDRIVE-1       0  17,500  17,500    17,500
+    Group  Unit___  Quantity  Build________     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  LIFESUPPORT-1       0  17,500  17,500    17,500
 
 On Turn 8, you receive your NON-METAL resources, but another ship is delayed and you only have 8,750 FUEL units available.
 Fuel shortages are spread across the entire factory group,
@@ -486,8 +487,8 @@ so all units in the group will operate at 50% capacity
 (8,750 / 17,500 = 50%).
 Your report will look something like:
 
-    Group  Unit___  Quantity  Build_______     25%     50%     75%  Complete
-    FG1    FACT-1     35,000  HYPERDRIVE-1   8,750   8,750  17,500     8,750
+    Group  Unit___  Quantity  Build________     25%     50%     75%  Complete
+    FG1    FACT-1     35,000  LIFESUPPORT-1   8,750   8,750  17,500     8,750
 
 ((TODO)): would this be clearer if we used an example that didn't track the fuel?
 maybe life support at 3 + 8?
@@ -496,7 +497,27 @@ maybe life support at 3 + 8?
 
 ((TODO)): this should be its own wiki.
 
+== Rebellion
+You want to avoid rebellion because the two outcomes are bad and worse.
+If your government wins, you have to deal with the aftermath.
+All the casualties were your people.
+Your infrastructure was destroyed by sabotage and combat.
+You need to move more soldiers or milbots into your colonies to "maintain the peace."
 
+If the rebels win, they declare independence.
+You've lost your troops, your infrastructure,
+and now other nations have the opportunity to gain control of your colonies and ships.
+
+During a rebellion, the game engine takes control of the rebel forces.
+For the most part, rebels are untrained and unarmed civilians.
+They know that your loyal soldier and milbots will win in open combat
+so they'll sabotage factories and mines and engage in hit-and-run raids.
+They like to eat, so farms are only a target if they're exporting food.
+They'll wait until they significantly outnumber your troops before engaging them directly.
+
+During the "guerilla tactics" phase,
+you can use your spy units to convert, capture, or eliminate rebels.
+Once open combat begins, only soldiers and milbots can be used.
 
 [appendix]
 == Bad Writing Ahead
