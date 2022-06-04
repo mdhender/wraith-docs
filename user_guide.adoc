@@ -497,6 +497,23 @@ maybe life support at 3 + 8?
 
 ((TODO)): this should be its own wiki.
 
+****
+Production is a mess.
+Rules say that FACT-1 ingests 20 MU at the start of the year.
+If it's production structural units, it will create 40 of them in a year.
+
+The pipeline example shows 40 at 25% complete the first quarter.
+The next quarter it shows 40 @ 25% andf 40 @ 50%.
+But that means that it's ingested 40 MU in two quarters,
+which is twice its capacity.
+
+Do we say instead that in Q1, it ingests 25% of its capacity, only 5 MU?
+That means at the end of Q4, it's ingested 100% of its capacity for the year,
+but it's only produced 10 structure units, which is a quarter of its capacity for the year.
+
+I prefer the logic in that second example.
+****
+
 == Rebellion
 There are three sides in a rebellion:
 your troops (the loyal soldiers and all milbots),
