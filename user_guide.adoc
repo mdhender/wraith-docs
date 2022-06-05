@@ -155,9 +155,9 @@ They do the heavy lifting on the docks, operate machinery in the mines and facto
 The remainder is the *UNEMPLOYED* group.
 This includes young people, old people, students, teachers, artists, and even convalescing soldiers.
 
-There are two categories for the general population: *CONSTRUCTION CREW* and *SPY TEAM*.
-A construction crew is composed of professionals and workers that are specially trained to build ships and colonies.
-A spy team is composed of professionals and soldiers that are trained to conduct espionage and counter-espionage.
+There are two team (or "crew") groups: *CONSTRUCTION CREW* and *SPY TEAM*.
+A construction crew is composed of professionals and workers that are recruited to build ships and colonies.
+A spy team is composed of professionals and soldiers that are recruited to conduct espionage and counter-espionage.
 
 Finally, there is the *REBEL* contingent.
 These are the people that are discontent with your governing or local conditions.
@@ -173,6 +173,9 @@ The "pay" order declares how much each group is paid per turn.
 The "ration" order determines how much food is distributed per turn.
 You start the game with pay and rations set to 100% of the base rate
 (see Chart ??? for details on the base rate).
+
+== Exploring
+
 
 == Places
 
@@ -269,17 +272,16 @@ Cargo flights are piloted by professionals; combat missions by soldiers or milbo
 |Name|Description
 
 |fuel|Fuel is used to power farms, factories, mines, and almost all other units.
-It includes oil, nuclear compounds, and sci-fi elements like trilithium.
+It includes coal, oil, nuclear compounds, and sci-fi elements like hecatonicosahedrolithium and unobtainium.
 Anything and everything that powers industry or starships.
 |gold|This represents all precious metals and crystals, not just gold.
 It can be anything that is valued more for itself than its usefulness in manufacturing.
 This is the standard unit accepted for trade between nations.
 |metal|All non-precious metallic ores.
 |non-metal|Anything that isn't fuel, gold, or a metal.
-This is all non-precious non-metallic ores and organic compounds.
+This is all non-precious, non-metallic ores and organic compounds.
+(Yes, mines harvest timber, too.)
 |===
-
-NOTE: We use mines to harvest timber and oil, too.
 
 == Colonies
 We have three types of colonies: open, enclosed, and orbital.
@@ -306,6 +308,29 @@ All three are space worthy.
 The main difference is that space ships are designed to move between systems,
 transports to move between ships and colonies,
 and assault craft for combat operations.
+
+
+== Espionage
+Espionage is performed by the spy teams that you create.
+Each team contains a mix of professional and soldiers
+(you can't use milbots in place of the soldiers).
+
+=== Avoid Rebellion
+Spy teams can find rebels in your population.
+
+=== Inciting Rebellion
+Spy teams can infiltrate colonies and ships for many purposes, including inciting rebellion.
+Spy teams can
+
+* convert loyal citizens to rebels
+* train rebels in guerrilla tactics
+* help rebels sabotage infrastructure
+* equip rebels with weapons and supplies
+
+
+== Markets and Trade
+
+== Combat
 
 == Farms
 Farms use fuel and labor to produce food.
@@ -503,7 +528,7 @@ Rules say that FACT-1 ingests 20 MU at the start of the year.
 If it's production structural units, it will create 40 of them in a year.
 
 The pipeline example shows 40 at 25% complete the first quarter.
-The next quarter it shows 40 @ 25% andf 40 @ 50%.
+The next quarter it shows 40 @ 25% and 40 @ 50%.
 But that means that it's ingested 40 MU in two quarters,
 which is twice its capacity.
 
@@ -514,29 +539,37 @@ but it's only produced 10 structure units, which is a quarter of its capacity fo
 I prefer the logic in that second example.
 ****
 
-== Rebellion
+== Technology and Research
+
+=== Transporting Technology
+You can package up technology to improve your colonies, or to trade with other nations.
+
+A ship can transport tech unit with a tech level no higher than its tech level plus one.
+(In easier to understand words, a SHIP-3 could transport TECH-1 through TECH-4, but not TECH-5 or higher.)
+
+== Construction Crews
+
+== Rebels
 There are three sides in a rebellion:
-your troops (the loyal soldiers and all milbots),
-the rebels,
-and the undecided civilian population.
+your troops (the loyal soldiers and all milbots), the rebels, and the undecided civilian population.
 
 You want to avoid rebellion because the two outcomes are bad and worse.
 If your government wins, you have to deal with the aftermath:
 
 * all the casualties were your troops
 * your infrastructure was destroyed by sabotage and combat
-* you need to move more troops into your colonies to "maintain the peace"
+* you now need to move more troops into your colonies to "maintain the peace"
 
-When the rebels win:
+If the rebels win:
 
 * they declare independence
-* you lose control of your colony and all of its infrastructure
 * all troops and loyal civilians are captured
+* you lose control of your colony and all of its infrastructure
 * other nations have the opportunity to gain control of your colonies and ships
 
 During a rebellion, the game engine takes control of the rebel forces.
 For the most part, rebels are untrained and unarmed civilians.
-They know that your troops will win in open combat,
+They know your troops will win in open combat,
 so they'll engage in guerrilla warfare until they significantly outnumber your troops.
 
 === Guerrilla Warfare
@@ -574,16 +607,6 @@ If your troops win, there will be many rebel casualties and a few will be captur
 The remainder will return to their normal lives and wait for the next opportunity.
 
 If your troops loose, the rebels will declare independence.
-
-=== Opportunity
-((TODO)): better heading?
-
-Other players ("foreign nations") can send spy teams to your colonies and ships for many purposes
-including inciting rebellion.
-Spy teams can convert loyal citizens to rebels,
-train them in guerrilla tactics,
-help sabotage infrastructure,
-and even equip your rebels with small arms and supplies to help them fight.
 
 [appendix]
 == Bad Writing Ahead
