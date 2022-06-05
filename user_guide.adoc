@@ -283,7 +283,32 @@ This is all non-precious, non-metallic ores and organic compounds.
 (Yes, mines harvest timber, too.)
 |===
 
-== Colonies
+== Building Colonies and Ships
+Colonies and ships are built by construction crews.
+The main difference is the build site and where the crew lives.
+
+* Ships must be built in orbiting colonies.
+The crew lives in the colony.
+* Colonies are built on the surface of worlds or in orbit.
+The crew lives in a colony or ship near the construction site.
+
+When you give the order to build a new colony or ship,
+you must include a "bill of materials" (BOM) with the order.
+The BOM tells the crew how large to make the colony or ship
+(based on the number of structure units in the BOM)
+and how to provision it
+(the remainder of the units in the BOM).
+
+You don't have to have all the materials in place when you start building;
+you can have "just in time" deliveries to the site.
+The crew is smart enough to pull materials from storage as needed.
+
+Be careful with your deliveries, though.
+The crews are pragmatic and build what they can with what they have on hand.
+If you don't have the materials ready and available when they're needed,
+you may not be happy with the result.
+
+=== Colonies
 We have three types of colonies: open, enclosed, and orbital.
 
 Open colonies are built on the surface of habitable terrestrial planets.
@@ -302,13 +327,14 @@ You can build hydroponic farms in them.
 If the colony is in the first 5 orbits of the star,
 the hydroponic farms can use solar power instead of regular fuel units.
 
-== Ships
-There are three types of ships in the game: space ships, transports, and assault craft.
+=== Ships
+There are three types of ships in the game: spaceships, transports, and assault craft.
 All three are space worthy.
-The main difference is that space ships are designed to move between systems,
+The main difference is that spaceships are designed to move between systems,
 transports to move between ships and colonies,
 and assault craft for combat operations.
 
+This section is about spaceships only.
 
 == Espionage
 Espionage is performed by the spy teams that you create.
@@ -326,7 +352,6 @@ Spy teams can
 * train rebels in guerrilla tactics
 * help rebels sabotage infrastructure
 * equip rebels with weapons and supplies
-
 
 == Markets and Trade
 
