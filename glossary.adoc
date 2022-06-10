@@ -236,14 +236,19 @@ market::
 A _market_ enables trade between players.
 The market accepts sell orders, matches them with buy orders, and collects a commision on each exchange.
 
-metal unit::
-A _metal_ unit is a refined metallic ore.
-This includes common metals like iron and steel (but never *gold*) and exotic metals like unobtanium and lutyisthebestium.
-Metal units can be stored and transported.
-Metal units must be mined and refined by *mining* units.
+mass unit::
+A _mass_ (abbreviated as MU) is the in-game measurement for "weight" and "volume" of a unit.
+The MU determines the number of drives needed to move units.
+It also factors into the number of *structural units* needed to store units (see *EMU*).
 
-metallic::
-_Metallic_ is an alias for *metal* unit.
+metal unit::
+A _metal_ unit is an alias for *metallic unit*.
+
+metallic unit::
+A _metallic_ unit is a refined metallic ore.
+This includes common metals like iron and steel (but never *gold*) and exotic metals like unobtanium and lutyisthebestium.
+Metallic units can be stored and transported.
+Metallic units must be mined and refined by *mining* units.
 
 MG::
 _MG_ is the prefix for a *mining group* identifier.
@@ -254,47 +259,55 @@ Define this, please.
 military supply unit::
 Define this, please.
 
-mine::
-_Mine_ is an alias for *mining* unit.
+mine unit::
+_Mine_ units extract natural resources by mining, drilling, and even logging.
+They refine the raw materials and produce *metallic* and *non-metallic* ores, *fuel*, and *gold* that are used by *factory* units, *colonies*, and *ships*.
+Factories use metallic and non-metallic ores to build units.
+Fuels, which are any power source, power factories, colonies, and ships.
+Gold (any precious substance) is used to pay the population and trade with other nations.
 
 mining unit::
-Define this, please.
+_Mining_ is an alias for *mine* unit.
 
 mining group::
-Define this, please.
+A _mining group_ (abbreviated *MG*) is a group of mines assigned to work a single *deposit*.
 
 missile unit::
 Define this, please.
 
-missle launcher unit::
+missile launcher unit::
 Define this, please.
 
 MU::
-_MU_ is a mass unit.
-In the game, it measures both mass and volume of a unit.
-The MU determines the number of drives needed to move units.
-It also factors into the number of *structural units* needed to store units.
+_MU_ is an abbrevition for *mass unit*.
 
 nation::
 A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
 
-non-metal unit::
-A _non-metal_ unit is a refined non-metallic ore.
-This includes common things like crystals, gases (but never *fuel* units), organic materials like silk (but never *food* units), and exotic materials like trilithium crystals.
-Non-metal units can be stored and transported.
-Non-metal units must be mined and refined by *mining* units.
+nexus jump point::
+The _nexus jump point_ is the 11th orbit around a star.
+It is the point where a ship entering the system using its *hyper-drive* engines will arrive.
+If there are multiple stars in a single system, the 11th orbit is shared among them.
+In this case, ships may use the nexus jump point to travel between the stars in that system.
 
-non-metallic::
-_Non-metallic_ is an alias for *non-metal* unit.
+non-metal unit::
+A _non-metal_ unit is an alias for *non-metallic unit*.
+
+non-metallic unit::
+A _non-metallic_ unit is a refined non-metallic ore.
+This includes common things like crystals, gases (but never *fuel* units), organic materials like silk and timber (but never *food* units), and exotic materials like trilithium crystals.
+Non-metallic units can be stored and transported.
+Non-metallic units must be mined and refined by *mining* units.
 
 operational unit::
 An _operational unit_ is a unit that is ready to be used (it's not disassembled or in *storage*).
-Some units use fuel every turn they're operational; others only when they're being used.
+Some operational units use fuel every turn they're operational; others only when they're being used.
 
 orbit::
 An _orbit_ represents something.
-Orbits start at 1.
-An orbit usually contains a *planet* or *asteroid belt*.
+Orbits start at 1 and go up to 11.
+The first ten orbits may be empty or contain a *planet*.
+The 11th orbit is always empty and is used as the *nexus jump point* for inter-system travel.
 
 orbiting colony::
 An _orbiting colony_ is built in orbit around a planet.
@@ -354,9 +367,9 @@ society::
 A _society_ in the *game* is a group that shares common language, culture, geography, or religion.
 Societies, in their desire for unity and self-determination, come together to create a *nation*.
 
-solar power::
-_Solar power_ is available to *orbiting colonies* in *orbits* 1 through 5.
-These colonies may use solar power instead of *fuel* to power certain *farm* and *factory* units.
+solar-power::
+_Solar-power_ is available to *orbiting colonies* in *orbits* 1 through 5.
+These orbiting colonies may use solar-power instead of *fuel* to power certain *farm* and *factory* units.
 
 soldier unit::
 A _soldier_ unit is a type of *population* unit.
@@ -407,6 +420,12 @@ A *ship* requires 10 standard structural units to enclose 1 MU.
 super light structure unit::
 A _super light structure unit_ is used to build colonies, ships, and enclosed storage.
 These units have less mass than the *standard structure unit* but can replace them on a one-for-one basis.
+
+surface colony::
+A _surface colony_ is either an open colony or an enclosed colony.
+Surface colonies can be built on the surface of a *terrestrial* planet,
+large rocks in an *asteroid belt*,
+or the moons of a *gas giant*.
 
 system::
 A _system_ contains one or more *stars*.

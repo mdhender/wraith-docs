@@ -174,6 +174,25 @@ A farm unit produces no food units if it is has not been active for at least two
 
 A farm unit produces no food units the first turn that it is active.
 
+=== Location
+The tech level of the farm unit determines where it may be built.
+
+.Farm Location Chart
+|===
+|Unit-TechLevel ^|Orbits ^|Open Colony ^|Enclosed Colony ^|Orbital Colony ^|Ship
+
+|farm-1 ^|1..5 ^|yes ^|no ^|no ^|no
+|farm-2 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|farm-3 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|farm-4 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|farm-5 ^|1..5 ^|yes ^|yes ^|yes ^|no
+|farm-6 ^|any ^|yes ^|yes ^|yes ^|yes
+|farm-7 ^|any ^|yes ^|yes ^|yes ^|yes
+|farm-8 ^|any ^|yes ^|yes ^|yes ^|yes
+|farm-9 ^|any ^|yes ^|yes ^|yes ^|yes
+|farm-10 ^|any ^|yes ^|yes ^|yes ^|yes
+|===
+
 === Fuel
 Farm units require fuel or solar-power to be active.
 If a farm unit does not have a full allocation of fuel or solar-power, it is inactive for the turn.
@@ -260,7 +279,9 @@ it will produce food units per the following chart.
 
 === Shortages
 Shortages in labor or fuel result in lost production.
-All food being produced by the farm unit is lost.
+
+Shortages will be applied to the farm units in Stage 1 before Stage 2.
+All food stuck in a stage is lost.
 
 == Mining Production Phase
 Mine units extract natural resources by mining, drilling, and even logging.
@@ -269,10 +290,33 @@ Factories use metallic and non-metallic ores to build units.
 Fuels, which are any power source, power factories, colonies, and ships.
 Gold (any precious substance) is used to pay the population and trade with other nations.
 
-Mine units require fuel or solar-power to be active.
-If a mine unit does not have a full allocation of fuel or solar-power, it is inactive for the turn.
+=== Location
+Mine units may only be built in surface colonies.
+They may not be built in a ship or orbital colony.
 
-Mine units produce no raw materials until they have been active for four consecutive turns.
+.Mine Location Chart
+|===
+|Unit-TechLevel ^|Orbits ^|Open Colony ^|Enclosed Colony ^|Orbital Colony ^|Ship
+
+|mine-1 ^|any ^|yes ^|yes ^|no ^|no
+|mine-2 ^|any ^|yes ^|yes ^|no ^|no
+|mine-3 ^|any ^|yes ^|yes ^|no ^|no
+|mine-4 ^|any ^|yes ^|yes ^|no ^|no
+|mine-5 ^|any ^|yes ^|yes ^|no ^|no
+|mine-6 ^|any ^|yes ^|yes ^|no ^|no
+|mine-7 ^|any ^|yes ^|yes ^|no ^|no
+|mine-8 ^|any ^|yes ^|yes ^|no ^|no
+|mine-9 ^|any ^|yes ^|yes ^|no ^|no
+|mine-10 ^|any ^|yes ^|yes ^|no ^|no
+|===
+
+=== Groups
+Mining groups are assigned to each deposit.
+Each deposit may be worked by only one mining group.
+(This prevents multiple nations from extracting raw materials from the same deposit.)
+
+Mine units must be assigned to a mining group before they can be activated.
+A mine unit is inactive if is it not assigned to a mining group.
 
 === Fuel
 Mine units require fuel or solar-power to be active.
@@ -347,44 +391,67 @@ Shortages in labor or fuel result in lost production.
 Materials being produced by the mine unit are not lost,
 but they do not move to the next stage in the production pipeline, either.
 
-== Factory Production Phase
-Factories produce all units except for food, metals, non-metals, fuel, gold, and population units.
+Shortages will be applied to the mine units in Stage 1, then Stage 2, and finally to Stage 3.
 
+== Factory Production Phase
 The amount of finished goods produced by factory groups is calculated in this phase.
 
-A FACTORY GROUP is a set of FACTORY units assigned to work together to build a common finished good.
+Factories produce the following finished goods.
 
-FACTORY units are the only units that can convert fuel and raw materials into finished goods.
+.Factory Finished Goods
+|===
+|Unit|METALLIC Units|NON-METALLIC Units|GOLD Units|FUEL Units
 
-A FACTORY unit produces no finished units if it is IDLE or inactive.
-
-FACTORY units that are not assigned to a FACTORY GROUP are inactive (idle) - they will not manufacture any unit.
-
-A FACTORY unit produces finished units the first TURN that it is active.
-
-A FACTORY unit produces finished units the last TURN that it is active. 
-
-FACTORY units manufacture (produce) all goods except
-
-. Food
-. Population
-. Refined Materials
-.. Gold
-.. Fuel
-.. Metal
-.. Non-Metallic
-
-If the FACTORY unit is active this TURN and was active the prior TURN, it will produce finished goods per the production chart.
-Otherwise, it will produce nothing.
+|anti-missile|2 * TL|2 * TL >|0 >|0
+|assault-craft|3 * TL|2 * TL >|0 >|0
+|assault-weapon|1 * TL|1 * TL >|0 >|0
+|automation|2 * TL|2 * TL >|0 >|0
+|consumer-goods >|0.20 >|0.40 >|0 >|0
+|energy-shield|25 * TL|25 * TL >|0 >|0
+|energy-weapon|5 * TL|5 * TL >|0 >|0
+|factory|8 + TL|4 + TL >|0 >|0
+|farm|4 + TL|2 + TL >|0 >|0
+|hyper-drive|25 * TL|20 * TL >|0 >|0
+|life-support|3 * TL|5 * TL >|0 >|0
+|light-structuralLSU >|0.01 >|0.04 >|0 >|0
+|military-robot|10 + TL|10 + TL >|0 >|0
+|military-supplies >|0.02 >|0.02 >|0 >|0
+|mine|5 + TL|5 + TL >|0 >|0
+|missile|2 * TL|2 * TL >|0 >|0
+|missile-launcher|15 * TL|10 * TL >|0 >|0
+|sensor|10 * TL|20 * TL >|0 >|0
+|space-drive|15 * TL|10 * TL >|0 >|0
+|structural >|0.10 >|0.40 >|0 >|0
+|transport|3 * TL|1 * TL >|0 >|0
+|===
 
 === Location
 FACTORY units may be assembled only on COLONY units.
 FACTORY units may not be assembled on SHIP units.
 Players may not assemble FACTORY units anywhere other than a COLONY.
 
+.Factory Location
+|===
+|Unit-TechLevel ^|Orbits ^|Open Colony ^|Enclosed Colony ^|Orbital Colony ^|Ship
+
+|factory-1 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-2 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-3 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-4 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-5 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-6 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-7 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-8 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-9 ^|any ^|yes ^|yes ^|yes ^|no
+|factory-10 ^|any ^|yes ^|yes ^|yes ^|no
+|===
+
 === Groups
-FACTORY units must be assigned to a FACTORY GROUP before they can be activated.
-A FACTORY unit is inactive if is it not assigned to a FACTORY GROUP.
+Factory units must be assigned to a factory group before they can be activated.
+A factory unit is inactive if is it not assigned to a factory group.
+
+The factory group can have factory units from different tech levels.
+The entire factory group will produce the same item.
 
 === Fuel
 FACTORY units require fuel to be active.
@@ -491,7 +558,20 @@ FG1098 can consume a total of              5,385 MU/turn
 
 If a FACTORY GROUP does not have a full allocation of raw materials, it will use the SHORTAGE rules for the current TURN.
 
+FACTORY units that are not assigned to a FACTORY GROUP are inactive (idle) - they will not manufacture any unit.
+
+A FACTORY unit produces finished units the first TURN that it is active.
+
+A FACTORY unit produces finished units the last TURN that it is active.
+
 === Shortages
+Shortages in labor or fuel result in lost production.
+Materials being produced by the mine unit are not lost,
+but they do not move to the next stage in the production pipeline, either.
+
+Shortages will be applied to the mine units in Stage 1, then Stage 2, and finally to Stage 3.
+
+
 A FACTORY GROUP will be unable to produce its full output when there is a shortage of fuel, labor, or raw materials.
 
 The FACTORY GROUP will use as much of its input fuel, labor, or raw materials as it can;
@@ -503,11 +583,17 @@ The shortage will then flow into the following stages.
 The shortage will be spread across all factory groups in the colony.
 It will be assessed proportionally.
 
-NOTE: Players should be able to prioritize the resources per factory group
+NOTE: ((TODO)): Players should be able to prioritize the resources per factory group
 (or maybe by finished good).
 "If there's a shortage of steel, make tanks before spoons."
 
 === Production
+If the FACTORY unit is active this TURN and was active the prior TURN, it will produce finished goods per the production chart.
+Otherwise, it will produce nothing.
+
+The tech level of the finished goods is not limited by the factory units in the group.
+It is limited by the tech level of the colony.
+
 COLONY units are the only UNIT that may install FACT units and manufacture (produce) finished goods.
 Players may not activate FACT units anywhere other than a COLONY.
 
