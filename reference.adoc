@@ -17,7 +17,7 @@ Wraith Reference Manual is licensed under a Creative Commons Attribution-NonComm
 You should have received a copy of the license along with this work.
 If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
 
-TIP: This document is meant to be concise and definitive.
+WARNING: This document is meant to be concise and definitive.
 That makes it a terrible source for learning the game.
 The User's Guide is the recommended source for getting started.
 
@@ -80,31 +80,31 @@ All _orders_ for a given _phase_ are executed before the next _phase_ begins.
 Within a phase, _orders_ are executed in the order they were issued by the player.
 
 == Fuel Allocation Phase
-The number of FUEL units available to every colony and ship is calculated.
+The number of fuel units available to every colony and ship is calculated.
 
-FUEL allocations are prioritized:
+Fuel allocations are prioritized:
 
-. LIFE SUPPORT units
-. FARM units
-. MINE units
-. FACTORY units
+. Life-support units
+. Farm units
+. Mine units
+. Factory units
 
-Remaining FUEL is immediately moved to STORAGE.
-If there are not enough STORAGE available on the colony or ship,
-excess FUEL is lost.
+Excess fuel is immediately moved to storage.
+If there is not enough storage available on the colony or ship, excess fuel is lost.
 
-FUEL units in STORAGE are available for use in the remaining phases.
+Fuel units in storage are available for use in the remaining phases.
+(They are one of the few units that can be consumed directly from storage.)
 
-TIP: FUEL units are only produced via mining.
-They are not available for use until the TURN after they've been mined.
-There are some rather complicated exceptions to this rule.
+TIP: Fuel units are only produced via mining.
+They are not available for use until the turn after they've been mined.
 
 === Stored vs Operational vs Active
 Items that are in storage never consume fuel.
 
 Items that are operational may use fuel every turn or only those turns that they're used.
 
-Active is an operational item that has the required fuel and labor to be used.
+An operational item that has the required fuel and labor is active and ready to be used.
+All other units are inactive.
 
 == Life Support Phase
 The number of operational life-support units is counted.
@@ -116,7 +116,7 @@ They do not require labor units.
 
 .Life Support Fuel Chart
 |===
-|Unit-TechLevel|FUEL per UNIT per TURN
+|Unit-TechLevel|Fuel per Unit per Turn
 
 |life-support-1|1
 |life-support-2|2
@@ -152,8 +152,8 @@ TIP: Population in cryo-sleep are not counted.
 |life-support-10|100
 |===
 
-The excess population are removed immediately.
-The casualties are distributed uniformly across all population groups on the colony or ship.
+The excess population is removed immediately.
+These casualties are distributed uniformly across all population groups on the colony or ship.
 
 If a colony or ship takes on too many passengers in a later phase, the excess population will be removed.
 
@@ -164,149 +164,217 @@ If the units are shut down for any reason, the capacity will be recalculated and
 This includes sabotage and damage in combat.
 
 == Farming Production Phase
-The number of food units produced by active farm units is calculated.
+Farm units produce food units to feed the population.
+Without sufficient food, the population will starve and rebel.
+
+The number of food units produced by active farm units is calculated in this phase.
 The food units are moved to local depots for temporary storage.
 
-A farm unit produces no food units if it is not active.
+A farm unit produces no food units if it is has not been active for at least two consecutive turns.
 
 A farm unit produces no food units the first turn that it is active.
 
 === Fuel
-FARM units require FUEL to be ACTIVE.
-If a FARM unit does not have a full allocation of FUEL,
-it is INACTIVE for the current TURN.
+Farm units require fuel or solar-power to be active.
+If a farm unit does not have a full allocation of fuel or solar-power, it is inactive for the turn.
 
 .Farming Fuel Chart
 |===
-|CODE|FUEL per UNIT per TURN|Sunlight|Can use Solar Power?
+|Unit-TechLevel|Fuel per Unit per Turn
 
-|FARM-1 >|0.5|Natural|No
-|FARM-2 >|1.0|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-3 >|1.5|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-4 >|2.0|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-5 >|2.5|Natural|Yes, if on Orbital Station in orbits 1..5
-|FARM-6 >|6.0|Artificial|No
-|FARM-7 >|7.0|Artificial|No
-|FARM-8 >|8.0|Artificial|No
-|FARM-9 >|9.0|Artificial|No
-|FARM-10 >|10.0|Artificial|No
+|farm-1 >|0.5
+|farm-2 >|1.0
+|farm-3 >|1.5
+|farm-4 >|2.0
+|farm-5 >|2.5
+|farm-6 >|6.0
+|farm-7 >|7.0
+|farm-8 >|8.0
+|farm-9 >|9.0
+|farm-10 >|10.0
 |===
 
-If the FARM unit can use Solar Power, its FUEL cost drops to 0 FUEL units per TURN.
+==== Solar Power
+Some farm units that are on orbital colonies in the first five orbits are solar-powered and consume no fuel.
+
+.Farming Solar Power Chart
+|===
+|Unit-TechLevel|Light Source|Can use Solar Power?
+
+|farm-1 >|Sunlight|No
+|farm-2 >|Sunlight|Yes, if on Orbital Station in orbits 1..5
+|farm-3 >|Sunlight|Yes, if on Orbital Station in orbits 1..5
+|farm-4 >|Sunlight|Yes, if on Orbital Station in orbits 1..5
+|farm-5 >|Sunlight|Yes, if on Orbital Station in orbits 1..5
+|farm-6 >|Lamps|No
+|farm-7 >|Lamps|No
+|farm-8 >|Lamps|No
+|farm-9 >|Lamps|No
+|farm-10 >|Lamps|No
+|===
+
+If a farm unit can use solar-power, its fuel cost drops to 0 fuel units per turn.
 
 === Labor
-FARM units require labor to be ACTIVE.
-If a FARM unit does not have a full allocation of labor,
-it is INACTIVE for the current TURN.
+Farm units require labor to be active.
+If a farm unit does not have a full allocation of labor, it is inactive for the current turn.
 
 .Farming Labor Chart
 |===
-|CODE|PROFESSIONAL Units|UNSKILLED WORKER Units
+|Unit-TechLevel|Professional units per Farm unit|Unskilled-Worker units per Farm unit
 
-|FARM|1 per FARM unit|3 per FARM unit
+|farm-1 >|1 >|3
+|farm-2 >|2 >|6
+|farm-3 >|3 >|9
+|farm-4 >|4 >|12
+|farm-5 >|5 >|15
+|farm-6 >|6 >|18
+|farm-7 >|7 >|21
+|farm-8 >|8 >|24
+|farm-9 >|9 >|27
+|farm-10 >|10 >|30
 |===
 
-Farming automation units may replace a number of UNSKILLED WORKER units equal to their Tech Level.
-For example, an AUTO-3 may replace 3 UNSKILLED WORKER units.
-
-=== Shortages
-Todo...
+Unskilled-Worker units may be replaced by automation units.
 
 === Production
-If the FARM unit is ACTIVE this TURN and was active the prior TURN,
-it will produce FOOD per the following chart.
+Farm units will produce food after they have been active for two consecutive turns.
+In other words, if the farm unit is active this turn and was active the prior turn,
+it will produce food units per the following chart.
 
 .Farming Production Chart
 |===
-|CODE|Production per UNIT per YEAR
+|Unit-TechLevel|Production per Unit per Turn
 
-|FARM-1|100 FOOD
-|FARM-2|40 FOOD
-|FARM-3|60 FOOD
-|FARM-4|80 FOOD
-|FARM-5|100 FOOD
-|FARM-6|120 FOOD
-|FARM-7|140 FOOD
-|FARM-8|160 FOOD
-|FARM-9|180 FOOD
-|FARM-10|200 FOOD
+|farm-1|25
+|farm-2|10
+|farm-3|15
+|farm-4|20
+|farm-5|25
+|farm-6|30
+|farm-7|35
+|farm-8|40
+|farm-9|45
+|farm-10|50
 |===
 
-1 FOOD unit will feed 4 population units and has a mass of 6 MASS units (MUs).
-TODO: this is the wrong place for this information.
+=== Shortages
+Shortages in labor or fuel result in lost production.
+All food being produced by the farm unit is lost.
 
-== Mining Phase
-A MINE unit produces no raw material units if it is INACTIVE.
+== Mining Production Phase
+Mine units extract natural resources by mining, drilling, and even logging.
+They refine the raw materials and produce metallic and non-metallic ores, fuels, and gold that are used by factories, colonies, and ships.
+Factories use metallic and non-metallic ores to build units.
+Fuels, which are any power source, power factories, colonies, and ships.
+Gold (any precious substance) is used to pay the population and trade with other nations.
 
-A MINE unit produces no raw material units the first TURN that it is ACTIVE.
+Mine units require fuel or solar-power to be active.
+If a mine unit does not have a full allocation of fuel or solar-power, it is inactive for the turn.
+
+Mine units produce no raw materials until they have been active for four consecutive turns.
 
 === Fuel
-MINE units require FUEL to be ACTIVE.
-If a MINE unit does not have a full allocation of FUEL,
-it is INACTIVE for the current TURN.
+Mine units require fuel or solar-power to be active.
+If a mine unit does not have a full allocation of fuel or solar-power, it is inactive for the turn.
 
 .Mining Fuel Chart
 |===
-|CODE|Fuel per UNIT per TURN|Can use Solar Power?
+|Unit-TechLevel|Fuel per Unit per Turn|Can use Solar Power?
 
-|MINE|TL * 0.5|No
+|mine-1 >|0.5|no
+|mine-2 >|1.0|no
+|mine-3 >|1.5|no
+|mine-4 >|2.0|no
+|mine-5 >|2.5|no
+|mine-6 >|3.0|no
+|mine-7 >|3.5|no
+|mine-8 >|4.0|no
+|mine-9 >|4.5|no
+|mine-10 >|5.0|no
 |===
 
-If the MINE unit can use Solar Power, its FUEL cost drops to 0 FUEL units per TURN.
+If a mine unit can use solar-power, its fuel cost drops to 0 fuel units per turn.
 
 === Labor
-MINE units require labor to be ACTIVE.
-If a MINE unit does not have a full allocation of labor,
-it is INACTIVE for the current TURN.
+Mine units require labor to be active.
+If a mine unit does not have a full allocation of labor, it is inactive for the current turn.
 
 .Mining Labor Chart
 |===
-|CODE|PROFESSIONAL Units|UNSKILLED WORKER Units
+|Unit-TechLevel|Professional units per Farm unit|Unskilled-Worker units per Farm unit
 
-|MINE|1 per MINE unit|3 per MINE unit
+|mine-1 >|1 >|3
+|mine-2 >|2 >|6
+|mine-3 >|3 >|9
+|mine-4 >|4 >|12
+|mine-5 >|5 >|15
+|mine-6 >|6 >|18
+|mine-7 >|7 >|21
+|mine-8 >|8 >|24
+|mine-9 >|9 >|27
+|mine-10 >|10 >|30
 |===
 
-Note that mining automation units may replace UNSKILLED WORKER units at a TODO rate.
-
-Mining automation units may replace a number of UNSKILLED WORKER units equal to their Tech Level.
-For example, an AUTO-3 may replace 3 UNSKILLED WORKER units.
-
-=== Shortages
-Todo...
+Unskilled-Worker units may be replaced by automation units.
 
 === Production
-If the MINE unit is ACTIVE this TURN and was active the prior TURN,
-it will produce raw materials per the following chart.
+Mine units will produce refined materials after they have been active for four consecutive turns.
+In other words, if the mine unit is active this turn and was active the prior three turns,
+it will produce units per the following chart.
 
 .Mining Production Chart
 |===
-|CODE|Production per UNIT per YEAR
+|Unit-TechLevel|Production per Unit per Turn
 
-|MINE|100 * TL MASS UNITS (MU) of raw materials
+|mine-1 >|25 MU * Yield%
+|mine-2 >|50 MU * Yield%
+|mine-3 >|75 MU * Yield%
+|mine-4 >|100 MU * Yield%
+|mine-5 >|125 MU * Yield%
+|mine-6 >|150 MU * Yield%
+|mine-7 >|175 MU * Yield%
+|mine-8 >|200 MU * Yield%
+|mine-9 >|225 MU * Yield%
+|mine-10 >|250 MU * Yield%
 |===
 
-== Manufacturing Phase
+NOTE: The amount of refined materials depends upon the yield of the deposit being worked.
+A mine-8 working a deposit with a yield of 10% would produce 20 mass units of refined materials per turn.
+
+=== Shortages
+Shortages in labor or fuel result in lost production.
+Materials being produced by the mine unit are not lost,
+but they do not move to the next stage in the production pipeline, either.
+
+== Factory Production Phase
+Factories produce all units except for food, metals, non-metals, fuel, gold, and population units.
+
 The amount of finished goods produced by factory groups is calculated in this phase.
 
 A FACTORY GROUP is a set of FACTORY units assigned to work together to build a common finished good.
 
 FACTORY units are the only units that can convert fuel and raw materials into finished goods.
 
-A FACTORY unit produces no finished units if it is IDLE or INACTIVE.
+A FACTORY unit produces no finished units if it is IDLE or inactive.
 
-FACTORY units that are not assigned to a FACTORY GROUP are INACTIVE (idle) - they will not manufacture any unit.
+FACTORY units that are not assigned to a FACTORY GROUP are inactive (idle) - they will not manufacture any unit.
 
-A FACTORY unit produces finished units the first TURN that it is ACTIVE.
+A FACTORY unit produces finished units the first TURN that it is active.
 
-A FACTORY unit produces finished units the last TURN that it is ACTIVE. 
+A FACTORY unit produces finished units the last TURN that it is active. 
 
 FACTORY units manufacture (produce) all goods except
 
-. Raw Materials -- GOLD, FUEL, METAL, and NON-METALLIC units
-. FOOD units
-. POPULATION units
+. Food
+. Population
+. Refined Materials
+.. Gold
+.. Fuel
+.. Metal
+.. Non-Metallic
 
-If the FACTORY unit is ACTIVE this TURN and was active the prior TURN, it will produce finished goods per the production chart.
+If the FACTORY unit is active this TURN and was active the prior TURN, it will produce finished goods per the production chart.
 Otherwise, it will produce nothing.
 
 === Location
@@ -316,10 +384,10 @@ Players may not assemble FACTORY units anywhere other than a COLONY.
 
 === Groups
 FACTORY units must be assigned to a FACTORY GROUP before they can be activated.
-A FACTORY unit is INACTIVE if is it not assigned to a FACTORY GROUP.
+A FACTORY unit is inactive if is it not assigned to a FACTORY GROUP.
 
 === Fuel
-FACTORY units require fuel to be ACTIVE.
+FACTORY units require fuel to be active.
 The fuel source may be solar power or FUEL units.
 
 FACTORY units that are on orbiting colonies in orbits 1 through 5 use solar fuel.
@@ -334,12 +402,12 @@ All other FACTORY units must use FUEL units per the following chart.
 |FACT|TL * 0.5|Yes, if on Orbital Station in orbits 1..5
 |===
 
-Note: INACTIVE FACTORY units never consume FUEL units.
+Note: inactive FACTORY units never consume FUEL units.
 
 If a FACTORY GROUP does not have a full allocation of fuel, it will use the SHORTAGE rules for the current TURN.
 
 === Labor
-FACTORY units require labor to be ACTIVE.
+FACTORY units require labor to be active.
 The amount of labor is determined by the total number of units in the FACTORY GROUP.
 
 If a FACTORY GROUP does not have a full allocation of labor, it will use the SHORTAGE rules for the current TURN.
@@ -367,7 +435,7 @@ Players may rely on the inverse of this chart.
 For example,
 if the player allocates 3 PROFESSIONAL units and 9 UNSKILLED WORKER units to a FACTORY GROUP,
 up to 4,999 FACTORY units may be activated in the group.
-All excess FACTORY units in the group are INACTIVE that TURN.
+All excess FACTORY units in the group are inactive that TURN.
 
 === Raw Materials
 The manufacturing pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
@@ -2093,6 +2161,40 @@ Ships that have trading rights with the market may use it only while in the same
 [appendix]
 == Units
 
+.Units Summary
+|===
+|Unit|Code|Mass per Unit|Description
+
+|anti-missile|ANM-TL >|?|
+|assault-craft|ASC-TL >|?|
+|assault-weapon|ASW-TL >|?|
+|automation|AUT-TL >|?|
+|consumer-goods|CNGD >|?|
+|energy-shield|ESH-TL >|?|
+|energy-weapon|EWP-TL >|?|
+|factory|FCT-TL >|?|
+|farm|FRM-TL >|?|
+|food|FOOD >|6|
+|fuel|FUEL >|?|
+|gold|GOLD >|?|
+|hyper-drive|HDR-TL >|?|
+|life-support|LSP-TL >|?|
+|light-structural|LTSU >|?|
+|metallics|MTLS >|?|
+|military-robots|MLR-TL >|?|
+|military-supplies|MLSP >|?|
+|mine|MIN-TL >|?|
+|missile|MSS-TL >|?|
+|missile-launcher|MSL-TL >|?|
+|non-metallics|NMTS >|?|
+|sensor|SNR-TL >|?|
+|space-drive|SDR-TL >|?|
+|structural|STUN >|?|
+|super-light-structural|SLSU >|?|
+|transport|TPT-TL >|?|
+|===
+
+
 === Anti-Missile
 === Assault Craft
 === Assault Weapon
@@ -2123,12 +2225,21 @@ An AUTO unit may not be split between groups.
 === Factory
 === Farm
 === Food
+Food units are used to feed the population.
+
 .Food Summary
 |===
-|CODE|Feeds per UNIT|Mass per UNIT|Fuel per UNIT per TURN
+|Unit|Feed per Unit
 
-|FOOD|4 POPULATION units (400 people)|6 MU|0 FUEL units
+|FOOD|4 Population units
 |===
+
+The amount of food distributed to the population is determined by `ration` orders.
+Order less than a full ration (0.25 food units per population unit) may lead to rebellion and starvation.
+The minimum amount needed to prevent starvation is 0.0625 food units per population unit.
+
+NOTE: The game engine doesn't round consistently;
+this is a bug that will be fixed.
 
 === Hyper-Drive
 .Hyper-Drive Summary

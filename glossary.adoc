@@ -132,7 +132,7 @@ drone::
 Define this, please.
 
 enclosed colony::
-An _enclosed colony_ is built on the surface of an uninhabitable *terrestial planet*, a moon of a *gas giant* or on an asteroid in an *asteroid belt*.
+An _enclosed colony_ is built on the surface of an uninhabitable *terrestial planet*, a moon of a *gas giant*, or on an asteroid in an *asteroid belt*.
 Enclosed colonies require *life support* units to sustain *population* units.
 
 energy weapon unit::
@@ -142,19 +142,24 @@ energy shield unit::
 Define this, please.
 
 factory unit::
-Define this, please.
+A _factory_ produces all units in the game except for *food*, *fuel*, *gold*, *metal*, and *non-metal* units.
+Factory units are the only units that can convert fuel and raw materials into finished goods.
+Factory units must be added to a *factory group* before they can produce anything.
 
 factory group::
-Define this, please.
+A _factory group_ is a set of *factory* units assigned to work together as part of a common assembly line.
+The factory units do not have to be the same *tech level*.
+Due to economy of scale, larger groups need fewer manager and workers per factory unit to operate.
 
 farm unit::
-Define this, please.
+A _farm_ unit produces food for the general population.
+Farms can be built on the surface of habitable terrestrial planets, in enclosed and orbital colonies, or on ships.
 
 FG::
 _FG_ is the prefix for a *factory group* identifier.
 
 finished product::
-Define this, please.
+A _finished product_ is any unit built by a *factory group*.
 
 food unit::
 A _food_ unit represents a consumable source of energy for *population* units that can be stored and transported.
