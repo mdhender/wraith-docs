@@ -390,7 +390,7 @@ A mine-8 working a deposit with a yield of 10% would produce 20 mass units of re
 === Shortages
 Shortages in labor or fuel result in lost production.
 Materials being produced by the mine unit are not lost,
-but they do not move to the next stage in the production pipeline, either.
+but they do not move to the next stage in the processing pipeline, either.
 
 Shortages will be applied to the mine units in Stage 1, then Stage 2, and finally to Stage 3.
 
@@ -521,14 +521,14 @@ If a factory group does not have a full allocation of labor, it will use the sho
 
 TIP: Automation units may replace unskilled-worker units.
 
-=== Raw Materials
-The manufacturing pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
-This allows factory groups to produce different goods.
+=== Production
+Production is highly abstracted in this game.
+Each factory unit consumes up to 5 mass units (MUs) of refined materials per turn for four turns.
+At the end of the fourth turn, the factory unit produces the finished good.
 
-Each FACT in a FACTORY GROUP requires raw materials to produce finished goods.
-Every type of finished good requires a set of raw materials per the following chart:
+The quantity and type of inputs needed for each finished good is per the following chart:
 
-.Factory Production Raw Materials Chart
+.Factory Production Refined Materials Chart
 |===
 |Unit|Metallic units|Non-Metallic units|Gold units|Fuel units
 
@@ -555,68 +555,25 @@ Every type of finished good requires a set of raw materials per the following ch
 |transport|3 * TL|1 * TL >|0 >|0
 |===
 
-Each FACT in a FACTORY group can consume up to 5 MASS units (MUs) per TL per TURN in raw materials.
+NOTE: The quantity of materials needed for most items is based on the tech level of the finished good.
 
-.Factory Input Example
-----
-FACT-1 -> 1 TL * 5 MU/TL/turn ->  5 MU/turn
-FACT-3 -> 3 TL * 5 MU/TL/turn -> 15 MU/turn
-----
-
-The FACTORY GROUP can consume the total of all FACT units in the group.
-
-.Factory Group Input Example
-----
-FG1098 has 123 FACT-1 and 318 FACT-3 units
-  FACT-1 -> 123 units *  5 MU/turn/unit ->   615 MU/turn
-  FACT-3 -> 318 units * 15 MU/turn/unit -> 4,770 MU/turn
-FG1098 can consume a total of              5,385 MU/turn
-----
-
-If a FACTORY GROUP does not have a full allocation of raw materials, it will use the SHORTAGE rules for the current TURN.
-
-FACTORY units that are not assigned to a FACTORY GROUP are inactive (idle) - they will not manufacture any unit.
-
-A FACTORY unit produces finished units the first TURN that it is active.
-
-A FACTORY unit produces finished units the last TURN that it is active.
-
-=== Shortages
-Shortages in labor or fuel result in lost production.
-Materials being produced by the mine unit are not lost,
-but they do not move to the next stage in the production pipeline, either.
-
-Shortages will be applied to the mine units in Stage 1, then Stage 2, and finally to Stage 3.
-
-
-A FACTORY GROUP will be unable to produce its full output when there is a shortage of fuel, labor, or raw materials.
-
-The FACTORY GROUP will use as much of its input fuel, labor, or raw materials as it can;
-the excess units will be returned to the "central depot" for allocation in future turns.
-
-Shortages always impact the first stage of the manufacturing pipeline.
-The shortage will then flow into the following stages.
-
-The shortage will be spread across all factory groups in the colony.
-It will be assessed proportionally.
-
-NOTE: ((TODO)): Players should be able to prioritize the resources per factory group
-(or maybe by finished good).
-"If there's a shortage of steel, make tanks before spoons."
-
-=== Production
 If the FACTORY unit is active this TURN and was active the prior TURN, it will produce finished goods per the production chart.
 Otherwise, it will produce nothing.
 
 The tech level of the finished goods is not limited by the factory units in the group.
 It is limited by the tech level of the colony.
 
-COLONY units are the only UNIT that may install FACT units and manufacture (produce) finished goods.
-Players may not activate FACT units anywhere other than a COLONY.
-
-Unless otherwise stated, it takes 4 TURNS (one YEAR) to manufacture a finished good.
-Adding more FACT units to a FACTORY GROUP will consume more raw materials, which increases the amount of finished goods;
+WARNING: Unless otherwise stated, it takes 4 turns to manufacture a finished good.
+Adding more factory units to a factory group will consume more refined materials,
+which increases the amount of finished goods;
 it will not reduce the amount of time needed to manufacture the finished goods.
+
+=== Shortages
+Shortages in labor or fuel result in lost production.
+Goods being produced by the factory unit are not lost,
+but they do not move to the next stage in the production pipeline, either.
+
+Shortages will be applied to the factory units in Stage 1, then Stage 2, and finally to Stage 3.
 
 == Combat Phase
 All orders in the Combat phase are executed in the order that they're entered in the orders file.
