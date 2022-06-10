@@ -175,7 +175,7 @@ A farm unit produces no food units if it is has not been active for at least two
 A farm unit produces no food units the first turn that it is active.
 
 === Location
-The tech level of the farm unit determines where it may be built.
+Farm units may be installed in locations per the following chart:
 
 .Farm Location Chart
 |===
@@ -291,8 +291,7 @@ Fuels, which are any power source, power factories, colonies, and ships.
 Gold (any precious substance) is used to pay the population and trade with other nations.
 
 === Location
-Mine units may only be built in surface colonies.
-They may not be built in a ship or orbital colony.
+Mine units may be installed in locations per the following chart:
 
 .Mine Location Chart
 |===
@@ -311,12 +310,14 @@ They may not be built in a ship or orbital colony.
 |===
 
 === Groups
-Mining groups are assigned to each deposit.
-Each deposit may be worked by only one mining group.
-(This prevents multiple nations from extracting raw materials from the same deposit.)
-
 Mine units must be assigned to a mining group before they can be activated.
 A mine unit is inactive if is it not assigned to a mining group.
+
+The mining group can have mine units from different tech levels.
+
+One mining group is assigned to each deposit.
+Each deposit may be worked by only one mining group.
+(This prevents multiple nations from extracting raw materials from the same deposit.)
 
 === Fuel
 Mine units require fuel or solar-power to be active.
@@ -342,11 +343,11 @@ If a mine unit can use solar-power, its fuel cost drops to 0 fuel units per turn
 
 === Labor
 Mine units require labor to be active.
-If a mine unit does not have a full allocation of labor, it is inactive for the current turn.
+If a mine unit does not have a full allocation of labor, it is inactive for the turn.
 
 .Mining Labor Chart
 |===
-|Unit-TechLevel|Professional units per Farm unit|Unskilled-Worker units per Farm unit
+|Unit-TechLevel|Professional units per Mine unit|Unskilled-Worker units per Mine unit
 
 |mine-1 >|1 >|3
 |mine-2 >|2 >|6
@@ -396,39 +397,40 @@ Shortages will be applied to the mine units in Stage 1, then Stage 2, and finall
 == Factory Production Phase
 The amount of finished goods produced by factory groups is calculated in this phase.
 
-Factories produce the following finished goods.
+Factories produce the following finished goods:
 
 .Factory Finished Goods
 |===
-|Unit|METALLIC Units|NON-METALLIC Units|GOLD Units|FUEL Units
+|Unit
 
-|anti-missile|2 * TL|2 * TL >|0 >|0
-|assault-craft|3 * TL|2 * TL >|0 >|0
-|assault-weapon|1 * TL|1 * TL >|0 >|0
-|automation|2 * TL|2 * TL >|0 >|0
-|consumer-goods >|0.20 >|0.40 >|0 >|0
-|energy-shield|25 * TL|25 * TL >|0 >|0
-|energy-weapon|5 * TL|5 * TL >|0 >|0
-|factory|8 + TL|4 + TL >|0 >|0
-|farm|4 + TL|2 + TL >|0 >|0
-|hyper-drive|25 * TL|20 * TL >|0 >|0
-|life-support|3 * TL|5 * TL >|0 >|0
-|light-structuralLSU >|0.01 >|0.04 >|0 >|0
-|military-robot|10 + TL|10 + TL >|0 >|0
-|military-supplies >|0.02 >|0.02 >|0 >|0
-|mine|5 + TL|5 + TL >|0 >|0
-|missile|2 * TL|2 * TL >|0 >|0
-|missile-launcher|15 * TL|10 * TL >|0 >|0
-|sensor|10 * TL|20 * TL >|0 >|0
-|space-drive|15 * TL|10 * TL >|0 >|0
-|structural >|0.10 >|0.40 >|0 >|0
-|transport|3 * TL|1 * TL >|0 >|0
+|anti-missile
+|assault-craft
+|assault-weapon
+|automation
+|consumer-goods
+|energy-shield
+|energy-weapon
+|factory
+|farm
+|hyper-drive
+|life-support
+|light-structural
+|military-robot
+|military-supplies
+|mine
+|missile
+|missile-launcher
+|sensor
+|space-drive
+|structural
+|transport
 |===
 
+NOTE: The tech level of finished goods is determined by the colony's tech level.
+The factory unit's tech level is used only to calculate input and output values.
+
 === Location
-FACTORY units may be assembled only on COLONY units.
-FACTORY units may not be assembled on SHIP units.
-Players may not assemble FACTORY units anywhere other than a COLONY.
+Factory units may be installed in locations per the following chart:
 
 .Factory Location
 |===
@@ -454,55 +456,70 @@ The factory group can have factory units from different tech levels.
 The entire factory group will produce the same item.
 
 === Fuel
-FACTORY units require fuel to be active.
-The fuel source may be solar power or FUEL units.
-
-FACTORY units that are on orbiting colonies in orbits 1 through 5 use solar fuel.
-These units require no other fuel source to operate at full capacity.
-
-All other FACTORY units must use FUEL units per the following chart.
+Factory units require fuel or solar-power to be active.
+If a factory unit does not have a full allocation of fuel or solar-power, it is inactive for the turn.
 
 .Factory Fuel Chart
 |===
-|CODE|Fuel per UNIT per TURN|Can use Solar Power?
+|Unit-TechLevel|Fuel per Unit per Turn
 
-|FACT|TL * 0.5|Yes, if on Orbital Station in orbits 1..5
+|factory-1 >|0.5
+|factory-2 >|1.0
+|factory-3 >|1.5
+|factory-4 >|2.0
+|factory-5 >|2.5
+|factory-6 >|6.0
+|factory-7 >|7.0
+|factory-8 >|8.0
+|factory-9 >|9.0
+|factory-10 >|10.0
 |===
 
-Note: inactive FACTORY units never consume FUEL units.
+Note: Inactive factory units never consume fuel.
 
-If a FACTORY GROUP does not have a full allocation of fuel, it will use the SHORTAGE rules for the current TURN.
+==== Solar Power
+Some factory units that are on orbital colonies in the first five orbits are solar-powered and consume no fuel.
+
+.Factory Solar Power Chart
+|===
+|Unit-TechLevel|Can use Solar Power?
+
+|factory-1 >|Yes, if on Orbital Station in orbits 1..5
+|factory-2 >|Yes, if on Orbital Station in orbits 1..5
+|factory-3 >|Yes, if on Orbital Station in orbits 1..5
+|factory-4 >|Yes, if on Orbital Station in orbits 1..5
+|factory-5 >|Yes, if on Orbital Station in orbits 1..5
+|factory-6 >|Yes, if on Orbital Station in orbits 1..5
+|factory-7 >|Yes, if on Orbital Station in orbits 1..5
+|factory-8 >|Yes, if on Orbital Station in orbits 1..5
+|factory-9 >|Yes, if on Orbital Station in orbits 1..5
+|factory-10 >|Yes, if on Orbital Station in orbits 1..5
+|===
+
+If a factory unit can use solar-power, its fuel cost drops to 0 fuel units per turn.
 
 === Labor
-FACTORY units require labor to be active.
-The amount of labor is determined by the total number of units in the FACTORY GROUP.
+Factory units require labor to be active.
+The amount of labor is determined by the total number of factory units in the group.
+The efficiency of a factory group improves as more factory units are added.
 
-If a FACTORY GROUP does not have a full allocation of labor, it will use the SHORTAGE rules for the current TURN.
-
-The efficiency of a FACTORY GROUP improves as more FACTORY units are added.
-The following chart shows the number of labor units needed based on the total number of FACTORY units in the GROUP.
+The following chart shows the number of labor units needed based on the total number of factory units in the group:
 
 .Factory Group Labor Chart
 |===
-|CODE|Size|PROFESSIONAL units|UNSKILLED WORKER units
+|Size|Professional units per Factory unit|Unskilled-Worker units per Factory unit
 
-|FACTORY GROUP|1 - 4 FACTORY units|6 per FACTORY unit|18 per FACTORY unit
-|FACTORY GROUP|5 - 49 FACTORY units|5 per FACTORY unit|15 per FACTORY unit
-|FACTORY GROUP|50 - 499 FACTORY units|4 per FACTORY unit|12 per FACTORY unit
-|FACTORY GROUP|500 - 4,999 FACTORY units|3 per FACTORY unit|9 per FACTORY unit
-|FACTORY GROUP|5,000 - 49,999 FACTORY units|2 per FACTORY unit|6 per FACTORY unit
-|FACTORY GROUP|50,000 - up FACTORY units|1 per FACTORY unit|3 per FACTORY unit
+>|1 - 4 factory units|6|18
+>|5 - 49 factory units|5|15
+>|50 - 499 factory units|4|12
+>|500 - 4,999 factory units|3|9
+>|5,000 - 49,999 factory units|2|6
+>|50,000 - up factory units|1|3
 |===
 
-TIP: factory automation units may replace UNSKILLED WORKER units at a TODO rate.
+If a factory group does not have a full allocation of labor, it will use the shortage rules for the turn.
 
-Note: the ratio of UNSKILLED WORKER to PROFESSIONAL units is 3 to 1.
-
-Players may rely on the inverse of this chart.
-For example,
-if the player allocates 3 PROFESSIONAL units and 9 UNSKILLED WORKER units to a FACTORY GROUP,
-up to 4,999 FACTORY units may be activated in the group.
-All excess FACTORY units in the group are inactive that TURN.
+TIP: Automation units may replace unskilled-worker units.
 
 === Raw Materials
 The manufacturing pipeline is abstracted into MASS units (MU) of raw materials input and finished goods output.
@@ -511,31 +528,31 @@ This allows factory groups to produce different goods.
 Each FACT in a FACTORY GROUP requires raw materials to produce finished goods.
 Every type of finished good requires a set of raw materials per the following chart:
 
-.Production Raw Materials Chart
+.Factory Production Raw Materials Chart
 |===
-|CODE|METALLIC Units|NON-METALLIC Units|GOLD Units|FUEL Units
+|Unit|Metallic units|Non-Metallic units|Gold units|Fuel units
 
-|AMSL|2 * TL|2 * TL >|0 >|0
-|ATKC|3 * TL|2 * TL >|0 >|0
-|ATKW|1 * TL|1 * TL >|0 >|0
-|AUTO|2 * TL|2 * TL >|0 >|0
-|CGDS >|0.20 >|0.40 >|0 >|0
-|ENSH|25 * TL|25 * TL >|0 >|0
-|ENWP|5 * TL|5 * TL >|0 >|0
-|FACT|8 + TL|4 + TL >|0 >|0
-|FARM|4 + TL|2 + TL >|0 >|0
-|HDRV|25 * TL|20 * TL >|0 >|0
-|LFSP|3 * TL|5 * TL >|0 >|0
-|LSU >|0.01 >|0.04 >|0 >|0
-|MILR|10 + TL|10 + TL >|0 >|0
-|MILS >|0.02 >|0.02 >|0 >|0
-|MINE|5 + TL|5 + TL >|0 >|0
-|MSL|2 * TL|2 * TL >|0 >|0
-|MSLT|15 * TL|10 * TL >|0 >|0
-|SNSR|10 * TL|20 * TL >|0 >|0
-|SDRV|15 * TL|10 * TL >|0 >|0
-|SSU >|0.10 >|0.40 >|0 >|0
-|TRNS|3 * TL|1 * TL >|0 >|0
+|anti-missile|2 * TL|2 * TL >|0 >|0
+|assault-craft|3 * TL|2 * TL >|0 >|0
+|assault-weapon|1 * TL|1 * TL >|0 >|0
+|automation|2 * TL|2 * TL >|0 >|0
+|consumer-goods >|0.20 >|0.40 >|0 >|0
+|energy-shield|25 * TL|25 * TL >|0 >|0
+|energy-weapon|5 * TL|5 * TL >|0 >|0
+|factory|8 + TL|4 + TL >|0 >|0
+|farm|4 + TL|2 + TL >|0 >|0
+|hyper-drive|25 * TL|20 * TL >|0 >|0
+|life-support|3 * TL|5 * TL >|0 >|0
+|light-structural >|0.01 >|0.04 >|0 >|0
+|military-robot|10 + TL|10 + TL >|0 >|0
+|military-supplies >|0.02 >|0.02 >|0 >|0
+|mine|5 + TL|5 + TL >|0 >|0
+|missile|2 * TL|2 * TL >|0 >|0
+|missile-launcher|15 * TL|10 * TL >|0 >|0
+|sensor|10 * TL|20 * TL >|0 >|0
+|space-drive|15 * TL|10 * TL >|0 >|0
+|structural >|0.10 >|0.40 >|0 >|0
+|transport|3 * TL|1 * TL >|0 >|0
 |===
 
 Each FACT in a FACTORY group can consume up to 5 MASS units (MUs) per TL per TURN in raw materials.
