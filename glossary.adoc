@@ -21,13 +21,46 @@ WARNING: The reference manual is the source of truth for the rules.
 If this document differs, it is wrong.
 
 :sectnums:
+== Codes
+|===
+|Unit|Code|Description
+
+|anti-missile|ANM-TL|
+|assault-craft|ASC-TL|
+|assault-weapon|ASW-TL|
+|automation|AUT-TL|
+|consumer-goods|CNGD|
+|energy-shield|ESH-TL|
+|energy-weapon|EWP-TL|
+|factory|FCT-TL|
+|farm|FRM-TL|
+|food|FOOD|
+|fuel|FUEL|
+|gold|GOLD|
+|hyper-drive|HDR-TL|
+|life-support|LSP-TL|
+|light-structural|LTSU|
+|metallics|MTLS|
+|military-robots|MLR-TL|
+|military-supplies|MLSP|
+|mine|MIN-TL|
+|missile|MSS-TL|
+|missile-launcher|MSL-TL|
+|non-metallics|NMTS|
+|sensor|SNR-TL|
+|space-drive|SDR-TL|
+|structural|STUN|
+|super-light-structural|SLSU|
+|transport|TPT-TL|
+|===
+
 == Glossary
 Common terms for Wraith.
 
 AF::
 _AF_ is the attack factor used in combat.
 
-anti-missle unit::
+anti-missile unit::
 Define this, please.
 
 assault craft unit::
@@ -163,6 +196,12 @@ home planet market::
 A _home planet market_ is an open air *market* found only on homeworlds.
 The market collects commissions directly, they are not paid to the controlling player.
 
+hudnut::
+_Hudnut_ (also known as a DIY Kit) is an item that must be assembled by a construction crew before it can be used.
+These units can be disassembled when not in use to save space on a colony or ship.
+They must be disassembled to be placed on a *transport*.
+(I couldn't find a better term, so I borrowed this https://en.wikipedia.org/wiki/Sniglet[Sniglet].)
+
 hyper-drive unit::
 Define this, please.
 
@@ -244,8 +283,8 @@ non-metallic::
 _Non-metallic_ is an alias for *non-metal* unit.
 
 operational unit::
-An _operational unit_ (also known as a DIY Kit) is a unit that must be assembled to be useable.
-Operational units can also be disassembled to save space when transporting them.
+An _operational unit_ is a unit that is ready to be used (it's not disassembled or in *storage*).
+Some units use fuel every turn they're operational; others only when they're being used.
 
 orbit::
 An _orbit_ represents something.
@@ -344,6 +383,14 @@ A nation may be ruled by many states in its history.
 standard structure unit::
 A _standard structure unit_ is used to build colonies, ships, and enclosed storage.
 
+stored unit::
+Any item that is powered down and placed in storage is a _stored unit_.
+If the unit is a *hudnut*, it may be disassembled before being stowed.
+Stowed items are inactive - they do not use fuel and they must be unstowed from storage before they can be used.
+
+stowed unit::
+See *stored unit*.
+
 structural unit::
 A _structural unit_ is a measure of how much infrastructure is needed to build a colony, ship, or enclosed storage.
 Each structural unit encloses a variable number of mass units (MUs), depending on how and where it is used.
@@ -388,6 +435,10 @@ It includes those that are not eligble to be members of any other population uni
 
 unskilled worker unit::
 An _unskilled worker_ unit is a type of *population* unit.
+
+unstowed unit::
+Any unit that is not in *storage*.
+Unstowed units are considered *operational*.
 
 viceroy::
 _Viceroy_ is an alias for *regent*.

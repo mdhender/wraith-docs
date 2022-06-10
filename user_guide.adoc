@@ -82,6 +82,21 @@ It has the same format as the initial report.
 Because the report can contain a lot of information,
 you'll also get a summary of the changes from the prior turn.
 
+
+=== Goals
+As a player, you're the ruler of a nation.
+Like the other players, you start with two colonies,
+farms, mines, industry, spaceships, and a military.
+
+After exploring your system, your ships venture out to the cluster.
+As they find and survey new worlds,
+your nation expands by building colonies.
+It takes time, but new colonies extract resources,
+build their own economies, and help your nation grow.
+
+Unfortunately, your ships will encounter raider, pirates, and unfriendly nations.
+You'll need to use diplomacy or your military to protect your people.
+
 == Getting Started
 The game manager (GM) will grant you access to the game's website when you start a game.
 
