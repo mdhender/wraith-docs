@@ -1,6 +1,6 @@
 = Wraith Reference Manual
 Michael D Henderson <mdhender@example.com>
-v0.0.2, 2022-05-31
+v1.0.0, 2022-06-10
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -588,80 +588,40 @@ Some units require FUEL to be used in combat.
 
 .Combat Fuel Chart
 |===
-|CODE|FUEL use per UNIT per TURN|FUEL use per UNIT per COMBAT ROUND
+|Unit|Fuel use per Unit per Turn|FUEL use per Unit per Combat Round
 
-|Assault Craft|0.1|N/A
-|Energy Shield|N/A|TL * 4
-|Energy Weapon|N/A|TL * 10
-|Space Drive|N/A|TL^2^
+|assault-craft|0.1|n/a
+|energy-shield|n/a|4 * TL
+|energy-weapon|n/a|10 * TL
+|space-drive|n/a|TL^2^
 |===
 
 .Combat Thrust Factor (TF) Chart
 |===
-|CODE|Thrust Factor per UNIT per COMBAT ROUND
+|Unit|Thrust Factor per Unit per Combat Round
 
-|Space Drive|TL^2^ * 1000
+|space-drive|1000 * TL^2^
 |===
 
 The total thrust factors (TF) divided by the ship's total mass is the maximum number of space combat rings a ship may move in a single combat round.
 
 The player has no control over any ship's movement in combat.
 
-Soldiers consume MILITARY SUPPLY units at a rate of one MILITARY SUPPLY unit per SOLDIER unit per COMBAT ROUND.
-If a SOLDIER unit runs out of MILITARY SUPPLY units, it will disengage and return to its origin.
-If it can't, it will surrender.
-
-MILITARY ROBOT units consume MILITARY SUPPLY units at a rate of one MILITARY SUPPLY unit per MILITARY ROBOT unit per COMBAT ROUND.
-If a MILITARY ROBOT unit runs out of MILITARY SUPPLY units, it will disengage and return to its origin.
-If it can't, it will self-destruct to avoid capture.
+Soldier and military-robot units consume military-supplies units at a rate of one military-supplies unit per soldier unit per combat round.
+If either unit runs out of military-supplies units, it will disengage and return to its origin.
+If the unit can't, soldier units will surrender while military-robot units will self-destruct to avoid capture.
 
 Percentage of Commitment is an alias for percentage of units the player will commit to combat with that order.
 
-The first step in the combat phase is sorting out the combatants in each battle.
-
-[source,c]
-----
-type participant struct {
-    attacks        []colonyOrShip
-    defendsAgainst []colonyOrShip
-    supports       []colonyOrShip
-}
-
-// combatants is a hash table containing all participants
-combatants := make(map[id]participant)
-
-for order := range combat.orders {
-    if !atSameLocation(order.attacker, order.defender) {
-        continue // can't battle if not in same location
-    }
-    if combatants[order.attacker] == nil {
-        combatants[order.attacker] = participant{}
-    }
-    if combatants[order.defender] == nil {
-        combatants[order.defender] = participant{}
-    }
-
-    // add the attacker to the combatants and link to the defender.
-    // then link the attacker's supports in.
-    attacker := combatants[order.attacker]
-    attacker.attacks = append(attacker.attacks, order.defender]
-    for supporter := range attacker.supportedBy {
-        supporter.attacks = append(supporter.attacks, order.defender)
-    }
-
-    defender := combatants[order.defender]
-    defender.defendsAgainst = append(defender.defendsAgainst, order.attacker]
-    for supporter := range defender.supportedBy {
-        supporter.defendsAgainst = append(supporter.defendsAgainst, order.attacker)
-    }
-}
-----
-
 Colonies and ships will usually participate in only one combat per turn.
+
+The first step in the combat phase is sorting out the combatants in each battle.
 The Battle Group (BAG) is the list of all colonies and ships involved in a combat at a location.
+It includes the attacking colony or ship and the defending colony or ship.
+It also includes all colonies or ships that are supporting either the attacker or the defender.
 
 === Bombard Order
-The `bombard` order commits FUEL, ENERGY WEAPONS, MISSILE, and MISSILE LAUNCHER units to an attack against a colony or ship.
+The `bombard` order commits fuel, energy-weapon, missile, and missile-launcher units to an attack against a colony or ship.
 The objective is to destroy the target.
 
 .Combat Bombard Order
@@ -690,17 +650,17 @@ S27 bombard SP18 C13 50%
 NOTE: Maximum range for a missile or energy weapon fired from a ship is 10.
 
 === Invade Order
-The `invade` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
+The `invade` order commits fuel, soldier, military-robot, and transport units to an attack against a colony or ship.
 The objective is to destroy the target.
 
 .Combat Factor Chart
 |===
-|CODE|Combat Factor
+|Unit|Combat Factor
 
-|ATKC|TL * 10
-|ATKW|TL * 2
-|MILR|TL * 2
-|SLDR|1
+|assault-craft|10 * TL
+|assault-weapon|2 * TL
+|military-robot|2 * TL
+|soldier|1
 |===
 
 .Combat Invade Order
@@ -716,18 +676,20 @@ S27 invade SP18 C13 50%
 ----
 
 === Raid Order
-The `raid` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
+The `raid` order commits fuel, soldier, military-robot, and transport units to an attack against a colony or ship.
 The objective is to seize and retrieve an enemy asset.
 
 .Combat Factor Chart
 |===
 |CODE|Combat Factor
 
-|ATKC|TL * 10
-|ATKW|TL * 2
-|MILR|TL * 2
-|SLDR|1
+|assault-craft|TL * 10
+|assault-weapon|TL * 2
+|military-robot|TL * 2
+|soldier|1
 |===
+
+If successful, the raiders will return with 0.5 mass units (rounded down) of the asset.
 
 .Combat Raid Order
 [source]
@@ -745,8 +707,8 @@ NOTE: This is a peculiar order because it assumes that there are enough soldiers
 It also requires you to specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
 
 ==== Actions
-Military Robots can replace soldiers.
-1 robot will replace up to TL * 2 soldier units.
+Military-robot units can replace soldier unit.
+Each military-robot unit robot will replace up to TL * 2 soldier units.
 
 . Commit troops (soldiers and robots).
 . Load troops onto assault craft (each assault craft requires 1 soldier unit to operate).
@@ -766,8 +728,10 @@ NOTE: During combat, a transport can carry a maximum of TL * 3 MU per combat rou
 It uses fuel at a rate of TL^2^ * 0.01 per round trip.
 
 === Sabotage Order
-The `sabotage` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to an attack against a colony or ship.
+The `sabotage` order commits fuel, soldier, military-robot, and transport units to an attack against a colony or ship.
 The objective is to destroy an enemy asset.
+
+If successful, the saboteurs will destroy 0.5 mass units (rounded down) of the asset.
 
 .Combat Sabotage Order
 [source]
@@ -807,48 +771,6 @@ S14 support SP12 S83 bombard SP18 C13 100%
 S14 support SP12 S83 invade  SP18 C13 100%
 ----
 
-=== Logic
-
-[source,c]
-----
-if combat == INVASION || combat == RAID || combat == SABOTAGE {
-  acf := 0 // attacker combat factor
-  for unit := range attacker.assaultCraft {
-    acf += 10 * unit.TechLevel
-  }
-  for unit := range attacker.assaultWeapon {
-    acf += 2 * unit.TechLevel
-  }
-  for unit := range attacker.militaryRobot {
-    acf += 2 * unit.TechLevel
-  }
-  for unit := range attacker.soldier {
-    acf += 1
-  }
-
-  dcf := 0 // defender combat factor
-  for unit := range defender.assaultCraft {
-    dcf += 10 * unit.TechLevel
-  }
-  for unit := range defender.assaultWeapon {
-    dcf += 2 * unit.TechLevel
-  }
-  for unit := range defender.militaryRobot {
-    dcf += 2 * unit.TechLevel
-  }
-  for unit := range defender.soldier {
-    dcf += 1
-  }
-
-  acl := dcf * rnd(0.1, 0.5) // attacker combat losses
-  dcl := acf * rnd(0.1, 0.5) // defender combat losses
-  if combat == RAID || combat == SABOTAGE {
-    acl = acl * 0.01 // raids are less deadly
-    dcl = dcl * 0.01 // raids are less deadly
-  }
-}
-----
-
 == Set-Up Phase
 The Set-Up phase is used to build new colonies and ships.
 
@@ -867,7 +789,7 @@ There are also limits on the number of colonies each player may build in a singl
 |Ship ^|unlimited ^|NO ^|NO ^|Any Planet ^|YES ^|unlimited
 |===
 
-Set up orders are used to assemble a new COLONY or SHIP.
+Set up orders are used to assemble a new colony or ship.
 
 The order includes the list of material units for the assembly.
 (This list is also known as the "bill of materials", or BOM.)
@@ -882,9 +804,9 @@ While working, these units will draw FOOD from the site
 (meaning the ship or colony they were transferred from).
 
 The CONSTRUCTION WORKER units will use STRUCTURAL units to build the "hull" of the colony or ship
-(actually, it's the exo-structure, but hull is easier to type).
+(actually, it's the combination of external and internal structure, but hull is easier to type).
 
-The BOM must include the STRUCTURAL (or LIGHT STRUCTURAL) units for building the hull.
+The BOM must include the structural units for building the hull.
 The CONSTRUCTION WORKER units will use the available units to enclose the largest space possible.
 The amount should be enough to enclose the total number of Enclosed MASS units (EMUs) planned for the colony or ship.
 EMUs don't include the mass of the SUs used to build the colony or ship
@@ -893,17 +815,17 @@ Items in storage are counted as 1/2 their mass for purposes of the EMU.
 
 .Structural Unit Summary
 |===
-|CODE|Mass per UNIT|Open Colony|Enclosed Colony|Orbital Colony|Ship
+|Unit|Mass per UNIT|Open Colony|Enclosed Colony|Orbital Colony|Ship
 
-|SSU|0.5 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
-|LSU|0.05 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
-|SLSU|0.005 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
+|structural|0.5 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
+|light-structural|0.05 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
+|super-light-structural|0.005 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
 |===
 
 Once the structure is complete, the CONSTRUCTION WORKER units will transfer the remainder of the BOM to the colony or ship.
 Items like engines, life support, weapons, and sensors will be installed in the colony or ship.
 The remaining items, like FOOD and CONSUMER GOODS, will be placed directly in storage or cargo holds.
-Unless the orders transfer them to the new colony or ship, they will return to their original host.
+Unless the orders transfer the construction crew to the new colony or ship, they will return to their original host.
 
 The BOM should include POPULATION units.
 These units will establish control of the colony or ship once complete.
@@ -911,6 +833,25 @@ These units will establish control of the colony or ship once complete.
 
 The BOM should include enough FOOD units to feed the included POPULATION units.
 Unlike the CONSTRUCTION WORKER units, the POPULATION units will not draw FOOD from the site.
+
+When designing a ship or colony, it is helpful to prepare a chart like the one below.
+
+|===
+|Unit-TechLevel|Quantity|Mass Units (MUs)|Enclosed Mass Units (EMUs)|Structure Units Required
+
+|HULL||||
+|structural >|50,000 >|25,000|? >|0
+|COMMAND & CONTROL||||
+|professional >|5 >|5|? >|50
+|life-support-1 >|5 >|40|? >|400
+|sensors-1 >|1 >|3,000|? >|30,000
+|ENGINES||||
+|space-drives-1 >|1 >|25|? >|250
+|hyper-drive-1 >|30 >|1,350|? >|13,500
+|fuel >|1,000 >|1,000|? >|5,000
+|STORAGE||||
+|food >|20 >|120|? >|600
+|===
 
 === Build Colony Order
 TIP: Use `build colony` to build a new colony.
@@ -1069,16 +1010,16 @@ S22 transfer 10 spy            C29  ; move 10 spy           units from S22 to C2
 |===
 |CODE|MUs transferred per TURN|Fuel Factor
 
-|TRNS-1 >|200 >|0.0005
-|TRNS-2 >|800 >|0.0005
-|TRNS-3 >|1800 >|0.0005
-|TRNS-4 >|3200 >|0.0005
-|TRNS-5 >|5000 >|0.0005
-|TRNS-6 >|7200 >|0.0005
-|TRNS-7 >|9800 >|0.0005
-|TRNS-8 >|12800 >|0.0005
-|TRNS-9 >|16200 >|0.0005
-|TRNS-10 >|20000 >|0.0005
+|transport-1 >|200 >|0.0005
+|transport-2 >|800 >|0.0005
+|transport-3 >|1800 >|0.0005
+|transport-4 >|3200 >|0.0005
+|transport-5 >|5000 >|0.0005
+|transport-6 >|7200 >|0.0005
+|transport-7 >|9800 >|0.0005
+|transport-8 >|12800 >|0.0005
+|transport-9 >|16200 >|0.0005
+|transport-10 >|20000 >|0.0005
 |===
 
 == Assembly Phase
@@ -1112,28 +1053,28 @@ There are restrictions on where items can be built, per the following chart:
 |===
 |CODE|Open Colony|Enclosed Colony|Orbital Colony|Ship
 
-|AMSL ^|YES ^|YES ^|YES ^|NO
-|ATKC ^|YES ^|YES ^|YES ^|NO
-|ATKW ^|YES ^|YES ^|YES ^|NO
-|AUTO ^|YES ^|YES ^|YES ^|NO
-|CGDS ^|YES ^|YES ^|YES ^|NO
-|ENSH ^|YES ^|YES ^|YES ^|NO
-|ENWP ^|YES ^|YES ^|YES ^|NO
-|FACT ^|YES ^|YES ^|YES ^|NO
-|FARM ^|YES ^|YES ^|YES ^|NO
-|HDRV ^|YES ^|YES ^|YES ^|NO
-|LFSP ^|YES ^|YES ^|YES ^|NO
-|LSU ^|NO ^|NO ^|YES ^|NO
-|MILR ^|YES ^|YES ^|YES ^|NO
-|MILS ^|YES ^|YES ^|YES ^|NO
-|MINE ^|YES ^|YES ^|YES ^|NO
-|MSL ^|YES ^|YES ^|YES ^|NO
-|MSLT ^|YES ^|YES ^|YES ^|NO
-|Research ^|YES ^|YES ^|YES ^|NO
-|SNSR ^|YES ^|YES ^|YES ^|NO
-|SDRV ^|YES ^|YES ^|YES ^|NO
-|SSU ^|YES ^|YES ^|NO ^|NO
-|TRNS ^|YES ^|YES ^|YES ^|NO
+|anti-missile ^|YES ^|YES ^|YES ^|NO
+|assault-craft ^|YES ^|YES ^|YES ^|NO
+|assault-weapon ^|YES ^|YES ^|YES ^|NO
+|automation ^|YES ^|YES ^|YES ^|NO
+|consumer-goods ^|YES ^|YES ^|YES ^|NO
+|energy-shield ^|YES ^|YES ^|YES ^|NO
+|energy-weapon ^|YES ^|YES ^|YES ^|NO
+|factory ^|YES ^|YES ^|YES ^|NO
+|farm ^|YES ^|YES ^|YES ^|NO
+|hyper-drive ^|YES ^|YES ^|YES ^|NO
+|life-support ^|YES ^|YES ^|YES ^|NO
+|light-structural ^|NO ^|NO ^|YES ^|NO
+|military-robot ^|YES ^|YES ^|YES ^|NO
+|military-supplies ^|YES ^|YES ^|YES ^|NO
+|mine ^|YES ^|YES ^|YES ^|NO
+|missile ^|YES ^|YES ^|YES ^|NO
+|missile-launcher ^|YES ^|YES ^|YES ^|NO
+|research ^|YES ^|YES ^|YES ^|NO
+|sensor ^|YES ^|YES ^|YES ^|NO
+|space-drive ^|YES ^|YES ^|YES ^|NO
+|structural ^|YES ^|YES ^|NO ^|NO
+|transport ^|YES ^|YES ^|YES ^|NO
 |===
 
 Any order that violates a location restriction will be ignored.
@@ -1190,22 +1131,22 @@ Only the items in the Operational Units chart can be assembled.
 [[a-operational-units]]
 .Operational Units
 |===
-|CODE
+|Unit
 
-|AUTO
-|ENSH
-|ENWP
-|FACT
-|FARM
-|HDRV
-|LFSP
-|LSU
-|MINE
-|MSLT
-|SLSU
-|SNSR
-|SDRV
-|SSU
+|automation
+|energy-shield
+|energy-weapon
+|factory
+|farm
+|hyper-drive
+|life-support
+|light-structural
+|mine
+|missile-launcher
+|sensor
+|space-drive
+|structural
+|super-light-structural
 |===
 
 .Assemble Order
@@ -1447,18 +1388,18 @@ they use the ship's sensors to actively scan and analyze orbits, planets, coloni
 
 .Probe Chart
 |===
-|CODE|Probes per SENSOR unit per TURN|FUEL units used per PROBE per TURN
+|Unit-TechLevel|Probes per SENSOR unit per TURN|FUEL units used per PROBE per TURN
 
-|SNSR-1 >|1 >|0
-|SNSR-2 >|2 >|0
-|SNSR-3 >|3 >|0
-|SNSR-4 >|4 >|0
-|SNSR-5 >|5 >|0
-|SNSR-6 >|6 >|0
-|SNSR-7 >|7 >|0
-|SNSR-8 >|8 >|0
-|SNSR-9 >|9 >|0
-|SNSR-10 >|10 >|0
+|sensor-1 >|1 >|0
+|sensor-2 >|2 >|0
+|sensor-3 >|3 >|0
+|sensor-4 >|4 >|0
+|sensor-5 >|5 >|0
+|sensor-6 >|6 >|0
+|sensor-7 >|7 >|0
+|sensor-8 >|8 >|0
+|sensor-9 >|9 >|0
+|sensor-10 >|10 >|0
 |===
 
 .Probe Order
@@ -1490,18 +1431,18 @@ Because the survey requires a transport, it will use fuel.
 
 .Survey Fuel Chart
 |===
-|CODE|FUEL units used per SURVEY per TURN
+|Unit-TechLevel|FUEL units used per SURVEY per TURN
 
-|TRNS-1 >|0.1
-|TRNS-2 >|0.4
-|TRNS-3 >|0.9
-|TRNS-4 >|1.6
-|TRNS-5 >|2.5
-|TRNS-6 >|3.6
-|TRNS-7 >|4.9
-|TRNS-8 >|6.4
-|TRNS-9 >|8.1
-|TRNS-10 >|10
+|transport-1 >|0.1
+|transport-2 >|0.4
+|transport-3 >|0.9
+|transport-4 >|1.6
+|transport-5 >|2.5
+|transport-6 >|3.6
+|transport-7 >|4.9
+|transport-8 >|6.4
+|transport-9 >|8.1
+|transport-10 >|10
 |===
 
 .Survey Order
@@ -1655,18 +1596,18 @@ And as the SystemID for an interstellar jump.
 
 .Hyper-drive Range Chart
 |===
-|CODE|Maximum distance per JUMP|Maximum Capacity per UNIT per JUMP
+|Unit-TechLevel|Maximum distance per JUMP|Maximum Capacity per UNIT per JUMP
 
-|HDRV-1|1 light year|1,000 MUs
-|HDRV-2|2 light years|2,000 MUs
-|HDRV-3|3 light years|3,000 MUs
-|HDRV-4|4 light years|4,000 MUs
-|HDRV-5|5 light years|5,000 MUs
-|HDRV-6|6 light years|6,000 MUs
-|HDRV-7|7 light years|7,000 MUs
-|HDRV-8|8 light years|8,000 MUs
-|HDRV-9|9 light years|9,000 MUs
-|HDRV-10|10 light years|10,000 MUs
+|hyper-drive-1|1 light year|1,000 MUs
+|hyper-drive-2|2 light years|2,000 MUs
+|hyper-drive-3|3 light years|3,000 MUs
+|hyper-drive-4|4 light years|4,000 MUs
+|hyper-drive-5|5 light years|5,000 MUs
+|hyper-drive-6|6 light years|6,000 MUs
+|hyper-drive-7|7 light years|7,000 MUs
+|hyper-drive-8|8 light years|8,000 MUs
+|hyper-drive-9|9 light years|9,000 MUs
+|hyper-drive-10|10 light years|10,000 MUs
 |===
 
 When calculating capacity for ships with multiple engines,
@@ -1964,7 +1905,7 @@ The colony or ship will declare its indepedence if the soldiers surrender.
 
 An independent colony, if it has factories or mines, will seek out trade stations to sell their goods and purchase needed raw materials.
 
-An idenpendent ship will support itself via raids or hiring out as mercenaries.
+An independent ship will support itself via raids or hiring out as mercenaries.
 
 TODO: Details on what becomes of the winners and losers.
 
@@ -2202,22 +2143,6 @@ Each news service is updated with the turn's
 The New Service is always available to the controlling player.
 Ships that have trading rights with the market may use it only while in the same system.
 
-== Players
-
-=== Nations
-
-=== States
-
-=== Governments
-
-== Cluster
-
-=== Systems
-
-=== Planets
-
-=== Colonies
-
 [appendix]
 == Units
 
@@ -2252,254 +2177,6 @@ Ships that have trading rights with the market may use it only while in the same
 |structural|STUN >|?|
 |super-light-structural|SLSU >|?|
 |transport|TPT-TL >|?|
-|===
-
-
-=== Anti-Missile
-=== Assault Craft
-=== Assault Weapon
-=== Automation
-AUTO units may replace UNSKILLED WORKER units.
-Each AUTO unit may replace up to its TECH LEVEL in UNSKILLED WORKER units.
-An AUTO unit may not be split between groups.
-
-.Automation Summary
-|===
-|CODE|Replacements per UNIT|Mass per UNIT|Fuel per UNIT per TURN
-
-|AUTO|Up to TL UNSKILLED WORKER units|4 * TL MU|0 FUEL units
-|===
-
-=== Colony
-=== Construction Worker
-=== Consumer Goods
-.Consumer Goods Summary
-|===
-|CODE|Mass per UNIT|Fuel per UNIT per TURN
-
-|CONSUMER GOODS|0.6 MU|0 FUEL units
-|===
-
-=== Energy Shield
-=== Energy Weapon
-=== Factory
-=== Farm
-=== Food
-Food units are used to feed the population.
-
-.Food Summary
-|===
-|Unit|Feed per Unit
-
-|FOOD|4 Population units
-|===
-
-The amount of food distributed to the population is determined by `ration` orders.
-Order less than a full ration (0.25 food units per population unit) may lead to rebellion and starvation.
-The minimum amount needed to prevent starvation is 0.0625 food units per population unit.
-
-NOTE: The game engine doesn't round consistently;
-this is a bug that will be fixed.
-
-=== Hyper-Drive
-.Hyper-Drive Summary
-|===
-|CODE|Range per UNIT|Capacity per UNIT|Mass per UNIT|Fuel per UNIT per JUMP
-
-|HYPER-DRIVE|TL light years|1,000 * TL MU|45 * TL MU|40 FUEL units per LY travelled
-|===
-
-Jumps between orbits ("interplanetary travel") are treated as 0.1 light years for FUEL.
-(In other words, each HYPER-DRIVE unit consumes 4 FUEL units jumping in system.)
-
-=== Life Support
-LIFE SUPPORT units use FUEL to replenish air and water in ships and colonies.
-
-.Life Support Summary
-|===
-|CODE|Sustains per UNIT|Mass per UNIT|Fuel per UNIT per TURN
-
-|LIFE SUPPORT|TL^2^ POPULATION units|8 * TL MU|TL FUEL units
-|===
-
-=== Light Structural
-.Light Structural Summary
-|===
-|CODE|Mass per UNIT|Capacity
-
-|LIGHT STRUCTURAL|0.05 MU|todo
-|===
-
-=== Military Robots
-=== Military Supplies
-=== Mine
-=== Missile
-=== Population
-=== Probe
-See SENSOR.
-
-=== Professional
-=== Rebel
-=== Sensor
-.Sensor Summary
-|===
-|CODE|Mass per UNIT|Fuel per UNIT per TURN
-
-|SENSOR|40 * TL MU|TL / 20 FUEL units
-|===
-
-=== Ship
-=== Soldier
-=== Space-Drive
-.Space-Drive Summary
-|===
-|CODE|THRUST FACTOR per UNIT|Mass per UNIT|Fuel per UNIT per COMBAT ROUND
-
-|SPACEDRIVE|1,000 * TL^2^|25 * TL MU|TL^2^ FUEL units
-|===
-
-In combat, the SHIP may move a DISTANCE up to its MASS divided by the total THRUST FACTOR of its SPACEDRIVE units each COMBAT ROUND.
-
-=== Spy
-=== Structural
-.Structural Summary
-|===
-|CODE|Mass per UNIT|Capacity
-
-|STRUCTURAL|0.5 MU|todo
-|===
-
-=== Transport
-.Transport Summary
-|===
-|CODE|Mass per UNIT|Fuel per UNIT per TURN|Capacity
-
-|TRANSPORT|4 * TL MU|TL^2^ / 10 FUEL units|200 * TL^2^ MU
-|===
-
-Note: FUEL usage is prorated.
-The actual amount used is the percentage derived from cargo mass divided by capacity.
-
-=== Unemployable
-=== Unskilled Worker
-
-[appendix]
-== Notes
-=== Farming Notes
-There are three types of farms in the game.
-
-1. Organic Farm units (OFARM) are open air farms and ranches.
-These can be built only on habitable planets in orbits 1 through 5.
-The maximum number of units is the _habitability number_ (HN) times 100,000.
-2. Hydroponic Farm units (HFARM) use natural sunlight to grow grains and proteins in controlled, enclosed areas.
-These can be built only on planets or orbital colonies in orbits 1 through 5.
-3. Vat Farm units (VFARM) use artificial sunlight to grow grains and proteins in controlled, enclosed areas.
-
-Each farming unit requires 3 Unskilled Worker units (UNW) and 1 Professional Worker unit (PWU) to be productive.
-
-Unskilled Worker units may be replaced by Farming Automation units (AUFARM).
-
-.Farming Production
-|===
-|Farm Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
-
-|Organic Farm|OFARM|TL2|100.0 * TL FOOD units|6.0 + TL MU|0.5 * TL FUEL units
-|Hydroponic Farm|HFARM|TL5|IF(TL<2,0,20*TL) FOOD units|6.0 + TL MU|0.5 * TL FUEL units
-|Vat Farm|VFARM|TL10|IF(TL<6,0,20*TL) FOOD units|6.0 + TL MU|1.0 * TL FUEL units
-|===
-
-Exception: HFARM units in orbiting colonies use solar power, so their Fuel Use Per TURN is 0.0.
-
-.Farm Chart
-|===
-|CODE|Production per UNIT per YEAR|Mass per UNIT|Fuel per UNIT per TURN|Location|Orbits|Solar Power
-
-|FARM-1|100 FOOD|7 MU|0.5 FUEL|Planets with HN > 0|1..5|No
-|FARM-2|40 FOOD|8 MU|1.0 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
-|FARM-3|60 FOOD|9 MU|1.5 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
-|FARM-4|80 FOOD|10 MU|2.0 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
-|FARM-5|100 FOOD|11 MU|2.5 FUEL|Planets or Orbital Colonies|1..5|Yes, if on Orbital Station in orbits 1..5
-|FARM-6|120 FOOD|12 MU|6.0 FUEL|Any, including Ships|Any|No
-|FARM-7|140 FOOD|13 MU|7.0 FUEL|Any, including Ships|Any|No
-|FARM-8|160 FOOD|14 MU|8.0 FUEL|Any, including Ships|Any|No
-|FARM-9|180 FOOD|15 MU|9.0 FUEL|Any, including Ships|Any|No
-|FARM-10|200 FOOD|16 MU|10.0 FUEL|Any, including Ships|Any||No
-|===
-
-=== Manufacturing Notes
-Factory (FACTORY) units process the raw materials created by Mining (MINE) units and turn them into finished goods such as star drives, robots, weapons, and consumer goods.
-Essentially, FACTORY units produce everything except population, fuel, gold, and food.
-
-To allow factories to produce different goods, the production pipeline is abstracted into Mass Units (MUs) of raw materials input and finished goods output.
-
-.Factory Production
-|===
-|Factory Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
-
-|Factory|FACTORY|TL10|20.0 * TL MASS Units|12.0 + (2.0 * TL) MU|0.5 * TL FUEL units
-|===
-
-Exception: FACTORY units in orbiting colonies in orbits 1 through 5 use solar power, so their Fuel Use Per TURN is 0.0.
-
-The amount of raw materials that can be processed by a factory unit in
-
-The MUs produced are divided by the MUs of the good is the number of units of the good produced (all results are rounded down).
-
-Examples needed here.
-
-=== Mining Notes
-Assigning MINE units to a DEPOSIT establishes CONTROL of that DEPOSIT.
-
-Raw resources are found on planets, moons, and asteroid belts.
-Resources are extracted from deposits by Mining (MINE) units.
-MINE units are capable of mining, drilling, quarrying, and refining the raw resources.
-For game purposes, we'll call all of those "mining."
-The mined resources are also known as "raw materials."
-
-There are two types of resources that may be mined in the game - ores and fuels.
-Ores can contain precious metals and crystals (GOLD), non-precious metals (METL) or non-precious minerals (MNRL).
-
-MINE units are not allowed to be installed on orbiting colonies;
-they must be installed only on surface colonies.
-
-.Mining Production
-|===
-|Mining Unit|CODE|Maximum Tech Level|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
-
-|Mining Unit|MINE|TL10|100.0 * TL MU|10.0 + (2.0 * TL) MU|0.5 * TL FUEL units
-|===
-
-.Mining Production Chart
-|===
-|CODE|Production per UNIT per YEAR|Mass per UNIT|Fuel Use per UNIT per TURN
-
-|MINE|100.0 * TL MU|10.0 + (2.0 * TL) MU|0.5 * TL FUEL units
-|===
-
-=== Population Notes
-. Ration orders: Limit food consumption of a ship/colony.
-. Pay orders: Set pay rates, which remain constant until changed, for a ship/colony.
-. Draft orders: Recruit soldiers or trainees.
-. Assembly orders: Form construction or spy units. (Assembly orders have other functions as well.)
-
-=== Weapon Notes
-.Weapons Chart
-|===
-|UNIT|CODE|DESCRIPTION|FUEL USE PER UNIT|MASS UNITS PER UNIT
-
-|ASSAULT WEAPONS||Assault weapons are used by soldiers on the surface of a planet.|0|2
-|ASSAULT CRAFT||Assault craft are land/space vehicles used to invade colonies of ships.|.1 fuel unit per turn|5 * TL
-|MILITARY ROBOTS||Military robots can be used to replace soldier units.
-The number of soldier units that can be replaced is equal to the military robot unit's TL * 2.|0|(2 * TL) + 20
-|MISSILES||Missile can be used in any kind of combat; they are not as accurate as energy weapons.|0|4 * TL
-|MISSILE LAUNCHERS||Missile launchers launch the missiles; the accuracy of a missile depends on the T.L. of the missile launcher.|0|25 * TL
-|ANTI-MISSILES||Anti-missiles are launched by missile launchers also and destroy attacking missiles.
-The % of missiles destroyed depends on the TL of the anti-missile.|0|4 * TL
-|ENERGY WEAPONS||Energy weapons can be used in all combat situations except that of a surface colony to destroy a surface colony.
-An energy weapon projects a powerful beam of concentrated energy.|4 * TL per COMBAT ROUND (CR)|10 * TL
-|ENERGY SHIELDS||Energy shields deflect energy beams.
-The amount of energy deflected depends on the TL of the shields (10 * TL^2^ damage units per combat round).|10 * TL per CR|50 * TL
-|MILITARY SUPPLIES||Military supplies consist of ammunition, medicines, etc., used up during combat.|0|.04 per unit
 |===
 
 [appendix]
@@ -2577,4 +2254,3 @@ Ships should have unskilled workers to move cargo and perform routine maintenanc
 
 [index]
 == Index
-

@@ -1,6 +1,6 @@
 = Wraith Glossary
 Michael D Henderson <mdhender@example.com>
-v0.0.0, 2022-05-25
+v1.0.0, 2022-06-10
 :doctype: book
 :sectnums:
 :sectnumlevels: 5

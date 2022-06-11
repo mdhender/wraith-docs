@@ -1,6 +1,6 @@
 = Wraith User Guide
 Michael D Henderson <mdhender@example.com>
-v0.0.2, 2022-06-03
+v0.1.1, 2022-06-11
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -123,12 +123,38 @@ Plan ahead to manage your population and natural resources,
 and ensure the right quantity of materials are where they need to be,
 when they are needed.
 
-== The first turn
+== Turn Zero
 All players start on their own home planet with the same population, infrastructure, and inventory.
 
 The cluster is generated randomly, so the amount of natural resources in the home system will vary.
 Some systems will be close to other systems, making exploration easy;
 some will be farther away, making exploration harder.
+
+As part of the set up, the GM will ask you to create factory groups.
+To do this, you'll submit a set of orders using an `assemble` order.
+
+.Factory Group Initial Setup Order Example
+[source]
+----
+C1 assemble  5,000 factory-1 assault-craft-1
+C1 assemble 50,000 factory-1 automation-1
+C1 assemble 50,000 factory-1 consumer-goods
+C1 assemble 50,000 factory-1 factory-1
+C1 assemble 50,000 factory-1 farm-1
+C1 assemble 50,000 factory-1 hyper-drive-1
+C1 assemble 50,000 factory-1 life-support-1
+C1 assemble 50,000 factory-1 star-drive-1
+C1 assemble 50,000 factory-1 sensor-1
+C1 assemble 50,000 factory-1 structural
+C1 assemble 50,000 factory-1 transport-1
+----
+
+You can use the codes instead of the full unit name.
+For example, `C1 assemble 50,000 FACT-1 AUT-1` instead of `C1 assemble 50,000 factory-1 automation-1`.
+
+NOTE: Or you can just send in a list with the item to build and the number of factory units to assign to the group.
+
+== The first turn
 
 It all starts with food.
 Farms, as long as they have sufficient labor and fuel, will produce food every turn.
