@@ -1,6 +1,6 @@
 = Wraith User Guide
 Michael D Henderson <mdhender@example.com>
-v0.1.1, 2022-06-11
+v0.1.2, 2022-06-11
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -143,8 +143,8 @@ C1 assemble 50,000 factory-1 factory-1
 C1 assemble 50,000 factory-1 farm-1
 C1 assemble 50,000 factory-1 hyper-drive-1
 C1 assemble 50,000 factory-1 life-support-1
-C1 assemble 50,000 factory-1 star-drive-1
 C1 assemble 50,000 factory-1 sensor-1
+C1 assemble 50,000 factory-1 space-drive-1
 C1 assemble 50,000 factory-1 structural
 C1 assemble 50,000 factory-1 transport-1
 ----
