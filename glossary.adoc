@@ -1,6 +1,6 @@
 = Wraith Glossary
 Michael D Henderson <mdhender@example.com>
-v1.0.1, 2022-06-13
+v1.0.2, 2022-06-13
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -40,6 +40,9 @@ If this document differs, it is wrong.
 |hyper-drive|HDR-TL|
 |life-support|LSP-TL|
 |light-structural|LTSU|
+|mek|MEK-TL|A modular engineering kit used to build the hull and superstructure of colonies and ships.
+It contains the panels, struts, beams, and other components used in the build.
+Replaces STUN, LTSU, and SLSU units.
 |metallics|MTLS|
 |military-robots|MLR-TL|
 |military-supplies|MLSP|
@@ -241,11 +244,14 @@ A _mass_ (abbreviated as MU) is the in-game measurement for "weight" and "volume
 The MU determines the number of drives needed to move units.
 It also factors into the number of *structural units* needed to store units (see *EMU*).
 
+MEK::
+_MEK_ is an abbreviation for *modular engineering kit*.
+
 metal unit::
 A _metal_ unit is an alias for *metallic unit*.
 
 metallic unit::
-A _metallic_ unit is a refined metallic ore.
+A _metallic_ unit is a refined non-precious metallic ore.
 This includes common metals like iron and steel (but never *gold*) and exotic metals like unobtanium and lutyisthebestium.
 Metallic units can be stored and transported.
 Metallic units must be mined and refined by *mining* units.
@@ -278,6 +284,10 @@ Define this, please.
 missile launcher unit::
 Define this, please.
 
+modular engineering kit::
+A _modular engineering kit_ contains the panels, struts, beams, and other components used to build colonies and ships.
+There are three types, the standard (MEK-1), a lower mass version (MEK-2), and an extra low mass version (MEK-3).
+
 MU::
 _MU_ is an abbrevition for *mass unit*.
 
@@ -294,7 +304,7 @@ non-metal unit::
 A _non-metal_ unit is an alias for *non-metallic unit*.
 
 non-metallic unit::
-A _non-metallic_ unit is a refined non-metallic ore.
+A _non-metallic_ unit is a refined non-precious, non-metallic ore.
 This includes common things like crystals, gases (but never *fuel* units), organic materials like silk and timber (but never *food* units), and exotic materials like trilithium crystals.
 Non-metallic units can be stored and transported.
 Non-metallic units must be mined and refined by *mining* units.
