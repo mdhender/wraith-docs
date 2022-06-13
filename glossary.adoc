@@ -1,6 +1,6 @@
 = Wraith Glossary
 Michael D Henderson <mdhender@example.com>
-v1.0.0, 2022-06-10
+v1.0.1, 2022-06-13
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -412,10 +412,15 @@ See *stored unit*.
 structural unit::
 A _structural unit_ is a measure of how much infrastructure is needed to build a colony, ship, or enclosed storage.
 Each structural unit encloses a variable number of mass units (MUs), depending on how and where it is used.
-An *open colony* requires 1 standard structural unit to enclose 1 MU.
-An *enclosed colony* requires 5 standard structural units to enclose 1 MU.
-An *orbiting colony* requires 10 standard structural units to enclose 1 MU.
-A *ship* requires 10 standard structural units to enclose 1 MU.
+An *open colony* requires 1 structural unit to enclose 1 MU.
+An *enclosed colony* requires 5 structural units to enclose 1 MU.
+An *orbiting colony* requires 10 structural units to enclose 1 MU.
+A *ship* requires 10 structural units to enclose 1 MU.
+Note that "structural unit" is a measure while "*standard structure unit*" is a physical unit in the game.
+(Apologies for the collision between "structural unit" and "standard structure unit".)
+
+SU::
+_SU_ is an alias for *structural unit*.
 
 super light structure unit::
 A _super light structure unit_ is used to build colonies, ships, and enclosed storage.
