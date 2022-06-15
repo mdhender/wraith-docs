@@ -1,6 +1,6 @@
 = Wraith Glossary
 Michael D Henderson <mdhender@example.com>
-v1.0.2, 2022-06-13
+v1.0.3, 2022-06-15
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -23,38 +23,51 @@ If this document differs, it is wrong.
 :sectnums:
 == Codes
 |===
-|Unit|Code|Description
+|Unit|Code|Farmed?|Mined?|Manufactured?|Description
 
-|anti-missile|ANM-TL|
-|assault-craft|ASC-TL|
-|assault-weapon|ASW-TL|
-|automation|AUT-TL|
-|consumer-goods|CNGD|
-|energy-shield|ESH-TL|
-|energy-weapon|EWP-TL|
-|factory|FCT-TL|
-|farm|FRM-TL|
-|food|FOOD|
-|fuel|FUEL|
-|gold|GOLD|
-|hyper-drive|HDR-TL|
-|life-support|LSP-TL|
-|light-structural|LTSU|
-|mek|MEK-TL|A modular engineering kit used to build the hull and superstructure of colonies and ships.
+|anti-missile|ANM-TL|no|no|yes|
+|assault-craft|ASC-TL|no|no|yes|
+|assault-weapon|ASW-TL|no|no|yes|
+|automation|AUT-TL|no|no|yes|
+|consumer-goods|CNGD|no|no|yes|Consumer goods are used to pay the population.
+There is no tech level associated with them.
+|energy-shield|ESH-TL|no|no|yes|
+|energy-weapon|EWP-TL|no|no|yes|
+|factory|FCT-TL|no|no|yes|
+|farm|FRM-TL|no|no|yes|
+|food|FOOD|yes|no|no|Food is produced only on farms.
+There is no tech level associated with food.
+|fuel|FUEL|no|yes|no|Fuel is mined and used to power up other units.
+There is no tech level associated with fuel.
+|gold|GOLD|no|yes|no|Gold is mined and used in trade with other nations.
+There is no tech level associated with gold.
+|hyper-drive|HDR-TL|no|no|yes|
+|life-support|LSP-TL|no|no|yes|
+|light-structural|LTSU|no|no|yes|Light structural units are used to build ships and colonies.
+There is no tech level associated with them.
+NOTE: LTSU will be replaced by MEK-2 in the future.
+|mek|MEK-TL|no|no|yes|A modular engineering kit used to build the hull and superstructure of colonies and ships.
 It contains the panels, struts, beams, and other components used in the build.
 Replaces STUN, LTSU, and SLSU units.
-|metallics|MTLS|
-|military-robots|MLR-TL|
-|military-supplies|MLSP|
-|mine|MIN-TL|
-|missile|MSS-TL|
-|missile-launcher|MSL-TL|
-|non-metallics|NMTS|
-|sensor|SNR-TL|
-|space-drive|SDR-TL|
-|structural|STUN|
-|super-light-structural|SLSU|
-|transport|TPT-TL|
+|metallics|MTLS|no|yes|no|Metallics are mined and are consumed by factory groups to produce other units.
+There is no tech level associated with them.
+|military-robots|MLR-TL|no|no|yes|
+|military-supplies|MLSP|no|no|yes|Military supplies are produced by factories and used in combat.
+There is no tech level associated with them.
+|mine|MIN-TL|no|no|yes|
+|missile|MSS-TL|no|no|yes|
+|missile-launcher|MSL-TL|no|no|yes|
+|non-metallics|NMTS|no|yes|no|Non-metallics are mines and are consumed by factory groups to produce other units.
+There is no tech level associated with them.
+|sensor|SNR-TL|no|no|yes|
+|space-drive|SDR-TL|no|no|yes|
+|structural|STUN|no|no|yes|Structural units are used to build ships and colonies.
+There is no tech level associated with them.
+NOTE: STUN will be replaced by MEK-2 in the future.
+|super-light-structural|SLSU|no|no|yes|Super-light structural units are used to build ships and colonies.
+There is no tech level associated with them.
+NOTE: SLSU will be replaced by MEK-3 in the future.
+|transport|TPT-TL|no|no|yes|
 |===
 
 == Glossary
