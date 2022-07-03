@@ -1,6 +1,6 @@
 = Wraith User Guide
 Michael D Henderson <mdhender@example.com>
-v0.1.3, 2022-07-02
+v0.1.4, 2022-07-03
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -159,11 +159,12 @@ First, we'll start with the "scout ship" from the Ship Building Guide.
 We also want to send a ship to the planet in our 10th orbit to investigate.
 That requires a larger ship since it will need to carry professionals and `transport` units to survey it,
 construction crews to disassemble anything we find,
-unskilled workers to load cargo,
+unskilled workers to load the cargo,
 and plenty of storage to bring back anything we find.
-The ship won't need `hyper-drive` engines since it's an in-system ship.
 
-.Scout Ship
+TIP: The ship won't need `hyper-drive` engines since it's an in-system ship.
+
+.In-System Survey Ship
 |===
 |Area|Unit|Mass per Unit|Volume per Unit|Quantity|Total Mass|Total Volume|Number of Structure Units Required
 
@@ -184,8 +185,8 @@ The ship won't need `hyper-drive` engines since it's an in-system ship.
 |*Total*|||| >|30,557 MU >|731 EMU >|7,310
 |===
 
-
-
+NOTE: The hull contains more `structural` units than it needs.
+Those units (about 52,690) represent about 5,269 EMUs of unused cargo capacity.
 
 We'll need to set up factories for all those items.
 We will also need factories building `consumer-goods` (to pay the factory workers),
