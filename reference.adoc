@@ -1,6 +1,6 @@
 = Wraith Reference Manual
 Michael D Henderson <mdhender@example.com>
-v1.0.0, 2022-06-10
+v1.0.1, 2022-07-03
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -817,9 +817,9 @@ Items in storage are counted as 1/2 their mass for purposes of the EMU.
 |===
 |Unit|Mass per UNIT|Open Colony|Enclosed Colony|Orbital Colony|Ship
 
-|structural|0.5 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
-|light-structural|0.05 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
-|super-light-structural|0.005 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
+|structural >|0.5 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
+|light-structural >|0.05 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
+|super-light-structural >|0.005 MU|1 unit per MU|5 units per EMU|10 units per EMU|10 units per EMU
 |===
 
 Once the structure is complete, the CONSTRUCTION WORKER units will transfer the remainder of the BOM to the colony or ship.
@@ -2144,40 +2144,310 @@ The New Service is always available to the controlling player.
 Ships that have trading rights with the market may use it only while in the same system.
 
 [appendix]
+== Terms
+
+anti-missile::
+Anti-missile units are used in combat to destroy transports, assault-craft, and missiles.
+The chance of an anti-missile destroying the object depends on the Tech Level of the missile-launcher used.
+They can not be taken apart and packed to save space on a ship or colony.
+
+assault-craft::
+Assault-craft units are used in combat to attack ground targets (soldiers and military robots) and other assault-craft.
+They can not be taken apart and packed to save space on a ship or colony.
+
+assault-weapon::
+Assault-weapon units are used by soldiers and military-robots to attack ground targets (soldiers and military robots) and assault-craft.
+They can not be taken apart and packed to save space on a ship or colony.
+
+automation::
+Automation units are used to replace unskilled workers in factories, mines, and farms.
+They may also be used to replace unskilled workers in construction crews.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+colony::
+A colony is not a unit;
+it is an alias for enclosed colony, open colony, or orbital colony.
+
+construction crew::
+Construction crew units combine professional units and unskilled worker units into a crew that can assemble and dis-assemble other units.
+Construction crew units can also recycle other units.
+Recycling converts a percentage of a unit back into metallics units and non-metallics units.
+
+consumer-goods::
+Consumer-goods units are used to pay population units and to trade with other nations.
+Consumer-goods do not have a Tech Level associated with them.
+They can not be taken apart and packed to save space on a ship or colony.
+
+enclosed colony::
+An enclosed colony is located on the surface of a non-habitable planet.
+The colony requires life-support units to sustain the population units.
+
+energy-shield::
+Energy-shield units absorb damage from energy-weapons in combat.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+energy-weapon::
+Energy-weapon units are used in combat to attack ships and colonies.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+factory::
+Factory units are used to produce all units in the game, except for food, fuel, gold, metallics, non-metallics, and population.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+farm::
+Farm units are used to produce all food units in the game.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+food::
+Food units are used to feed population units.
+They are produced only by farm units.
+They can not be taken apart and packed to save space on a ship or colony.
+
+fuel::
+Fuel units are used to power all units in the game (except for population units).
+Fuel units are produced only by mine units.
+They can not be taken apart and packed to save space on a ship or colony.
+
+gold::
+Gold units are used to pay the crews of ships and to trade with other nations.
+Gold units are produced only by mine units.
+They can not be taken apart and packed to save space on a ship or colony.
+
+hyper-drive::
+Hyper-drive units are used to transport ships between systems.
+They are not used to move between the stars in a system with multiple stars.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+life-support::
+Life-support units are used to sustain population units in enclosed colonies and on ships.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+light-structural::
+Light-structural units are used to build the hull and/or infrastructure of ships and colonies.
+They replace standard structural units on a one-for-one basis in construction.
+These units may only be manufactured in an orbital colony or on a ship.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+modular-engineering-kit::
+Modular-engineering-kit units contain the panels, struts, beams, and other components used to build colonies and ships.
+There are three types, the standard (MEK-1), a lower mass version (MEK-2), and an extra low mass version (MEK-3).
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+WARNING: MEK units are intended to replace structural, light-structural, and super-light-structural units in the future.
+They are not currently used because their Tech Level doesn't play well with the current rules.
+
+metallics::
+Metallic units are consumed by factories in the manufacturing process.
+Metallic units are produced only by mine units.
+They can not be taken apart and packed to save space on a ship or colony.
+
+military-robot::
+Military-robot units are used in combat to attack ground targets (soldiers and military robots) and assault-craft.
+They can not be taken apart and packed to save space on a ship or colony.
+
+military-supply::
+Military-supply units are used by soldier units and military robot units in combat.
+These units are consumed during each round of combat.
+If the soldier unit or military robot unit runs out of military-supply units, it will disengage from combat.
+They can not be taken apart and packed to save space on a ship or colony.
+
+mine::
+Mine units are used to produce fuel, gold, metallics, and non-metallics units.
+All mine units must be assigned to a deposit of natural resources in order to operate.
+They will produce according to the characteristics of the deposit (kind and yield).
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+missile::
+Missile units are used in combat to attack ships or colonies.
+The chance of a missile striking the target depends on the Tech Level of the missile-launcher used.
+Missile units may be destroyed by anti-missile units before they have a chance to damage the target.
+They can not be taken apart and packed to save space on a ship or colony.
+
+missile-launcher::
+Missile-launcher units are used in combat to launch both missile units and anti-missile units.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+open colony::
+An open colony is located on the surface of a habitable planet.
+The colony does not require life-support units to sustain the population units.
+
+orbital colony::
+An orbital colony is located in orbit around a planet.
+The colony requires life-support units to sustain the population units.
+
+order::
+An order can be issued to any ship or colony that a player controls.
+
+ore::
+Ore is not a unit;
+it is an alias for metallics units or non-metallics units.
+
+population::
+Population units are not units;
+they are an alias for are the people of the nation.
+They are categorized as professionals, soldiers, unskilled workers, and unemployed.
+Population units are not manufactured; increases happen through the birth rules.
+They can be destroyed in combat, by starvation, lack of life support, or through natural causes.
+They can not be taken apart and packed to save space on a ship or colony.
+
+professional::
+Professional units are people that manage factories, farms, mines, colonies, and ships.
+They can be trained to lead construction crews and spy teams, too.
+Professional units are paid with consumer-goods units when they're in a colony;
+when they're crewing a ship they are paid with gold units.
+As with all other population units, they use the birth and death rules; they are never "manufactured,"
+and they can not be taken apart and packed to save space on a ship or colony.
+
+non-metallics::
+Non-metallic units are consumed by factories in the manufacturing process.
+Non-metallic units are produced only by mine units.
+They can not be taken apart and packed to save space on a ship or colony.
+
+rebel::
+Rebel units are a percentage of the population on a ship or colony that is dissatisfied with the current governance.
+They may engage in acts of sabotage or open warfare.
+
+sensor::
+Sensor units are used to passively scan a system after a hyper-drive jump and also to probe a planet in a system.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+soldier::
+Soldier units are people that are trained for combat and policing.
+They can be trained to work in spy teams, too.
+When they retire, they become professional units.
+Soldier units are paid with consumer-goods units when they're in a colony;
+when they're crewing a ship they are paid with gold units.
+As with all other population units, they use the birth and death rules; they are never "manufactured,"
+and they can not be taken apart and packed to save space on a ship or colony.
+
+space-drive::
+Space-drive units are used to transport ships between planets in a star system.
+They are also used to transport ships between stars in a system with multiple stars.
+Additionally, the ratio of the space-drive units' thrust to the ship's determines how quickly the ship moves in combat.
+They can not be taken apart and packed to save space on a ship or colony.
+
+spy team::
+Spy team units combine professional units and soldier units into a team that can perform espionage,
+assassinations, convert loyal population units, and incite rebels into open warfare.
+
+structural::
+Structural units are used to build the hull and/or infrastructure of ships and colonies.
+These units may only be manufactured in an enclosed colony or open colony.
+They may not be manufactured on an orbital colony or on a ship.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+super-light-structural::
+Super-light-structural units are used to build the hull and/or infrastructure of ships and colonies.
+They replace standard structural units on a one-for-one basis in construction.
+These units may only be manufactured in an orbital colony or on a ship that is Tech Level 6 or higher.
+They can be taken apart and rendered inoperable to save space on a ship or colony.
+
+transport::
+Transport units are used to transfer cargo or population between ships and/or colonies.
+In combat, transport units are used to transfer soldier units and military-robot units between ships and/or colonies.
+They can not be taken apart and packed to save space on a ship or colony.
+
+unemployed::
+Unemployed units are the people that are not professional, soldier, or unskilled workers.
+They're tagged as "unemployed" because the government does not pay them with consumer-goods units as it does with the other population units.
+As with all other population units, they use the birth and death rules; they are never "manufactured,"
+and they can not be taken apart and packed to save space on a ship or colony.
+
+unskilled worker::
+Unskilled worker units are people that do the work in factories, farms, mines, colonies, and ships.
+They can be trained to become professional units or work in construction crews.
+Unskilled worker units are paid with consumer-goods units when they're in a colony;
+when they're crewing a ship they are paid with gold units.
+As with all other population units, they use the birth and death rules; they are never "manufactured,"
+and they can not be taken apart and packed to save space on a ship or colony.
+
 == Units
 
-.Units Summary
+=== Population Units
+.Population Units Summary
 |===
-|Unit|Code|Mass per Unit|Description
+|Unit|Code|Mass per Unit|Volume Per Unit
 
-|anti-missile|ANM-TL >|?|
-|assault-craft|ASC-TL >|?|
-|assault-weapon|ASW-TL >|?|
-|automation|AUT-TL >|?|
-|consumer-goods|CNGD >|?|
-|energy-shield|ESH-TL >|?|
-|energy-weapon|EWP-TL >|?|
-|factory|FCT-TL >|?|
-|farm|FRM-TL >|?|
-|food|FOOD >|6|
-|fuel|FUEL >|?|
-|gold|GOLD >|?|
-|hyper-drive|HDR-TL >|?|
-|life-support|LSP-TL >|?|
-|light-structural|LTSU >|?|
-|metallics|MTLS >|?|
-|military-robots|MLR-TL >|?|
-|military-supplies|MLSP >|?|
-|mine|MIN-TL >|?|
-|missile|MSS-TL >|?|
-|missile-launcher|MSL-TL >|?|
-|non-metallics|NMTS >|?|
-|sensor|SNR-TL >|?|
-|space-drive|SDR-TL >|?|
-|structural|STUN >|?|
-|super-light-structural|SLSU >|?|
-|transport|TPT-TL >|?|
+|professional|PRO >|1 MU >|1 EMU
+|soldier|SOL >|1 MU >|1 EMU
+|unskilled worker|USK >|1 MU >|1 EMU
+|unemployed|UEM  >|1 MU >|1 EMU
 |===
+
+=== Farmed Units
+.Farmed Units Summary
+|===
+|Unit|Code|Mass per Unit|Volume Per Unit|Notes
+
+|food|FOOD >|6 MU >|1 EMU|Used to feed population
+|===
+
+=== Mined Units
+.Mined Units Summary
+|===
+|Unit|Code|Mass per Unit|Volume Per Unit|Notes
+
+|fuel|FUEL >|1 MU >|1 EMU|Used to power manufactured units
+|gold|GOLD >|1 MU >|1 EMU|Used for trade
+|metallics|MTLS  >|1 MU >|1 EMU|Consumed in manufacturing; may be extracted from recycled units
+|non-metallics|NMTL  >|1 MU >|1 EMU|Consumed in manufacturing; may be extracted from recycled units
+|===
+
+=== Manufactured Units
+==== Structural Units
+.Structural Units Summary
+|===
+|Unit|Code|Mass per Unit|Volume Per Unit
+
+|structural|STUN >|0.500 MU >|0.500 EMU
+|light-structural|LTSU >|0.050 MU >|0.050 EMU
+|super-light-structural|SLSU >|0.005 MU >|0.005 EMU
+|===
+
+==== Other Units
+Almost all other units require the Tech Level of the unit as part of the code and full name in orders.
+(The exception is the `military-supply` unit.)
+For example, an `anti-missile` unit with Tech Level 5 (TL-5) has a code of `ANM-5` and a full name of `anti-missile-5`.
+
+.Other Units Summary
+|===
+|Unit|Code|Mass per Unit|Fuel use per Turn|Notes
+
+|anti-missile|ANM-TL >|4 * TL MU >|0|Tech Level ranges from 1..10
+|assault-craft|ASC-TL >|5 * TL MU >|See Notes|Tech Level ranges from 1..10
+|assault-weapon|ASW-TL >|2 MU >|0|Tech Level ranges from 1..10
+|automation|AUT-TL >|4 * TL MU >|0|Tech Level ranges from 1..10
+|consumer-goods|CNGD >|0.6 MU >|0|This unit has no tech level
+|energy-shield|ESH-TL >|50 * TL MU >|?|Tech Level ranges from 1..10
+|energy-weapon|EWP-TL >|10 * TL MU >|See Notes|Tech Level ranges from 1..10
+|factory|FCT-TL >|? MU >|?|Tech Level ranges from 1..10
+|farm|FRM-TL >|? MU >|?|Tech Level ranges from 1..10
+|hyper-drive|HDR-TL >|45 * TL MU >|See Notes|Tech Level ranges from 1..10
+|life-support|LSP-TL >|8 * TL MU >|1 * TL|Tech Level ranges from 1..10
+|modular-engineering-kit|MEK-TL >|? MU >|?|Tech Level ranges from 1..3
+|military-robots|MLR-TL >|20 + 2 * TL MU >|0|Tech Level ranges from 1..10
+|military-supply|MLTS >|0.04 MU >|0|This unit has no tech level
+|mine|MIN-TL >|? MU >|?|Tech Level ranges from 1..10
+|missile|MSS-TL >|4 * TL MU >|0|Tech Level ranges from 1..10.
+|missile-launcher|MSL-TL >|25 * TL MU >|0|Tech Level ranges from 1..10
+|sensor|SNR-TL >|40 * TL MU >|0.05 * TL|Tech Level ranges from 1..10
+|space-drive|SDR-TL >|25 * TL MU >|See Notes|Tech Level ranges from 1..10
+|transport|TPT-TL >|4 * TL MU >|See Notes|Tech Level ranges from 1..10
+|===
+
+Notes:
+
+1. `assault-craft` units consume fuel only during combat.
+They consume 0.1 * TL `fuel` units during each round trip they make in a combat round.
+2. `energy-shield` units consume fuel only during combat.
+They consume 10 * TL `fuel` units each combat round that they are used.
+3. `energy-weapon` units consume fuel only during combat.
+They consume 4 * TL `fuel` units each combat round that they are used.
+4. `hyper-drive` units consume fuel only when they make a jump between systems.
+They consume 40 `fuel` units per light year jumped.
+5. `space-drive` units consume fuel only when they move between planets or during combat.
+They consume TL^2^ `fuel` units each round of combat that they are used.
+6. `transport` units consume fuel only when they are used to move cargo or to transport troops during combat.
 
 [appendix]
 == Orders
@@ -2250,7 +2520,8 @@ Examples are MISSILE-2, HYPER-DRIVE-3, and ENERGY-SHIELDS-9.
 
 [appendix]
 == To Do
-Ships should have unskilled workers to move cargo and perform routine maintenance.
+1. Ships should have unskilled workers to move cargo and perform routine maintenance.
+2. Soldiers should be required to operate energy weapons and missiled.
 
 [index]
 == Index
