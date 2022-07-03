@@ -302,7 +302,7 @@ A _modular engineering kit_ contains the panels, struts, beams, and other compon
 There are three types, the standard (MEK-1), a lower mass version (MEK-2), and an extra low mass version (MEK-3).
 
 MU::
-_MU_ is an abbrevition for *mass unit*.
+_MU_ is an abbreviation for *mass unit*.
 
 nation::
 A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
