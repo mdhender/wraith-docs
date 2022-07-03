@@ -1,0 +1,216 @@
+= Wraith Ship Building Guide
+Michael D Henderson <mdhender@example.com>
+v0.1.0, 2022-07-02
+:doctype: book
+:sectnums:
+:sectnumlevels: 5
+:partnums:
+:toc: right
+:toclevels: 3
+:icons: font
+:url-quickref: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
+
+Wraith Ship Building Guide (c) 2022 by Michael D Henderson
+
+Wraith Ship Building Guide is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+
+You should have received a copy of the license along with this work.
+If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
+
+WARNING: The Reference Manual is the source of truth for the rules.
+If this document does not match, this document is wrong.
+
+:sectnums:
+== Ship Chart
+It helps to create a chart of the units that will be used on the ship.
+The areas are:
+
+1. Hull - the infrastructure of the ship.
+The structure units used to build the hull take up no space inside the ship.
+(You don't have to enclose them, so the number of required structure units is zero.)
+2. Engineering - life support and engines.
+3. Command and Control (C&C) - the crew (and their quarters), sensors, energy weapons and shields.
+The minimum crew is 1 Professional unit.
+4. Cargo - storage holds, fuel tanks, missiles, and transports.
+Non-crew members bunk down in this area, too.
+
+|===
+|Area|Unit|Mass per Unit|Volume per Unit|Quantity|Total MUs|Total EMUs|Number of Structure Units Required
+
+|*Hull*|||||||
+||structural >|0.5 MU >|0 EMU >| >| >|0 EMU >|
+||light-structural >|0.05 MU >|0 EMU >| >| >|0 EMU >|
+|*C&C*|||||||
+||professional >|1 MU >|1 EMU >| >| >| >|
+||sensors >| >| >| >| >| >|
+|*Engineering*|||||||
+||life-support >| >| >| >| >| >|
+||space-drives >| >| >| >| >| >|
+||hyper-drive >| >| >| >| >| >|
+|*Cargo*|||||||
+||food >|6 MU >|1 EMU >| >| >| >|
+||fuel >|1 MU >|1 EMU >| >| >| >|
+||transport >| >| >| >| >| >|
+||soldier >|1 MU >|1 EMU >| >| >| >|
+||unskilled-worker >|1 MU >|1 EMU >| >| >| >|
+|*Total*|||| >| >| >|
+|===
+
+=== Scout Ship
+As an explorer nation, we want to start building scout ships to, well, explore with.
+Take a look at the Codes section of the Glossary,
+read the Description for each unit,
+and decide what equipment to put on the ship.
+
+We can use standard `structural` units to build the hull, but they're ten times the mass of `light-structural` units.
+More mass means bigger engines and more fuel to move the ship.
+If we have them available, we'll use `light-structural` units.
+
+The absolute minimum crew for a ship is 1 Professional ("PRO") unit.
+We'll stick with that until we see a need for more crew.
+
+Our scouts will use the best available `sensor` units to survey the planets orbiting a star.
+We're just starting out, so the "best" is `sensor-1` units.
+Per the chart in the Reference Guide, each `sensor-1` units can probe 1 planet per turn.
+
+The more `sensor` units we install, the less time it will take to run thoroughly survey.
+We have to balance that against the mass we have push around.
+Each sensor has a mass of 40 MUs (that's also from the chart in the Reference Guide).
+It's a trade-off with no "right" answer, so we'll install 10 units.
+
+NOTE: You can have Professional units survey planets, too.
+It requires 1 PRO unit plus 1 `transport` unit per turn.
+
+In the engineering section, we'll add `life-support` units to keep the crew alive.
+Looking at the Reference Guide, we see that number of people that each unit can support is determined by the unit's "tech level."
+In our case, we're limited to TL-1 ("tech level one") because our nation (like all nations) starts at TL-1.
+Again looking at that chart in the Reference Guide,
+each `life-support-1` unit (the `-1` means "TL-1") will support 1 population unit.
+
+NOTE: A population unit is 100 people.
+
+The total number of `life-support-1` units that we'll need depends on the size of the ship's crew.
+1 PRO unit is one population unit, so we need just 1 `life-support-1` unit for them.
+
+Engines are next on the chart,
+but we won't know the number that we need until we have a better idea of the total mass of the ship.
+Let's skip them for a moment and work out our cargo needs.
+
+Our scout will need to carry food for the crew and fuel for the sensors.
+We're not going to carry weapons or additional passengers.
+
+NOTE: We'll assume that all scouts are going to embark on 5 year missions,
+so they'll carry enough fuel and food to last 20 turns.
+
+Hitting the charts in the Reference Guide again,
+we find that our `life-support-1` unit uses 1 `fuel` unit per turn and 20 `fuel` units over the entire mission.
+
+The `sensor-1` each use 1 `fuel` unit per turn, for a total of 10 `fuel` units per turn and 200 `fuel` units for the entire mission.
+
+The Professional unit consumes 0.25 `food` units per turn for a total of 5 `food` units for the entire mission.
+
+If my math is good, that's 220 `fuel` and 5 `food` units for the mission.
+
+Plugging those in (and removing the unused rows), the chart looks like:
+
+|===
+|Area|Unit|Mass per Unit|Volume per Unit|Quantity|Total Mass|Total Volume|Number of Structure Units Required
+
+|*Hull*|||||||
+||light-structural >|0.05 MU >|0 EMU >| >| >|0 EMU >|0
+|*C&C*|||||||
+||professional >|1 MU >|1 EMU >|1 >|1 MU >|1 EMU >|10
+||sensors-1 >|40 MU >|40 EMU >|10 >|400 MU >|400 EMU >|4,000
+|*Engineering*|||||||
+||life-support-1 >|5 MU >|40 EMU >| 1 >|5 MU >|40 EMU >|400
+||space-drives-1 >|1 MU >|25 EMU >| >| >| >|
+||hyper-drive-1 >|30 MU >|45 EMU >| >| >| >|
+|*Cargo*|||||||
+||food >|6 MU >|1 EMU >|5 >|30 MU >|5 EMU >|50
+||fuel >|1 MU >|1 EMU >|220 >|220 MU >|220 EMU >|2,200
+|*Total*|||| >|656 MU >|666 EMU >|6,600
+|===
+
+We enough structural units to enclose 666 EMUs.
+Ships require 10 structure units per EMU, so that comes out to 6,600.
+Adding that to our chart gives us:
+
+|===
+|Area|Unit|Mass per Unit|Volume per Unit|Quantity|Total Mass|Total Volume|Number of Structure Units Required
+
+|*Hull*|||||||
+||light-structural >|0.05 MU >|0 EMU >|6,600 >|333 MU >|0 EMU >|0
+|*C&C*|||||||
+||professional >|1 MU >|1 EMU >|1 >|1 MU >|1 EMU >|10
+||sensors-1 >|40 MU >|40 EMU >|10 >|400 MU >|400 EMU >|4,000
+|*Engineering*|||||||
+||life-support-1 >|5 MU >|40 EMU >| 1 >|5 MU >|40 EMU >|400
+||space-drives-1 >|1 MU >|25 EMU >| >| >| >|
+||hyper-drive-1 >|30 MU >|45 EMU >| >| >| >|
+|*Cargo*|||||||
+||food >|6 MU >|1 EMU >|5 >|30 MU >|5 EMU >|50
+||fuel >|1 MU >|1 EMU >|220 >|220 MU >|220 EMU >|2,200
+|*Total*|||| >|989 MU >|666 EMU >|6,600
+|===
+
+We'll need enough engines to move 989 mass units around.
+
+NOTE: The structure units used to build the hull don't take up space in the ship.
+They do have mass, though, so they are counted towards the engine capacity.
+The mass of the engines has to be counted, too.
+
+`Space-drive` units allow the ship to move between planets in a system.
+We're not anticipating combat, so the ship needs only the minimum amount, which is one.
+One `space-drive-1` unit has a mass of 25.
+Each unit uses no `fuel` for regular (non-combat) movement per turn.
+
+`Hyper-drive` units let the ship jump between systems.
+Each `hyper-drive-1` unit can move 1,000 mass units per turn and has a mass of 45.
+Each unit uses 1 `fuel` unit per movement per turn.
+We'll add another 10 `fuel` units to cover the travel cost for the mission.
+
+Adding in the drives and fuel pushed us above 1,000 mass units for the ship.
+That means that we'll need *2* `hyper-drive-1` units to move it between systems.
+(We'll add another 10 `fuel` units to cover the additional drive, too!)
+
+|===
+|Area|Unit|Mass per Unit|Volume per Unit|Quantity|Total Mass|Total Volume|Number of Structure Units Required
+
+|*Hull*|||||||
+||light-structural >|0.05 MU >|0 EMU >|6,600 >|333 MU >|0 EMU >|0
+|*C&C*|||||||
+||professional >|1 MU >|1 EMU >|1 >|1 MU >|1 EMU >|10
+||sensors-1 >|40 MU >|40 EMU >|10 >|400 MU >|400 EMU >|4,000
+|*Engineering*|||||||
+||life-support-1 >|5 MU >|40 EMU >| 1 >|5 MU >|40 EMU >|400
+||space-drives-1 >|1 MU >|25 EMU >|1 >|1 MU >|25 EMU >|250
+||hyper-drive-1 >|30 MU >|45 EMU >|2 >|60 MU >|90 EMU >|900
+|*Cargo*|||||||
+||food >|6 MU >|1 EMU >|5 >|30 MU >|5 EMU >|5
+||fuel >|1 MU >|1 EMU >|240 >|240 MU >|240 EMU >|2,400
+|*Total*|||| >|1,070 MU >|801 EMU >|8,010
+|===
+
+With that, we know the number of structure units needed for the hull.
+
+|===
+|Area|Unit|Mass per Unit|Volume per Unit|Quantity|Total Mass|Total Volume|Number of Structure Units Required
+
+|*Hull*|||||||
+||light-structural >|0.05 MU >|0 EMU >|8,010 >|451 MU >|0 EMU >|0
+|*C&C*|||||||
+||professional >|1 MU >|1 EMU >|1 >|1 MU >|1 EMU >|10
+||sensors-1 >|40 MU >|40 EMU >|10 >|400 MU >|400 EMU >|4,000
+|*Engineering*|||||||
+||life-support-1 >|5 MU >|40 EMU >| 1 >|5 MU >|40 EMU >|400
+||space-drives-1 >|1 MU >|25 EMU >|1 >|1 MU >|25 EMU >|250
+||hyper-drive-1 >|30 MU >|45 EMU >|2 >|60 MU >|90 EMU >|900
+|*Cargo*|||||||
+||food >|6 MU >|1 EMU >|5 >|30 MU >|5 EMU >|5
+||fuel >|1 MU >|1 EMU >|240 >|240 MU >|240 EMU >|2,400
+|*Total*|||| >|1,138 MU >|801 EMU >|8,010
+|===
+
+Luckily the extra mass didn't push us over the limit for the 2 `hyper-drive-1` units!
+
+Spreadsheets can help with this.
