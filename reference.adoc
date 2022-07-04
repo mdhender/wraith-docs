@@ -1,6 +1,6 @@
 = Wraith Reference Manual
 Michael D Henderson <mdhender@example.com>
-v1.0.1, 2022-07-03
+v1.0.2, 2022-07-03
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -30,11 +30,20 @@ most notably https://en.wikipedia.org/wiki/Empyrean_Challenge[Empyrean Challenge
 https://farhorizons.dev[Far Horizons],
 and https://en.wikipedia.org/wiki/The_Campaign_for_North_Africa[The Campaign for North Africa].
 
+=== How to start
+This reference manual presents the rules with very little explanation.
+You may find it helpful to read the <<Units>> section before skimming through the <<a-phase-chart, Phase Chart>>.
+That should give you enough background to read the Users Guide.
+Use this manual when you have questions.
+
 == Organization
-The reference manual presents rules in the sequence they would be processed during a game turn.
+The manual arranges rules in the sequence they would be processed during a game turn.
 
-The chapter headings are the phases from the following chart:
+Charts are presented where they are first used.
 
+The section headings are taken from the Phase Chart:
+
+[[a-phase-chart]]
 .Phase Chart
 |===
 |Phase|Description
@@ -73,29 +82,22 @@ Active militias will engage in combat starting the next turn.
 |Retirement|Population changes due to retirement are calculated.
 |Death|Population changes due to starvation and natural deaths are calculated.
 |Research|Changes to the tech level for a colony or ship tech level are determined in this phase.
+|Bookkeeping|?
 |News|In this phase, reports for the "news services" are created todo...
 |===
 
-All _orders_ for a given _phase_ are executed before the next _phase_ begins.
+NOTE: All _orders_ for a given _phase_ are executed before the next _phase_ begins.
 Within a phase, _orders_ are executed in the order they were issued by the player.
 
 == Fuel Allocation Phase
-The number of fuel units available to every colony and ship is calculated.
-
-Fuel allocations are prioritized:
-
-. Life-support units
-. Farm units
-. Mine units
-. Factory units
+The number of fuel units available to every colony and ship is calculated and updated.
 
 Excess fuel is immediately moved to storage.
 If there is not enough storage available on the colony or ship, excess fuel is lost.
 
 Fuel units in storage are available for use in the remaining phases.
-(They are one of the few units that can be consumed directly from storage.)
 
-TIP: Fuel units are only produced via mining.
+WARNING: Fuel units are only produced via mining.
 They are not available for use until the turn after they've been mined.
 
 === Stored vs Operational vs Active
@@ -107,12 +109,16 @@ An operational item that has the required fuel and labor is active and ready to 
 All other units are inactive.
 
 == Life Support Phase
-The number of operational life-support units is counted.
-Players are not allowed to activate only a portion of the life-support units on a colony or ship.
+Life-support units maintain the environment needed to sustain people in an enclosed colony,
+orbital colony, or ship.
 
 === Fuel
 Life-support units require fuel to be active.
 They do not require labor units.
+
+At the start of this phase, fuel is allocated to all operational life-support units.
+
+NOTE: Players are not allowed to activate only a portion of the life-support units on a colony or ship.
 
 .Life Support Fuel Chart
 |===
@@ -131,14 +137,17 @@ They do not require labor units.
 |===
 
 === Effect
+At the start of this phase, the active life-support units are counted.
+This number is used to calculate the number of population units each colony or ship can support.
+
 Each active life-support unit will support a number of population units equal to its Tech Level squared.
 "Excess population" is the number of people over this value.
 
-TIP: Population in cryo-sleep are not counted.
+TIP: Population in cryo-sleep are not counted towards the life support limit.
 
 .Life Support Chart
 |===
-|Unit-TechLevel|Population units supported per UNIT per TURN
+|Unit-TechLevel|Population units supported per Unit per Turn
 
 |life-support-1|1
 |life-support-2|4
@@ -152,27 +161,21 @@ TIP: Population in cryo-sleep are not counted.
 |life-support-10|100
 |===
 
-The excess population is removed immediately.
+The excess population are casualties and are removed immediately.
 These casualties are distributed uniformly across all population groups on the colony or ship.
 
-If a colony or ship takes on too many passengers in a later phase, the excess population will be removed.
-
-((TODO)): they should refuse transport.
+WARNING: The excess population checks are made at the end of each phase.
+This means that if a colony or ship has too many population units in a later phase, the excess population will become casualties, too.
 
 WARNING: Life-support units must be operational for the entire turn.
-If the units are shut down for any reason, the capacity will be recalculated and excess population will be removed immediately.
+If the units are shut down for any reason, the capacity will be recalculated and excess population will immediately become casualties.
 This includes sabotage and damage in combat.
 
 == Farming Production Phase
 Farm units produce food units to feed the population.
-Without sufficient food, the population will starve and rebel.
 
-The number of food units produced by active farm units is calculated in this phase.
-The food units are moved to local depots for temporary storage.
-
-A farm unit produces no food units if it is has not been active for at least two consecutive turns.
-
-A farm unit produces no food units the first turn that it is active.
+WARNING: Without sufficient food, the population will starve.
+Starvation leads to deaths and increases the chance of rebellion.
 
 === Location
 Farm units may be installed in locations per the following chart:
@@ -212,6 +215,9 @@ If a farm unit does not have a full allocation of fuel or solar-power, it is ina
 |farm-9 >|9.0
 |farm-10 >|10.0
 |===
+
+WARNING: Fuel is always allocated before labor.
+If there's a labor shortage, it is possible that more fuel will be allocated than can be used.
 
 ==== Solar Power
 Some farm units that are on orbital colonies in the first five orbits are solar-powered and consume no fuel.
@@ -257,6 +263,15 @@ If a farm unit does not have a full allocation of labor, it is inactive for the 
 Unskilled-Worker units may be replaced by automation units.
 
 === Production
+The number of food units produced by active farm units is calculated in this phase.
+The food units are moved to local depots for temporary storage.
+
+A farm unit produces no food units if it has not been active for at least two consecutive turns.
+
+A farm unit produces no food units the first turn that it is active.
+
+
+
 Farm units will produce food after they have been active for two consecutive turns.
 In other words, if the farm unit is active this turn and was active the prior turn,
 it will produce food units per the following chart.
@@ -325,18 +340,40 @@ If a mine unit does not have a full allocation of fuel or solar-power, it is ina
 
 .Mining Fuel Chart
 |===
-|Unit-TechLevel|Fuel per Unit per Turn|Can use Solar Power?
+|Unit-TechLevel|Fuel per Unit per Turn
 
-|mine-1 >|0.5|no
-|mine-2 >|1.0|no
-|mine-3 >|1.5|no
-|mine-4 >|2.0|no
-|mine-5 >|2.5|no
-|mine-6 >|3.0|no
-|mine-7 >|3.5|no
-|mine-8 >|4.0|no
-|mine-9 >|4.5|no
-|mine-10 >|5.0|no
+|mine-1 >|0.5
+|mine-2 >|1.0
+|mine-3 >|1.5
+|mine-4 >|2.0
+|mine-5 >|2.5
+|mine-6 >|3.0
+|mine-7 >|3.5
+|mine-8 >|4.0
+|mine-9 >|4.5
+|mine-10 >|5.0
+|===
+
+WARNING: Fuel is always allocated before labor.
+If there's a labor shortage, it is possible that more fuel will be allocated than can be used.
+
+==== Solar Power
+Some mine units that are the surface of planets in the first five orbits are solar-powered and consume no fuel.
+
+.Mining Solar Power Chart
+|===
+|Unit-TechLevel|Can use Solar Power?
+
+|mine-1 >|Yes, if on the surface of a planet in orbits 1..5
+|mine-2 >|Yes, if on the surface of a planet in orbits 1..4
+|mine-3 >|Yes, if on the surface of a planet in orbits 1..3
+|mine-4 >|Yes, if on the surface of a planet in orbits 1..2
+|mine-5 >|Yes, if on the surface of a planet in orbit 1
+|mine-6 >|No
+|mine-7 >|No
+|mine-8 >|No
+|mine-9 >|No
+|mine-10 >|No
 |===
 
 If a mine unit can use solar-power, its fuel cost drops to 0 fuel units per turn.
@@ -372,16 +409,16 @@ it will produce units per the following chart.
 |===
 |Unit-TechLevel|Production per Unit per Turn
 
-|mine-1 >|25 MU * Yield%
-|mine-2 >|50 MU * Yield%
-|mine-3 >|75 MU * Yield%
-|mine-4 >|100 MU * Yield%
-|mine-5 >|125 MU * Yield%
-|mine-6 >|150 MU * Yield%
-|mine-7 >|175 MU * Yield%
-|mine-8 >|200 MU * Yield%
-|mine-9 >|225 MU * Yield%
-|mine-10 >|250 MU * Yield%
+|mine-1 >|25 * Yield% MU
+|mine-2 >|50 * Yield% MU
+|mine-3 >|75 * Yield% MU
+|mine-4 >|100 * Yield% MU
+|mine-5 >|125 * Yield% MU
+|mine-6 >|150 * Yield% MU
+|mine-7 >|175 * Yield% MU
+|mine-8 >|200 * Yield% MU
+|mine-9 >|225 * Yield% MU
+|mine-10 >|250 * Yield% MU
 |===
 
 NOTE: The amount of refined materials depends upon the yield of the deposit being worked.
@@ -397,9 +434,9 @@ Shortages will be applied to the mine units in Stage 1, then Stage 2, and finall
 == Factory Production Phase
 The amount of finished goods produced by factory groups is calculated in this phase.
 
-Factories produce the following finished goods:
+Factories produce the following units:
 
-.Factory Finished Goods
+.Factory Produced Units
 |===
 |Unit
 
@@ -423,6 +460,7 @@ Factories produce the following finished goods:
 |sensor
 |space-drive
 |structural
+|super-light-structural
 |transport
 |===
 
@@ -475,6 +513,9 @@ If a factory unit does not have a full allocation of fuel or solar-power, it is 
 |factory-10 >|10.0
 |===
 
+WARNING: Fuel is always allocated before labor.
+If there's a labor shortage, it is possible that more fuel will be allocated than can be used.
+
 Note: Inactive factory units never consume fuel.
 
 ==== Solar Power
@@ -485,15 +526,15 @@ Some factory units that are on orbital colonies in the first five orbits are sol
 |Unit-TechLevel|Can use Solar Power?
 
 |factory-1 >|Yes, if on Orbital Station in orbits 1..5
-|factory-2 >|Yes, if on Orbital Station in orbits 1..5
-|factory-3 >|Yes, if on Orbital Station in orbits 1..5
-|factory-4 >|Yes, if on Orbital Station in orbits 1..5
-|factory-5 >|Yes, if on Orbital Station in orbits 1..5
-|factory-6 >|Yes, if on Orbital Station in orbits 1..5
-|factory-7 >|Yes, if on Orbital Station in orbits 1..5
-|factory-8 >|Yes, if on Orbital Station in orbits 1..5
-|factory-9 >|Yes, if on Orbital Station in orbits 1..5
-|factory-10 >|Yes, if on Orbital Station in orbits 1..5
+|factory-2 >|Yes, if on Orbital Station in orbits 1..4
+|factory-3 >|Yes, if on Orbital Station in orbits 1..3
+|factory-4 >|Yes, if on Orbital Station in orbits 1..2
+|factory-5 >|Yes, if on Orbital Station in orbit 1
+|factory-6 >|No
+|factory-7 >|No
+|factory-8 >|No
+|factory-9 >|No
+|factory-10 >|No
 |===
 
 If a factory unit can use solar-power, its fuel cost drops to 0 fuel units per turn.
@@ -532,27 +573,28 @@ The quantity and type of inputs needed for each finished good is per the followi
 |===
 |Unit|Metallic units|Non-Metallic units|Gold units|Fuel units
 
-|anti-missile|2 * TL|2 * TL >|0 >|0
-|assault-craft|3 * TL|2 * TL >|0 >|0
-|assault-weapon|1 * TL|1 * TL >|0 >|0
-|automation|2 * TL|2 * TL >|0 >|0
-|consumer-goods >|0.20 >|0.40 >|0 >|0
-|energy-shield|25 * TL|25 * TL >|0 >|0
-|energy-weapon|5 * TL|5 * TL >|0 >|0
-|factory|8 + TL|4 + TL >|0 >|0
-|farm|4 + TL|2 + TL >|0 >|0
-|hyper-drive|25 * TL|20 * TL >|0 >|0
-|life-support|3 * TL|5 * TL >|0 >|0
-|light-structural >|0.01 >|0.04 >|0 >|0
-|military-robot|10 + TL|10 + TL >|0 >|0
-|military-supplies >|0.02 >|0.02 >|0 >|0
-|mine|5 + TL|5 + TL >|0 >|0
-|missile|2 * TL|2 * TL >|0 >|0
-|missile-launcher|15 * TL|10 * TL >|0 >|0
-|sensor|10 * TL|20 * TL >|0 >|0
-|space-drive|15 * TL|10 * TL >|0 >|0
-|structural >|0.10 >|0.40 >|0 >|0
-|transport|3 * TL|1 * TL >|0 >|0
+|anti-missile >|2 * TL >|2 * TL >|0 >|0
+|assault-craft >|3 * TL >|2 * TL >|0 >|0
+|assault-weapon >|1 * TL >|1 * TL >|0 >|0
+|automation >|2 * TL >|2 * TL >|0 >|0
+|consumer-goods >|0.200 >|0.400 >|0 >|0
+|energy-shield >|25 * TL >|25 * TL >|0 >|0
+|energy-weapon >|5 * TL >|5 * TL >|0 >|0
+|factory >|8 + TL >|4 + TL >|0 >|0
+|farm >|4 + TL >|2 + TL >|0 >|0
+|hyper-drive >|25 * TL >|20 * TL >|0 >|0
+|life-support >|3 * TL >|5 * TL >|0 >|0
+|light-structural >|0.010 >|0.040 >|0 >|0
+|military-robot >|10 + TL >|10 + TL >|0 >|0
+|military-supplies >|0.020 >|0.020 >|0 >|0
+|mine >|5 + TL >|5 + TL >|0 >|0
+|missile >|2 * TL >|2 * TL >|0 >|0
+|missile-launcher >|15 * TL >|10 * TL >|0 >|0
+|sensor >|10 * TL >|20 * TL >|0 >|0
+|space-drive >|15 * TL >|10 * TL >|0 >|0
+|structural >|0.100 >|0.400 >|0 >|0
+|super-light-structural >|0.001 >|0.004 >|0 >|0
+|transport >|3 * TL >|1 * TL >|0 >|0
 |===
 
 NOTE: The quantity of materials needed for most items is based on the tech level of the finished good.
@@ -588,19 +630,19 @@ Some units require FUEL to be used in combat.
 
 .Combat Fuel Chart
 |===
-|Unit|Fuel use per Unit per Turn|FUEL use per Unit per Combat Round
+|Unit|Fuel use per Unit per Turn|Fuel use per Unit per Combat Round
 
-|assault-craft|0.1|n/a
-|energy-shield|n/a|4 * TL
-|energy-weapon|n/a|10 * TL
-|space-drive|n/a|TL^2^
+|assault-craft >|0.1 >|n/a
+|energy-shield >|n/a >|4 * TL
+|energy-weapon >|n/a >|10 * TL
+|space-drive >|n/a >|TL^2^
 |===
 
 .Combat Thrust Factor (TF) Chart
 |===
 |Unit|Thrust Factor per Unit per Combat Round
 
-|space-drive|1000 * TL^2^
+|space-drive >|1000 * TL^2^
 |===
 
 The total thrust factors (TF) divided by the ship's total mass is the maximum number of space combat rings a ship may move in a single combat round.
@@ -2132,6 +2174,10 @@ If the same colony were visited by a ship carrying TECH-3 and TECH-4,
 it would be able to use the TECH-3 to raise its level,
 then use the TECH-4.
 
+== Cleanup Phase
+Excess fuel is moved to storage.
+If there is not enough storage available on the colony or ship, excess fuel is lost.
+
 == News Service Phase
 Each news service is updated with the turn's
 * Arrivals
@@ -2394,45 +2440,51 @@ and they can not be taken apart and packed to save space on a ship or colony.
 |===
 
 === Manufactured Units
-==== Structural Units
-.Structural Units Summary
+Manufactured units consist of tech units (which have properties that vary with the Tech Level of the unit)
+and non-tech units (the properties don't vary and Tech Level isn't tracked for the unit).
+
+==== Non-Tech Units
+
+.Non-Tech Units Summary
 |===
 |Unit|Code|Mass per Unit|Volume Per Unit
+
+|consumer-goods|CNGD >|0.6 MU >|1.000 EMU
+|military-supply|MLTS >|0.04 MU >|0.04 EMU
 
 |structural|STUN >|0.500 MU >|0.500 EMU
 |light-structural|LTSU >|0.050 MU >|0.050 EMU
 |super-light-structural|SLSU >|0.005 MU >|0.005 EMU
 |===
 
-==== Other Units
-Almost all other units require the Tech Level of the unit as part of the code and full name in orders.
-(The exception is the `military-supply` unit.)
+==== Tech Units
+Tech units require the Tech Level of the unit as part of the code and full name in orders.
 For example, an `anti-missile` unit with Tech Level 5 (TL-5) has a code of `ANM-5` and a full name of `anti-missile-5`.
+
+The Tech Level ranges from 1 to 10 for these units.
 
 .Other Units Summary
 |===
-|Unit|Code|Mass per Unit|Fuel use per Turn|Notes
+|Unit|Code|Mass per Unit|Fuel use per Turn
 
-|anti-missile|ANM-TL >|4 * TL MU >|0|Tech Level ranges from 1..10
-|assault-craft|ASC-TL >|5 * TL MU >|See Notes|Tech Level ranges from 1..10
-|assault-weapon|ASW-TL >|2 MU >|0|Tech Level ranges from 1..10
-|automation|AUT-TL >|4 * TL MU >|0|Tech Level ranges from 1..10
-|consumer-goods|CNGD >|0.6 MU >|0|This unit has no tech level
-|energy-shield|ESH-TL >|50 * TL MU >|?|Tech Level ranges from 1..10
-|energy-weapon|EWP-TL >|10 * TL MU >|See Notes|Tech Level ranges from 1..10
-|factory|FCT-TL >|? MU >|?|Tech Level ranges from 1..10
-|farm|FRM-TL >|? MU >|?|Tech Level ranges from 1..10
-|hyper-drive|HDR-TL >|45 * TL MU >|See Notes|Tech Level ranges from 1..10
-|life-support|LSP-TL >|8 * TL MU >|1 * TL|Tech Level ranges from 1..10
-|modular-engineering-kit|MEK-TL >|? MU >|?|Tech Level ranges from 1..3
-|military-robots|MLR-TL >|20 + 2 * TL MU >|0|Tech Level ranges from 1..10
-|military-supply|MLTS >|0.04 MU >|0|This unit has no tech level
-|mine|MIN-TL >|? MU >|?|Tech Level ranges from 1..10
-|missile|MSS-TL >|4 * TL MU >|0|Tech Level ranges from 1..10.
-|missile-launcher|MSL-TL >|25 * TL MU >|0|Tech Level ranges from 1..10
-|sensor|SNR-TL >|40 * TL MU >|0.05 * TL|Tech Level ranges from 1..10
-|space-drive|SDR-TL >|25 * TL MU >|See Notes|Tech Level ranges from 1..10
-|transport|TPT-TL >|4 * TL MU >|See Notes|Tech Level ranges from 1..10
+|anti-missile|ANM-TL >|4 * TL MU >|0
+|assault-craft|ASC-TL >|5 * TL MU >|See Notes
+|assault-weapon|ASW-TL >|2 MU >|0
+|automation|AUT-TL >|4 * TL MU >|0
+|energy-shield|ESH-TL >|50 * TL MU >|?
+|energy-weapon|EWP-TL >|10 * TL MU >|See Notes
+|factory|FCT-TL >|? MU >|?
+|farm|FRM-TL >|? MU >|?
+|hyper-drive|HDR-TL >|45 * TL MU >|See Notes
+|life-support|LSP-TL >|8 * TL MU >|1 * TL
+|modular-engineering-kit|MEK-TL >|? MU >|?
+|military-robots|MLR-TL >|20 + 2 * TL MU >|0
+|mine|MIN-TL >|? MU >|?
+|missile|MSS-TL >|4 * TL MU >|0
+|missile-launcher|MSL-TL >|25 * TL MU >|0
+|sensor|SNR-TL >|40 * TL MU >|0.05 * TL
+|space-drive|SDR-TL >|25 * TL MU >|See Notes
+|transport|TPT-TL >|4 * TL MU >|See Notes
 |===
 
 Notes:
@@ -2517,6 +2569,21 @@ UnitCodeTL:: _UnitCodeTL_ is composed of two parts separated by a dash.
 The first part is the code for the unit.
 The second part is the *TechLevel* of the unit.
 Examples are MISSILE-2, HYPER-DRIVE-3, and ENERGY-SHIELDS-9.
+
+[appendix]
+== Turn 0
+Turn 0 lets players create their initial factory, farm, and mining groups.
+This allows players to customize their manufacturing and mining base to their needs.
+
+During Turn 0, players are permitted to issue orders only to the open colony on their home world.
+The orders are limited to:
+
+1. assembling factory groups
+2. assembling farm groups
+3. assembling mine groups
+
+The assembled groups are treated as though they have been operational for a full year.
+They will consume the necessary materials and produce a full year's output.
 
 [appendix]
 == To Do
