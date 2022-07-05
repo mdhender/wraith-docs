@@ -1,6 +1,6 @@
 = Wraith Getting Started
 Michael D Henderson <mdhender@example.com>
-v0.1.2, 2022-07-05
+v0.1.3, 2022-07-05
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -39,15 +39,13 @@ NOTE: All players start with identical home worlds.
 The remaining 9 planets in the system are generated randomly,
 so they are different from player to player and game to game.
 
-Your home world has about 160 million people and 170 thousand farms on your home world.
-
-Your home world contains two colonies.
-The first is an open colony that's on the surface of the planet.
-The other is an orbital colony that is in orbit around your planet.
+Your home world has about 160 million people.
+Most of your people liven in an open colony on the surface of the planet.
+A few inhabit an orbital colony circling your planet.
 
 NOTE: We call them "colonies" in the game instead of "cities" or "space stations".
 
-The home world has 170,000 farms to provide food for the population.
+The home world has 170,000 farms that produce food for the population.
 Each farm produces enough to feed 4,000 people.
 You have to supply the labor (both managers and workers) to run the farms,
 as well as fuel for the planters, harvesters, and processing machines.
@@ -205,16 +203,16 @@ NOTE: These numbers are from the Factory Fuel Cost and Factory Group Cost charts
 == Getting Started (Turn 0)
 Turn 0 is a setup turn.
 It's intended to give you a chance to review your system reports,
-ask questions,
+decide on your goals,
 and customize your industrial base.
 
+=== Issuing Orders
 During Turn 0, you can issue two types of orders.
 
 1. You can name your colonies
 2. You can assemble mining groups and assign to work deposits.
 3. You can assemble factory groups and tell them what to start producing.
 
-=== Issuing Orders
 You issue orders by uploading a text file to the web server.
 
 The format of an order is generally:
@@ -238,7 +236,9 @@ This tells us that we must provide the colony's identifier
 (this is on your system report, it always the letter C followed by some numbers),
 the command (in this case it is literally the text "name"),
 and the name we want to assign the colony.
-Because it's a `QuotedString`, we must enclose it in quote marks.
+Because it's a `QuotedString`, we must enclose the colony's name in quote marks.
+
+WARNING: The `QuotedString` must have quote marks or the order will be rejected.
 
 To name our C21 colony Mudbomb, we'd issue the following order:
 
@@ -248,14 +248,12 @@ To name our C21 colony Mudbomb, we'd issue the following order:
 C21 name "Mudbomb"
 ----
 
-WARNING: The `QuotedString` must have quote marks or the order will be rejected.
-
-To name our C22 colony Orbiting Thing in The Sky, we'd issue the following order:
+To name our C22 colony Shiny Thingy in The Sky, we'd issue the following order:
 
 .Example
 [source]
 ----
-C22 name "Orbiting Thing in The Sky"
+C22 name "Shiny Thingy in The Sky"
 ----
 
 You can always change the name of a colony in a later turn by issuing a new `name` order.
@@ -331,6 +329,14 @@ C21 assemble 50,000 factory-1 space-drive-1   ;; create a group building space-d
 NOTE: It takes four turns for a factory to produce an item.
 Turn 0 gives you a boost because it tells the game engine that your new factory groups have been working for four turns.
 You'll start Turn 1 with those items fresh off the production lines and ready to use.
+
+== Turn 1
+Starting with Turn 1, you can issue any orders that you want to.
+
+Some general notes:
+
+* Transfer people, units, and raw materials to your orbital colony so that you can start building ships
+* Make sure that you have enough fuel and food for your orbital colony
 
 [appendix]
 == How Do I...
