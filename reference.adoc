@@ -1,6 +1,6 @@
 = Wraith Reference Manual
 Michael D Henderson <mdhender@example.com>
-v1.0.3, 2022-07-03
+v1.0.4, 2022-07-04
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
