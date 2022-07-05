@@ -1,0 +1,159 @@
+= Wraith Getting Started
+Michael D Henderson <mdhender@example.com>
+v0.1.0, 2022-07-04
+:doctype: book
+:sectnums:
+:sectnumlevels: 5
+:partnums:
+:toc: right
+:toclevels: 3
+:icons: font
+:url-quickref: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
+
+Wraith Getting Started (c) 2022 by Michael D Henderson
+
+Wraith Getting Started is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+
+You should have received a copy of the license along with this work.
+If not, see <http://creativecommons.org/licenses/by-nc/4.0/>.
+
+NOTE: Wraith is still under development.
+We're working on the documentation, the game engine, and the website.
+It's a glorious state of chaos.
+
+:sectnums:
+== The Big Overview
+Wraith is a sci-fi strategy game set in a distant part of the universe.
+It takes faster-than-light travel for granted.
+
+You start each game in your home system.
+It contains 10 planets, the most important of which is your home world.
+The home world is the only planet in the system that's populated.
+
+Your home world contains two colonies.
+The first is an open colony that's on the surface of the planet.
+The other is an orbital colony that is in orbit around your planet.
+
+You start with about 160 million people and 170 thousand farms on your home world.
+It can comfortably support about 250 million people and 2.5 million farms.
+Each farm produces enough food for 4,000 people.
+
+Your planet, like all planets, has deposits of natural resources that you can mine (or extract)
+to get the raw materials that your factories need to build the things that you need.
+Part of the challenge of Wraith is deciding what things to build, where to build them,
+and how to get those raw materials from the mines to the factories to avoid production shutdowns due to material shortages.
+
+Please see the Glossary and the "Units" appendix in the Reference Manual for more details.
+
+== Planets
+There are three types of planets in the game:
+
+1. terrestrial
+2. gas giants
+3. asteroid belts
+
+NOTE: We're stretching the definition of "planet" to include asteroid belts!
+
+Each planet has a "habitability number" (HN) assigned to.
+The value of the HN ranges from a low of 0 to a high of 25.
+HN 0 means that the planet is not habitable by your people.
+
+Some terrestrials and gas giants (actually the moons) may have an HN of 1 or more.
+These planets are habitable (meaning your people can settle there without requiring life support).
+
+Asteroid belts always have HN 0.
+
+== Population
+You have four categories of labor in your general population:
+professional, soldier, unskilled, and unemployed.
+
+=== Professional
+Professionals are able to manage your farms, factories, mines, colonies, and ships.
+It takes 100 professionals to manage farms and mines.
+The number required for factories depends on the size of the factory group.
+
+=== Soldier
+Soldiers are the people that are in the military, the police, and space forces.
+
+=== Unskilled Worker
+Unskilled workers are the ones doing the real work on your farms, factories, mines, colonies, and ships.
+They are called "unskilled" because the professionals got to pick the names.
+It takes 300 unskilled workers to operate farms and mines.
+The number required for factories depends on the size of the factory group.
+
+=== Unemployed
+Unemployed workers are the remainder of the population.
+They get their name because, unlike the other three categories, they're not directly employed by your government.
+
+== Colonies
+You can only build open colonies on the surface of habitable planets.
+You can build enclosed colonies on the surface of any planets.
+You can build an orbital colony around any planet.
+
+NOTE: When we are talking colonies on gas giants, we really mean "the moons of the gas giant."
+
+You can build at most one of each type on any planet.
+
+=== Open Colonies
+Open colonies are built on the surface of habitable planets.
+
+=== Enclosed Colonies
+Enclosed colonies are built on the surface of non-habitable planets.
+They are totally enclosed and require life support units to maintain a breathable atmosphere for your people.
+
+=== Orbital Colonies
+Orbital colonies are built in space around any planet.
+They are totally enclosed and require life support units to maintain a breathable atmosphere for your people.
+
+Orbital colonies are important because they're the only place that you can assemble ships.
+
+== Farms
+Farms produce the food your people eat.
+You start the game with open air farms (`farm-1` units).
+Your farms require
+
+== Mines
+Every planet contains natural resources that you can mine (or extract) to get the materials you need to build things.
+
+There are four types of natural resources: fuel, gold, metals, and non-metals.
+These are abstract concepts, so fuel includes oil, coal, and even nuclear materials.
+Gold is any precious ore, stone, or crystal.
+Metals are non-precious ores and non-metals are stones, crystals, and even timber.
+
+You must have a surface colony before you can start mining on a planet.
+After you build the surface colony, you can extract the resources and use them to build things you need
+(like life support units, space drives, and shuttles (called "transport units" in the game)).
+
+=== Fuel
+Fuel is used to power all units in the game.
+
+=== Gold
+Gold is used when trading with other nations.
+
+=== Metals and Non-Metals
+Metals and non-metals are consumed by factories to produce things.
+There's a chart in the Reference Manual that lists the amount of each that is required by every unit that factories can produce.
+
+== Factories
+Factories convert raw materials (metals and non-metals) into other things.
+The tech level of the item that the factory builds is limited by the tech level of the colony,
+not by the tech level of the factory units.
+
+The game requires that you assign a factory to a group before you can use it.
+You can have no more than 25 factory groups in any colony or ship.
+
+When you create a new factory group, your orders tell it which item to build.
+(Every factory in the group will build the same item.)
+You can use a "retool" order to change the item later.
+
+== How Do I...
+
+=== How do I even start to get started?
+
+=== How do I create a Nation
+
+=== How do I change the output of a Factory Group
+Issue a retool order to the group.
+This will shut down production,
+wait for the existing production stages to clear out,
+then start up the group again with the new output.
