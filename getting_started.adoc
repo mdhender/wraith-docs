@@ -1,6 +1,6 @@
 = Wraith Getting Started
 Michael D Henderson <mdhender@example.com>
-v0.1.1, 2022-07-04
+v0.1.2, 2022-07-05
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -21,27 +21,52 @@ NOTE: Wraith is still under development.
 We're working on the documentation, the game engine, and the website.
 It's a glorious state of chaos.
 
+:sectnums!:
+== Foreword
+Wraith is a sci-fi strategy game set in a distant part of the universe.
+The game starts after transmissions are received from an unknown source in your solar system.
+The messages contain the designs for faster-than-light engines.
+You control a nation that is on the edge of interstellar travel.
+You will lead your people into the great unknown.
+
 :sectnums:
 == The Big Overview
-Wraith is a sci-fi strategy game set in a distant part of the universe.
-It takes faster-than-light travel for granted.
+Every player starts with a home system containing 10 planets,
+the most important of which is your home world.
+It's the only planet in the system that's populated.
 
-You start each game in your home system.
-It contains 10 planets, the most important of which is your home world.
-The home world is the only planet in the system that's populated.
+NOTE: All players start with identical home worlds.
+The remaining 9 planets in the system are generated randomly,
+so they are different from player to player and game to game.
+
+Your home world has about 160 million people and 170 thousand farms on your home world.
 
 Your home world contains two colonies.
 The first is an open colony that's on the surface of the planet.
 The other is an orbital colony that is in orbit around your planet.
 
-You start with about 160 million people and 170 thousand farms on your home world.
-It can comfortably support about 250 million people and 2.5 million farms.
-Each farm produces enough food for 4,000 people.
+NOTE: We call them "colonies" in the game instead of "cities" or "space stations".
 
-Your planet, like all planets, has deposits of natural resources that you can mine (or extract)
-to get the raw materials that your factories need to build the things that you need.
-Part of the challenge of Wraith is deciding what things to build, where to build them,
-and how to get those raw materials from the mines to the factories to avoid production shutdowns due to material shortages.
+The home world has 170,000 farms to provide food for the population.
+Each farm produces enough to feed 4,000 people.
+You have to supply the labor (both managers and workers) to run the farms,
+as well as fuel for the planters, harvesters, and processing machines.
+Without the needed labor and fuel, your farms will fail to produce food.
+
+Your planet, like all planets, has deposits of natural resources that you can mine (or extract) for raw materials.
+You control four mining complexes producing gold, fuel, metals, and non-metals.
+Mines, like farms, require labor and fuel to operate.
+Just like farms, if there's a shortage of labor or fuel,
+your mines will shut down.
+
+There are factory complexes, too.
+These have been busy producing consumer goods (the items that you use to pay for labor).
+Factories require labor and fuel to operate,
+but they also require raw materials from the mines to build with.
+Your factories will shut down if they have a shortage of labor, fuel, or materials.
+
+Part of the challenge of Wraith is deciding what to build, where to build,
+and how to supply the required labor, fuel, and raw materials to avoid shortages on your farms, mines, and factories.
 
 Please see the Glossary and the "Units" appendix in the Reference Manual for more details.
 
@@ -58,10 +83,20 @@ Each planet has a "habitability number" (HN) assigned to.
 The value of the HN ranges from a low of 0 to a high of 25.
 HN 0 means that the planet is not habitable by your people.
 
+Asteroid belts always have HN 0.
+
 Some terrestrials and gas giants (actually the moons) may have an HN of 1 or more.
 These planets are habitable (meaning your people can settle there without requiring life support).
 
-Asteroid belts always have HN 0.
+NOTE: Your home world has a Habitability Number of 25.
+It can comfortably support 250 million people and 2.5 million farms.
+
+People can't actually survive on the "surface" of a gas giant,
+so we when we say "gas giant" we mean "the moons of the gas giant".
+
+It's similar for asteroid belts.
+They're mostly dust and small rocks.
+There are just a few rocks that are large enough for colonies to be built on or in orbit around.
 
 === Population
 You have four categories of labor in your general population:
@@ -77,19 +112,16 @@ Soldiers are the people that are in the military, the police, and space forces.
 ==== Unskilled Worker
 Unskilled workers are the ones doing the real work on your farms, factories, mines, colonies, and ships.
 They are called "unskilled" because the professionals got to pick the names.
-It takes 300 unskilled workers to operate each farm or mine.
-The number required for factories depends on the size of the factory group.
+The number of unskilled workers required to operate a farm, mine, or factory is always 3 times the number of professionals.
+If it takes 100 professionals to manage a farm, it will take 300 unskilled workers to work it.
 
 ==== Unemployed
 Unemployed workers are the remainder of the population.
-They get their name because, unlike the other three categories, they're not directly employed by your government.
+They get their name because, unlike the other three categories, they're not directly employed by the government.
 
 === Colonies
-You can only build open colonies on the surface of habitable planets.
-You can build enclosed colonies on the surface of any planets.
-You can build an orbital colony around any planet.
-
-NOTE: When we are talking colonies on gas giants, we really mean "the moons of the gas giant."
+You can build an orbital colony around any planet or an enclosed colony on the surface of any planet.
+You can only build an open colony on the surface of a habitable planet (one with a Habitability Number (HN) of 1 or more).
 
 You can build at most one of each type on any planet.
 
@@ -152,12 +184,12 @@ Factories convert raw materials (metals and non-metals) into other things.
 The tech level of the item that the factory builds is limited by the tech level of the colony,
 not by the tech level of the factory units.
 
-The game requires that you assign a factory to a group before you can use it.
+NOTE: The game requires that you assign a factory to a group before you can use it.
 You can have no more than 25 factory groups in any colony or ship.
 
-When you create a new factory group, your orders tell it which item to build.
+When you assemble a new factory group, your order tells it which item to build.
 (Every factory in the group will build the same item.)
-You can use a "retool" order to change the item later.
+You can issue an order to change the item later.
 
 You start the game with `factory-1` units.
 Like farms and mines, factories require labor and fuel to operate.
@@ -170,6 +202,136 @@ and consume 85,000 fuel units per turn.
 
 NOTE: These numbers are from the Factory Fuel Cost and Factory Group Cost charts in the Reference Manual.
 
+== Getting Started (Turn 0)
+Turn 0 is a setup turn.
+It's intended to give you a chance to review your system reports,
+ask questions,
+and customize your industrial base.
+
+During Turn 0, you can issue two types of orders.
+
+1. You can name your colonies
+2. You can assemble mining groups and assign to work deposits.
+3. You can assemble factory groups and tell them what to start producing.
+
+=== Issuing Orders
+You issue orders by uploading a text file to the web server.
+
+The format of an order is generally:
+
+* the name of the ship or colony you're giving the order to
+* the "verb" or order name
+* the options for the order
+** these are things like number of units and ship you're attacking
+
+=== Naming your colonies
+You don't have to name colonies, but if you want to, you must issue a `name` order.
+The order is formatted like:
+
+.Name Order
+[source]
+----
+ColonyID  name QuotedString
+----
+
+This tells us that we must provide the colony's identifier
+(this is on your system report, it always the letter C followed by some numbers),
+the command (in this case it is literally the text "name"),
+and the name we want to assign the colony.
+Because it's a `QuotedString`, we must enclose it in quote marks.
+
+To name our C21 colony Mudbomb, we'd issue the following order:
+
+.Example
+[source]
+----
+C21 name "Mudbomb"
+----
+
+WARNING: The `QuotedString` must have quote marks or the order will be rejected.
+
+To name our C22 colony Orbiting Thing in The Sky, we'd issue the following order:
+
+.Example
+[source]
+----
+C22 name "Orbiting Thing in The Sky"
+----
+
+You can always change the name of a colony in a later turn by issuing a new `name` order.
+
+=== Assembling Mining Groups
+You start the game with 40 deposits of natural resources on your home world and 381,000 `mine-1` units.
+251,000 of your `mine-1` units have already been assigned to mining groups (Group 1 through Group 4).
+100,000 are in storage and are available for you to assemble into new mining groups.
+
+NOTE: You don't have to set up new mining groups.
+You can keep your units in storage and use then on a later turn.
+
+The assembly order is formatted like:
+
+.Assemble Mining Group Order
+[source]
+----
+ColonyID assemble Quantity MineTL DepositID
+----
+
+This tells us that we must provide the colony's identifier
+(this is on your system report, it always the letter C followed by some numbers),
+the command (in this case it is literally the text "assemble"),
+the number of mining units we want to assign to the group,
+the code for those units,
+and the deposit's identifier that we want to work
+(it is always the letters DP followed by a number from your system report).
+
+.Examples
+[source]
+----
+C21 assemble 50,000 mine-1 DP5   ;; start 50,000 mines working deposit #5
+C21 assemble 25,000 mine-1 DP23  ;; start 50,000 mines working deposit #23
+----
+
+The group number for the mining group will be automatically assigned by the game engine when your orders are processed.
+
+NOTE: Normally, you'd have to issue orders to move these mine units from storage and assemble them before you can use them.
+One of the nice things about Turn 0 is that it lets you skip those steps.
+This only happens on Turn 0!
+
+=== Assembling Factory Groups
+You start the game with 4,025,000 `fact-1` units.
+275,000 of your units have already been assigned to a factory group (Group 1)
+and are building the `consumer-goods` that you pay your workers with.
+There are 3,750,000 in storage and are available for you to assemble into new factory groups.
+
+NOTE: You don't have to set up new factory groups.
+You can keep your units in storage and use then on a later turn.
+
+.Assemble Factory Group Order
+[source]
+----
+ColonyID assemble Quantity FactoryTL UnitID
+----
+
+This tells us that we must provide the colony's identifier
+(this is on your system report, it always the letter C followed by some numbers),
+the command (in this case it is literally the text "assemble"),
+the number of factory units we want to assign to the group,
+the code for those units,
+and the code for the units that we want the group to start producing.
+
+.Assemble Factory Group Order Examples
+[source]
+----
+C21 assemble 50,000 factory-1 life-support-1  ;; create a group building life-support
+C21 assemble 50,000 factory-1 sensor-1        ;; create a group building sensors
+C21 assemble 50,000 factory-1 hyper-drive-1   ;; create a group building hyper-drives
+C21 assemble 50,000 factory-1 space-drive-1   ;; create a group building space-drives
+----
+
+NOTE: It takes four turns for a factory to produce an item.
+Turn 0 gives you a boost because it tells the game engine that your new factory groups have been working for four turns.
+You'll start Turn 1 with those items fresh off the production lines and ready to use.
+
 [appendix]
 == How Do I...
 
@@ -178,10 +340,10 @@ NOTE: These numbers are from the Factory Fuel Cost and Factory Group Cost charts
 === How do I create a Nation
 
 === How do I change the name of a colony or ship?
-Issue a name order to the colony or ship.
+Issue a `name` order to the colony or ship.
 
 === How do I change the output of a Factory Group
-Issue a retool order to the group.
+Issue a `retool` order to the group.
 This will shut down production,
 wait for the existing production stages to clear out,
 then start up the group again with the new output.
