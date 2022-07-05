@@ -250,7 +250,7 @@ Farm units require labor to be active.
 If a farm unit does not have a full allocation of labor, it is inactive for the current turn.
 
 [[a-farm-labor-cost-chart]]
-.Farming Labor Cost
+.Farm Labor Cost
 |===
 |Unit-TechLevel|Professional units per Farm unit|Unskilled-Worker units per Farm unit
 
@@ -868,7 +868,7 @@ EMUs don't include the mass of the SUs used to build the colony or ship
 (in other words, the hull doesn't count towards enclosed mass, but it does count for engines).
 Items in storage are counted as 1/2 their mass for purposes of the EMU.
 
-[[a-structural-unit-summary]]
+[[a-structural-unit-summary-chart]]
 .Structural Unit Summary
 |===
 |Unit|Mass per UNIT|Open Colony|Enclosed Colony|Orbital Colony|Ship
@@ -2623,7 +2623,7 @@ Examples are MISSILE-2, HYPER-DRIVE-3, and ENERGY-SHIELDS-9.
 * <<a-factory-production-required-materials-chart, Factory Production Required Materials>>
 * <<a-factory-solar-power-availability-chart, Factory Solar Power Availability>>
 * <<a-farm-fuel-cost-chart, Farm Fuel Cost>>
-* <<a-farm-labor-cost-chart, Farming Labor Cost>>
+* <<a-farm-labor-cost-chart, Farm Labor Cost>>
 * <<a-farm-location-chart, Farm Location>>
 * <<a-farm-production-chart, Farm Production>>
 * <<a-farm-solar-power-availability-chart, Farm Solar Power Availability>>
@@ -2652,6 +2652,7 @@ Examples are MISSILE-2, HYPER-DRIVE-3, and ENERGY-SHIELDS-9.
 * <<a-research-chart, Research Chart>>
 * <<a-sensor-fuel-cost-chart, Sensor Fuel Cost>>
 * <<a-ship-crew-pay-chart, Ship Crew Pay>>
+* <<a-structural-unit-summary-chart, Structural Unit Summary>>
 * <<a-survey-fuel-cost-chart, Survey Fuel Cost>>
 * <<a-transport-crew-chart, Transport Crew Chart>>
 * <<a-transport-operations-chart, Transport Operations Chart>>
