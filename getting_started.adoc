@@ -1,6 +1,6 @@
 = Wraith Getting Started
 Michael D Henderson <mdhender@example.com>
-v0.1.0, 2022-07-04
+v0.1.1, 2022-07-04
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -45,7 +45,7 @@ and how to get those raw materials from the mines to the factories to avoid prod
 
 Please see the Glossary and the "Units" appendix in the Reference Manual for more details.
 
-== Planets
+=== Planets
 There are three types of planets in the game:
 
 1. terrestrial
@@ -63,29 +63,28 @@ These planets are habitable (meaning your people can settle there without requir
 
 Asteroid belts always have HN 0.
 
-== Population
+=== Population
 You have four categories of labor in your general population:
 professional, soldier, unskilled, and unemployed.
 
-=== Professional
+==== Professional
 Professionals are able to manage your farms, factories, mines, colonies, and ships.
-It takes 100 professionals to manage farms and mines.
 The number required for factories depends on the size of the factory group.
 
-=== Soldier
+==== Soldier
 Soldiers are the people that are in the military, the police, and space forces.
 
-=== Unskilled Worker
+==== Unskilled Worker
 Unskilled workers are the ones doing the real work on your farms, factories, mines, colonies, and ships.
 They are called "unskilled" because the professionals got to pick the names.
-It takes 300 unskilled workers to operate farms and mines.
+It takes 300 unskilled workers to operate each farm or mine.
 The number required for factories depends on the size of the factory group.
 
-=== Unemployed
+==== Unemployed
 Unemployed workers are the remainder of the population.
 They get their name because, unlike the other three categories, they're not directly employed by your government.
 
-== Colonies
+=== Colonies
 You can only build open colonies on the surface of habitable planets.
 You can build enclosed colonies on the surface of any planets.
 You can build an orbital colony around any planet.
@@ -94,47 +93,61 @@ NOTE: When we are talking colonies on gas giants, we really mean "the moons of t
 
 You can build at most one of each type on any planet.
 
-=== Open Colonies
+==== Open Colonies
 Open colonies are built on the surface of habitable planets.
 
-=== Enclosed Colonies
+==== Enclosed Colonies
 Enclosed colonies are built on the surface of non-habitable planets.
 They are totally enclosed and require life support units to maintain a breathable atmosphere for your people.
 
-=== Orbital Colonies
+==== Orbital Colonies
 Orbital colonies are built in space around any planet.
 They are totally enclosed and require life support units to maintain a breathable atmosphere for your people.
 
 Orbital colonies are important because they're the only place that you can assemble ships.
 
-== Farms
+=== Farms
 Farms produce the food your people eat.
-You start the game with open air farms (`farm-1` units).
-Your farms require
+You start the game with open air farms (`farm-1` units) which require labor and fueld to operate.
+You will need 100 professionals to manage each `farm-1` and 300 unskilled workers for labor.
+You also need 0.5 fuel units to power each `farm-1`.
 
-== Mines
+NOTE: These numbers are from the Farm Fuel Cost and Farm Labor Cost charts in the Reference Manual.
+
+=== Mines
+Mines extract and refine the natural resources needed to supply your factories and and provide power to your farms, factories, mines, ships and colonies.
+
 Every planet contains natural resources that you can mine (or extract) to get the materials you need to build things.
 
 There are four types of natural resources: fuel, gold, metals, and non-metals.
 These are abstract concepts, so fuel includes oil, coal, and even nuclear materials.
 Gold is any precious ore, stone, or crystal.
-Metals are non-precious ores and non-metals are stones, crystals, and even timber.
+Metals are non-precious ores that can't be used as fuel.
+Non-metals are literally everything else (except food and water).
 
 You must have a surface colony before you can start mining on a planet.
 After you build the surface colony, you can extract the resources and use them to build things you need
 (like life support units, space drives, and shuttles (called "transport units" in the game)).
 
-=== Fuel
+You start the game with `mine-1` units.
+Like farms and factories, mines  require labor and fuel to operate.
+You will need 100 professionals to manage each `mine-1` and 300 unskilled workers for labor.
+You also need 0.5 fuel units to power each `mine-1`.
+
+NOTE: These numbers are from the Mine Fuel Cost and Mine Labor Cost charts in the Reference Manual.
+
+==== Fuel
 Fuel is used to power all units in the game.
 
-=== Gold
+==== Gold
 Gold is used when trading with other nations.
+It represents any material that is valued more for trade than for industrial applications.
 
-=== Metals and Non-Metals
+==== Metals and Non-Metals
 Metals and non-metals are consumed by factories to produce things.
 There's a chart in the Reference Manual that lists the amount of each that is required by every unit that factories can produce.
 
-== Factories
+=== Factories
 Factories convert raw materials (metals and non-metals) into other things.
 The tech level of the item that the factory builds is limited by the tech level of the colony,
 not by the tech level of the factory units.
@@ -146,11 +159,26 @@ When you create a new factory group, your orders tell it which item to build.
 (Every factory in the group will build the same item.)
 You can use a "retool" order to change the item later.
 
+You start the game with `factory-1` units.
+Like farms and mines, factories require labor and fuel to operate.
+Each `factory-1` requires 0.5 fuel units to power.
+The number of professionals needed to manage factories depends on the size of the factory group that they're assigned to.
+For example, a group with 170,000 units requires 1 professional per unit.
+Factories always require three times as many unskilled workers as professionals,
+so this group would require a total of 170,000 professionals and 510,000 unskilled workers
+and consume 85,000 fuel units per turn.
+
+NOTE: These numbers are from the Factory Fuel Cost and Factory Group Cost charts in the Reference Manual.
+
+[appendix]
 == How Do I...
 
 === How do I even start to get started?
 
 === How do I create a Nation
+
+=== How do I change the name of a colony or ship?
+Issue a name order to the colony or ship.
 
 === How do I change the output of a Factory Group
 Issue a retool order to the group.
