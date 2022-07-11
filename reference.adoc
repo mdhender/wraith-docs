@@ -1,6 +1,6 @@
 = Wraith Reference Manual
 Michael D Henderson <mdhender@example.com>
-v1.0.4, 2022-07-04
+v1.1.0, 2022-07-11
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -700,13 +700,13 @@ The objective is to destroy the target.
 .Combat Bombard Order
 [source]
 ----
-ColonyOrShipID bombard SpeciesID ColonyOrShipID Percentage
+bombard ColonyOrShipID SpeciesID ColonyOrShipID Percentage
 ----
 
 .Combat Bombard Order Examples
 [source]
 ----
-S27 bombard SP18 C13 50%
+bombard S27 SP18 C13 50%
 ----
 
 [[a-colony-distance-factor-chart]]
@@ -730,13 +730,13 @@ The objective is to destroy the target.
 .Combat Invade Order
 [source]
 ----
-ColonyOrShipID invade SpeciesID ColonyOrShipID Percentage
+invade ColonyOrShipID SpeciesID ColonyOrShipID Percentage
 ----
 
 .Combat Invade Order Examples
 [source]
 ----
-S27 invade SP18 C13 50%
+invade S27 SP18 C13 50%
 ----
 
 === Raid Order
@@ -748,13 +748,13 @@ If successful, the raiders will return with 0.5 mass units (rounded down) of the
 .Combat Raid Order
 [source]
 ----
-ColonyOrShipID raid SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
+raid ColonyOrShipID SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
 ----
 
 .Combat Raid Order Examples
 [source]
 ----
-S27 raid SP18 C13 assault-weapon-5 10%
+raid S27 SP18 C13 assault-weapon-5 10%
 ----
 
 NOTE: This is a peculiar order because it assumes that there are enough soldiers to carry the asset to the transport and that the transport is large enough to hold the asset.
@@ -790,17 +790,17 @@ If successful, the saboteurs will destroy 0.5 mass units (rounded down) of the a
 .Combat Sabotage Order
 [source]
 ----
-ColonyOrShipID sabotage SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
+sabotage ColonyOrShipID SpeciesID ColonyOrShipID PercentCommitted AssetID Percent
 ----
 
 .Combat Sabotage Order Examples
 [source]
 ----
-S27 sabotage SP18 C13 hyper-drive-5 10%
+sabotage S27 SP18 C13 hyper-drive-5 10%
 ----
 
 NOTE: This is a peculiar order because you specify a particular tech level when you have no way of knowing what a colony or ship is carrying.
-It should probably be just `S27 sabotage SP18 C13 hyper-drive 10%`.
+It should probably be just `sabotage S27 SP18 C13 hyper-drive 10%`.
 
 === Support Order
 The `support` order commits FUEL, SOLDIER, MILITARY ROBOT, and TRANSPORT units to a coordinated attack against a colony or ship.
@@ -810,9 +810,9 @@ It can also be used for defending.
 .Combat Support Order
 [source]
 ----
-ColonyOrShipID support SpeciesID ColonyOrShipID against SpeciesID Percent
-ColonyOrShipID support SpeciesID ColonyOrShipID bombard SpeciesID ColonyOrShipID Percent
-ColonyOrShipID support SpeciesID ColonyOrShipID invade  SpeciesID ColonyOrShipID Percent
+support ColonyOrShipID SpeciesID ColonyOrShipID against SpeciesID Percent
+support ColonyOrShipID SpeciesID ColonyOrShipID bombard SpeciesID ColonyOrShipID Percent
+support ColonyOrShipID SpeciesID ColonyOrShipID invade  SpeciesID ColonyOrShipID Percent
 ----
 
 NOTE: Using the `against` version of the order commits your units to defending your partner's colony or ship.
@@ -820,9 +820,9 @@ NOTE: Using the `against` version of the order commits your units to defending y
 .Combat Support Order Examples
 [source]
 ----
-S14 support SP12 S83 against SP18     100%
-S14 support SP12 S83 bombard SP18 C13 100%
-S14 support SP12 S83 invade  SP18 C13 100%
+support S14 SP12 S83 against SP18     100%
+support S14 SP12 S83 bombard SP18 C13 100%
+support S14 SP12 S83 invade  SP18 C13 100%
 ----
 
 == Set-Up Phase
@@ -915,9 +915,9 @@ TIP: Use `build colony` to build a new colony.
 .Build Colony Order
 [source]
 ----
-build colony
+build colony {
   ; bill of materials used to assemble the colony
-end
+}
 ----
 
 === Build Ship Order
@@ -926,9 +926,9 @@ TIP: Use `build ship` to build a new ship.
 .Build Ship Order
 [source]
 ----
-build ship
+build ship {
   ; bill of materials used to assemble the ship
-end
+}
 ----
 
 
@@ -943,13 +943,13 @@ Each unassembled CONW unit will return 1 PROFESSIONAL unit and 1 UNSKILLED WORKE
 .Unassemble Order
 [source]
 ----
-ColonyOrShipID unassemble Quantity construction-worker
+unassemble ColonyOrShipID Quantity construction-worker
 ----
 
 .Unassemble Order Examples
 [source]
 ----
-C13 unassemble 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 UKSW
+unassemble C13 3 construction-worker ; disband 3 CONW by returning 3 PRO and 3 UKSW
 ----
 
 === Unassemble Operational Unit Order
@@ -965,14 +965,14 @@ A CONSTRUCTION WORKER unit can unassemble up to 500 MASS units (MUs) per TURN.
 .Unassemble Order
 [source]
 ----
-ColonyOrShipID unassemble Quantity UnitCodeTL
+unassemble ColonyOrShipID Quantity UnitCodeTL
 ----
 
 .Unassemble Order Examples
 [source]
 ----
-S52 unassemble 200 life-support-3      ; take apart 200 units - 20 will be scrapped
-C27 unassemble  71 missile-launcher-2  ; take apart  71 units -  8 will be scrapped
+unassemble S52 200 life-support-3      ; take apart 200 units - 20 will be scrapped
+unassemble C27  71 missile-launcher-2  ; take apart  71 units -  8 will be scrapped
 ----
 
 === Unassemble Spy Order
@@ -983,13 +983,13 @@ Each unassembled SPY unit will return 1 PROFESSIONAL unit and 1 SOLDIER unit to 
 .Unassemble Order
 [source]
 ----
-ColonyOrShipID unassemble Quantity spy
+unassemble ColonyOrShipID Quantity spy
 ----
 
 .Unassemble Order Examples
 [source]
 ----
-S11 unassemble 16 spy  ; disband 16 SPY by returning 16 PRO and 16 SLDR
+unassemble S11 16 spy  ; disband 16 SPY by returning 16 PRO and 16 SLDR
 ----
 
 == Change Orders
@@ -1013,14 +1013,14 @@ The entire group will be idle until the update has completed.
 .Retool Order
 [source]
 ----
-ColonyID FactoryGroupID retool UnitID
+retool ColonyID FactoryGroupID UnitID
 ----
 
 .Retool Order Examples:
 [source]
 ----
-C6  FG19 retool research         ; begin research when WIP is complete
-C27 FG8  retool energy-weapon-4  ; build energy weapons when WIP is complete
+retool C6  FG19 research         ; begin research when WIP is complete
+retool C27 FG8  energy-weapon-4  ; build energy weapons when WIP is complete
 ----
 
 Build locations restrictions apply for retool orders.
@@ -1045,14 +1045,14 @@ It is equal to the total mass units times the Fuel Factor.
 .Transfer Order
 [source]
 ----
-ColonyOrShipID transfer Quantity UnitID ColonyOrShipID
+transfer ColonyOrShipID Quantity UnitID ColonyOrShipID
 ----
 
 .Transfer Order Examples
 [source]
 ----
-S22 transfer 50 consumer-goods C29  ; move 50 consumer good units from S22 to C29
-S22 transfer 10 spy            C29  ; move 10 spy           units from S22 to C29
+transfer S22 50 consumer-goods C29  ; move 50 consumer good units from S22 to C29
+transfer S22 10 spy            C29  ; move 10 spy           units from S22 to C29
 ----
 
 [[a-transport-crew-chart]]
@@ -1092,13 +1092,13 @@ You may not create CONW units if the required number of PROFESSIONAL and UNSKILL
 .Assemble Order
 [source]
 ----
-ColonyOrShipID assemble Quantity construction-worker
+assemble ColonyOrShipID Quantity construction-worker
 ----
 
 .Assemble Order Examples
 [source]
 ----
-C13 assemble 3 construction-worker ; create 3 CONW by assembling 3 PRO and 3 UKSW
+assemble C13 3 construction-worker ; create 3 CONW by assembling 3 PRO and 3 UKSW
 ----
 
 === Assemble Factory Group Order
@@ -1141,14 +1141,14 @@ Any order that violates a location restriction will be ignored.
 .Assemble Order
 [source]
 ----
-ColonyID assemble Quantity FactoryTL UnitID
+assemble ColonyID Quantity FactoryTL UnitID
 ----
 
 .Assemble Order Examples
 [source]
 ----
-C8  assemble  5,000 factory-2 assault-craft-6
-C91 assemble 50,000 factory-6 consumer-goods
+assemble C8   5,000 factory-2 assault-craft-6
+assemble C91 50,000 factory-6 consumer-goods
 ----
 
 NOTE: This order creates a new factory group using a single tech level of factory.
@@ -1162,13 +1162,13 @@ The mining group number will be displayed on the player's report at the end of t
 .Assemble Order
 [source]
 ----
-ColonyID assemble Quantity MineTL DepositID
+assemble ColonyID Quantity MineTL DepositID
 ----
 
 .Assemble Order Examples
 [source]
 ----
-C91 assemble 50,000 mine-3 DP3
+assemble C91 50,000 mine-3 DP3
 ----
 
 NOTE: This order creates a new mining group using a single tech level of mine.
@@ -1211,14 +1211,14 @@ Only the items in the Operational Units chart can be assembled.
 .Assemble Order
 [source]
 ----
-ColonyOrShipID assemble Quantity UnitCodeTL
+assemble ColonyOrShipID Quantity UnitCodeTL
 ----
 
 .Assemble Order Examples
 [source]
 ----
-C27 assemble 9,750 missile-launcher-2
-S52 assemble   200 life-support-3
+assemble C27 9,750 missile-launcher-2
+assemble S52   200 life-support-3
 ----
 
 === Assemble Spy Order
@@ -1230,13 +1230,13 @@ You may not create SPY units if the required number of PROFESSIONAL and SOLDIER 
 .Assemble Order
 [source]
 ----
-ColonyOrShipID assemble Quantity spy
+assemble ColonyOrShipID Quantity spy
 ----
 
 .Assemble Order Examples
 [source]
 ----
-C78 assemble 16 spy  ; create 16 SPY by assembling 16 PRO and 16 SLDR
+assemble C78 16 spy  ; create 16 SPY by assembling 16 PRO and 16 SLDR
 ----
 
 === Expand Factory Group Order
@@ -1245,14 +1245,14 @@ An `expand` order adds additional FACTORY units to an existing FACTORY GROUP.
 .Expand Order
 [source]
 ----
-ColonyID FactoryGroupID expand Quantity FactoryTL
+expand ColonyID FactoryGroupID Quantity FactoryTL
 ----
 
 .Expand Order Examples
 [source]
 ----
-C91 FG2 expand 2,500 factory-2  ; add 2,500 FACT-2 units to the group
-C91 FG2 expand 1,800 factory-6  ; add 1,800 FACT-6 units to the group
+expand C91 FG2 2,500 factory-2  ; add 2,500 FACT-2 units to the group
+expand C91 FG2 1,800 factory-6  ; add 1,800 FACT-6 units to the group
 ----
 
 === Expand Mining Group Order
@@ -1261,14 +1261,14 @@ An `expand` order adds additional MINE units to an existing MINING GROUP.
 .Expand Order
 [source]
 ----
-ColonyID MiningGroupID expand Quantity MineTL
+expand ColonyID MiningGroupID Quantity MineTL
 ----
 
 .Expand Order Examples
 [source]
 ----
-C91 MG2 expand 2,500 mine-2  ; add 2,500 MINE-2 units to the group
-C91 MG2 expand 1,800 mine-6  ; add 1,800 MINE-6 units to the group
+expand C91 MG2 2,500 mine-2  ; add 2,500 MINE-2 units to the group
+expand C91 MG2 1,800 mine-6  ; add 1,800 MINE-6 units to the group
 ----
 
 === Manufacture Items
@@ -1279,13 +1279,13 @@ The number of units is not.
 .Manufacture Order
 [source]
 ----
-ColonyID FactoryGroupID manufacture Quantity UnitCodeTL
+manufacture ColonyID FactoryGroupID Quantity UnitCodeTL
 ----
 
 .Manufacture Order Examples
 [source]
 ----
-C91 FG9 manufacture 50,000 missile-8
+manufacture C91 FG9 50,000 missile-8
 ----
 
 === Mine Resources
@@ -1294,13 +1294,13 @@ A `mine` order instructs a MINING GROUP to start mining and refining resources f
 .Mine Order
 [source]
 ----
-ColonyID MiningGroupID mine Quantity DepositID
+mine ColonyID MiningGroupID Quantity DepositID
 ----
 
 .Mine Order Examples
 [source]
 ----
-C16 MG27 mine 25,000 DP19
+mine C16 MG27 25,000 DP19
 ----
 
 NOTE: This feels wrong.
@@ -1394,21 +1394,21 @@ revoke trade-rights *     *     ; close all markets to all players
 .Advertise Order
 [source]
 ----
-SystemID #Orbit advertise QuotedText QuotedText?
+advertise SystemID #Orbit QuotedText QuotedText?
 ----
 
 .Advertise Order Examples
 [source]
 ----
-8/4/3  #6 advertise "Stay away from my moons" "Jinsei"
-3/7/9A #6 advertise "Fresh moon rocks for sell next turn"
+advertise 8/4/3  #6 "Stay away from my moons" "Jinsei"
+advertise 3/7/9A #6 "Fresh moon rocks for sell next turn"
 ----
 
 === Sell Order
 .Sell Order
 [source]
 ----
-SystemID #Orbit sell Quantity UnitTL Number
+sell SystemID #Orbit Quantity UnitTL Number
 ----
 
 The amount is always in GOLD units.
@@ -1416,15 +1416,15 @@ The amount is always in GOLD units.
 .Sell Order Examples
 [source]
 ----
-8/4/3  #6 sell 4 space drive-3       0.2
-3/7/9A #6 sell 1 tech-4        800,000
+sell 8/4/3  #6 4 space drive-3       0.2
+sell 3/7/9A #6 1 tech-4        800,000
 ----
 
 === Buy Order
 .Buy Order
 [source]
 ----
-SystemID #Orbit buy Quantity UnitTL Number
+buy SystemID #Orbit Quantity UnitTL Number
 ----
 
 The amount is always in GOLD units.
@@ -1432,8 +1432,8 @@ The amount is always in GOLD units.
 .Buy Order Examples
 [source]
 ----
-8/4/3  #6 buy 25,000 structural         0.01
-3/7/9A #6 buy      1 tech-6     1,000,000
+buy 8/4/3  #6 25,000 structural         0.01
+buy 3/7/9A #6      1 tech-6     1,000,000
 ----
 
 == Survey Phase
@@ -1465,7 +1465,7 @@ they use the ship's sensors to actively scan and analyze orbits, planets, coloni
 .Probe Order
 [source]
 ----
-ShipID probe #Orbit #Orbit...
+probe ShipID #Orbit #Orbit...
 ----
 
 NOTE: This doesn't allow for systems with multiple stars.
@@ -1478,9 +1478,9 @@ issue the order with "*" as the orbit number.
 .Probe Order Examples
 [source]
 ----
-S28 probe #6        ; probe the planet in the 6th orbit
-S31 probe #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
-S42 probe *         ; probe all the planets orbiting the current star
+probe S28 #6        ; probe the planet in the 6th orbit
+probe S31 #2 #4 #5  ; probe the planets in the 2nd, 4th, and 5th orbits
+probe S42 *         ; probe all the planets orbiting the current star
 ----
 
 === Survey Order
@@ -1509,13 +1509,13 @@ Because the survey requires a transport, it will use fuel.
 .Survey Order
 [source]
 ----
-ShipID survey TransportTL #Orbit
+survey ShipID TransportTL #Orbit
 ----
 
 .Survey Order Examples
 [source]
 ----
-S23 survey transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
+survey S23 transport-5 #3  ; ship S23 will survey the planet in the 3rd orbit
 ----
 
 NOTE: This should probably just automatically use the smallest transport available.
@@ -1561,78 +1561,78 @@ All orders in the Espionage phase are executed in the order that they're entered
 .Convert Rebels Order
 [source]
 ----
-ColonyOrShipID Quantity convert
+convert ColonyOrShipID Quantity
 ----
 
 .Convert Rebels Order Examples
 [source]
 ----
-C38 110 convert
+convert C38 110
 ----
 
 === Counter Espionage Order
 .Counter Espionage Order
 [source]
 ----
-ColonyOrShipID counter
+counter ColonyOrShipID
 ----
 
 .Counter Espionage Order Examples
 [source]
 ----
-C38 counter
+counter C38
 ----
 
 === Incite Rebellion Order
 .Incite Rebellion Order
 [source]
 ----
-SpeciesID ColonyOrShipID Quantity incite
+incite SpeciesID ColonyOrShipID Quantity
 ----
 
 .Incite Rebellion Order Examples
 [source]
 ----
-S2 C54 100 incite
+incite S2 C54 100
 ----
 
 === Information Order
 .Information Order
 [source]
 ----
-SpeciesID ColonyOrShipID Quantity information
+information SpeciesID ColonyOrShipID Quantity
 ----
 
 .Information Order Examples
 [source]
 ----
-S2 C54 900 information
+information S2 C54 900
 ----
 
 === Suppress Foreign Spies Order
 .Suppress Foreign Spies Order
 [source]
 ----
-ColonyOrShipID Quantity suppress
+suppress ColonyOrShipID Quantity
 ----
 
 .Suppress Foreign Spies Order Examples
 [source]
 ----
-C38 85 suppress
+suppress C38 85
 ----
 
 === Surveil Rebels Order
 .Surveil Rebels Order
 [source]
 ----
-ColonyOrShipID surveil
+surveil ColonyOrShipID
 ----
 
 .Surveil Rebels Order Examples
 [source]
 ----
-C38 surveil
+surveil C38
 ----
 
 == Ship Movement Phase
@@ -1759,52 +1759,52 @@ There is no limit on the number of SOLDIER units that may be disbanded per TURN.
 .Draft Professionals Order
 [source]
 ----
-ColonyOrShipID draft Quantity professional
+draft ColonyOrShipID Quantity professional
 ----
 
 .Draft Professionals Order Examples
 [source]
 ----
-S1 draft   3,000 professional
+draft S1 3,000 professional
 ----
 
 .Draft Soldiers Order
 [source]
 ----
-ColonyOrShipID draft Quantity soldier
+draft ColonyOrShipID Quantity soldier
 ----
 
 .Draft Soldiers Order Examples
 [source]
 ----
-C8 draft 16,000 soldier
+draft C8 16,000 soldier
 ----
 
 === Disband Order
 .Disband Professionals Order
 [source]
 ----
-ColonyOrShipID disband Quantity professional
+disband ColonyOrShipID Quantity professional
 ----
 
 .Disband Professionals Order Examples
 [source]
 ----
-C8 disband 6,000 professional
-S1 disband     * professional
+disband C8 6,000 professional
+disband S1     * professional
 ----
 
 .Disband Soldiers Order
 [source]
 ----
-ColonyOrShipID disband Quantity soldier
+disband ColonyOrShipID Quantity soldier
 ----
 
 .Disband Soldiers Order Examples
 [source]
 ----
-C8 disband 6,000 soldier
-S1 disband     * soldier
+disband C8 6,000 soldier
+disband S1     * soldier
 ----
 
 == Pay and Ration Phase
@@ -1898,7 +1898,7 @@ They are aggregates - their numbers are the sum of their components.
 .Ration Order
 [source]
 ----
-ColonyOrShipID ration Percentage
+ration ColonyOrShipID Percentage
 ----
 
 [[a-base-ration-chart]]
@@ -1920,7 +1920,7 @@ They are aggregates - their numbers are the sum of their components.
 .Ration Order Examples
 [source]
 ----
-S6 ration 50%
+ration S6 50%
 ----
 
 == Rebellion
@@ -1986,43 +1986,43 @@ All orders in the Naming and Control phase are executed in the order that they'r
 .Control Order
 [source]
 ----
-SpeciesID control SystemID #Orbit
+control SpeciesID SystemID #Orbit
 ----
 
 .Control Order Examples
 [source]
 ----
-SP2 control 2/4/6 #9
+control SP2 2/4/6 #9
 ----
 
 === Name Order
 .Name Order
 [source]
 ----
-ColonyID  name                 QuotedString
-ShipID    name                 QuotedString
-SpeciesID name SystemID #Orbit QuotedString
+name ColonyID                  QuotedString
+name ShipID                    QuotedString
+name SpeciesID SystemID #Orbit QuotedString
 ----
 
 .Name Order Examples
 [source]
 ----
-C39 name            "Mudbomb"
-S52 name            "Mudflea"
-SP9 name 5/10/15 #2 "Mudball"
+name C39            "Mudbomb"
+name S52            "Mudflea"
+name SP9 5/10/15 #2 "Mudball"
 ----
 
 === Un-Control Order
 .Uncontrol Order
 [source]
 ----
-SpeciesID uncontrol SystemID #Orbit
+uncontrol SpeciesID SystemID #Orbit
 ----
 
 .Uncontrol Order Examples
 [source]
 ----
-SP2 uncontrol 2/4/6 #9
+uncontrol SP2 2/4/6 #9
 ----
 
 === Grant Colonization Rights Order

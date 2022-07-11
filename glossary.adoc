@@ -1,6 +1,6 @@
 = Wraith Glossary
 Michael D Henderson <mdhender@example.com>
-v1.0.3, 2022-06-15
+v1.0.4, 2022-07-11
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -21,55 +21,6 @@ WARNING: The reference manual is the source of truth for the rules.
 If this document differs, it is wrong.
 
 :sectnums:
-== Codes
-|===
-|Unit|Code|Farmed?|Mined?|Manufactured?|Description
-
-|anti-missile|ANM-TL|no|no|yes|
-|assault-craft|ASC-TL|no|no|yes|
-|assault-weapon|ASW-TL|no|no|yes|
-|automation|AUT-TL|no|no|yes|
-|consumer-goods|CNGD|no|no|yes|Consumer goods are used to pay the population.
-There is no tech level associated with them.
-|energy-shield|ESH-TL|no|no|yes|
-|energy-weapon|EWP-TL|no|no|yes|
-|factory|FCT-TL|no|no|yes|
-|farm|FRM-TL|no|no|yes|
-|food|FOOD|yes|no|no|Food is produced only on farms.
-There is no tech level associated with food.
-|fuel|FUEL|no|yes|no|Fuel is mined and used to power up other units.
-There is no tech level associated with fuel.
-|gold|GOLD|no|yes|no|Gold is mined and used in trade with other nations.
-There is no tech level associated with gold.
-|hyper-drive|HDR-TL|no|no|yes|
-|life-support|LSP-TL|no|no|yes|
-|light-structural|LTSU|no|no|yes|Light structural units are used to build ships and colonies.
-There is no tech level associated with them.
-NOTE: LTSU will be replaced by MEK-2 in the future.
-|mek|MEK-TL|no|no|yes|A modular engineering kit used to build the hull and superstructure of colonies and ships.
-It contains the panels, struts, beams, and other components used in the build.
-Replaces STUN, LTSU, and SLSU units.
-|metallics|MTLS|no|yes|no|Metallics are mined and are consumed by factory groups to produce other units.
-There is no tech level associated with them.
-|military-robots|MLR-TL|no|no|yes|
-|military-supplies|MLSP|no|no|yes|Military supplies are produced by factories and used in combat.
-There is no tech level associated with them.
-|mine|MIN-TL|no|no|yes|
-|missile|MSS-TL|no|no|yes|
-|missile-launcher|MSL-TL|no|no|yes|
-|non-metallics|NMTS|no|yes|no|Non-metallics are mines and are consumed by factory groups to produce other units.
-There is no tech level associated with them.
-|sensor|SNR-TL|no|no|yes|
-|space-drive|SDR-TL|no|no|yes|
-|structural|STUN|no|no|yes|Structural units are used to build ships and colonies.
-There is no tech level associated with them.
-NOTE: STUN will be replaced by MEK-2 in the future.
-|super-light-structural|SLSU|no|no|yes|Super-light structural units are used to build ships and colonies.
-There is no tech level associated with them.
-NOTE: SLSU will be replaced by MEK-3 in the future.
-|transport|TPT-TL|no|no|yes|
-|===
-
 == Glossary
 Common terms for Wraith.
 
@@ -77,13 +28,13 @@ AF::
 _AF_ is the attack factor used in combat.
 
 anti-missile unit::
-Define this, please.
+_Anti-Missile_ units are used in combat to destroy incoming *missile* and *transport* units.
 
 assault craft unit::
-Define this, please.
+_Assault craft_ units are used in ground-based combat.
 
 assault weapon unit::
-Define this, please.
+_Assault weapon_ units are used by _soldier_ units in ground-based combat.
 
 asteroid belt::
 An _asteroid belt_ is a type of *planet* that is composed of many small, irregular "rocks."
@@ -91,7 +42,7 @@ Asteroids are composed of carbon, silicate, metals, non-metals, and ice.
 The asteroid belt occupies an entire orbit.
 
 automation unit::
-Define this, please.
+An _automation_ unit can replace *unskilled worker* units in *farms*, *mines*, and *factories*.
 
 bill of materials::
 A *bill of materials* (BOM) is a list of material units to be used for building a colony or ship.
@@ -117,12 +68,12 @@ colony::
 A _colony_ is required to establish *control* of a *planet*.
 There are three types of _colonies_: *open colonies*, *enclosed colonies*, and *orbiting colonies*.
 
-construction worker::
-_Construction worker_ is not a *population* unit;
+construction crew::
+_Construction crew_ is not a *population* unit;
 it is a group of *professional* and *unskilled worker* units that are trained to build things.
 
 consumer goods unit::
-Define this, please.
+A _consumer goods unit_ is used to pay workers.
 
 coordinate::
 A _coordinate_ is the X, Y, Z location of a *system* in the *cluster*.
@@ -132,8 +83,12 @@ The Z axis points to the center of the galaxy.
 They are written as `X/Y/Z`.
 For planets, an octothorpe and the orbit number are appended: `X/Y/Z#ORBIT`.
 
+cubic meter::
+A _cubic meter_ (or *m^3^*) is the standard unit of volume in the game.
+The volume factors into the number of *structural units* needed to store units.
+
 deposit::
-Define this, please.
+A _deposit_ is a *natural resource* on the surface of a *planet* that can be mined.
 
 DF::
 _DF_ is either the distance factor or defense factor.
@@ -145,20 +100,20 @@ DP::
 _DP_ is the prefix for a deposit identifier.
 
 drone::
-Define this, please.
+_Drone_ units are not used in the game.
 
 enclosed colony::
 An _enclosed colony_ is built on the surface of an uninhabitable *terrestial planet*, a moon of a *gas giant*, or on an asteroid in an *asteroid belt*.
 Enclosed colonies require *life support* units to sustain *population* units.
 
 energy weapon unit::
-Define this, please.
+An _energy weapon_ unit is used in combat against *ships* and *colonies*.
 
 energy shield unit::
-Define this, please.
+An _energy shield_ unit is used in combat to reduce damage from *energy weapon units*.
 
 factory unit::
-A _factory_ produces all units in the game except for *food*, *fuel*, *gold*, *metal*, and *non-metal* units.
+A _factory_ produces all units in the game except for people, *food*, *fuel*, *gold*, *metal*, and *non-metal* units.
 Factory units are the only units that can convert fuel and raw materials into finished goods.
 Factory units must be added to a *factory group* before they can produce anything.
 
@@ -179,7 +134,7 @@ A _finished product_ is any unit built by a *factory group*.
 
 food unit::
 A _food_ unit represents a consumable source of energy for *population* units that can be stored and transported.
-Food units must be created by *farm* units.
+Food units are produced only by *farm* units.
 
 fuel unit::
 A _fuel_ unit represents storable, transportable power.
@@ -211,7 +166,8 @@ habitable planet::
 A _habitable planet_ is a *terrestial planet* with a *habitability number* greater than zero.
 
 habitability number::
-Define this, please.
+The _habitability number_ is a value ranging from 0 to 25 that represents the total population that can be comfortably sustained on the surface of a planet.
+A value of 0 means that the planet is non-inhabitable (only enclosed colonies with life support may be built on the surface of it.)
 
 home planet market::
 A _home planet market_ is an open air *market* found only on homeworlds.
@@ -224,13 +180,14 @@ They must be disassembled to be placed on a *transport*.
 (I couldn't find a better term, so I borrowed this https://en.wikipedia.org/wiki/Sniglet[Sniglet].)
 
 hyper-drive unit::
-Define this, please.
+A _hyper-drive_ unit moves a *ship* between *systems*.
+The distance (in light years) and the amount of mass (in *tonnes*) that the drive can move is limited by its *tech level*.
 
 ice giant::
 An _ice giant_ is a type of *gas giant* that is composed of liquids or gases other than helium and hydrogen.
 
 ID::
-numerical identifer for colony, ship, group, etc.
+An _ID_ is numerical identifier for colony, ship, group, etc.
 
 independent colony::
 An _independent colony_ is not controlled by any player in the game.
@@ -239,33 +196,37 @@ independent ship::
 An _independent ship_ is not controlled by any player in the game.
 
 labor::
-Define this, please.
+_Labor_ measures the number of *population units* required to operate or assemble units in the game.
 
 life support::
-Define this, please.
+A _life support_ unit is required to sustain populations units when they are on a ship,
+in an enclosed colony, or in an orbiting colony.
 
 light structure unit::
-A _light structure unit_ is used to build colonies, ships, and storage.
-These units have less mass than the *standard structure unit* but can replace them on a one-for-one basis.
+A _light structure_ unit is used to build colonies, ships, and storage.
+These units have less mass than the *standard structure unit* but enclose the same volume,
+so each light structure unit can replace a standard structure unit on a one-for-one basis.
+
+m^3^::
+_m^3^_ is an alias for *cubic meter*.
 
 market::
 A _market_ enables trade between players.
-The market accepts sell orders, matches them with buy orders, and collects a commision on each exchange.
+The market accepts sell orders, matches them with buy orders, and collects a commission on each exchange.
 
 mass unit::
-A _mass_ (abbreviated as MU) is the in-game measurement for "weight" and "volume" of a unit.
-The MU determines the number of drives needed to move units.
-It also factors into the number of *structural units* needed to store units (see *EMU*).
+A _mass_ unit (abbreviated as MU) is the in-game measurement for mass and volume of a unit.
+We are transitioning from MU to m^3^ (*cubic meters*) for volume and *tonnes* for mass.
 
 MEK::
 _MEK_ is an abbreviation for *modular engineering kit*.
 
 metal unit::
-A _metal_ unit is an alias for *metallic unit*.
+_Metal_ unit is an alias for *metallic unit*.
 
 metallic unit::
 A _metallic_ unit is a refined non-precious metallic ore.
-This includes common metals like iron and steel (but never *gold*) and exotic metals like unobtanium and lutyisthebestium.
+This includes common metals like iron and steel and exotic metals like unobtanium and lutyisthebestium, but never *gold*.
 Metallic units can be stored and transported.
 Metallic units must be mined and refined by *mining* units.
 
@@ -273,10 +234,10 @@ MG::
 _MG_ is the prefix for a *mining group* identifier.
 
 military robot unit::
-Define this, please.
+_Military robot_ units can replace _soldier_ units in combat.
 
 military supply unit::
-Define this, please.
+_Military supply_ units are required to support ground combat.
 
 mine unit::
 _Mine_ units extract natural resources by mining, drilling, and even logging.
@@ -292,10 +253,10 @@ mining group::
 A _mining group_ (abbreviated *MG*) is a group of mines assigned to work a single *deposit*.
 
 missile unit::
-Define this, please.
+A _missile_ unit is used in combat to attach *ships* and *colonies*.
 
 missile launcher unit::
-Define this, please.
+A _missile launcher_ unit is used in combat to launch both *missile* and *anti-missile* units.
 
 modular engineering kit::
 A _modular engineering kit_ contains the panels, struts, beams, and other components used to build colonies and ships.
@@ -303,9 +264,10 @@ There are three types, the standard (MEK-1), a lower mass version (MEK-2), and a
 
 MU::
 _MU_ is an abbreviation for *mass unit*.
+Please note that we're transitioning to measuring mass in *tonnes*.
 
 nation::
-A _nation_ is created by people from many *societies* that share a common *homeworld*, language, and history.
+A _nation_ is created by people from many *societies* that share a common *home world*, language, and history.
 
 nexus jump point::
 The _nexus jump point_ is the 11th orbit around a star.
@@ -349,16 +311,16 @@ player::
 A _player_ controls a single *nation* in a *game*.
 
 population unit::
-Define this, please.
+A _population_ unit is a group of 100 *professional*, *soldier*, *unskilleded worker*, or *unemployed* units.
 
 probe::
-Define this, please.
+A _probe_ is a use of a _sensor_ unit during a turn to perform a detailed survey on a *planet*, *ship*, or *colony*.
 
 professional unit::
 A _professional_ unit is a type of *population* unit.
 
 raw material::
-Define this, please.
+A _raw material_ is extracted from a *deposit* of *natural resources*.
 
 rebel::
 _Rebel_ is not a *population* unit;
@@ -470,6 +432,11 @@ The ship's total mass divided by its TF is the maximum distance
 (in space combat rings)
 that the ship may move in a combat round.
 
+tonne::
+A _tonne_ is the standard unit of mass in the game.
+It is equal to 1,000 kilograms.
+The mass of a unit determines the number of drives needed to move the unit.
+
 trade station::
 A _trade station_ is an *orbital station* built by a player for the express purpose of running a market.
 The station may have farms but never factories or mines.
@@ -510,3 +477,7 @@ Stage 2 contains the items that have been in the pipeline for a full turn.
 Stage 3 contains the items that have been in the pipeline for two full turns.
 Stage 4 contains the items that have been in the pipeline for three full turns.
 
+yield percentage::
+The _yield percentage_ for a *deposit* is the percentage of each *tonne* mined that can be refined into the raw material
+(fuel, gold, metallic, or non-metallic).
+For example, a GOLD deposit with a yield percentage of 7.2% would produce 0.072 tonnes of GOLD per tonne extracted from the deposit.

@@ -1,6 +1,6 @@
 = Wraith Getting Started
 Michael D Henderson <mdhender@example.com>
-v0.1.4, 2022-07-05
+v0.2.0, 2022-07-11
 :doctype: book
 :sectnums:
 :sectnumlevels: 5
@@ -232,8 +232,8 @@ You issue orders by uploading a text file to the web server.
 
 The format of an order is generally:
 
-* the name of the ship or colony you're giving the order to
 * the "verb" or order name
+* the name of the ship or colony you're giving the order to
 * the options for the order
 ** these are things like number of units and ship you're attacking
 
@@ -244,12 +244,11 @@ The order is formatted like:
 .Name Order
 [source]
 ----
-ColonyID  name QuotedString
+name ColonyID QuotedString
 ----
 
 This tells us that we must provide the colony's identifier
 (this is on your system report, it always the letter C followed by some numbers),
-the command (in this case it is literally the text "name"),
 and the name we want to assign the colony.
 Because it's a `QuotedString`, we must enclose the colony's name in quote marks.
 
@@ -260,7 +259,7 @@ To name our C21 colony Mudbomb, we'd issue the following order:
 .Example
 [source]
 ----
-C21 name "Mudbomb"
+name C21 "Mudbomb"
 ----
 
 To name our C22 colony Spirit in the Sky, we'd issue the following order:
@@ -268,7 +267,7 @@ To name our C22 colony Spirit in the Sky, we'd issue the following order:
 .Example
 [source]
 ----
-C22 name "Spirit in the Sky"
+name C22 "Spirit in the Sky"
 ----
 
 You can always change the name of a colony in a later turn by issuing a new `name` order.
@@ -286,12 +285,11 @@ The assembly order is formatted like:
 .Assemble Mining Group Order
 [source]
 ----
-ColonyID assemble Quantity MineTL DepositID
+assemble ColonyID Quantity MineTL DepositID
 ----
 
 This tells us that we must provide the colony's identifier
 (this is on your system report, it always the letter C followed by some numbers),
-the command (in this case it is literally the text "assemble"),
 the number of mining units we want to assign to the group,
 the code for those units,
 and the deposit's identifier that we want to work
@@ -300,8 +298,8 @@ and the deposit's identifier that we want to work
 .Examples
 [source]
 ----
-C21 assemble 50,000 mine-1 DP5   ;; start 50,000 mines working deposit #5
-C21 assemble 25,000 mine-1 DP23  ;; start 50,000 mines working deposit #23
+assemble C21 50,000 mine-1 DP5   ;; start 50,000 mines working deposit #5
+assemble C21 25,000 mine-1 DP23  ;; start 50,000 mines working deposit #23
 ----
 
 The group number for the mining group will be automatically assigned by the game engine when your orders are processed.
@@ -322,12 +320,11 @@ You can keep your units in storage and use them on a later turn.
 .Assemble Factory Group Order
 [source]
 ----
-ColonyID assemble Quantity FactoryTL UnitID
+assemble ColonyID Quantity FactoryTL UnitID
 ----
 
 This tells us that we must provide the colony's identifier
 (this is on your system report, it always the letter C followed by some numbers),
-the command (in this case it is literally the text "assemble"),
 the number of factory units we want to assign to the group,
 the code for those units,
 and the code for the units that we want the group to start producing.
@@ -335,10 +332,10 @@ and the code for the units that we want the group to start producing.
 .Assemble Factory Group Order Examples
 [source]
 ----
-C21 assemble 50,000 factory-1 life-support-1  ;; create a group building life-support
-C21 assemble 50,000 factory-1 sensor-1        ;; create a group building sensors
-C21 assemble 50,000 factory-1 hyper-drive-1   ;; create a group building hyper-drives
-C21 assemble 50,000 factory-1 space-drive-1   ;; create a group building space-drives
+assemble C21 50,000 factory-1 life-support-1  ;; create a group building life-support
+assemble C21 50,000 factory-1 sensor-1        ;; create a group building sensors
+assemble C21 50,000 factory-1 hyper-drive-1   ;; create a group building hyper-drives
+assemble C21 50,000 factory-1 space-drive-1   ;; create a group building space-drives
 ----
 
 NOTE: It takes four turns for a factory to produce an item.
